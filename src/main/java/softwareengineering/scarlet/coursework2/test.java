@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2.coursework2;
+package softwareengineering.scarlet.coursework2;
 
 public class test {
 
