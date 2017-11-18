@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2.coursework2;
+package softwareengineering.scarlet.coursework2;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
