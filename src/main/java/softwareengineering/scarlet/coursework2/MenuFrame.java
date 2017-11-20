@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 public class MenuFrame extends JFrame {
@@ -25,16 +27,32 @@ public class MenuFrame extends JFrame {
 }
 
 
-class MenuPanel extends JPanel {
+class MenuPanel extends JPanel implements KeyListener {
+
+  int selectedOption = 0;
+  Font menuFont = new Font("Monospaced", Font.PLAIN, 12);
+  boolean pressed = false;
 
   private void drawOptions(Graphics2D g2d) {
-    Font menuFont = new Font("Monospaced", Font.PLAIN, 12);
 
     g2d.setFont(menuFont);
-    g2d.drawString("→ New Game", 180, 250);
+    g2d.drawString("  New Game", 180, 250);
     g2d.drawString("  View Leaderboard", 180, 270);
     g2d.drawString("  Quit", 180, 290);
 
+    addKeyListener(this);
+    setFocusable(true);
+    //does not get arrow keys as input
+    setFocusTraversalKeysEnabled(false);
+    
+  }
+  
+  private void drawMenuArrow(Graphics2D g2d){
+    
+    int ySpacing = 20; // height between menu option
+    g2d.setFont(menuFont);
+    g2d.drawString("→", 180, 250+selectedOption*ySpacing);
+    
   }
 
   void drawTitle(Graphics2D g2d) {
@@ -72,7 +90,46 @@ class MenuPanel extends JPanel {
     Graphics2D g2d = (Graphics2D) g;
 
     drawOptions(g2d);
+    drawMenuArrow(g2d);
     drawTitle(g2d);
 
   }
+  
+  public void keyTyped(KeyEvent event){
+
+  }
+
+  /**
+   * Implements logic for key presses when on menu screen.
+   * 
+   * @param event
+   *                An event generated when user presses key.
+   */
+  public void keyPressed(KeyEvent event){
+    if (!pressed) { // prevents multiple KeyEvents for single keypress
+      pressed = true;
+      
+      if(event.getKeyCode()== KeyEvent.VK_DOWN){
+        selectedOption++;
+        selectedOption = selectedOption%3; // mod loops back to top option
+        
+        repaint(); 
+      } else if(event.getKeyCode()== KeyEvent.VK_UP){
+        selectedOption--;
+        if(selectedOption == -1) {
+          selectedOption = 2; // loop back to bottom option
+        }
+        
+        repaint();
+      } else if (selectedOption == 2 && event.getKeyCode()== KeyEvent.VK_ENTER){
+        System.exit(0);
+        
+      }
+    }
+  }
+
+public void keyReleased(KeyEvent event){
+  pressed = false;  
+}
+  
 }

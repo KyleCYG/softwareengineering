@@ -1,12 +1,13 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class App  
 {
     public static void main( String[] args )
     {
@@ -16,5 +17,7 @@ public class App
           menu.setVisible(true);
         }
       });
+      
     }
+    
 }
