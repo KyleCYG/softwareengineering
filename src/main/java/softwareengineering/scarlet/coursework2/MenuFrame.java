@@ -23,7 +23,6 @@ public class MenuFrame extends JFrame {
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
-
 }
 
 
@@ -128,8 +127,8 @@ class MenuPanel extends JPanel implements KeyListener {
     }
   }
 
-public void keyReleased(KeyEvent event){
-  pressed = false;  
-}
+  public void keyReleased(KeyEvent event){
+    pressed = false;  
+  }
   
 }

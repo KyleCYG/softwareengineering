@@ -1,7 +1,6 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
-import java.awt.event.KeyEvent;
 
 /**
  * Hello world!
@@ -9,8 +8,7 @@ import java.awt.event.KeyEvent;
  */
 public class App  
 {
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) {
       EventQueue.invokeLater(new Runnable() {
         public void run() {
           MenuFrame menu = new MenuFrame();
