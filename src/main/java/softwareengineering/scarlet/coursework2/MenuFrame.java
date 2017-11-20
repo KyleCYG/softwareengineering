@@ -22,14 +22,6 @@ public class MenuFrame extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
-  public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        MenuFrame menu = new MenuFrame();
-        menu.setVisible(true);
-      }
-    });
-  }
 }
 
 
