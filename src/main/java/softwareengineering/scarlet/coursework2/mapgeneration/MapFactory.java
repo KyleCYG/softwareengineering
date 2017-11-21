@@ -1,10 +1,57 @@
 package softwareengineering.scarlet.coursework2.mapgeneration;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import softwareengineering.scarlet.coursework2.models.Room;
 
 public class MapFactory {
   private static int minRoomSize = 5;
+
+  private static Set<Integer> roomSideRange(Room room, Direction direction) {
+    /*
+     * Utility method to return the width or height of a room as a set of integers
+     */
+    int start = direction == Direction.HORIZONTAL ? room.getX() : room.getY();
+    int stop = direction == Direction.HORIZONTAL ? room.getWidth() : room.getHeight();
+
+    Set<Integer> side = new HashSet<Integer>();
+    for (int i = start; i < stop + start; i++) {
+      side.add(i);
+    }
+
+    return side;
+  }
+
+  public static Set<Integer> findMatch(List<Room> sideA, List<Room> sideB, Direction direction)
+      throws Exception {
+    /*
+     * Given two sets of rooms and a direction, find points that are found in both sets
+     *
+     * Slightly more clearly: imagine two rooms next to each other, overlapping but offset. This
+     * method will return the points where you could draw a straight line, perpendicular to the
+     * rooms, that pass through both rooms at 90 degrees.
+     */
+    Set<Integer> setA = new HashSet<Integer>();
+    Set<Integer> setB = new HashSet<Integer>();
+
+    for (Room room : sideA) {
+      setA.addAll(roomSideRange(room, direction));
+    }
+
+    for (Room room : sideB) {
+      setB.addAll(roomSideRange(room, direction));
+    }
+
+    setA.retainAll(setB);
+
+    if (setA.size() == 0) {
+      throw new Exception("No matching sides");
+    }
+
+    return setA;
+  }
 
   public static Room makeRoom(int x, int y, int width, int height) {
     // Will replace this later, hate having randomness when testing
