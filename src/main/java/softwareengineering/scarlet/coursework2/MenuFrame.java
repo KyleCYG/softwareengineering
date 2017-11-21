@@ -12,10 +12,18 @@ import java.awt.event.KeyListener;
 
 public class MenuFrame extends JFrame {
 
+ /**
+  * 
+  * Calls unutUI()
+  */  
   public MenuFrame() {
     initUI();
   }
-
+  
+  /**
+  * 
+  * Initialize the menu panel size 
+  */  
   public void initUI() {
     this.add(new MenuPanel());
 
@@ -32,6 +40,11 @@ class MenuPanel extends JPanel implements KeyListener {
   Font menuFont = new Font("Monospaced", Font.PLAIN, 12);
   boolean pressed = false;
 
+  /**
+  * 
+  * Shows the menu options and get the key that user presses
+  * @param g2d 
+  */ 
   private void drawOptions(Graphics2D g2d) {
 
     g2d.setFont(menuFont);
@@ -46,6 +59,11 @@ class MenuPanel extends JPanel implements KeyListener {
     
   }
   
+  /**
+  * 
+  * Shows the arrow on the appropriate option according to user's input
+  * @param g2d 
+  */ 
   private void drawMenuArrow(Graphics2D g2d){
     
     int ySpacing = 20; // height between menu option
@@ -54,6 +72,11 @@ class MenuPanel extends JPanel implements KeyListener {
     
   }
 
+   /**
+   * Renders the title in the menu frame.
+   * 
+   * @param g2d
+   */
   void drawTitle(Graphics2D g2d) {
     String titleArt =
         "  ______                                                  ______                                   __     \n"
@@ -83,6 +106,12 @@ class MenuPanel extends JPanel implements KeyListener {
     }
   }
 
+
+  /**
+  * 
+  * Renders all the menu items (title, options, arrow on specified option)
+  * @param g 
+  */  
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -128,6 +157,7 @@ class MenuPanel extends JPanel implements KeyListener {
   }
 
   public void keyReleased(KeyEvent event){
+    // set pressed to false so that keyPressed is not called twice (bug)
     pressed = false;  
   }
   
