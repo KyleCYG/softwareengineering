@@ -2,11 +2,11 @@ package softwareengineering.scarlet.coursework2.mapgeneration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import org.junit.Test;
+import softwareengineering.scarlet.coursework2.models.Corridor;
+import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
 
 public class MapFactoryTest {
@@ -49,6 +49,19 @@ public class MapFactoryTest {
   }
 
   @Test
+  public void testMakeCorridor() {
+    int width = 100;
+    int height = 100;
+
+    Map map = TwoRoomMapFactory.generateMap(width, height);
+    Corridor corridor = map.getCorridors().get(0);
+
+    assertEquals(2, map.getRooms().size());
+    assertEquals((width / 2) - 2, corridor.getX1());
+    assertEquals((width / 2) + 2, corridor.getX2());
+  }
+
+  @Test
   public void testTreeMakeNode() {
     int x = 0;
     int y = 0;
@@ -59,19 +72,8 @@ public class MapFactoryTest {
     Leaf leaf = MapFactory.makeNode(x, y, width, height, direction);
 
     assertTrue(leaf.getRooms().size() > 1);
-  }
-
-  @Test
-  public void testFindMatchNoRooms() {
-    List<Room> sideA = new ArrayList<Room>();
-    List<Room> sideB = new ArrayList<Room>();
-
-    try {
-      MapFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
-      fail();
-    } catch (Exception e) {
-      assertEquals(e.getMessage(), "No matching sides");
-    }
+    assertEquals("Not the right number of corridors", leaf.getRooms().size() - 1,
+        leaf.getCorridors().size());
   }
 
   @Test
@@ -85,7 +87,7 @@ public class MapFactoryTest {
     sideA.add(roomA);
     sideB.add(roomB);
 
-    Set<Integer> matches = MapFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
+    List<Integer> matches = MapFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
 
     assertEquals(5, matches.size());
   }
@@ -103,7 +105,7 @@ public class MapFactoryTest {
     sideB.add(roomB);
     sideB.add(roomC);
 
-    Set<Integer> matches = MapFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
+    List<Integer> matches = MapFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
 
     assertEquals(7, matches.size());
   }

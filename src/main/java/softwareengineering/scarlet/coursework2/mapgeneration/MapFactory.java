@@ -1,9 +1,11 @@
 package softwareengineering.scarlet.coursework2.mapgeneration;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import softwareengineering.scarlet.coursework2.models.Corridor;
 import softwareengineering.scarlet.coursework2.models.Room;
 
 public class MapFactory {
@@ -24,8 +26,7 @@ public class MapFactory {
     return side;
   }
 
-  public static Set<Integer> findMatch(List<Room> sideA, List<Room> sideB, Direction direction)
-      throws Exception {
+  public static List<Integer> findMatch(List<Room> sideA, List<Room> sideB, Direction direction) {
     /*
      * Given two sets of rooms and a direction, find points that are found in both sets
      *
@@ -46,11 +47,28 @@ public class MapFactory {
 
     setA.retainAll(setB);
 
-    if (setA.size() == 0) {
-      throw new Exception("No matching sides");
-    }
+    return new ArrayList<Integer>(setA);
+  }
 
-    return setA;
+  protected static Corridor makeCorridor(Leaf leafA, Leaf leafB, Direction direction) {
+    // Will replace this later, hate having randomness when testing
+    Random random = new Random();
+
+    List<Integer> matches = findMatch(leafA.getRooms(), leafB.getRooms(), direction);
+
+    int choice = matches.get(random.nextInt(matches.size()));
+
+    if (direction == Direction.HORIZONTAL) {
+      Leaf top = leafA.getY() > leafB.getY() ? leafB : leafA;
+      Leaf bottom = leafA.getY() > leafB.getY() ? leafA : leafB;
+
+      return new Corridor(choice, choice, top.findMaxYAtX(choice), bottom.findMinYAtX(choice));
+    } else {
+      Leaf left = leafA.getX() > leafB.getX() ? leafB : leafA;
+      Leaf right = leafA.getX() > leafB.getX() ? leafA : leafB;
+
+      return new Corridor(left.findMaxXAtY(choice), choice, right.findMinXAtY(choice), choice);
+    }
   }
 
   public static Room makeRoom(int x, int y, int width, int height) {
@@ -117,7 +135,9 @@ public class MapFactory {
         direction == Direction.HORIZONTAL ? width : width - split,
         direction == Direction.HORIZONTAL ? height - split : height, newDirection);
 
-    // TODO: Add a corridor between the two leaves
+    // Add a corridor between the two leaves
+    Corridor corridor = MapFactory.makeCorridor(leafA, leafB, direction);
+    leafA.getCorridors().add(corridor);
 
     // Merge the two leaves together
     leafA.getRooms().addAll(leafB.getRooms());
