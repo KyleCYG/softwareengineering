@@ -59,7 +59,6 @@ public class Leaf {
   public int findMaxXAtY(int y) {
     // Sort rooms by their far right edge
     getRooms().sort(new Comparator<Room>() {
-      @Override
       public int compare(Room r1, Room r2) {
         return r2.getX2() - r1.getX2();
       }
@@ -78,7 +77,6 @@ public class Leaf {
   public int findMinXAtY(int y) {
     // Sort rooms by their far left edge
     getRooms().sort(new Comparator<Room>() {
-      @Override
       public int compare(Room r1, Room r2) {
         return r1.getX2() - r2.getX2();
       }
@@ -97,7 +95,6 @@ public class Leaf {
   public int findMaxYAtX(int x) {
     // Sort rooms by bottom edge
     getRooms().sort(new Comparator<Room>() {
-      @Override
       public int compare(Room r1, Room r2) {
         return r2.getY2() - r1.getY2();
       }
@@ -116,7 +113,6 @@ public class Leaf {
   public int findMinYAtX(int x) {
     // Sort rooms by top edge
     getRooms().sort(new Comparator<Room>() {
-      @Override
       public int compare(Room r1, Room r2) {
         return r1.getY() - r2.getY();
       }
