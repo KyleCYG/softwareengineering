@@ -28,4 +28,12 @@ public class Room {
   public int getHeight() {
     return height;
   }
+
+  public int getX2() {
+    return x + width;
+  }
+
+  public int getY2() {
+    return y + height;
+  }
 }
