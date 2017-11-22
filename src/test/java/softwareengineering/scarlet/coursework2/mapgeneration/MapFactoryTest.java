@@ -109,4 +109,12 @@ public class MapFactoryTest {
 
     assertEquals(7, matches.size());
   }
+
+  @Test
+  public void testGenerateMap() {
+    Map map = MapFactory.generateMap(100, 100);
+
+    assertTrue(map.getRooms().size() > 0);
+    assertTrue(map.getCorridors().size() > 0);
+  }
 }

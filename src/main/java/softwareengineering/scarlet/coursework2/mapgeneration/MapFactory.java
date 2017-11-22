@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import softwareengineering.scarlet.coursework2.models.Corridor;
+import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
 
 public class MapFactory {
@@ -144,5 +145,13 @@ public class MapFactory {
     leafA.getCorridors().addAll(leafB.getCorridors());
 
     return leafA;
+  }
+
+  public static Map generateMap(int width, int height) {
+    Map map = new Map(width, height);
+    Leaf root = makeNode(0, 0, width, height, Direction.HORIZONTAL);
+    map.getRooms().addAll(root.getRooms());
+    map.getCorridors().addAll(root.getCorridors());
+    return map;
   }
 }
