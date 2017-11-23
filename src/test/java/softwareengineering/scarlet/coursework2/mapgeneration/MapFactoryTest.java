@@ -1,10 +1,12 @@
 package softwareengineering.scarlet.coursework2.mapgeneration;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Corridor;
 import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
@@ -114,9 +116,36 @@ public class MapFactoryTest {
 
   @Test
   public void testGenerateMap() {
-    Map map = MapFactory.generateMap(100, 100, null);
-
+    int width = 100;
+    int height = 100;
+    Map map = MapFactory.generateMap(width, height, null);
     assertTrue(map.getRooms().size() > 0);
     assertTrue(map.getCorridors().size() > 0);
+  }
+
+  @Test
+  public void testNoOverlap() {
+    int width = 100;
+    int height = 100;
+
+    Map map = MapFactory.generateMap(width, height, null);
+
+    CellType[][] grid = new CellType[width][height];
+
+    for (Room room : map.getRooms()) {
+      for (int x = room.getX(); x <= room.getX2(); x++) {
+        for (int y = room.getY(); y <= room.getY2(); y++) {
+          grid[x][y] = CellType.ROOM;
+        }
+      }
+    }
+
+    for (Corridor corridor : map.getCorridors()) {
+      for (int x = corridor.getX1(); x <= corridor.getX2(); x++) {
+        for (int y = corridor.getY1(); y <= corridor.getY2(); y++) {
+          assertFalse(grid[x][y] == CellType.ROOM);
+        }
+      }
+    }
   }
 }
