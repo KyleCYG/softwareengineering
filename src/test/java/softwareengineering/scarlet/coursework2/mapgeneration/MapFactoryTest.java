@@ -112,7 +112,7 @@ public class MapFactoryTest {
 
   @Test
   public void testGenerateMap() {
-    Map map = MapFactory.generateMap(100, 100);
+    Map map = MapFactory.generateMap(100, 100, null);
 
     assertTrue(map.getRooms().size() > 0);
     assertTrue(map.getCorridors().size() > 0);
