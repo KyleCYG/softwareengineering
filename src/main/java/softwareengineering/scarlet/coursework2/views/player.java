@@ -1,25 +1,28 @@
-package softwareengineering.scarlet.coursework2.playerappear;
+package softwareengineering.scarlet.coursework2.views;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
-public class Player {
+public class player {
 	 private int dx;
 	    private int dy;
 	    private int x;
 	    private int y;
 	    private Image image;
 
-	    public Player() {
+	    public player() {
 	        
-	        initCraft();
+	      initPlayer();
 	    }
 	    
-	    private void initCraft() {
+	    private void initPlayer() {
 	        
-	        ImageIcon ii = new ImageIcon("man.png");
+	        ImageIcon ii = new ImageIcon("player.png");
 	        image = ii.getImage();
-	        x = 450;
-	        y = 350;        
+	        
+	    }
+	    public void setLocation(int x,int y) {
+	      this.x = x;
+	      this.y = y;
 	    }
 
 

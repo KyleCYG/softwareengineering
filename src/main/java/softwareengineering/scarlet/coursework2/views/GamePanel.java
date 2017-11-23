@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2.playerappear;
+package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -13,26 +13,26 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.RenderingHints;
-public class Board extends JPanel implements ActionListener {
+public class GamePanel extends JPanel implements ActionListener {
 
     private Timer timer;
-    private Player player;
+    private player player;
     private final int DELAY = 10;
 
-    public Board() {
+    public GamePanel() {
 
-        initBoard();
+        initGamePanel();
     }
     
-    private void initBoard() {
+    private void initGamePanel() {
         
         addKeyListener(new TAdapter());
         setFocusable(true);
 
-        player = new Player();
+        player = new player();
 
-        timer = new Timer(DELAY, this);
-        timer.start();        
+      //  timer = new Timer(DELAY, this);
+       // timer.start();        
     }
 
 
@@ -60,12 +60,9 @@ public class Board extends JPanel implements ActionListener {
         		}
         }
         
-        BasicStroke bs1 = new BasicStroke(8, BasicStroke.CAP_SQUARE,
-    			BasicStroke.JOIN_ROUND);
         
-        
+        BasicStroke bs1 = new BasicStroke(8, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND);
         g2d.setStroke(bs1);
-        
         g2d.drawLine(150, 40, 750, 40);
         g2d.drawLine(750, 40, 750, 640);
         g2d.drawLine(150, 40, 150, 640);

@@ -1,24 +1,24 @@
-package softwareengineering.scarlet.coursework2.playerappear;
+package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
-public class player_appear extends JFrame{
-	 public player_appear() {
+public class GameFrame extends JFrame{
+	 public GameFrame() {
 	        
 	        initUI();
 	    }
 	    
 	    private void initUI() {
 	        
-	        add(new Board());
+	        add(new GamePanel());
 	        
-	        setSize(900, 700);
 	        setResizable(false);
 	        
 	        setTitle("It's a Dungen Game!");
 	        setLocationRelativeTo(null);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        setExtendedState(JFrame.MAXIMIZED_BOTH);
 	    }
 
 	    public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class player_appear extends JFrame{
 	        EventQueue.invokeLater(new Runnable() {
 	            public void run() {
 	                
-	              player_appear ex = new player_appear();
+	              GameFrame ex = new GameFrame();
 	                ex.setVisible(true);
 	            }
 	        });
