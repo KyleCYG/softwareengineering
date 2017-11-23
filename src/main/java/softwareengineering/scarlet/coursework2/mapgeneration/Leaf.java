@@ -56,7 +56,7 @@ public class Leaf {
 
   // The functions below demonstrate how much I dislike Java.
 
-  public int findMaxXAtY(int y) {
+  public int findMaxXAtY(int targetY) {
     // Sort rooms by their far right edge
     getRooms().sort(new Comparator<Room>() {
       public int compare(Room r1, Room r2) {
@@ -67,14 +67,15 @@ public class Leaf {
     // Find the furthest room that sits on the y line
     int result = -1;
     for (Room room : getRooms()) {
-      if (room.getY() <= y && room.getY2() >= y) {
+      if (room.getY() <= targetY && room.getY2() >= targetY) {
         result = room.getX2();
+        break;
       }
     }
     return result;
   }
 
-  public int findMinXAtY(int y) {
+  public int findMinXAtY(int targetY) {
     // Sort rooms by their far left edge
     getRooms().sort(new Comparator<Room>() {
       public int compare(Room r1, Room r2) {
@@ -85,14 +86,15 @@ public class Leaf {
     // Find the furthest room that sits on the y line
     int result = -1;
     for (Room room : getRooms()) {
-      if (room.getY() <= y && room.getY2() >= y) {
+      if (room.getY() <= targetY && room.getY2() >= targetY) {
         result = room.getX();
+        break;
       }
     }
     return result;
   }
 
-  public int findMaxYAtX(int x) {
+  public int findMaxYAtX(int targetX) {
     // Sort rooms by bottom edge
     getRooms().sort(new Comparator<Room>() {
       public int compare(Room r1, Room r2) {
@@ -100,17 +102,18 @@ public class Leaf {
       }
     });
 
-    // Find the furthest room that sits on the y line
+    // Find the furthest room that sits on the x line
     int result = -1;
     for (Room room : getRooms()) {
-      if (room.getX() <= x && room.getX2() >= x) {
+      if (room.getX() <= targetX && room.getX2() >= targetX) {
         result = room.getY2();
+        break;
       }
     }
     return result;
   }
 
-  public int findMinYAtX(int x) {
+  public int findMinYAtX(int targetX) {
     // Sort rooms by top edge
     getRooms().sort(new Comparator<Room>() {
       public int compare(Room r1, Room r2) {
@@ -118,11 +121,12 @@ public class Leaf {
       }
     });
 
-    // Find the furthest room that sits on the y line
+    // Find the furthest room that sits on the x line
     int result = -1;
     for (Room room : getRooms()) {
-      if (room.getY() <= y && room.getY2() >= y) {
+      if (room.getX() <= targetX && room.getX2() >= targetX) {
         result = room.getY();
+        break;
       }
     }
     return result;

@@ -30,10 +30,10 @@ public class Room {
   }
 
   public int getX2() {
-    return x + width;
+    return x + width - 1;
   }
 
   public int getY2() {
-    return y + height;
+    return y + height - 1;
   }
 }

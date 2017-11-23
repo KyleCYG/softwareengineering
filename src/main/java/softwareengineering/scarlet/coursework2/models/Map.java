@@ -57,16 +57,16 @@ public class Map {
     }
 
     for (Room room : getRooms()) {
-      for (int x = room.getX(); x < room.getX2(); x++) {
-        for (int y = room.getY(); y < room.getY2(); y++) {
+      for (int x = room.getX(); x <= room.getX2(); x++) {
+        for (int y = room.getY(); y <= room.getY2(); y++) {
           grid[x][y] = CellType.ROOM;
         }
       }
     }
 
     for (Corridor corridor : getCorridors()) {
-      for (int x = corridor.getX1(); x < corridor.getX2(); x++) {
-        for (int y = corridor.getY1(); y < corridor.getY2(); y++) {
+      for (int x = corridor.getX1(); x <= corridor.getX2(); x++) {
+        for (int y = corridor.getY1(); y <= corridor.getY2(); y++) {
           grid[x][y] = CellType.CORRIDOR;
         }
       }
@@ -110,16 +110,16 @@ public class Map {
             System.out.print(".");
             break;
           case CORRIDOR:
-            System.out.println("*");
+            System.out.print("*");
             break;
           case WALL:
-            System.out.println("#");
+            System.out.print("#");
             break;
           default:
             break;
         }
       }
-      System.out.println("\n");
+      System.out.print("\n");
     }
   }
 }

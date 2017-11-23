@@ -81,12 +81,22 @@ public class MapFactory {
       Leaf top = leafA.getY() > leafB.getY() ? leafB : leafA;
       Leaf bottom = leafA.getY() > leafB.getY() ? leafA : leafB;
 
-      return new Corridor(choice, choice, top.findMaxYAtX(choice), bottom.findMinYAtX(choice));
+      int x1 = choice;
+      int y1 = top.findMaxYAtX(choice) + 1;
+      int x2 = choice;
+      int y2 = bottom.findMinYAtX(choice) - 1;
+
+      return new Corridor(x1, y1, x2, y2);
     } else {
       Leaf left = leafA.getX() > leafB.getX() ? leafB : leafA;
       Leaf right = leafA.getX() > leafB.getX() ? leafA : leafB;
 
-      return new Corridor(left.findMaxXAtY(choice), choice, right.findMinXAtY(choice), choice);
+      int x1 = left.findMaxXAtY(choice) + 1;
+      int y1 = choice;
+      int x2 = right.findMinXAtY(choice) - 1;
+      int y2 = choice;
+
+      return new Corridor(x1, y1, x2, y2);
     }
   }
 
