@@ -50,20 +50,29 @@ public class Map {
      */
     CellType[][] grid = new CellType[width][height];
 
+    // Fill the map in with void
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
         grid[x][y] = CellType.VOID;
       }
     }
 
+    // Draw rooms
     for (Room room : getRooms()) {
+      // The actual room
       for (int x = room.getX(); x <= room.getX2(); x++) {
         for (int y = room.getY(); y <= room.getY2(); y++) {
           grid[x][y] = CellType.ROOM;
         }
       }
+
+      // Entities within the room
+      for (Entity entity : room.getEntities()) {
+        grid[entity.getX()][entity.getY()] = entity.type;
+      }
     }
 
+    // Draw corridors
     for (Corridor corridor : getCorridors()) {
       for (int x = corridor.getX1(); x <= corridor.getX2(); x++) {
         for (int y = corridor.getY1(); y <= corridor.getY2(); y++) {
@@ -115,7 +124,23 @@ public class Map {
           case WALL:
             System.out.print("#");
             break;
-          default:
+          case EXIT:
+            System.out.print("X");
+            break;
+          case GOLD:
+            System.out.print("G");
+            break;
+          case HEALTH:
+            System.out.print("H");
+            break;
+          case STAIRSDOWN:
+            System.out.print("<");
+            break;
+          case STAIRSUP:
+            System.out.print(">");
+            break;
+          case STRENGTH:
+            System.out.print("S");
             break;
         }
       }

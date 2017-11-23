@@ -5,6 +5,7 @@ public class StairsDownItem extends Entity {
 
   public StairsDownItem(int toLevel) {
     this.toLevel = toLevel;
+    this.type = CellType.STAIRSDOWN;
   }
 
   public int getToLevel() {

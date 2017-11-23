@@ -10,6 +10,7 @@ package softwareengineering.scarlet.coursework2.models;
 public abstract class Entity {
   private int x;
   private int y;
+  public CellType type;
 
   public int getX() {
     return x;

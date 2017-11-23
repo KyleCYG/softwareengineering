@@ -3,6 +3,7 @@ package softwareengineering.scarlet.coursework2.mapgeneration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -211,8 +212,8 @@ public class MapFactory {
 
     while (!placed) {
       // Generate a new position
-      x = random.nextInt(room.getWidth());
-      y = random.nextInt(room.getHeight());
+      x = random.nextInt(room.getWidth()) + room.getX();
+      y = random.nextInt(room.getHeight()) + room.getY();
       placed = true;
 
       // Check other entities in the room for clashes
@@ -237,16 +238,21 @@ public class MapFactory {
    * @return The original map
    */
   public static Map placeObjects(Map map, List<Entity> entities) {
-    List<Room> rooms;
+    List<Room> rooms = new ArrayList<Room>(map.getRooms());
     List<Entity> toPlace = new ArrayList<Entity>(entities);
+    Room room;
     Collections.shuffle(toPlace);
+    Iterator<Room> roomIterator = rooms.iterator();
 
     while (toPlace.size() > 0) {
-      rooms = new ArrayList<Room>(map.getRooms());
-      Collections.shuffle(rooms);
-      for (Room room : rooms) {
-        placeObjectInRoom(room, toPlace.remove(0));
+      if (rooms.size() == 0) {
+        rooms = new ArrayList<Room>(map.getRooms());
+        Collections.shuffle(rooms);
+        roomIterator = rooms.iterator();
       }
+
+      room = roomIterator.next();
+      placeObjectInRoom(room, toPlace.remove(0));
     }
 
     return map;

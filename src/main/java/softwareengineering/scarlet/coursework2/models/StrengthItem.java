@@ -5,6 +5,7 @@ public class StrengthItem extends Entity {
 
   public StrengthItem(int value) {
     this.value = value;
+    this.type = CellType.STRENGTH;
   }
 
   public int getValue() {

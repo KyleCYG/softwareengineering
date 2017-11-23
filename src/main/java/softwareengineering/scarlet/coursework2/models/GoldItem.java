@@ -5,6 +5,7 @@ public class GoldItem extends Entity {
 
   public GoldItem(int value) {
     this.value = value;
+    this.type = CellType.GOLD;
   }
 
   public int getValue() {

@@ -9,8 +9,14 @@ import org.junit.Test;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Corridor;
 import softwareengineering.scarlet.coursework2.models.Entity;
+import softwareengineering.scarlet.coursework2.models.ExitItem;
+import softwareengineering.scarlet.coursework2.models.GoldItem;
+import softwareengineering.scarlet.coursework2.models.HealthItem;
 import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
+import softwareengineering.scarlet.coursework2.models.StairsDownItem;
+import softwareengineering.scarlet.coursework2.models.StairsUpItem;
+import softwareengineering.scarlet.coursework2.models.StrengthItem;
 
 public class MapFactoryTest {
   @Test
@@ -148,5 +154,27 @@ public class MapFactoryTest {
         }
       }
     }
+  }
+
+  @Test
+  public void testEntityPlacement() {
+    List<Entity> entities = new ArrayList<Entity>();
+
+    entities.add(new GoldItem(1));
+    entities.add(new HealthItem(1));
+    entities.add(new StrengthItem(1));
+    entities.add(new StairsUpItem(1));
+    entities.add(new StairsDownItem(1));
+    entities.add(new ExitItem());
+
+    Map map = MapFactory.generateMap(50, 50, entities);
+
+    List<Entity> check = new ArrayList<Entity>();
+
+    for (Room room : map.getRooms()) {
+      check.addAll(room.getEntities());
+    }
+
+    assertEquals(entities.size(), check.size());
   }
 }

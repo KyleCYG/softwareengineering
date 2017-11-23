@@ -5,6 +5,7 @@ public class HealthItem extends Entity {
 
   public HealthItem(int value) {
     this.value = value;
+    this.type = CellType.HEALTH;
   }
 
   public int getValue() {
