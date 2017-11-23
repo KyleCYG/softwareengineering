@@ -57,8 +57,10 @@ public class MapFactoryTest {
     Corridor corridor = map.getCorridors().get(0);
 
     assertEquals(2, map.getRooms().size());
+    // These values are slightly odd because of the off-by-1 error of using "width" as a coordinate
+    // in a zero-based system
     assertEquals((width / 2) - 2, corridor.getX1());
-    assertEquals((width / 2) + 2, corridor.getX2());
+    assertEquals((width / 2) + 1, corridor.getX2());
   }
 
   @Test
