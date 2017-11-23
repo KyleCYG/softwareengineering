@@ -12,10 +12,14 @@ import softwareengineering.scarlet.coursework2.models.Room;
 public class MapFactory {
   private static int minRoomSize = 5;
 
+  /**
+   * Utility method to return the width or height of a room as a set of integers
+   *
+   * @param room The room to analyse
+   * @param direction The side will be parallel to the direction
+   * @return The integers representing the width or height of the room
+   */
   private static Set<Integer> roomSideRange(Room room, Direction direction) {
-    /*
-     * Utility method to return the width or height of a room as a set of integers
-     */
     int start = direction == Direction.HORIZONTAL ? room.getX() : room.getY();
     int stop = direction == Direction.HORIZONTAL ? room.getWidth() : room.getHeight();
 
@@ -27,14 +31,19 @@ public class MapFactory {
     return side;
   }
 
+  /**
+   * Given two sets of rooms and a direction, find points that are found in both sets
+   *
+   * Slightly more clearly: imagine two rooms next to each other, overlapping but offset. This
+   * method will return the points where you could draw a straight line, perpendicular to the rooms,
+   * that pass through both rooms at 90 degrees.
+   *
+   * @param sideA Rooms on one side
+   * @param sideB Rooms on the other side
+   * @param direction The direction of the line between the sides
+   * @return List of matches x's or y's
+   */
   public static List<Integer> findMatch(List<Room> sideA, List<Room> sideB, Direction direction) {
-    /*
-     * Given two sets of rooms and a direction, find points that are found in both sets
-     *
-     * Slightly more clearly: imagine two rooms next to each other, overlapping but offset. This
-     * method will return the points where you could draw a straight line, perpendicular to the
-     * rooms, that pass through both rooms at 90 degrees.
-     */
     Set<Integer> setA = new HashSet<Integer>();
     Set<Integer> setB = new HashSet<Integer>();
 
@@ -51,6 +60,14 @@ public class MapFactory {
     return new ArrayList<Integer>(setA);
   }
 
+  /**
+   * Make a corridor connecting two adjacent leaves
+   *
+   * @param leafA The first leaf
+   * @param leafB The second leaf
+   * @param direction The direction of the line between the leaves
+   * @return A corridor object connecting the leaves
+   */
   protected static Corridor makeCorridor(Leaf leafA, Leaf leafB, Direction direction) {
     // Will replace this later, hate having randomness when testing
     Random random = new Random();
@@ -72,6 +89,15 @@ public class MapFactory {
     }
   }
 
+  /**
+   * Make a room object within a defined space
+   *
+   * @param x The x co-ordinate of the top left of the space
+   * @param y The y co-ordinate of the top left of the space
+   * @param width The width of the space
+   * @param height The height of the space
+   * @return A room object somewhere within the space
+   */
   public static Room makeRoom(int x, int y, int width, int height) {
     // Will replace this later, hate having randomness when testing
     Random random = new Random();
@@ -100,6 +126,16 @@ public class MapFactory {
     return new Room(roomX, roomY, roomWidth, roomHeight);
   }
 
+  /**
+   * Make a new level in the binary tree out of a given space
+   *
+   * @param x The x co-ordinate of the top left of the space
+   * @param y The y co-ordinate of the top left of the space
+   * @param width The width of the space
+   * @param height The height of the space
+   * @param direction The direction in which to split the space
+   * @return A leaf object representing the space
+   */
   public static Leaf makeNode(int x, int y, int width, int height, Direction direction) {
     if ((width <= minRoomSize * 2) || (height <= minRoomSize * 2)) {
       Leaf leaf = new Leaf(x, y, width, height);
@@ -147,6 +183,13 @@ public class MapFactory {
     return leafA;
   }
 
+  /**
+   * Make a map of a given size
+   *
+   * @param width Width in cells
+   * @param height Height in cells
+   * @return A new Map containing rooms and corridors
+   */
   public static Map generateMap(int width, int height) {
     Map map = new Map(width, height);
     Leaf root = makeNode(0, 0, width, height, Direction.HORIZONTAL);
