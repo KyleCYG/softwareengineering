@@ -67,7 +67,7 @@ public class Map {
     for (Corridor corridor : getCorridors()) {
       for (int x = corridor.getX1(); x < corridor.getX2(); x++) {
         for (int y = corridor.getY1(); y < corridor.getY2(); y++) {
-          grid[x][y] = CellType.ROOM;
+          grid[x][y] = CellType.CORRIDOR;
         }
       }
     }
@@ -110,7 +110,7 @@ public class Map {
             System.out.print(".");
             break;
           case CORRIDOR:
-            System.out.println(".");
+            System.out.println("*");
             break;
           case WALL:
             System.out.println("#");
