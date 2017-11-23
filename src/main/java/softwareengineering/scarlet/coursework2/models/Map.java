@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Map {
   private ArrayList<Room> rooms;
   private ArrayList<Corridor> corridors;
-  private int[][] cache;
   private int width;
   private int height;
 
@@ -14,7 +13,6 @@ public class Map {
     this.corridors = new ArrayList<Corridor>();
     this.width = width;
     this.height = height;
-    this.cache = new int[width][height];
   }
 
   public ArrayList<Room> getRooms() {
@@ -25,8 +23,32 @@ public class Map {
     return corridors;
   }
 
-  public int[][] getCache() {
-    return cache;
+  public CellType[][] getGrid() {
+    CellType[][] grid = new CellType[width][height];
+
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        grid[x][y] = CellType.VOID;
+      }
+    }
+
+    for (Room room : getRooms()) {
+      for (int x = room.getX(); x < room.getX2(); x++) {
+        for (int y = room.getY(); y < room.getY2(); y++) {
+          grid[x][y] = CellType.ROOM;
+        }
+      }
+    }
+
+    for (Corridor corridor : getCorridors()) {
+      for (int x = corridor.getX1(); x < corridor.getX2(); x++) {
+        for (int y = corridor.getY1(); y < corridor.getY2(); y++) {
+          grid[x][y] = CellType.ROOM;
+        }
+      }
+    }
+
+    return grid;
   }
 
   public int getWidth() {
