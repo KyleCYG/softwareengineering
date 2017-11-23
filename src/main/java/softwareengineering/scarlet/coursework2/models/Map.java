@@ -58,4 +58,30 @@ public class Map {
   public int getHeight() {
     return height;
   }
+
+  public void printGrid() {
+    CellType[][] grid = this.getGrid();
+
+    for (int x = 0; x < 50; x++) {
+      for (int y = 0; y < 50; y++) {
+        switch (grid[x][y]) {
+          case VOID:
+            System.out.print(" ");
+            break;
+          case ROOM:
+            System.out.print(".");
+            break;
+          case CORRIDOR:
+            System.out.println(".");
+            break;
+          case WALL:
+            System.out.println("#");
+            break;
+          default:
+            break;
+        }
+      }
+      System.out.println("\n");
+    }
+  }
 }
