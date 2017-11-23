@@ -2,6 +2,17 @@ package softwareengineering.scarlet.coursework2.models;
 
 import java.util.ArrayList;
 
+/**
+ * Stores information about the position of objects within the dungeon.
+ *
+ * Only stores direct references to rooms and corridors - objects are then stored within these.
+ *
+ * Use {@code getGrid} to get a 2-dimensional array giving every cell in the entire map.
+ *
+ * You can use {@code printGrid} to dump the map to the console.
+ *
+ * @author Dan Cosser
+ */
 public class Map {
   private ArrayList<Room> rooms;
   private ArrayList<Corridor> corridors;
@@ -16,14 +27,27 @@ public class Map {
   }
 
   public ArrayList<Room> getRooms() {
+    /**
+     * A list of rooms within the dungeon.
+     *
+     * The ordering of this list is not consistent and may change.
+     */
     return rooms;
   }
 
   public ArrayList<Corridor> getCorridors() {
+    /**
+     * A list of corridors within the dungeon.
+     *
+     * The ordering of this list is not consistent and may change.
+     */
     return corridors;
   }
 
   public CellType[][] getGrid() {
+    /**
+     * Return a 2-dimensional grid representing the dungeon.
+     */
     CellType[][] grid = new CellType[width][height];
 
     for (int x = 0; x < width; x++) {
@@ -52,14 +76,28 @@ public class Map {
   }
 
   public int getWidth() {
+    /**
+     * The width of the dungeon in cells, zero based
+     */
     return width;
   }
 
   public int getHeight() {
+    /**
+     * The height of the dungeon in cells, zero based
+     */
     return height;
   }
 
   public void printGrid() {
+    /**
+     * Dump a textual representation of the map to the console.
+     *
+     * Be careful with large maps!
+     *
+     * Note that the default font is not square, and one character is used per cell, so it will
+     * appear stretched.
+     */
     CellType[][] grid = this.getGrid();
 
     for (int x = 0; x < 50; x++) {
