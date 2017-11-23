@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import softwareengineering.scarlet.coursework2.models.Corridor;
+import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
 
@@ -188,9 +189,10 @@ public class MapFactory {
    *
    * @param width Width in cells
    * @param height Height in cells
+   * @param entities List of objects to place in the dungeon (gold etc)
    * @return A new Map containing rooms and corridors
    */
-  public static Map generateMap(int width, int height) {
+  public static Map generateMap(int width, int height, List<Entity> entities) {
     Map map = new Map(width, height);
     Leaf root = makeNode(0, 0, width, height, Direction.HORIZONTAL);
     map.getRooms().addAll(root.getRooms());
