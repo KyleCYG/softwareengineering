@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.mapgeneration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -195,6 +196,63 @@ public class MapFactory {
   }
 
   /**
+   * Place a single entity in a room.
+   *
+   * @param room The room in which to place the entity
+   * @param entity The entity to place
+   */
+  public static void placeObjectInRoom(Room room, Entity entity) {
+    // Needs replacing with shared Random
+    Random random = new Random();
+
+    boolean placed = false;
+    int x = 0;
+    int y = 0;
+
+    while (!placed) {
+      // Generate a new position
+      x = random.nextInt(room.getWidth());
+      y = random.nextInt(room.getHeight());
+      placed = true;
+
+      // Check other entities in the room for clashes
+      for (Entity otherEntity : room.getEntities()) {
+        if (otherEntity.getX() == x && otherEntity.getY() == y) {
+          placed = false;
+          break;
+        }
+      }
+    }
+
+    // Actually set the position of the entity
+    entity.setPosition(x, y);
+    room.getEntities().add(entity);
+  }
+
+  /**
+   * Place entities on a map
+   *
+   * @param map The map on which to place the entities
+   * @param entities The list of entities to place
+   * @return The original map
+   */
+  public static Map placeObjects(Map map, List<Entity> entities) {
+    List<Room> rooms;
+    List<Entity> toPlace = new ArrayList<Entity>(entities);
+    Collections.shuffle(toPlace);
+
+    while (toPlace.size() > 0) {
+      rooms = new ArrayList<Room>(map.getRooms());
+      Collections.shuffle(rooms);
+      for (Room room : rooms) {
+        placeObjectInRoom(room, toPlace.remove(0));
+      }
+    }
+
+    return map;
+  }
+
+  /**
    * Make a map of a given size
    *
    * @param width Width in cells
@@ -207,6 +265,7 @@ public class MapFactory {
     Leaf root = makeNode(0, 0, width, height, Direction.HORIZONTAL);
     map.getRooms().addAll(root.getRooms());
     map.getCorridors().addAll(root.getCorridors());
+    map = placeObjects(map, entities);
     return map;
   }
 }

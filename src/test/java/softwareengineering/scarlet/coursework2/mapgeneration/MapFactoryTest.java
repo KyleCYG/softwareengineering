@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Corridor;
+import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
 
@@ -55,7 +56,7 @@ public class MapFactoryTest {
     int width = 100;
     int height = 100;
 
-    Map map = TwoRoomMapFactory.generateMap(width, height);
+    Map map = TwoRoomMapFactory.generateMap(width, height, new ArrayList<Entity>());
     Corridor corridor = map.getCorridors().get(0);
 
     assertEquals(2, map.getRooms().size());
@@ -118,7 +119,7 @@ public class MapFactoryTest {
   public void testGenerateMap() {
     int width = 100;
     int height = 100;
-    Map map = MapFactory.generateMap(width, height, null);
+    Map map = MapFactory.generateMap(width, height, new ArrayList<Entity>());
     assertTrue(map.getRooms().size() > 0);
     assertTrue(map.getCorridors().size() > 0);
   }
@@ -128,7 +129,7 @@ public class MapFactoryTest {
     int width = 100;
     int height = 100;
 
-    Map map = MapFactory.generateMap(width, height, null);
+    Map map = MapFactory.generateMap(width, height, new ArrayList<Entity>());
 
     CellType[][] grid = new CellType[width][height];
 

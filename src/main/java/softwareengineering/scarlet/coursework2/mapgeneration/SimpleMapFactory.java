@@ -1,5 +1,7 @@
 package softwareengineering.scarlet.coursework2.mapgeneration;
 
+import java.util.List;
+import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
 
@@ -20,10 +22,11 @@ public class SimpleMapFactory extends MapFactory {
    * @param height Height of the map in cells
    * @return A Map with a single room
    */
-  public static Map generateMap(int width, int height) {
+  public static Map generateMap(int width, int height, List<Entity> entities) {
     Room room = new Room(2, 2, width - 4, height - 4);
     Map map = new Map(width, height);
     map.getRooms().add(room);
+    placeObjects(map, entities);
     return map;
   }
 }

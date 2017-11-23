@@ -1,11 +1,13 @@
 package softwareengineering.scarlet.coursework2.mapgeneration;
 
+import java.util.List;
 import softwareengineering.scarlet.coursework2.models.Corridor;
+import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
 
 public class TwoRoomMapFactory extends MapFactory {
-  public static Map generateMap(int width, int height) {
+  public static Map generateMap(int width, int height, List<Entity> entities) {
     Room roomA = new Room(2, 2, (width / 2) - 4, height - 4);
     Room roomB = new Room((width / 2) + 2, 2, (width / 2) - 4, height - 4);
 
@@ -22,6 +24,8 @@ public class TwoRoomMapFactory extends MapFactory {
     Corridor corridor = MapFactory.makeCorridor(leafA, leafB, Direction.VERTICAL);
 
     map.getCorridors().add(corridor);
+
+    placeObjects(map, entities);
 
     return map;
   }

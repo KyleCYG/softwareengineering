@@ -2,15 +2,17 @@ package softwareengineering.scarlet.coursework2.mapgeneration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
 import org.junit.Test;
 import softwareengineering.scarlet.coursework2.models.CellType;
+import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Map;
 import softwareengineering.scarlet.coursework2.models.Room;
 
 public class SimpleMapFactoryTest {
   @Test
   public void testGenerateMap() {
-    Map map = SimpleMapFactory.generateMap(50, 50);
+    Map map = SimpleMapFactory.generateMap(50, 50, new ArrayList<Entity>());
 
     assertEquals(map.getRooms().size(), 1);
 
@@ -24,7 +26,7 @@ public class SimpleMapFactoryTest {
 
   @Test
   public void testMapGrid() {
-    Map map = SimpleMapFactory.generateMap(50, 50);
+    Map map = SimpleMapFactory.generateMap(50, 50, new ArrayList<Entity>());
     CellType[][] grid = map.getGrid();
 
     assertEquals(grid[0][0], CellType.VOID);
