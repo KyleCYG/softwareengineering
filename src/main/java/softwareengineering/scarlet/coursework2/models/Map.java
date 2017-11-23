@@ -100,8 +100,8 @@ public class Map {
      */
     CellType[][] grid = this.getGrid();
 
-    for (int x = 0; x < 50; x++) {
-      for (int y = 0; y < 50; y++) {
+    for (int x = 0; x < this.getWidth(); x++) {
+      for (int y = 0; y < this.getHeight(); y++) {
         switch (grid[x][y]) {
           case VOID:
             System.out.print(" ");
