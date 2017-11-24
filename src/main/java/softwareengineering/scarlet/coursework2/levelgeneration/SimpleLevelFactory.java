@@ -24,9 +24,9 @@ public class SimpleLevelFactory extends LevelFactory {
    */
   public static Level generateLevel(int width, int height, List<Entity> entities) {
     Room room = new Room(2, 2, width - 4, height - 4);
-    Level map = new Level(width, height);
-    map.getRooms().add(room);
-    placeObjects(map, entities);
-    return map;
+    Level level = new Level(width, height);
+    level.getRooms().add(room);
+    placeObjects(level, entities);
+    return level;
   }
 }
