@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2.mapgeneration;
+package softwareengineering.scarlet.coursework2.levelgeneration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,10 +9,10 @@ import java.util.Random;
 import java.util.Set;
 import softwareengineering.scarlet.coursework2.models.Corridor;
 import softwareengineering.scarlet.coursework2.models.Entity;
-import softwareengineering.scarlet.coursework2.models.Map;
+import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.Room;
 
-public class MapFactory {
+public class LevelFactory {
   private static int minRoomSize = 5;
 
   /**
@@ -186,7 +186,7 @@ public class MapFactory {
         direction == Direction.HORIZONTAL ? height - split : height, newDirection);
 
     // Add a corridor between the two leaves
-    Corridor corridor = MapFactory.makeCorridor(leafA, leafB, direction);
+    Corridor corridor = LevelFactory.makeCorridor(leafA, leafB, direction);
     leafA.getCorridors().add(corridor);
 
     // Merge the two leaves together
@@ -231,14 +231,14 @@ public class MapFactory {
   }
 
   /**
-   * Place entities on a map
+   * Place entities on a level
    *
-   * @param map The map on which to place the entities
+   * @param level The level on which to place the entities
    * @param entities The list of entities to place
-   * @return The original map
+   * @return The original level
    */
-  public static Map placeObjects(Map map, List<Entity> entities) {
-    List<Room> rooms = new ArrayList<Room>(map.getRooms());
+  public static Level placeObjects(Level level, List<Entity> entities) {
+    List<Room> rooms = new ArrayList<Room>(level.getRooms());
     List<Entity> toPlace = new ArrayList<Entity>(entities);
     Room room;
     Collections.shuffle(toPlace);
@@ -246,7 +246,7 @@ public class MapFactory {
 
     while (toPlace.size() > 0) {
       if (rooms.size() == 0) {
-        rooms = new ArrayList<Room>(map.getRooms());
+        rooms = new ArrayList<Room>(level.getRooms());
         Collections.shuffle(rooms);
         roomIterator = rooms.iterator();
       }
@@ -255,23 +255,23 @@ public class MapFactory {
       placeObjectInRoom(room, toPlace.remove(0));
     }
 
-    return map;
+    return level;
   }
 
   /**
-   * Make a map of a given size
+   * Make a level of a given size
    *
    * @param width Width in cells
    * @param height Height in cells
    * @param entities List of objects to place in the dungeon (gold etc)
-   * @return A new Map containing rooms and corridors
+   * @return A new Level containing rooms and corridors
    */
-  public static Map generateMap(int width, int height, List<Entity> entities) {
-    Map map = new Map(width, height);
+  public static Level generateLevel(int width, int height, List<Entity> entities) {
+    Level level = new Level(width, height);
     Leaf root = makeNode(0, 0, width, height, Direction.HORIZONTAL);
-    map.getRooms().addAll(root.getRooms());
-    map.getCorridors().addAll(root.getCorridors());
-    map = placeObjects(map, entities);
-    return map;
+    level.getRooms().addAll(root.getRooms());
+    level.getCorridors().addAll(root.getCorridors());
+    level = placeObjects(level, entities);
+    return level;
   }
 }

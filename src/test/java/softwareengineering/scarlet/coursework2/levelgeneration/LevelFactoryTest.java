@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2.mapgeneration;
+package softwareengineering.scarlet.coursework2.levelgeneration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -6,19 +6,23 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+import softwareengineering.scarlet.coursework2.levelgeneration.Direction;
+import softwareengineering.scarlet.coursework2.levelgeneration.Leaf;
+import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
+import softwareengineering.scarlet.coursework2.levelgeneration.TwoRoomLevelFactory;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Corridor;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.GoldItem;
 import softwareengineering.scarlet.coursework2.models.HealthItem;
-import softwareengineering.scarlet.coursework2.models.Map;
+import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.Room;
 import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
 
-public class MapFactoryTest {
+public class LevelFactoryTest {
   @Test
   public void testMakeRoom() {
     int x = 0;
@@ -26,7 +30,7 @@ public class MapFactoryTest {
     int width = 10;
     int height = 10;
 
-    Room room = MapFactory.makeRoom(x, y, width, height);
+    Room room = LevelFactory.makeRoom(x, y, width, height);
 
     assertTrue("Width too big: " + room.getWidth(), room.getWidth() < width);
     assertTrue("Height too big: " + room.getHeight(), room.getHeight() < height);
@@ -44,7 +48,7 @@ public class MapFactoryTest {
     int height = 8;
 
     Direction direction = Direction.HORIZONTAL;
-    Leaf leaf = MapFactory.makeNode(x, y, width, height, direction);
+    Leaf leaf = LevelFactory.makeNode(x, y, width, height, direction);
 
     assertEquals(leaf.getRooms().size(), 1);
 
@@ -62,10 +66,10 @@ public class MapFactoryTest {
     int width = 100;
     int height = 100;
 
-    Map map = TwoRoomMapFactory.generateMap(width, height, new ArrayList<Entity>());
-    Corridor corridor = map.getCorridors().get(0);
+    Level level = TwoRoomLevelFactory.generateLevel(width, height, new ArrayList<Entity>());
+    Corridor corridor = level.getCorridors().get(0);
 
-    assertEquals(2, map.getRooms().size());
+    assertEquals(2, level.getRooms().size());
     // These values are slightly odd because of the off-by-1 error of using "width" as a coordinate
     // in a zero-based system
     assertEquals((width / 2) - 2, corridor.getX1());
@@ -80,7 +84,7 @@ public class MapFactoryTest {
     int height = 50;
 
     Direction direction = Direction.HORIZONTAL;
-    Leaf leaf = MapFactory.makeNode(x, y, width, height, direction);
+    Leaf leaf = LevelFactory.makeNode(x, y, width, height, direction);
 
     assertTrue(leaf.getRooms().size() > 1);
     assertEquals("Not the right number of corridors", leaf.getRooms().size() - 1,
@@ -98,7 +102,7 @@ public class MapFactoryTest {
     sideA.add(roomA);
     sideB.add(roomB);
 
-    List<Integer> matches = MapFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
+    List<Integer> matches = LevelFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
 
     assertEquals(5, matches.size());
   }
@@ -116,18 +120,18 @@ public class MapFactoryTest {
     sideB.add(roomB);
     sideB.add(roomC);
 
-    List<Integer> matches = MapFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
+    List<Integer> matches = LevelFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
 
     assertEquals(7, matches.size());
   }
 
   @Test
-  public void testGenerateMap() {
+  public void testGenerateLevel() {
     int width = 100;
     int height = 100;
-    Map map = MapFactory.generateMap(width, height, new ArrayList<Entity>());
-    assertTrue(map.getRooms().size() > 0);
-    assertTrue(map.getCorridors().size() > 0);
+    Level level = LevelFactory.generateLevel(width, height, new ArrayList<Entity>());
+    assertTrue(level.getRooms().size() > 0);
+    assertTrue(level.getCorridors().size() > 0);
   }
 
   @Test
@@ -135,11 +139,11 @@ public class MapFactoryTest {
     int width = 100;
     int height = 100;
 
-    Map map = MapFactory.generateMap(width, height, new ArrayList<Entity>());
+    Level level = LevelFactory.generateLevel(width, height, new ArrayList<Entity>());
 
     CellType[][] grid = new CellType[width][height];
 
-    for (Room room : map.getRooms()) {
+    for (Room room : level.getRooms()) {
       for (int x = room.getX(); x <= room.getX2(); x++) {
         for (int y = room.getY(); y <= room.getY2(); y++) {
           grid[x][y] = CellType.ROOM;
@@ -147,7 +151,7 @@ public class MapFactoryTest {
       }
     }
 
-    for (Corridor corridor : map.getCorridors()) {
+    for (Corridor corridor : level.getCorridors()) {
       for (int x = corridor.getX1(); x <= corridor.getX2(); x++) {
         for (int y = corridor.getY1(); y <= corridor.getY2(); y++) {
           assertFalse(grid[x][y] == CellType.ROOM);
@@ -167,11 +171,11 @@ public class MapFactoryTest {
     entities.add(new StairsDownItem(1));
     entities.add(new ExitItem());
 
-    Map map = MapFactory.generateMap(50, 50, entities);
+    Level level = LevelFactory.generateLevel(50, 50, entities);
 
     List<Entity> check = new ArrayList<Entity>();
 
-    for (Room room : map.getRooms()) {
+    for (Room room : level.getRooms()) {
       check.addAll(room.getEntities());
     }
 

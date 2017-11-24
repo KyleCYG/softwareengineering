@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2.mapgeneration;
+package softwareengineering.scarlet.coursework2.levelgeneration;
 
 import java.util.ArrayList;
 import java.util.Comparator;

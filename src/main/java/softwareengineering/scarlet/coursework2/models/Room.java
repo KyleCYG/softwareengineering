@@ -9,7 +9,7 @@ public class Room {
   private int width;
   private int height;
   private List<Entity> entities;
-  
+
   public Room(int x, int y, int width, int height) {
     this.x = x;
     this.y = y;

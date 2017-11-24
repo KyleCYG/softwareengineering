@@ -13,13 +13,13 @@ import java.util.ArrayList;
  *
  * @author Dan Cosser
  */
-public class Map {
+public class Level {
   private ArrayList<Room> rooms;
   private ArrayList<Corridor> corridors;
   private int width;
   private int height;
 
-  public Map(int width, int height) {
+  public Level(int width, int height) {
     this.rooms = new ArrayList<Room>();
     this.corridors = new ArrayList<Corridor>();
     this.width = width;

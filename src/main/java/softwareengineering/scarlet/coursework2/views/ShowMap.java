@@ -2,18 +2,18 @@ package softwareengineering.scarlet.coursework2.views;
 
 import java.util.ArrayList;
 import java.util.List;
-import softwareengineering.scarlet.coursework2.mapgeneration.MapFactory;
+import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.GoldItem;
 import softwareengineering.scarlet.coursework2.models.HealthItem;
-import softwareengineering.scarlet.coursework2.models.Map;
+import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
 
 public class ShowMap {
-  private Map map;
+  private Level map;
   private List<Entity> entities = new ArrayList<Entity>();
   
   public ShowMap() {
@@ -23,7 +23,7 @@ public class ShowMap {
   public void initMap() {
 
 
-    map = MapFactory.generateMap(50, 50, entities);
+    map = LevelFactory.generateLevel(50, 50, entities);
   }
   
   public void initEntity() {
@@ -39,7 +39,7 @@ public class ShowMap {
     return entities;
   }
   
-  public Map getMap() {
+  public Level getMap() {
     return map;
   }
 

@@ -1,8 +1,8 @@
-package softwareengineering.scarlet.coursework2.mapgeneration;
+package softwareengineering.scarlet.coursework2.levelgeneration;
 
 import java.util.List;
 import softwareengineering.scarlet.coursework2.models.Entity;
-import softwareengineering.scarlet.coursework2.models.Map;
+import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.Room;
 
 /**
@@ -14,7 +14,7 @@ import softwareengineering.scarlet.coursework2.models.Room;
  *
  * @author Dan Cosser
  */
-public class SimpleMapFactory extends MapFactory {
+public class SimpleLevelFactory extends LevelFactory {
   /**
    * Make a Map of a defined size containing a single room.
    *
@@ -22,9 +22,9 @@ public class SimpleMapFactory extends MapFactory {
    * @param height Height of the map in cells
    * @return A Map with a single room
    */
-  public static Map generateMap(int width, int height, List<Entity> entities) {
+  public static Level generateLevel(int width, int height, List<Entity> entities) {
     Room room = new Room(2, 2, width - 4, height - 4);
-    Map map = new Map(width, height);
+    Level map = new Level(width, height);
     map.getRooms().add(room);
     placeObjects(map, entities);
     return map;
