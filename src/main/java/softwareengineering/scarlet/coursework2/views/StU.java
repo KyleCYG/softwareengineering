@@ -1,17 +1,17 @@
 package softwareengineering.scarlet.coursework2.views;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
-public class StU {
+public class StU implements items{
   private Image image;
   private int x;
   private int y;
-  public void StU() {
-    initStU();
-  }
+ 
 
-  private void initStU() {
+  public StU() {
     // TODO Auto-generated method stub
       ImageIcon ii = new ImageIcon("StU.png");
       image = ii.getImage();
@@ -28,4 +28,9 @@ public class StU {
   public Image getImage() {
     return image;
 }
+  @Override
+  public void draw(Graphics g, JPanel p) {
+    // TODO Auto-generated method stub
+    
+  }
 }

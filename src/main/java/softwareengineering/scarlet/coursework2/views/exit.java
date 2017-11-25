@@ -1,17 +1,17 @@
 package softwareengineering.scarlet.coursework2.views;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
-public class exit {
+public class exit implements items{
   private Image image;
   private int x;
   private int y;
-  public void exit() {
-    initExit();
-  }
 
-  private void initExit() {
+
+  public exit() {
     // TODO Auto-generated method stub
       ImageIcon ii = new ImageIcon("exit.png");
       image = ii.getImage();
@@ -28,4 +28,12 @@ public class exit {
   public Image getImage() {
     return image;
 }
+
+
+
+  @Override
+  public void draw(Graphics g, JPanel p) {
+    // TODO Auto-generated method stub
+    
+  }
 }

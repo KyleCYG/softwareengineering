@@ -1,17 +1,17 @@
 package softwareengineering.scarlet.coursework2.views;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
-public class strength {
+public class strength implements items{
   private Image image;
   private int x;
   private int y;
-  public void strength() {
-    initStrength();
-  }
 
-  private void initStrength() {
+
+  public strength() {
     // TODO Auto-generated method stub
       ImageIcon ii = new ImageIcon("strength.png");
       image = ii.getImage();
@@ -28,4 +28,12 @@ public class strength {
   public Image getImage() {
     return image;
 }
+
+
+
+  @Override
+  public void draw(Graphics g, JPanel p) {
+    // TODO Auto-generated method stub
+    
+  }
 }

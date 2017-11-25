@@ -1,15 +1,15 @@
 package softwareengineering.scarlet.coursework2.views;
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-public class room {
+import javax.swing.JPanel;
+public class room implements items{
   private Image image;
   private int x;
   private int y;
-  public void room() {
-        initRoom();
-  }
+  
 
-  private void initRoom() {
+  public room(){
     // TODO Auto-generated method stub
       ImageIcon ii = new ImageIcon("room.png");
       image = ii.getImage();
@@ -26,5 +26,12 @@ public class room {
   public Image getImage() {
     return image;
 }
+
+
+  @Override
+  public void draw(Graphics g, JPanel p) {
+    // TODO Auto-generated method stub
+    
+  }
 
 }
