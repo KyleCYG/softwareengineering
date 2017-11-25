@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -32,7 +33,7 @@ public class strength implements items{
 
 
   @Override
-  public void draw(Graphics g, JPanel p) {
+  public void draw(Graphics2D g2d, JPanel p) {
     // TODO Auto-generated method stub
     
   }

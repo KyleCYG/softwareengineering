@@ -1,6 +1,6 @@
 package softwareengineering.scarlet.coursework2.views;
 
-public class MapitemsFactory implements Factory{
+public class MapItemsFactory implements Factory{
 
   @Override
   public items init(String item, int amount) {

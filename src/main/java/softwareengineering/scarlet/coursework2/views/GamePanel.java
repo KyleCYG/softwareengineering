@@ -24,15 +24,17 @@ import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
 import java.awt.RenderingHints;
-public class GamePanel extends JPanel implements ActionListener {
+public class GamePanel extends JPanel{
 
-    private Timer timer;
+
     private playerFactory pF;
     private player main_player;
+    private ShowMap sm;
     private final int DELAY = 10;
 
-    public GamePanel() {
-
+    
+    public GamePanel(ShowMap sm) {
+        this.sm = sm;
         initGamePanel();
     }
     
@@ -40,12 +42,12 @@ public class GamePanel extends JPanel implements ActionListener {
         
         addKeyListener(new TAdapter());
         setFocusable(true);
+       
 
         pF = new playerFactory();
         main_player = (player) pF.init("m");
-
-      //  timer = new Timer(DELAY, this);
-       // timer.start();        
+        
+   
     }
 
 
@@ -53,32 +55,21 @@ public class GamePanel extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        doDrawing(g);
-
-        Toolkit.getDefaultToolkit().sync();
-    }
-
-    private void doDrawing(Graphics g) {
-        
         Graphics2D g2d = (Graphics2D) g;
-        List<Entity> entities = new ArrayList<Entity>();
-
-        entities.add(new GoldItem(1));
-        entities.add(new HealthItem(1));
-        entities.add(new StrengthItem(1));
-        entities.add(new StairsUpItem(1));
-        entities.add(new StairsDownItem(1));
-        entities.add(new ExitItem());
-
-        Level map = LevelFactory.generateLevel(50, 50, entities);
-          
+        
+        
+        
 
         g2d.setFont(new Font("Chalkduster", Font.PLAIN, 20));
         g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
-             
+
+
+        sm.Show(g2d);
+
+        
        
-        
-        
+       
+        main_player.draw(g2d, this);
         BasicStroke bs1 = new BasicStroke(8, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND);
         g2d.setStroke(bs1);
         g2d.drawLine(150, 40, 750, 40);
@@ -86,12 +77,12 @@ public class GamePanel extends JPanel implements ActionListener {
         g2d.drawLine(150, 40, 150, 640);
         g2d.drawLine(750, 640, 150, 640);
 
+        Toolkit.getDefaultToolkit().sync();
     }
 
-    public void actionPerformed(ActionEvent e) {
+    private void doDrawing(Graphics g) {
         
 
-        repaint();  
     }
 
     private class TAdapter extends KeyAdapter {
@@ -99,6 +90,8 @@ public class GamePanel extends JPanel implements ActionListener {
         @Override
         public void keyReleased(KeyEvent e) {
           main_player.keyReleased(e);
+          main_player.redraw();
+
         }
 
 
