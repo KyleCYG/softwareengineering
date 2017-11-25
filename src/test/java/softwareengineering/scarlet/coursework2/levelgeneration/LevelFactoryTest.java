@@ -24,17 +24,24 @@ public class LevelFactoryTest {
   public void testMakeRoom() {
     int x = 0;
     int y = 0;
-    int width = 10;
-    int height = 10;
+    int width = 50;
+    int height = 50;
 
     Room room = LevelFactory.makeRoom(x, y, width, height);
 
+    // Test the room is within the specified bounds
     assertTrue("Width too big: " + room.getWidth(), room.getWidth() < width);
     assertTrue("Height too big: " + room.getHeight(), room.getHeight() < height);
     assertTrue("X too small: " + room.getX(), room.getX() > x);
     assertTrue("Y too small: " + room.getY(), room.getY() > y);
     assertTrue("X too big: " + room.getX(), room.getX() < x + width);
     assertTrue("Y too big: " + room.getY(), room.getY() < y + height);
+
+    // Test that the room crosses the midpoint (ie to guarantee corridor placement)
+    assertTrue(room.getX() < width / 2);
+    assertTrue(room.getX2() > width / 2);
+    assertTrue(room.getY() < height / 2);
+    assertTrue(room.getY2() > height / 2);
   }
 
   @Test
@@ -77,8 +84,8 @@ public class LevelFactoryTest {
   public void testTreeMakeNode() {
     int x = 0;
     int y = 0;
-    int width = 50;
-    int height = 50;
+    int width = 1000;
+    int height = 1000;
 
     Direction direction = Direction.HORIZONTAL;
     Leaf leaf = LevelFactory.makeNode(x, y, width, height, direction);

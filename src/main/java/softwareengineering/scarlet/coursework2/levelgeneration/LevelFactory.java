@@ -119,14 +119,18 @@ public class LevelFactory {
     int maxWidth = width - 2;
     int maxHeight = height - 2;
 
-    // Due to the wall, the minimum width/height will be equal to half - this way two rooms
-    // next to each other will guarantee an overlap
-    int minWidth = width / 2;
-    int minHeight = height / 2;
+    // Due to the wall, the minimum width/height will be equal to a half-plus-one - this way two
+    // rooms next to each other will guarantee an overlap
+    int minWidth = (width / 2) + 1;
+    int minHeight = (height / 2) + 1;
 
-    // Choose a width and height!
-    int roomWidth = random.nextInt(maxWidth - minWidth) + minWidth;
-    int roomHeight = random.nextInt(maxHeight - minHeight) + minHeight;
+    int widthDifference = maxWidth - minWidth;
+    int heightDifference = maxHeight - minHeight;
+
+    // Choose a width and height
+    int roomWidth = widthDifference > 0 ? random.nextInt(widthDifference) + minWidth : minWidth;
+    int roomHeight =
+        heightDifference > 0 ? random.nextInt(heightDifference) + minHeight : minHeight;
 
     // Determine range for room placement within the leaf
     int maxX = width - roomWidth;
