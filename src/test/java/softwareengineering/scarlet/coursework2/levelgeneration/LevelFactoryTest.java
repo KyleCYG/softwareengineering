@@ -4,12 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
-import softwareengineering.scarlet.coursework2.levelgeneration.Direction;
-import softwareengineering.scarlet.coursework2.levelgeneration.Leaf;
-import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
-import softwareengineering.scarlet.coursework2.levelgeneration.TwoRoomLevelFactory;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Corridor;
 import softwareengineering.scarlet.coursework2.models.Entity;
@@ -92,15 +89,12 @@ public class LevelFactoryTest {
   }
 
   @Test
-  public void testFindMatchTwoRooms() throws Exception {
+  public void testFindMatchTwoRooms() {
     Room roomA = new Room(0, 0, 10, 1);
     Room roomB = new Room(5, 2, 10, 1);
 
-    List<Room> sideA = new ArrayList<Room>();
-    List<Room> sideB = new ArrayList<Room>();
-
-    sideA.add(roomA);
-    sideB.add(roomB);
+    List<Room> sideA = Arrays.asList(roomA);
+    List<Room> sideB = Arrays.asList(roomB);
 
     List<Integer> matches = LevelFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
 
@@ -108,17 +102,13 @@ public class LevelFactoryTest {
   }
 
   @Test
-  public void testFindMatchThreeRooms() throws Exception {
+  public void testFindMatchThreeRooms() {
     Room roomA = new Room(4, 0, 10, 1);
     Room roomB = new Room(0, 2, 8, 1);
     Room roomC = new Room(11, 2, 8, 1);
 
-    List<Room> sideA = new ArrayList<Room>();
-    List<Room> sideB = new ArrayList<Room>();
-
-    sideA.add(roomA);
-    sideB.add(roomB);
-    sideB.add(roomC);
+    List<Room> sideA = Arrays.asList(roomA);
+    List<Room> sideB = Arrays.asList(roomB, roomC);
 
     List<Integer> matches = LevelFactory.findMatch(sideA, sideB, Direction.HORIZONTAL);
 
