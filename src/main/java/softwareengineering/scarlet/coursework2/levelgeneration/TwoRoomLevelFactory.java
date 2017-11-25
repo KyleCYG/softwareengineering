@@ -8,16 +8,20 @@ import softwareengineering.scarlet.coursework2.models.Room;
 
 public class TwoRoomLevelFactory extends LevelFactory {
   public static Level generateLevel(int width, int height, List<Entity> entities) {
-    Room roomA = new Room(2, 2, (width / 2) - 4, height - 4);
-    Room roomB = new Room((width / 2) + 2, 2, (width / 2) - 4, height - 4);
+    int leafWidth = width / 2;
+    int leafHeight = height;
 
-    Leaf leafA = new Leaf(0, 0, width / 2, height);
-    Leaf leafB = new Leaf(width /2, 0, width / 2, height);
+    Leaf leafA = new Leaf(0, 0, leafWidth, leafHeight);
+    Leaf leafB = new Leaf(leafWidth, 0, leafWidth, leafHeight);
+
+    Room roomA = new Room(2, 2, leafWidth - 4, leafHeight - 4);
+    Room roomB = new Room(leafWidth + 2, 2, leafWidth - 4, leafHeight - 4);
 
     leafA.getRooms().add(roomA);
     leafB.getRooms().add(roomB);
 
     Level level = new Level(width, height);
+
     level.getRooms().add(roomA);
     level.getRooms().add(roomB);
 
