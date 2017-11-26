@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
 public class MenuFrame extends JFrame {
 
  /**
-  * Calls unutUI()
+  * Calls initUI()
   */  
   public MenuFrame() {
     initUI();

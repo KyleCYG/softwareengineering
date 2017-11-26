@@ -10,10 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import softwareengineering.scarlet.coursework2.MenuFrame;
 import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.ExitItem;
@@ -24,7 +27,7 @@ import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
 import java.awt.RenderingHints;
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements KeyListener{
 
 
     private playerFactory pF;
@@ -89,11 +92,31 @@ public class GamePanel extends JPanel{
 
         @Override
         public void keyReleased(KeyEvent e) {
+      
           main_player.keyReleased(e);
           main_player.redraw();
 
         }
 
 
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+      // TODO Auto-generated method stub
+      
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+      // TODO Auto-generated method stub
+     
+      
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+      // TODO Auto-generated method stub
+      
     }
 }

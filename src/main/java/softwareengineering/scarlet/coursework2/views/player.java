@@ -7,8 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import softwareengineering.scarlet.coursework2.MenuFrame;
 
 public class player implements items, ActionListener {
   private int dx;
@@ -72,6 +74,24 @@ public class player implements items, ActionListener {
     if (key == KeyEvent.VK_DOWN) {
         y += 10;
     }
+       int n;
+    if (e.getKeyCode() == KeyEvent.VK_Q) {
+       n = JOptionPane.showConfirmDialog(
+          p,
+          "Are you sure you want to quit?",
+          "Quit",
+          JOptionPane.YES_NO_OPTION);
+      
+    
+    if(n == JOptionPane.OK_OPTION) {
+      p.setVisible(false);
+      
+      MenuFrame menu = new MenuFrame();
+      menu.setVisible(true);
+      
+    }
+    }
+   
   }
 
 

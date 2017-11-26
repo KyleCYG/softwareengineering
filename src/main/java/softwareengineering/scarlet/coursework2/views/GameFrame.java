@@ -20,6 +20,7 @@ public class GameFrame extends JFrame{
 	        setLocationRelativeTo(null);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setExtendedState(JFrame.MAXIMIZED_BOTH);
+	        
 
 	    }
 
@@ -28,6 +29,7 @@ public class GameFrame extends JFrame{
           sm = new ShowMap();
           sm.setupEntity(1, 1, 1, 1, 1);
           sm.setupSize(50, 25);
+          
 	        EventQueue.invokeLater(new Runnable() {
 	            public void run() {
 	              GameFrame ex = new GameFrame(sm);

@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
+import softwareengineering.scarlet.coursework2.views.InputNameFrame;
 
 public class MenuPanel extends JPanel implements KeyListener {
 
@@ -123,7 +124,13 @@ public class MenuPanel extends JPanel implements KeyListener {
       } else if (selectedOption == 2 && event.getKeyCode()== KeyEvent.VK_ENTER){
         System.exit(0);
         
-      }
+      }else if (selectedOption == 0 && event.getKeyCode()== KeyEvent.VK_ENTER) {
+        
+        InputNameFrame ex = new InputNameFrame();
+        ex.setVisible(true);
+
+      } 
+      
     }
   }
 
