@@ -181,7 +181,7 @@ public class LevelFactoryTest {
 
   @Test
   public void testNotEnoughRoomsForEntities() {
-    List<Entity> entities = List.of(new GoldItem(1), new GoldItem(1), new GoldItem(1));
+    List<Entity> entities = Arrays.asList(new GoldItem(1), new GoldItem(1), new GoldItem(1));
 
     Level level = TwoRoomLevelFactory.generateLevel(20, 20, entities);
 
