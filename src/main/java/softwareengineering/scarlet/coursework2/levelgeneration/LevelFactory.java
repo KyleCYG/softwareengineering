@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Set;
 import softwareengineering.scarlet.coursework2.models.Corridor;
@@ -249,14 +250,14 @@ public class LevelFactory {
     Iterator<Room> roomIterator = rooms.iterator();
 
     while (toPlace.size() > 0) {
-      if (rooms.size() == 0) {
+      try {
+        room = roomIterator.next();
+        placeObjectInRoom(room, toPlace.remove(0));
+      } catch (NoSuchElementException ex) {
         rooms = new ArrayList<Room>(level.getRooms());
         Collections.shuffle(rooms);
-        roomIterator = rooms.iterator();
+        roomIterator = rooms.iterator();        
       }
-
-      room = roomIterator.next();
-      placeObjectInRoom(room, toPlace.remove(0));
     }
 
     return level;
