@@ -1,10 +1,9 @@
 package softwareengineering.scarlet.coursework2.views;
 
-public class LevelItemsFactory implements Factory{
-
+public class LevelItemsFactory implements Factory {
   @Override
   public Items init(String item) {
-    switch(item) {
+    switch (item) {
       case "r":
         return new Room();
       case "c":
@@ -24,7 +23,7 @@ public class LevelItemsFactory implements Factory{
       case "SU":
         return new StairsUp();
       default:
-       return null;
+        return null;
     }
   }
 }
