@@ -178,4 +178,19 @@ public class LevelFactoryTest {
 
     assertEquals(entities.size(), check.size());
   }
+
+  @Test
+  public void testNotEnoughRoomsForEntities() {
+    List<Entity> entities = List.of(new GoldItem(1), new GoldItem(1), new GoldItem(1));
+
+    Level level = TwoRoomLevelFactory.generateLevel(20, 20, entities);
+
+    List<Entity> checkEntities = new ArrayList<Entity>();
+
+    for (Room room : level.getRooms()) {
+      checkEntities.addAll(room.getEntities());
+    }
+
+    assertEquals(entities.size(), checkEntities.size());
+  }
 }
