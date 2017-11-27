@@ -3,10 +3,12 @@ package softwareengineering.scarlet.coursework2.views.game;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
@@ -21,6 +23,8 @@ public class GamePanel extends JPanel implements KeyListener{
   private PlayerRenderer playerRender;
   private LevelRenderer levelRender;
   private GameController controller;
+
+  private Image Background;
   
   public GamePanel(GameController controller, Dungeon dungeon) {
     this.controller = controller;  
@@ -30,6 +34,8 @@ public class GamePanel extends JPanel implements KeyListener{
   private void initGamePanel(Dungeon dungeon) {
     addKeyListener(new TAdapter());
     setFocusable(true);
+    ImageIcon background = new ImageIcon("background.png");
+    Background = background.getImage();
     levelRender = new LevelRenderer(dungeon,this);
     playerRender = new PlayerRenderer();
   }
@@ -38,6 +44,7 @@ public class GamePanel extends JPanel implements KeyListener{
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
       Graphics2D g2d = (Graphics2D) g;
+      g.drawImage(Background, 0, 0, this);
       g2d.setFont(new Font("Chalkduster", Font.PLAIN, 20));
       g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
       levelRender.render(g2d);
