@@ -13,7 +13,6 @@ public class GamePanel extends JPanel implements KeyListener{
   private PlayerFactory pF;
   private Player main_player;
   private ShowMap sm;
-  private final int DELAY = 10;
 
   public GamePanel() {
       initGamePanel();

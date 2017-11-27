@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 import softwareengineering.scarlet.coursework2.MenuFrame;
 
 public class Player implements Items, ActionListener {
@@ -18,13 +17,11 @@ public class Player implements Items, ActionListener {
   private int y;
   private Image image;
   private JPanel p;
-  private Timer timer;
   private Graphics2D g2d;
 
   public Player() {
     ImageIcon ii = new ImageIcon("player.png");
     image = ii.getImage();
-    timer = new Timer(100, this);
   }
 
   @Override
@@ -87,7 +84,6 @@ public class Player implements Items, ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
-    timer.start();
   }
 
   public void redraw() {
