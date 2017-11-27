@@ -3,7 +3,7 @@ package softwareengineering.scarlet.coursework2.views;
 public class MapItemsFactory implements Factory{
 
   @Override
-  public items init(String item, int amount) {
+  public items init(String item) {
     // TODO Auto-generated method stub
     switch(item) {
       case "r":

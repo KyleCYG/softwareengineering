@@ -60,20 +60,20 @@ public class player implements items, ActionListener {
     int key = e.getKeyCode();
 
     if (key == KeyEvent.VK_LEFT) {
-        x += -10;
-    }
+      x += -30;
+  }
 
-    if (key == KeyEvent.VK_RIGHT) {
-        x += 10;
-    }
+  if (key == KeyEvent.VK_RIGHT) {
+      x += 30;
+  }
 
-    if (key == KeyEvent.VK_UP) {
-        y += -10;
-    }
+  if (key == KeyEvent.VK_UP) {
+      y += -30;
+  }
 
-    if (key == KeyEvent.VK_DOWN) {
-        y += 10;
-    }
+  if (key == KeyEvent.VK_DOWN) {
+      y += 30;
+  }
        int n;
     if (e.getKeyCode() == KeyEvent.VK_Q) {
        n = JOptionPane.showConfirmDialog(
@@ -96,18 +96,9 @@ public class player implements items, ActionListener {
 
 
   @Override
-  public void draw(Graphics2D g2d, JPanel p) {
-    // TODO Auto-generated method stub
-    this.p = p;
-    this.g2d = g2d;
-    g2d.drawImage(image, x, y, p);
-
-  }
-
-  @Override
   public void actionPerformed(ActionEvent arg0) {
     // TODO Auto-generated method stub
-    p.repaint(); 
+   // p.repaint(); 
     timer.start();
   }
 
@@ -115,6 +106,19 @@ public class player implements items, ActionListener {
     // TODO Auto-generated method stub
     g2d.drawImage(image, x, y, p);
     p.repaint();
+  }
+
+  public void draw(Graphics2D g2d, JPanel p) {
+    // TODO Auto-generated method stub
+    this.p = p;
+    this.g2d = g2d;
+    g2d.drawImage(image, x, y, p);
+  }
+
+  @Override
+  public void draw(int x, int y, Graphics2D g2d, JPanel p) {
+    // TODO Auto-generated method stub
+    
   }
   
   

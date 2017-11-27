@@ -80,10 +80,8 @@ public class InputNamePanel extends JPanel implements KeyListener,ActionListener
   private void createGame()
   {
     ShowMap sm;
-    sm = new ShowMap();
-    sm.setupEntity(1, 1, 1, 1, 1);
-    sm.setupSize(50, 25);
-    GameFrame ex = new GameFrame(sm);
+    sm = new ShowMap(1, 1, 1, 1, 1, 48, 25);
+    GameFrame ex = new GameFrame();
     ex.setVisible(true);
 
   }

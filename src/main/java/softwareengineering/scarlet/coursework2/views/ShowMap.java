@@ -21,14 +21,27 @@ public class ShowMap {
   private List<Entity> entities = new ArrayList<Entity>();
   private int width;
   private int heigh;
-  
-  public ShowMap() {
-    
+  private MapItemsFactory mif;
+  private int[] roomArrays;
+  public ShowMap(int amount_gold, int amount_heal, int amount_stre, int amount_StU, int amount_StD,int width, int heigh) {
+    entities.add(new GoldItem(amount_gold));
+    entities.add(new HealthItem(amount_heal));
+    entities.add(new StrengthItem(amount_stre));
+    entities.add(new StairsUpItem(amount_StU));
+    entities.add(new StairsDownItem(amount_StD));
+    entities.add(new ExitItem());
+    this.width = width;
+    this.heigh = heigh;
+    init();
   }
   
-  public void Show(Graphics2D g2d) {
+  public void init() {
     level = LevelFactory.generateLevel(this.width, this.heigh, this.entities);
+  }
+  public void Show(Graphics2D g2d) {
     CellType[][] grid = level.getGrid();
+    roomArrays = null;
+    mif = new MapItemsFactory();
     
     for(int x=0;x<level.getWidth();x++) {
       for(int y=0;y<level.getHeight();y++) {
@@ -37,8 +50,8 @@ public class ShowMap {
 
             break;
           case ROOM:
-            g2d.setColor(new Color(125, 167, 116));
-            g2d.drawRect(x*30, 40+y*30, 30, 30);
+            mif.init("r").draw(x, y, g2d, null);
+            //roomArrays[x][y] = 1;
             break;
           case CORRIDOR:
             g2d.setColor(new Color(42, 179, 231));
@@ -75,19 +88,6 @@ public class ShowMap {
     }
   }
 
-  public void setupEntity(int amount_gold, int amount_heal, int amount_stre, int amount_StU, int amount_StD) {
-    entities.add(new GoldItem(amount_gold));
-    entities.add(new HealthItem(amount_heal));
-    entities.add(new StrengthItem(amount_stre));
-    entities.add(new StairsUpItem(amount_StU));
-    entities.add(new StairsDownItem(amount_StD));
-    entities.add(new ExitItem());
-  }
-  
-  public void setupSize(int width, int heigh) {
-    this.width = width;
-    this.heigh = heigh;
-  }
   
   public List<Entity> getEntities() {
     return entities;

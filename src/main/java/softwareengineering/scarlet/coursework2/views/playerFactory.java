@@ -4,7 +4,7 @@ public class playerFactory implements Factory{
 
 
 
-
+@Override
   public items init(String item) {
     // TODO Auto-generated method stub
     switch(item) {
@@ -15,11 +15,5 @@ public class playerFactory implements Factory{
       default:
        return null;
     }
-  }
-
-  @Override
-  public items init(String item, int amount) {
-    // TODO Auto-generated method stub
-    return null;
   }
 }

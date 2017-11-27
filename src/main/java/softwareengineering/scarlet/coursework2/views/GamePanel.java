@@ -36,16 +36,15 @@ public class GamePanel extends JPanel implements KeyListener{
     private final int DELAY = 10;
 
     
-    public GamePanel(ShowMap sm) {
-        this.sm = sm;
-        initGamePanel();
-    }
+    public GamePanel() {
+      initGamePanel();
+  }
     
     private void initGamePanel() {
         
         addKeyListener(new TAdapter());
         setFocusable(true);
-       
+        sm = new ShowMap(1, 1, 1, 1, 1, 48, 25);
 
         pF = new playerFactory();
         main_player = (player) pF.init("m");
@@ -73,12 +72,7 @@ public class GamePanel extends JPanel implements KeyListener{
        
        
         main_player.draw(g2d, this);
-        BasicStroke bs1 = new BasicStroke(8, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND);
-        g2d.setStroke(bs1);
-        g2d.drawLine(150, 40, 750, 40);
-        g2d.drawLine(750, 40, 750, 640);
-        g2d.drawLine(150, 40, 150, 640);
-        g2d.drawLine(750, 640, 150, 640);
+
 
         Toolkit.getDefaultToolkit().sync();
     }

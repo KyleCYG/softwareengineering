@@ -9,5 +9,5 @@ public interface items {
   public int getX();
   public int getY();
   public Image getImage();
-  public void draw(Graphics2D g2d, JPanel p);
+  void draw(int x, int y, Graphics2D g2d, JPanel p);
 }

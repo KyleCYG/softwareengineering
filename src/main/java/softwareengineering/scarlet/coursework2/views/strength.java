@@ -33,7 +33,7 @@ public class strength implements items{
 
 
   @Override
-  public void draw(Graphics2D g2d, JPanel p) {
+  public void draw(int x, int y, Graphics2D g2d, JPanel p) {
     // TODO Auto-generated method stub
     
   }
