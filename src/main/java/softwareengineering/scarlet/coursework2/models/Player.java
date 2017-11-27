@@ -7,7 +7,8 @@ import java.awt.Point;
  */
 public class Player {
   private String name;
-  private Point location;
+  private int x;
+  private int y;
   private int gold;
   
   /**
@@ -16,18 +17,31 @@ public class Player {
    * @param playerName The player's name
    * @param startLocation The starting position of the player
    */
-  public Player(String playerName, Point startLocation){
+  public Player(String playerName, int startX, int startY) {
     this.name = playerName;
-    this.location = startLocation;
+    this.x = startX;
+    this.y = startY;
     this.gold = 0;
   }
 
-  public Point getLocation() {
-    return location;
+  public int getX() {
+    return this.x;
+  }
+  
+  public int getY() {
+    return this.y;
   }
 
-  public void setLocation(Point location) {
-    this.location = location;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  public void setY(int y) {
+    this.y = y;
   }
 
   /**
@@ -37,7 +51,8 @@ public class Player {
    * @param dy Y-axis movement
    */
   public void movePlayer(int dx, int dy) {
-    this.location.translate(dx, dy);
+    this.x += dx;
+    this.y += dy;
   }
   
   public int getGold() {

@@ -5,34 +5,32 @@ import java.awt.Point;
 import org.junit.Test;
 
 public class PlayerTest {
-  private static final String NAME = "test";
-  private static final int LOCATION_X = 2;
-  private static final int LOCATION_Y = 5;
-  private static final Point LOCATION = new Point(PlayerTest.LOCATION_X, PlayerTest.LOCATION_Y);
   
   @Test
   public void testGetters() {
-    Player player = new Player(PlayerTest.NAME, PlayerTest.LOCATION);
+    Player player = new Player("test", 2, 3);
     
-    assertEquals(PlayerTest.NAME, player.getName());
-    assertEquals(PlayerTest.LOCATION, player.getLocation());
+    assertEquals("test", player.getName());
+    assertEquals(2, player.getX());
+    assertEquals(3, player.getY());
   }
   
   @Test
   public void testMovePlayer() {
-    Player player = new Player(PlayerTest.NAME, PlayerTest.LOCATION);
+    Player player = new Player("test", 5, 3);
 
     int dx = 3;
     int dy = -2;
     
     player.movePlayer(dx, dy);
     
-    Point newLocation = player.getLocation();
+    int newX = player.getX();
+    int newY = player.getY();
     
     // Note: the Point class getters return double for some stupid reason, therefore we
     //  access its attributes directly.
-    assertEquals(newLocation.x, PlayerTest.LOCATION_X+dx);
-    assertEquals(newLocation.y, PlayerTest.LOCATION_Y+dy);
+    assertEquals(8, newX);
+    assertEquals(1, newY);
     
   }
 

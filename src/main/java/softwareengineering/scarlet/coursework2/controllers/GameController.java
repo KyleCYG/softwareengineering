@@ -28,10 +28,11 @@ public class GameController {
     // get the location of the first room (arbitrarily...) in the dungeon
     // TODO: make the start location selection more intelligent
     Room startRoom = dungeon.getCurrentLevel().getRooms().get(0);
-    Point startLocation = new Point(startRoom.getX(), startRoom.getY());
+    int startX = startRoom.getX();
+    int startY = startRoom.getY();
     
     // create player
-    this.player = new Player(playerName, startLocation);
+    this.player = new Player(playerName, startX, startY);
   }
   
 }
