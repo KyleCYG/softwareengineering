@@ -170,13 +170,7 @@ public class LevelFactoryTest {
 
     Level level = LevelFactory.generateLevel(50, 50, entities);
 
-    List<Entity> check = new ArrayList<Entity>();
-
-    for (Room room : level.getRooms()) {
-      check.addAll(room.getEntities());
-    }
-
-    assertEquals(entities.size(), check.size());
+    assertEquals(entities.size(), level.getEntities().size());
   }
 
   @Test
@@ -185,12 +179,6 @@ public class LevelFactoryTest {
 
     Level level = TwoRoomLevelFactory.generateLevel(20, 20, entities);
 
-    List<Entity> checkEntities = new ArrayList<Entity>();
-
-    for (Room room : level.getRooms()) {
-      checkEntities.addAll(room.getEntities());
-    }
-
-    assertEquals(entities.size(), checkEntities.size());
+    assertEquals(entities.size(), level.getEntities().size());
   }
 }

@@ -1,21 +1,16 @@
 package softwareengineering.scarlet.coursework2.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Room {
   private int x;
   private int y;
   private int width;
   private int height;
-  private List<Entity> entities;
 
   public Room(int x, int y, int width, int height) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
-    this.entities = new ArrayList<Entity>();
   }
 
   public int getX() {
@@ -40,9 +35,5 @@ public class Room {
 
   public int getY2() {
     return y + height - 1;
-  }
-
-  public List<Entity> getEntities() {
-    return entities;
   }
 }

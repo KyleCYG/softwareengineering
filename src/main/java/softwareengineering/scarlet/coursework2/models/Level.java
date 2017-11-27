@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Stores information about the position of objects within the dungeon.
@@ -16,12 +17,14 @@ import java.util.ArrayList;
 public class Level {
   private ArrayList<Room> rooms;
   private ArrayList<Corridor> corridors;
+  private List<Entity> entities;
   private int width;
   private int height;
 
   public Level(int width, int height) {
     this.rooms = new ArrayList<Room>();
     this.corridors = new ArrayList<Corridor>();
+    this.entities = new ArrayList<Entity>();
     this.width = width;
     this.height = height;
   }
@@ -42,6 +45,10 @@ public class Level {
      * The ordering of this list is not consistent and may change.
      */
     return corridors;
+  }
+
+  public List<Entity> getEntities() {
+    return entities;
   }
 
   public CellType[][] getGrid() {
@@ -65,11 +72,11 @@ public class Level {
           grid[x][y] = CellType.ROOM;
         }
       }
+    }
 
-      // Entities within the room
-      for (Entity entity : room.getEntities()) {
-        grid[entity.getX()][entity.getY()] = entity.type;
-      }
+    // Draw entities
+    for (Entity entity : getEntities()) {
+      grid[entity.getX()][entity.getY()] = entity.type;
     }
 
     // Draw corridors
