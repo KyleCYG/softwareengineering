@@ -4,15 +4,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 public class GameFrame extends JFrame{
-      private ShowMap sm;
-	 public GameFrame(ShowMap sm) {
-	        this.sm = sm;
+
+	 public GameFrame() {
+
 	        initUI();
 	    }
 	    
 	    private void initUI() {
 
-	        add(new GamePanel(sm));
+	        add(new GamePanel());
 	        
 	        setResizable(false);
 	        
@@ -25,14 +25,11 @@ public class GameFrame extends JFrame{
 	    }
 
 	    public static void main(String[] args) {
-	       ShowMap sm;
-          sm = new ShowMap();
-          sm.setupEntity(1, 1, 1, 1, 1);
-          sm.setupSize(50, 25);
+
           
 	        EventQueue.invokeLater(new Runnable() {
 	            public void run() {
-	              GameFrame ex = new GameFrame(sm);
+	              GameFrame ex = new GameFrame();
 	                ex.setVisible(true);
 	            }
 	        });
