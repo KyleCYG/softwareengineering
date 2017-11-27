@@ -1,4 +1,4 @@
-package controllers;
+package softwareengineering.scarlet.coursework2.controllers;
 
 import java.awt.Point;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
