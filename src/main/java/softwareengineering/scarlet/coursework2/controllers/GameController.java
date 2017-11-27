@@ -1,6 +1,5 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
-import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.models.Dungeon;

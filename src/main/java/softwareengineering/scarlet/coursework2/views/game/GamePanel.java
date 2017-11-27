@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
+import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 
 public class GamePanel extends JPanel implements KeyListener{
@@ -44,23 +45,35 @@ public class GamePanel extends JPanel implements KeyListener{
     private class TAdapter extends KeyAdapter {
       @Override
       public void keyReleased(KeyEvent e) {
-        main_player.keyReleased(e);
-        main_player.redraw();
+        switch (e.getKeyCode()) {
+          case KeyEvent.VK_LEFT:
+            controller.movePlayer(MoveDirection.LEFT);
+            break;
+          case KeyEvent.VK_RIGHT:
+            controller.movePlayer(MoveDirection.RIGHT);
+            break;
+          case KeyEvent.VK_UP:
+            controller.movePlayer(MoveDirection.UP);
+            break;
+          case KeyEvent.VK_DOWN:
+            controller.movePlayer(MoveDirection.DOWN);
+            break;
+        }
       }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-      // TODO Auto-generated method stub 
+      // Unnecessary override
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-      // TODO Auto-generated method stub 
+      // Unnecessary override
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-      // TODO Auto-generated method stub
+      // Unnecessary override
     }
 }
