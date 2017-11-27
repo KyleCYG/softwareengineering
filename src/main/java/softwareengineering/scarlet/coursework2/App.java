@@ -14,8 +14,6 @@ public class App
           MenuFrame menu = new MenuFrame();
           menu.setVisible(true);
         }
-      });
-      
+      }); 
     }
-    
 }
