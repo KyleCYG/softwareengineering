@@ -10,32 +10,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import softwareengineering.scarlet.coursework2.MenuFrame;
 
-public class PlayerRenderer implements Items, ActionListener {
+public class PlayerRenderer implements ActionListener {
   private int dx;
   private int dy;
   private int x;
   private int y;
-  private Image image;
   private JPanel p;
   private Graphics2D g2d;
+  private Player player;
 
   public PlayerRenderer() {
-    ImageIcon ii = new ImageIcon("player.png");
-    image = ii.getImage();
-  }
-
-  @Override
-  public int getX() {
-    return x;
-  }
-
-  @Override
-  public int getY() {
-    return y;
-  }
-
-  public Image getImage() {
-    return image;
+    player = new Player();
   }
 
   public void setLocation(int x, int y) {
@@ -68,7 +53,6 @@ public class PlayerRenderer implements Items, ActionListener {
     }
 
     int n;
-
     if (e.getKeyCode() == KeyEvent.VK_Q) {
       n = JOptionPane.showConfirmDialog(p, "Are you sure you want to quit?", "Quit",
           JOptionPane.YES_NO_OPTION);
@@ -87,18 +71,13 @@ public class PlayerRenderer implements Items, ActionListener {
   }
 
   public void redraw() {
-    g2d.drawImage(image, x, y, p);
+    this.player.draw(x, y, g2d, p);
     p.repaint();
   }
 
   public void draw(Graphics2D g2d, JPanel p) {
     this.p = p;
     this.g2d = g2d;
-    g2d.drawImage(image, x, y, p);
-  }
-
-  @Override
-  public void draw(int x, int y, Graphics2D g2d, JPanel p) {
-    // To be done
+    this.player.draw(x, y, g2d, p);
   }
 }

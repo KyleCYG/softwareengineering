@@ -16,13 +16,10 @@ public class GameView {
   public static final int TOP_OFFSET = 40;
 
   private Dungeon dungeon;
-  private GameController controller;
   private GameFrame frame;
 
   public GameView(GameController controller, Dungeon dungeon) {
     this.dungeon = dungeon;
-    this.controller = controller;
- 
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         frame = new GameFrame(controller, dungeon);

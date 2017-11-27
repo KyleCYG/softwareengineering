@@ -5,30 +5,20 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Strength implements Items{
+public class Strength extends ItemImage implements Items{
   private Image image;
-  private int x;
-  private int y;
 
   public Strength() {
       ImageIcon ii = new ImageIcon("strength.png");
       image = ii.getImage();
   }
   
-  public int getX() {
-    return x;
-  }
-
-  public int getY() {
-    return y;
-  }
-
   public Image getImage() {
     return image;
   }
 
   @Override
   public void draw(int x, int y, Graphics2D g2d, JPanel p) {
-    // To be done
+    super.draw(image, x, y, g2d, p);
   }
 }

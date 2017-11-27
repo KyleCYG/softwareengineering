@@ -5,20 +5,19 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class StairsDown extends ItemImage implements Items{
+public class Player extends ItemImage implements Items{
   private Image image;
   
-  public StairsDown() {
-    ImageIcon ii = new ImageIcon("StD.png");
+  public Player() {
+    ImageIcon ii = new ImageIcon("player.png");
     image = ii.getImage();
   }
 
   @Override
   public Image getImage() {
-    return image;
+    return null;
   }
-
-  @Override
+  
   public void draw(int x, int y, Graphics2D g2d, JPanel p) {
     super.draw(image, x, y, g2d, p);
   }

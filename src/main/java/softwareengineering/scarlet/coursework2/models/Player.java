@@ -24,6 +24,7 @@ public class Player {
     this.gold = 0;
   }
 
+
   public int getX() {
     return this.x;
   }

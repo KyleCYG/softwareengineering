@@ -34,5 +34,10 @@ public class GameController {
     // create player
     this.player = new Player(playerName, startX, startY);
   }
+
+  public void movePlayer() {
+    // TODO Auto-generated method stub
+    
+  }
   
 }

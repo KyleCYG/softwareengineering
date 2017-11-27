@@ -5,22 +5,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class StairsUp implements Items{
+public class StairsUp extends ItemImage implements Items{
   private Image image;
-  private int x;
-  private int y;
  
   public StairsUp() {
     ImageIcon ii = new ImageIcon("StU.png");
     image = ii.getImage();
-  }
-  
-  public int getX() {
-    return x;
-  }
-
-  public int getY() {
-    return y;
   }
 
   public Image getImage() {
@@ -29,6 +19,6 @@ public class StairsUp implements Items{
 
   @Override
   public void draw(int x, int y, Graphics2D g2d, JPanel p) {
-    // To be done
+    super.draw(image, x, y, g2d, p);
   }
 }

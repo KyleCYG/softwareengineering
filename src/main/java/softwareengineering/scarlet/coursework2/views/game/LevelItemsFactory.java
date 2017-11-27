@@ -1,6 +1,10 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
 public class LevelItemsFactory implements Factory {
+  
+  public LevelItemsFactory() {
+  }
+  
   @Override
   public Items init(String item) {
     switch (item) {

@@ -5,23 +5,13 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Exit implements Items{
+public class Exit extends ItemImage implements Items{
   private Image image;
-  private int x;
-  private int y;
 
   public Exit() {
     // TODO Auto-generated method stub
       ImageIcon ii = new ImageIcon("exit.png");
       image = ii.getImage();
-  }
-  
-  public int getX() {
-    return x;
-  }
-
-  public int getY() {
-    return y;
   }
 
   public Image getImage() {
@@ -30,6 +20,6 @@ public class Exit implements Items{
 
   @Override
   public void draw(int x, int y, Graphics2D g2d, JPanel p) {
-    // need to be done
+    super.draw(image, x, y, g2d, p);
   }
 }

@@ -12,9 +12,13 @@ import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 
 public class GamePanel extends JPanel implements KeyListener{
-  private PlayerFactory pF;
-  private PlayerRenderer main_player;
-  private LevelRenderer sm;
+  /**
+   * Main Panel of showing the dungeon
+   */
+  private static final long serialVersionUID = 1L;
+  
+  private PlayerRenderer playerRender;
+  private LevelRenderer levelRender;
   private GameController controller;
   
   public GamePanel(GameController controller, Dungeon dungeon) {
@@ -25,9 +29,8 @@ public class GamePanel extends JPanel implements KeyListener{
   private void initGamePanel(Dungeon dungeon) {
     addKeyListener(new TAdapter());
     setFocusable(true);
-    sm = new LevelRenderer(dungeon);
-    pF = new PlayerFactory();
-    main_player = (PlayerRenderer) pF.init("m");
+    levelRender = new LevelRenderer(dungeon,this);
+    playerRender = new PlayerRenderer();
   }
 
     @Override
@@ -36,31 +39,44 @@ public class GamePanel extends JPanel implements KeyListener{
       Graphics2D g2d = (Graphics2D) g;
       g2d.setFont(new Font("Chalkduster", Font.PLAIN, 20));
       g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
-      sm.render(g2d);
-      main_player.draw(g2d, this);
+      levelRender.render(g2d);
+      playerRender.draw(g2d, this);
+
       Toolkit.getDefaultToolkit().sync();
     }
 
     private class TAdapter extends KeyAdapter {
       @Override
       public void keyReleased(KeyEvent e) {
-        main_player.keyReleased(e);
-        main_player.redraw();
+        int key = e.getKeyCode();
+        switch (key) {
+          case KeyEvent.VK_LEFT:
+            controller.movePlayer();
+            break;
+          case KeyEvent.VK_RIGHT:
+            controller.movePlayer();
+            break;
+          case KeyEvent.VK_UP:
+            controller.movePlayer();
+            break;
+          case KeyEvent.VK_DOWN:
+            controller.movePlayer();
+            break;
+        }
+        // Repaint the panel
+        repaint();
       }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-      // TODO Auto-generated method stub 
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-      // TODO Auto-generated method stub 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-      // TODO Auto-generated method stub
     }
 }
