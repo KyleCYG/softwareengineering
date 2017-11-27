@@ -6,15 +6,15 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class gold implements items{
+public class Exit implements Items{
   private Image image;
   private int x;
   private int y;
 
 
-  public gold(){
+  public Exit() {
     // TODO Auto-generated method stub
-      ImageIcon ii = new ImageIcon("gold.png");
+      ImageIcon ii = new ImageIcon("exit.png");
       image = ii.getImage();
   }
   
@@ -31,11 +31,10 @@ public class gold implements items{
 }
 
 
+
   @Override
   public void draw(int x, int y, Graphics2D g2d, JPanel p) {
     // TODO Auto-generated method stub
     
   }
-
-
 }

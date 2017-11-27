@@ -6,15 +6,15 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class wall implements items{
+public class Health implements Items{
   private Image image;
   private int x;
   private int y;
 
 
-  public  wall() {
+  public Health() {
     // TODO Auto-generated method stub
-      ImageIcon ii = new ImageIcon("wall.png");
+      ImageIcon ii = new ImageIcon("health.png");
       image = ii.getImage();
   }
   

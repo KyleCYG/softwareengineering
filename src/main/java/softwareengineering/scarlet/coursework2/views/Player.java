@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import softwareengineering.scarlet.coursework2.MenuFrame;
 
-public class player implements items, ActionListener {
+public class Player implements Items, ActionListener {
   private int dx;
   private int dy;
   private int x;
@@ -21,7 +21,7 @@ public class player implements items, ActionListener {
   private JPanel p;
   private Timer timer;
   private Graphics2D g2d;
-  public player() {
+  public Player() {
     // TODO Auto-generated method stub
     ImageIcon ii = new ImageIcon("player.png");
     image = ii.getImage();

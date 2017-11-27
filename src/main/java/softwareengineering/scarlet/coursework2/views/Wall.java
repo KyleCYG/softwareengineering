@@ -6,15 +6,15 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class strength implements items{
+public class Wall implements Items{
   private Image image;
   private int x;
   private int y;
 
 
-  public strength() {
+  public  Wall() {
     // TODO Auto-generated method stub
-      ImageIcon ii = new ImageIcon("strength.png");
+      ImageIcon ii = new ImageIcon("wall.png");
       image = ii.getImage();
   }
   

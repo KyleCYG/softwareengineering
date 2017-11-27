@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.JPanel;
 
-public interface items {
+public interface Items {
   public int getX();
   public int getY();
   public Image getImage();

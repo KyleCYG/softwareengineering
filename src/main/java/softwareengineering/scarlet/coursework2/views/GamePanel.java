@@ -30,8 +30,8 @@ import java.awt.RenderingHints;
 public class GamePanel extends JPanel implements KeyListener{
 
 
-    private playerFactory pF;
-    private player main_player;
+    private PlayerFactory pF;
+    private Player main_player;
     private ShowMap sm;
     private final int DELAY = 10;
 
@@ -46,8 +46,8 @@ public class GamePanel extends JPanel implements KeyListener{
         setFocusable(true);
         sm = new ShowMap(1, 1, 1, 1, 1, 48, 25);
 
-        pF = new playerFactory();
-        main_player = (player) pF.init("m");
+        pF = new PlayerFactory();
+        main_player = (Player) pF.init("m");
         
    
     }

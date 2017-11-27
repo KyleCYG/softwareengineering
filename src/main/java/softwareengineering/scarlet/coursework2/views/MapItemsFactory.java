@@ -3,23 +3,23 @@ package softwareengineering.scarlet.coursework2.views;
 public class MapItemsFactory implements Factory{
 
   @Override
-  public items init(String item) {
+  public Items init(String item) {
     // TODO Auto-generated method stub
     switch(item) {
       case "r":
-        return new room();
+        return new Room();
       case "c":
-        return new carridor();
+        return new Corridor();
       case "w":
-        return new wall();
+        return new Wall();
       case "g":
-        return new gold();
+        return new Gold();
       case "h":
-        return new health();
+        return new Health();
       case "e":
-        return new exit();
+        return new Exit();
       case "s":
-        return new strength();
+        return new Strength();
       case "SD":
         return new StD();
       case "SU":

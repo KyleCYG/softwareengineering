@@ -6,12 +6,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class carridor implements items{
+public class Corridor implements Items{
   private Image image;
   private int x;
   private int y;
 
-  public carridor(){
+  public Corridor(){
     // TODO Auto-generated method stub
       ImageIcon ii = new ImageIcon("carridor.png");
       image = ii.getImage();

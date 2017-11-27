@@ -6,7 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class StD implements items{
+public class StD implements Items{
   private Image image;
   private int x;
   private int y;

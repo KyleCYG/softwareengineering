@@ -1,17 +1,17 @@
 package softwareengineering.scarlet.coursework2.views;
 
-public class playerFactory implements Factory{
+public class PlayerFactory implements Factory{
 
 
 
 @Override
-  public items init(String item) {
+  public Items init(String item) {
     // TODO Auto-generated method stub
     switch(item) {
       case "m":
-        return new player();
+        return new Player();
       case "r":
-        return new player();
+        return new Player();
       default:
        return null;
     }
