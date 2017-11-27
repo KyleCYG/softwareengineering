@@ -4,7 +4,6 @@ public class LevelItemsFactory implements Factory{
 
   @Override
   public Items init(String item) {
-    // TODO Auto-generated method stub
     switch(item) {
       case "r":
         return new Room();
@@ -28,5 +27,4 @@ public class LevelItemsFactory implements Factory{
        return null;
     }
   }
-
 }

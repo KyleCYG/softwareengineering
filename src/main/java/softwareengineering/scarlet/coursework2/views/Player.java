@@ -21,7 +21,6 @@ public class Player implements Items, ActionListener {
   private Timer timer;
   private Graphics2D g2d;
   public Player() {
-    // TODO Auto-generated method stub
     ImageIcon ii = new ImageIcon("player.png");
     image = ii.getImage();
     timer = new Timer(100,this);

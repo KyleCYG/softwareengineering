@@ -10,11 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 public class InputNamePanel extends JPanel implements KeyListener,ActionListener{
   JTextField name;
   JLabel lblName;
   JButton btnEnter;
+  
   public InputNamePanel() {
     InitInputNamePanel();
   }
@@ -24,7 +24,6 @@ public class InputNamePanel extends JPanel implements KeyListener,ActionListener
     lblName = new JLabel();
     btnEnter = new JButton();
     name.requestFocus();
-
   }
 
   @Override
@@ -45,15 +44,12 @@ public class InputNamePanel extends JPanel implements KeyListener,ActionListener
 
     addKeyListener(this);
     setFocusable(true);
-    //does not get arrow keys as input
+    
+    //  does not get arrow keys as input
     setFocusTraversalKeysEnabled(false);
-
-
-
   }
 
   public void keyTyped(KeyEvent event){
-
   }
 
   /**
@@ -63,51 +59,40 @@ public class InputNamePanel extends JPanel implements KeyListener,ActionListener
    *                An event generated when user presses key.
    */
   public void keyPressed(KeyEvent event){
-
     if(event.getKeyCode()== KeyEvent.VK_ENTER){
       if(validateName())
         createGame();
-      
     }
   }     
 
   public void keyReleased(KeyEvent event){
   }
+  
   private void createGame()
   {
     ShowMap sm;
     sm = new ShowMap(1, 1, 1, 1, 1, 48, 25);
     GameFrame ex = new GameFrame();
     ex.setVisible(true);
-
   }
+  
   private boolean validateName()
   {
     boolean validate = false;
     String n = this.name.getText();
     String regex = "^[a-zA-Z0-9]*$";
+    
     if(n.matches(regex) && !n.isEmpty()) {
-      validate = true;
-      
+      validate = true; 
     }else {
-      
       validate = false;
     }
-  
-  
-  
     return validate;
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    // TODO Auto-generated method stub
     if(validateName())
-      createGame();
-    
-    
+      createGame();    
   }
-
-
-
 }

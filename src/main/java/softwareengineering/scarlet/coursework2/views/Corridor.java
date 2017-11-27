@@ -11,28 +11,24 @@ public class Corridor implements Items{
   private int y;
 
   public Corridor(){
-    // TODO Auto-generated method stub
       ImageIcon ii = new ImageIcon("carridor.png");
       image = ii.getImage();
   }
   
   public int getX() {
     return x;
-}
+  }
 
   public int getY() {
     return y;
-}
+  }
 
   public Image getImage() {
     return image;
-}
-
-
+  }
 
   @Override
   public void draw(int x, int y, Graphics2D g2d, JPanel p) {
-    // TODO Auto-generated method stub
-    
+    //  need to be done
   }
 }

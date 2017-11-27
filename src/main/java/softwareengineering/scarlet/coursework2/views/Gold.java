@@ -10,31 +10,25 @@ public class Gold implements Items{
   private int x;
   private int y;
 
-
   public Gold(){
-    // TODO Auto-generated method stub
-      ImageIcon ii = new ImageIcon("gold.png");
-      image = ii.getImage();
+    ImageIcon ii = new ImageIcon("gold.png");
+    image = ii.getImage();
   }
-  
+ 
   public int getX() {
     return x;
-}
+  }
 
   public int getY() {
     return y;
-}
+  }
 
   public Image getImage() {
     return image;
-}
-
+  }
 
   @Override
   public void draw(int x, int y, Graphics2D g2d, JPanel p) {
-    // TODO Auto-generated method stub
-    
+    // need to be done   
   }
-
-
 }
