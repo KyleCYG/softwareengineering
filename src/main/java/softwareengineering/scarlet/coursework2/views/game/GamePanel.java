@@ -8,15 +8,18 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
+import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 
 public class GamePanel extends JPanel implements KeyListener{
   private PlayerFactory pF;
   private Player main_player;
   private ShowMap sm;
+  private GameController controller;
   
-  public GamePanel(Dungeon dungeon) {
-      initGamePanel(dungeon);
+  public GamePanel(GameController controller, Dungeon dungeon) {
+    this.controller = controller;  
+    initGamePanel(dungeon);
   }
   
   private void initGamePanel(Dungeon dungeon) {

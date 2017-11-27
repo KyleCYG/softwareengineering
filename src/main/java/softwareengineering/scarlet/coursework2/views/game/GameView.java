@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.EventQueue;
+import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 
 /**
@@ -14,13 +15,16 @@ public class GameView {
    * A reference to the current dungeon to render
    */
   private Dungeon dungeon;
+  private GameController controller;
+  private GameFrame frame;
 
-  public GameView(Dungeon dungeon) {
+  public GameView(GameController controller, Dungeon dungeon) {
     this.dungeon = dungeon;
+    this.controller = controller;
  
     EventQueue.invokeLater(new Runnable() {
       public void run() {
-        GameFrame frame = new GameFrame(dungeon);
+        frame = new GameFrame(controller, dungeon);
         frame.setVisible(true);
       }
     });
