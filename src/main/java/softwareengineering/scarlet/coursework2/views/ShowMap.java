@@ -21,7 +21,7 @@ public class ShowMap {
   private List<Entity> entities = new ArrayList<Entity>();
   private int width;
   private int heigh;
-  private MapItemsFactory mif;
+  private LevelItemsFactory mif;
   private int[] roomArrays;
   public ShowMap(int amount_gold, int amount_heal, int amount_stre, int amount_StU, int amount_StD,int width, int heigh) {
     entities.add(new GoldItem(amount_gold));
@@ -41,7 +41,7 @@ public class ShowMap {
   public void Show(Graphics2D g2d) {
     CellType[][] grid = level.getGrid();
     roomArrays = null;
-    mif = new MapItemsFactory();
+    mif = new LevelItemsFactory();
     
     for(int x=0;x<level.getWidth();x++) {
       for(int y=0;y<level.getHeight();y++) {

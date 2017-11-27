@@ -6,13 +6,13 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class StD implements Items{
+public class StairsDown implements Items{
   private Image image;
   private int x;
   private int y;
  
 
-  public StD() {
+  public StairsDown() {
     // TODO Auto-generated method stub
       ImageIcon ii = new ImageIcon("StD.png");
       image = ii.getImage();

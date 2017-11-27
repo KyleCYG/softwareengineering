@@ -1,6 +1,6 @@
 package softwareengineering.scarlet.coursework2.views;
 
-public class MapItemsFactory implements Factory{
+public class LevelItemsFactory implements Factory{
 
   @Override
   public Items init(String item) {
@@ -21,9 +21,9 @@ public class MapItemsFactory implements Factory{
       case "s":
         return new Strength();
       case "SD":
-        return new StD();
+        return new StairsDown();
       case "SU":
-        return new StU();
+        return new StairsUp();
       default:
        return null;
     }
