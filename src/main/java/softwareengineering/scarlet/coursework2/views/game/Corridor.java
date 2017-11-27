@@ -9,7 +9,7 @@ public class Corridor extends ItemImage implements Items{
   private Image image;
 
   public Corridor(){
-      ImageIcon ii = new ImageIcon("carridor.png");
+      ImageIcon ii = new ImageIcon("Corridor.png");
       image = ii.getImage();
   }
 
