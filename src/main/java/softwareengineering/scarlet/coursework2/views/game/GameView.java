@@ -11,9 +11,10 @@ import softwareengineering.scarlet.coursework2.models.Dungeon;
  * @author Dan Cosser
  */
 public class GameView {
-  /**
-   * A reference to the current dungeon to render
-   */
+  public static final int CELL_HEIGHT = 30;
+  public static final int CELL_WIDTH = 30;
+  public static final int TOP_OFFSET = 40;
+
   private Dungeon dungeon;
   private GameController controller;
   private GameFrame frame;
@@ -37,6 +38,14 @@ public class GameView {
   public void setDungeon(Dungeon dungeon) {
     this.dungeon = dungeon;
     render();
+  }
+
+  public static int getXForGridX(int gridX) {
+    return gridX * CELL_WIDTH;
+  }
+
+  public static int getYForGridY(int gridY) {
+    return (gridY * CELL_HEIGHT) + TOP_OFFSET;
   }
 
   /**

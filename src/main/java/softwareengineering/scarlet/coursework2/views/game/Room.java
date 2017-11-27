@@ -34,7 +34,7 @@ public class Room implements Items{
     this.y = y;
     
     g2d.setColor(new Color(125, 167, 116));
-    g2d.drawRect(x*30, 40+y*30, 30, 30);
+    g2d.drawRect(GameView.getXForGridX(x), GameView.getYForGridY(y), GameView.CELL_WIDTH, GameView.CELL_HEIGHT);
   }
 
 }
