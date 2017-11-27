@@ -9,7 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.views.game.GameFrame;
+import softwareengineering.scarlet.coursework2.views.game.GameView;
 import softwareengineering.scarlet.coursework2.views.game.ShowMap;
 
 public class InputNamePanel extends JPanel implements KeyListener,ActionListener{
@@ -72,10 +74,8 @@ public class InputNamePanel extends JPanel implements KeyListener,ActionListener
   
   private void createGame()
   {
-    ShowMap sm;
-    sm = new ShowMap(1, 1, 1, 1, 1, 48, 25);
-    GameFrame ex = new GameFrame();
-    ex.setVisible(true);
+    Dungeon dungeon = new Dungeon(25, 25, 1);
+    GameView gameview = new GameView(dungeon);
   }
   
   private boolean validateName()

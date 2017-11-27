@@ -4,39 +4,22 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
-import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
 import softwareengineering.scarlet.coursework2.models.CellType;
+import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Entity;
-import softwareengineering.scarlet.coursework2.models.ExitItem;
-import softwareengineering.scarlet.coursework2.models.GoldItem;
-import softwareengineering.scarlet.coursework2.models.HealthItem;
 import softwareengineering.scarlet.coursework2.models.Level;
-import softwareengineering.scarlet.coursework2.models.StairsDownItem;
-import softwareengineering.scarlet.coursework2.models.StairsUpItem;
-import softwareengineering.scarlet.coursework2.models.StrengthItem;
 
 public class ShowMap {
   private Level level;
   private List<Entity> entities = new ArrayList<Entity>();
-  private int width;
-  private int heigh;
   private LevelItemsFactory mif;
 
-  public ShowMap(int amount_gold, int amount_heal, int amount_stre, int amount_StU, int amount_StD,
-      int width, int heigh) {
-    entities.add(new GoldItem(amount_gold));
-    entities.add(new HealthItem(amount_heal));
-    entities.add(new StrengthItem(amount_stre));
-    entities.add(new StairsUpItem(amount_StU));
-    entities.add(new StairsDownItem(amount_StD));
-    entities.add(new ExitItem());
-    this.width = width;
-    this.heigh = heigh;
-    init();
+  public ShowMap(Dungeon dungeon) {
+    init(dungeon);
   }
 
-  public void init() {
-    level = LevelFactory.generateLevel(this.width, this.heigh, this.entities);
+  public void init(Dungeon dungeon) {
+    level = dungeon.getCurrentLevel();
   }
 
   public void Show(Graphics2D g2d) {

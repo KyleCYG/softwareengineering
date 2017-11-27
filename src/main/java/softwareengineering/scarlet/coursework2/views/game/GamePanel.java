@@ -8,20 +8,21 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
+import softwareengineering.scarlet.coursework2.models.Dungeon;
 
 public class GamePanel extends JPanel implements KeyListener{
   private PlayerFactory pF;
   private Player main_player;
   private ShowMap sm;
-
-  public GamePanel() {
-      initGamePanel();
+  
+  public GamePanel(Dungeon dungeon) {
+      initGamePanel(dungeon);
   }
   
-  private void initGamePanel() {
+  private void initGamePanel(Dungeon dungeon) {
     addKeyListener(new TAdapter());
     setFocusable(true);
-    sm = new ShowMap(1, 1, 1, 1, 1, 48, 25);
+    sm = new ShowMap(dungeon);
     pF = new PlayerFactory();
     main_player = (Player) pF.init("m");
   }
