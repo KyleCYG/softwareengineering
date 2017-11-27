@@ -2,19 +2,14 @@ package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
-import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Level;
 
-public class ShowMap {
+public class LevelRenderer {
   private Level level;
-  private List<Entity> entities = new ArrayList<Entity>();
-  private LevelItemsFactory mif;
 
-  public ShowMap(Dungeon dungeon) {
+  public LevelRenderer(Dungeon dungeon) {
     init(dungeon);
   }
 
@@ -22,9 +17,9 @@ public class ShowMap {
     level = dungeon.getCurrentLevel();
   }
 
-  public void Show(Graphics2D g2d) {
+  public void render(Graphics2D g2d) {
     CellType[][] grid = level.getGrid();
-    mif = new LevelItemsFactory();
+    LevelItemsFactory mif = new LevelItemsFactory();
 
     for (int x = 0; x < level.getWidth(); x++) {
       for (int y = 0; y < level.getHeight(); y++) {
@@ -61,13 +56,5 @@ public class ShowMap {
         }
       }
     }
-  }
-
-  public List<Entity> getEntities() {
-    return entities;
-  }
-
-  public Level getMap() {
-    return level;
   }
 }

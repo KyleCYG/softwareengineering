@@ -9,10 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.views.game.GameFrame;
 import softwareengineering.scarlet.coursework2.views.game.GameView;
-import softwareengineering.scarlet.coursework2.views.game.ShowMap;
+import softwareengineering.scarlet.coursework2.views.game.LevelRenderer;
 
 public class InputNamePanel extends JPanel implements KeyListener,ActionListener{
   JTextField name;
@@ -75,7 +76,8 @@ public class InputNamePanel extends JPanel implements KeyListener,ActionListener
   private void createGame()
   {
     Dungeon dungeon = new Dungeon(25, 25, 1);
-    GameView gameview = new GameView(dungeon);
+    GameController controller = new GameController("Scarlet Pimpernel");
+    GameView gameview = new GameView(controller, dungeon);
   }
   
   private boolean validateName()

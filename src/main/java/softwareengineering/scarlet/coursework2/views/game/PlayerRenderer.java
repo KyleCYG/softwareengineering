@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import softwareengineering.scarlet.coursework2.MenuFrame;
 
-public class Player implements Items, ActionListener {
+public class PlayerRenderer implements Items, ActionListener {
   private int dx;
   private int dy;
   private int x;
@@ -19,7 +19,7 @@ public class Player implements Items, ActionListener {
   private JPanel p;
   private Graphics2D g2d;
 
-  public Player() {
+  public PlayerRenderer() {
     ImageIcon ii = new ImageIcon("player.png");
     image = ii.getImage();
   }

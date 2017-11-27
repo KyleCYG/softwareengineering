@@ -13,8 +13,8 @@ import softwareengineering.scarlet.coursework2.models.Dungeon;
 
 public class GamePanel extends JPanel implements KeyListener{
   private PlayerFactory pF;
-  private Player main_player;
-  private ShowMap sm;
+  private PlayerRenderer main_player;
+  private LevelRenderer sm;
   private GameController controller;
   
   public GamePanel(GameController controller, Dungeon dungeon) {
@@ -25,9 +25,9 @@ public class GamePanel extends JPanel implements KeyListener{
   private void initGamePanel(Dungeon dungeon) {
     addKeyListener(new TAdapter());
     setFocusable(true);
-    sm = new ShowMap(dungeon);
+    sm = new LevelRenderer(dungeon);
     pF = new PlayerFactory();
-    main_player = (Player) pF.init("m");
+    main_player = (PlayerRenderer) pF.init("m");
   }
 
     @Override
@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements KeyListener{
       Graphics2D g2d = (Graphics2D) g;
       g2d.setFont(new Font("Chalkduster", Font.PLAIN, 20));
       g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
-      sm.Show(g2d);
+      sm.render(g2d);
       main_player.draw(g2d, this);
       Toolkit.getDefaultToolkit().sync();
     }

@@ -5,9 +5,9 @@ public class PlayerFactory implements Factory {
   public Items init(String item) {
     switch (item) {
       case "m":
-        return new Player();
+        return new PlayerRenderer();
       case "r":
-        return new Player();
+        return new PlayerRenderer();
       default:
         return null;
     }

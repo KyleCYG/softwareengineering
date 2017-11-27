@@ -2,11 +2,11 @@ package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
-import softwareengineering.scarlet.coursework2.views.game.ShowMap;
+import softwareengineering.scarlet.coursework2.views.game.LevelRenderer;
 
 public class InputNameFrame extends JFrame {
 
-  private ShowMap sm;
+  private LevelRenderer sm;
   
   public InputNameFrame() {
     initUI();
