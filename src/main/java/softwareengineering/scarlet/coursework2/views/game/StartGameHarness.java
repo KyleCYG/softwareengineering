@@ -6,7 +6,7 @@ import softwareengineering.scarlet.coursework2.models.Dungeon;
 public class StartGameHarness {
   public static void main(String[] args) {
     GameController controller = new GameController("Scarlet Pimpernel");
-    Dungeon dungeon = new Dungeon(48, 25, 1);
+    Dungeon dungeon = new Dungeon(44, 25, 1);
     GameView start = new GameView(controller, dungeon);
   }
 }
