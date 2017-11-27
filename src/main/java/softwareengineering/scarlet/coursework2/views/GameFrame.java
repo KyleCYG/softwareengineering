@@ -5,12 +5,14 @@ import javax.swing.JFrame;
 
 public class GameFrame extends JFrame{
 
-	 public GameFrame() {
 
-	        initUI();
-	    }
 	    
-	    private void initUI() {
+	    public GameFrame() {
+    // TODO Auto-generated constructor stub
+	      initUI();
+  }
+
+      private void initUI() {
 
 	        add(new GamePanel());
 	        

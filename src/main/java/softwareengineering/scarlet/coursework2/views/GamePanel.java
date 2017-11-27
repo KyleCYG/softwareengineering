@@ -26,7 +26,6 @@ import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
-import test_local.ShowMap;
 import java.awt.RenderingHints;
 public class GamePanel extends JPanel implements KeyListener{
 
