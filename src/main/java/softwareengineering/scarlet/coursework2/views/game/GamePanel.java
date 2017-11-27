@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
+import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 
 public class GamePanel extends JPanel implements KeyListener{
@@ -48,35 +49,35 @@ public class GamePanel extends JPanel implements KeyListener{
     private class TAdapter extends KeyAdapter {
       @Override
       public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-        switch (key) {
+        switch (e.getKeyCode()) {
           case KeyEvent.VK_LEFT:
-            controller.movePlayer();
+            controller.movePlayer(MoveDirection.LEFT);
             break;
           case KeyEvent.VK_RIGHT:
-            controller.movePlayer();
+            controller.movePlayer(MoveDirection.RIGHT);
             break;
           case KeyEvent.VK_UP:
-            controller.movePlayer();
+            controller.movePlayer(MoveDirection.UP);
             break;
           case KeyEvent.VK_DOWN:
-            controller.movePlayer();
+            controller.movePlayer(MoveDirection.DOWN);
             break;
         }
-        // Repaint the panel
-        repaint();
       }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+
     }
 }

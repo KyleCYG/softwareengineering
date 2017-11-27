@@ -202,12 +202,13 @@ public class LevelFactory {
   }
 
   /**
-   * Place a single entity in a room.
+   * Place a single entity in a room in a level.
    *
-   * @param room The room in which to place the entity
+   * @param level The level in which to place the entity
+   * @param room The room (ie the space) in which to place the entity
    * @param entity The entity to place
    */
-  public static void placeObjectInRoom(Room room, Entity entity) {
+  public static void placeObjectInLevel(Level level, Room room, Entity entity) {
     // Needs replacing with shared Random
     Random random = new Random();
 
@@ -221,8 +222,8 @@ public class LevelFactory {
       y = random.nextInt(room.getHeight()) + room.getY();
       placed = true;
 
-      // Check other entities in the room for clashes
-      for (Entity otherEntity : room.getEntities()) {
+      // Check other entities in the level for clashes
+      for (Entity otherEntity : level.getEntities()) {
         if (otherEntity.getX() == x && otherEntity.getY() == y) {
           placed = false;
           break;
@@ -232,7 +233,7 @@ public class LevelFactory {
 
     // Actually set the position of the entity
     entity.setPosition(x, y);
-    room.getEntities().add(entity);
+    level.getEntities().add(entity);
   }
 
   /**
@@ -252,7 +253,7 @@ public class LevelFactory {
     while (toPlace.size() > 0) {
       try {
         room = roomIterator.next();
-        placeObjectInRoom(room, toPlace.remove(0));
+        placeObjectInLevel(level, room, toPlace.remove(0));
       } catch (NoSuchElementException ex) {
         rooms = new ArrayList<Room>(level.getRooms());
         Collections.shuffle(rooms);
