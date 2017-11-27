@@ -1,18 +1,19 @@
-package softwareengineering.scarlet.coursework2.views;
+package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class StairsDown implements Items{
+public class Exit implements Items{
   private Image image;
   private int x;
   private int y;
 
-  public StairsDown() {
-    ImageIcon ii = new ImageIcon("StD.png");
-    image = ii.getImage();
+  public Exit() {
+    // TODO Auto-generated method stub
+      ImageIcon ii = new ImageIcon("exit.png");
+      image = ii.getImage();
   }
   
   public int getX() {
@@ -29,6 +30,6 @@ public class StairsDown implements Items{
 
   @Override
   public void draw(int x, int y, Graphics2D g2d, JPanel p) {
-    // To be done
+    // need to be done
   }
 }

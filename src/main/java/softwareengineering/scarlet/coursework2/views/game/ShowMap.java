@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2.views;
+package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

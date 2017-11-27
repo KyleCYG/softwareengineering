@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import softwareengineering.scarlet.coursework2.views.game.GameFrame;
+import softwareengineering.scarlet.coursework2.views.game.ShowMap;
 
 public class InputNamePanel extends JPanel implements KeyListener,ActionListener{
   JTextField name;

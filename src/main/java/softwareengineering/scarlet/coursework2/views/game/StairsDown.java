@@ -1,17 +1,17 @@
-package softwareengineering.scarlet.coursework2.views;
+package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Wall implements Items{
+public class StairsDown implements Items{
   private Image image;
   private int x;
   private int y;
 
-  public  Wall() {
-    ImageIcon ii = new ImageIcon("wall.png");
+  public StairsDown() {
+    ImageIcon ii = new ImageIcon("StD.png");
     image = ii.getImage();
   }
   

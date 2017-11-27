@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2.views;
+package softwareengineering.scarlet.coursework2.views.game;
 
 public class LevelItemsFactory implements Factory {
   @Override
