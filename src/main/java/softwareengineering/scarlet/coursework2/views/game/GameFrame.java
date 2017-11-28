@@ -15,7 +15,6 @@ public class GameFrame extends JFrame {
   private void initUI(GameController controller, Dungeon dungeon) {
     panel = new GamePanel(controller, dungeon);
     add(panel);
-    setResizable(false);
     setTitle("It's a Dungen Game!");
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
