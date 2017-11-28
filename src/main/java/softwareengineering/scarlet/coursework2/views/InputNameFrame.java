@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 
 public class InputNameFrame extends JFrame {
   private static final long serialVersionUID = 1L;
-  
+
   public InputNameFrame() {
     initUI();
   }
@@ -26,5 +26,5 @@ public class InputNameFrame extends JFrame {
         ex.setVisible(true);
       }
     });
-  }  
+  }
 }

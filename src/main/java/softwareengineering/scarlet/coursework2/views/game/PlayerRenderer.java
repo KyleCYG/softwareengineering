@@ -65,8 +65,7 @@ public class PlayerRenderer implements ActionListener {
   }
 
   @Override
-  public void actionPerformed(ActionEvent arg0) {
-  }
+  public void actionPerformed(ActionEvent arg0) {}
 
   public void redraw() {
     this.player.draw(x, y, g2d, p);

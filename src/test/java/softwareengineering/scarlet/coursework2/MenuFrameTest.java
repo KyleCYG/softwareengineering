@@ -13,12 +13,12 @@ import softwareengineering.scarlet.coursework2.views.MenuFrame;
  *
  */
 public class MenuFrameTest extends TestCase {
-  
+
   @Test
   public void testCheckPanelInitialised() {
-    
+
     MenuFrame testMenu = new MenuFrame();
     assertTrue(testMenu.getContentPane() instanceof JPanel);
   }
-  
+
 }

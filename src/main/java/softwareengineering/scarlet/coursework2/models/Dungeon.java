@@ -36,17 +36,17 @@ public class Dungeon {
    */
   protected static List<Entity> generateEntities(int difficulty) {
     List<Entity> entities = new ArrayList<Entity>();
-    
+
     int numGoldItems = 4;
-    
+
     // Generate gold (with value proportional to difficulty) and add
-    for (int i = 0; i < numGoldItems; i++){
-      entities.add(new GoldItem((difficulty+1) * 10));
+    for (int i = 0; i < numGoldItems; i++) {
+      entities.add(new GoldItem((difficulty + 1) * 10));
     }
-    
+
     return entities;
   }
-  
+
   public Level getCurrentLevel() {
     if (this.levels == null) {
       this.levels = Dungeon.generateLevels(this.width, this.height, this.numLevels);

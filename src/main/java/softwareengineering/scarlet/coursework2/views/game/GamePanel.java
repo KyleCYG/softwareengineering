@@ -14,77 +14,77 @@ import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 
-public class GamePanel extends JPanel implements KeyListener{
+public class GamePanel extends JPanel implements KeyListener {
   /**
    * Main Panel of showing the dungeon
    */
   private static final long serialVersionUID = 1L;
-  
+
   private PlayerRenderer playerRender;
   private LevelRenderer levelRender;
   private GameController controller;
 
   private Image Background;
-  
+
   public GamePanel(GameController controller, Dungeon dungeon) {
-    this.controller = controller;  
+    this.controller = controller;
     initGamePanel(dungeon);
   }
-  
+
   private void initGamePanel(Dungeon dungeon) {
     addKeyListener(new TAdapter());
     setFocusable(true);
     ImageIcon background = new ImageIcon("background.png");
     Background = background.getImage();
-    levelRender = new LevelRenderer(dungeon,this);
+    levelRender = new LevelRenderer(dungeon, this);
     playerRender = new PlayerRenderer();
   }
 
-    @Override
-    public void paintComponent(Graphics g) {
-      super.paintComponent(g);
-      Graphics2D g2d = (Graphics2D) g;
-      g.drawImage(Background, 0, 0, this);
-      g2d.setFont(new Font("Chalkduster", Font.PLAIN, 20));
-      g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
-      levelRender.render(g2d);
-      playerRender.draw(g2d, this);
+  @Override
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D g2d = (Graphics2D) g;
+    g.drawImage(Background, 0, 0, this);
+    g2d.setFont(new Font("Chalkduster", Font.PLAIN, 20));
+    g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
+    levelRender.render(g2d);
+    playerRender.draw(g2d, this);
 
-      Toolkit.getDefaultToolkit().sync();
-    }
+    Toolkit.getDefaultToolkit().sync();
+  }
 
-    private class TAdapter extends KeyAdapter {
-      @Override
-      public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()) {
-          case KeyEvent.VK_LEFT:
-            controller.movePlayer(MoveDirection.LEFT);
-            break;
-          case KeyEvent.VK_RIGHT:
-            controller.movePlayer(MoveDirection.RIGHT);
-            break;
-          case KeyEvent.VK_UP:
-            controller.movePlayer(MoveDirection.UP);
-            break;
-          case KeyEvent.VK_DOWN:
-            controller.movePlayer(MoveDirection.DOWN);
-            break;
-        }
-      }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
+  private class TAdapter extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent e) {
-
+      switch (e.getKeyCode()) {
+        case KeyEvent.VK_LEFT:
+          controller.movePlayer(MoveDirection.LEFT);
+          break;
+        case KeyEvent.VK_RIGHT:
+          controller.movePlayer(MoveDirection.RIGHT);
+          break;
+        case KeyEvent.VK_UP:
+          controller.movePlayer(MoveDirection.UP);
+          break;
+        case KeyEvent.VK_DOWN:
+          controller.movePlayer(MoveDirection.DOWN);
+          break;
+      }
     }
+  }
+
+  @Override
+  public void keyTyped(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+
+  }
 }

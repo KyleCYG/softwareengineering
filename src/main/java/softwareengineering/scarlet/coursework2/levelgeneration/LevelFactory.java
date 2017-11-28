@@ -176,14 +176,12 @@ public class LevelFactory {
 
     int split = random.nextInt(max - min) + min;
 
-    Direction newDirection = direction == Direction.HORIZONTAL ? Direction.VERTICAL : Direction.HORIZONTAL;
+    Direction newDirection =
+        direction == Direction.HORIZONTAL ? Direction.VERTICAL : Direction.HORIZONTAL;
 
     // Make the two leaves - this will recurse until it reaches the end
-    Leaf leafA = makeNode(
-        x, y, direction == Direction.HORIZONTAL ? width : split,
-        direction == Direction.HORIZONTAL ? split : height,
-        newDirection
-    );
+    Leaf leafA = makeNode(x, y, direction == Direction.HORIZONTAL ? width : split,
+        direction == Direction.HORIZONTAL ? split : height, newDirection);
 
     Leaf leafB = makeNode(direction == Direction.HORIZONTAL ? x : x + split,
         direction == Direction.HORIZONTAL ? y + split : y,
@@ -257,7 +255,7 @@ public class LevelFactory {
       } catch (NoSuchElementException ex) {
         rooms = new ArrayList<Room>(level.getRooms());
         Collections.shuffle(rooms);
-        roomIterator = rooms.iterator();        
+        roomIterator = rooms.iterator();
       }
     }
 

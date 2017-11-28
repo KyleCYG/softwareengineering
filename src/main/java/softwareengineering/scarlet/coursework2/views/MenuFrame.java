@@ -5,16 +5,16 @@ import javax.swing.JFrame;
 public class MenuFrame extends JFrame {
   private static final long serialVersionUID = 1L;
 
- /**
-  * Calls initUI()
-  */  
+  /**
+   * Calls initUI()
+   */
   public MenuFrame() {
     initUI();
   }
-  
+
   /**
-  * Initialises and configures a MenuPanel. 
-  */  
+   * Initialises and configures a MenuPanel.
+   */
   public void initUI() {
     this.add(new MenuPanel());
 

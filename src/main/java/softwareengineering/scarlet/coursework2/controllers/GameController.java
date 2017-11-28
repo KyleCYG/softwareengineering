@@ -9,12 +9,12 @@ import softwareengineering.scarlet.coursework2.models.Room;
 public class GameController {
   private Dungeon dungeon;
   private Player player;
-  
+
   // TODO: split these constants into some kind of gameConfig class?
   private static final int LEVEL_HEIGHT = 64;
   private static final int LEVEL_WIDTH = 64;
   private static final int NUM_LEVELS = 4;
-  
+
   // Map of movement directions to their x, y movements
   private static final Map<MoveDirection, Pair> moveMap;
   static {
@@ -38,23 +38,23 @@ public class GameController {
   public GameController(String playerName) {
     // create new dungeon
     this.dungeon = new Dungeon(GameController.LEVEL_WIDTH, GameController.LEVEL_HEIGHT,
-                                  GameController.NUM_LEVELS);
+        GameController.NUM_LEVELS);
 
     // get the location of the first room (arbitrarily...) in the dungeon
     // TODO: make the start location selection more intelligent
     Room startRoom = dungeon.getCurrentLevel().getRooms().get(0);
     int startX = startRoom.getX();
     int startY = startRoom.getY();
-    
+
     // create player
     this.player = new Player(playerName, startX, startY);
   }
 
   public void movePlayer() {
     // TODO Auto-generated method stub
-    
+
   }
-  
+
   /**
    * Moves the player to adjacent tile in the specified direction.
    * 

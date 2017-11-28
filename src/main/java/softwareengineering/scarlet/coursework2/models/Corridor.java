@@ -5,7 +5,7 @@ public class Corridor {
   private int y1;
   private int x2;
   private int y2;
-  
+
   public Corridor(int x1, int y1, int x2, int y2) {
     assert x1 >= 0;
     assert x2 >= 0;

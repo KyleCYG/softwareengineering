@@ -8,7 +8,7 @@ public class Player {
   private int x;
   private int y;
   private int gold;
-  
+
   /**
    * Constructor.
    * 
@@ -26,7 +26,7 @@ public class Player {
   public int getX() {
     return this.x;
   }
-  
+
   public int getY() {
     return this.y;
   }
@@ -53,7 +53,7 @@ public class Player {
     this.x += dx;
     this.y += dy;
   }
-  
+
   public int getGold() {
     return gold;
   }
@@ -65,5 +65,5 @@ public class Player {
   public String getName() {
     return name;
   }
-  
+
 }
