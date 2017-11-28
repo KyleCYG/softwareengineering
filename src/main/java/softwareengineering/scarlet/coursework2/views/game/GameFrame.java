@@ -5,9 +5,6 @@ import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 
 public class GameFrame extends JFrame {
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1L;
   private GamePanel panel;
 
