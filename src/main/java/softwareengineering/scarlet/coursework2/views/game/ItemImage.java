@@ -5,10 +5,11 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 public class ItemImage {
-  public ItemImage() {
-  }
+  protected Image image;
 
-  public void draw(Image image, int x, int y, Graphics2D g2d, JPanel p) {
-    g2d.drawImage(image, GameView.getXForGridX(x), GameView.getYForGridY(y), p);
+  public void draw(int x, int y, Graphics2D g2d, JPanel p) {
+    if (image != null) {
+      g2d.drawImage(image, GameView.getXForGridX(x), GameView.getYForGridY(y), p);
+    }
   }
 }

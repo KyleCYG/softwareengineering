@@ -1,12 +1,7 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
-public class LevelItemsFactory implements Factory {
-  
-  public LevelItemsFactory() {
-  }
-  
-  @Override
-  public Items init(String item) {
+public class LevelItemsFactory {
+  public ItemImage init(String item) {
     switch (item) {
       case "r":
         return new Room();

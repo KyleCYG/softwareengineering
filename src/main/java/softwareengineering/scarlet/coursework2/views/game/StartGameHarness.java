@@ -7,6 +7,6 @@ public class StartGameHarness {
   public static void main(String[] args) {
     GameController controller = new GameController("Scarlet Pimpernel");
     Dungeon dungeon = new Dungeon(44, 25, 1);
-    GameView start = new GameView(controller, dungeon);
+    new GameView(controller, dungeon);
   }
 }

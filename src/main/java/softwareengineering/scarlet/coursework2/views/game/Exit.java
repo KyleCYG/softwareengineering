@@ -1,25 +1,10 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
-public class Exit extends ItemImage implements Items{
-  private Image image;
-
+public class Exit extends ItemImage {
   public Exit() {
-    // TODO Auto-generated method stub
-      ImageIcon ii = new ImageIcon("exit.png");
-      image = ii.getImage();
-  }
-
-  public Image getImage() {
-    return image;
-  }
-
-  @Override
-  public void draw(int x, int y, Graphics2D g2d, JPanel p) {
-    super.draw(image, x, y, g2d, p);
+    ImageIcon ii = new ImageIcon("exit.png");
+    image = ii.getImage();
   }
 }
