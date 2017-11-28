@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
+import softwareengineering.scarlet.coursework2.views.MenuFrame;
 
 /**
  * Hello world!

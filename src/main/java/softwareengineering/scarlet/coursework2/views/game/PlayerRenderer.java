@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import softwareengineering.scarlet.coursework2.MenuFrame;
+import softwareengineering.scarlet.coursework2.views.MenuFrame;
 
 public class PlayerRenderer implements ActionListener {
   private int dx;

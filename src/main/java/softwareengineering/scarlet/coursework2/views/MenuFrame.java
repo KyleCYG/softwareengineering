@@ -1,4 +1,4 @@
-package softwareengineering.scarlet.coursework2;
+package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
