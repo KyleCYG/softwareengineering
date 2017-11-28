@@ -7,7 +7,7 @@ import softwareengineering.scarlet.coursework2.views.Frame;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.Panel;
 
-public class App {
+public class App implements GameApp {
   private Frame frame;
   private Panel panel;
   private Controller currentController;
@@ -19,7 +19,7 @@ public class App {
   
   public void switchToMenu() {
     if (this.menuController == null) {
-      this.menuController = new MenuController();
+      this.menuController = new MenuController(this);
     }
 
     this.panel.setController(this.menuController);
@@ -28,6 +28,10 @@ public class App {
     this.menuController.init(view);
 
     this.currentController = this.menuController;
+  }
+
+  public void quit() {
+    System.exit(0);
   }
 
   public static void main(String[] args) { 

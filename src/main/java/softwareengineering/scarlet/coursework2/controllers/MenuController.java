@@ -1,12 +1,19 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
+import softwareengineering.scarlet.coursework2.App;
+import softwareengineering.scarlet.coursework2.GameApp;
 import softwareengineering.scarlet.coursework2.models.Menu;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.View;
 
 public class MenuController implements Controller {
+  private GameApp app;
   private MenuView view;
-  private Menu model;
+  protected Menu model;
+
+  public MenuController(GameApp app) {
+    this.app = app;
+  }
 
   @Override
   public View getView() {
@@ -32,15 +39,19 @@ public class MenuController implements Controller {
   private void performAction() {
     switch (this.model.getOption()) {
       case 2:
-        System.exit(0);
+        app.quit();
         break;
     }
+  }
+
+  protected void setUpData() {
+    this.model = new Menu();
   }
 
   @Override
   public void init(View view) {
     this.view = (MenuView) view;
-    this.model = new Menu();
+    this.setUpData();
     this.view.setModel(model);
   }
 }
