@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class Corridor extends ItemImage {
   public Corridor() {
-      ImageIcon ii = new ImageIcon("Corridor.png");
+      ImageIcon ii = new ImageIcon("corridor.png");
       image = ii.getImage();
   }
 }

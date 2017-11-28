@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements KeyListener{
   private void initGamePanel(Dungeon dungeon) {
     addKeyListener(new TAdapter());
     setFocusable(true);
-    ImageIcon background = new ImageIcon("Background.png");
+    ImageIcon background = new ImageIcon("background.png");
     Background = background.getImage();
     levelRender = new LevelRenderer(dungeon,this);
     playerRender = new PlayerRenderer();
