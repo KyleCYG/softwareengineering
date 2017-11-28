@@ -2,11 +2,9 @@ package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
-import softwareengineering.scarlet.coursework2.views.game.LevelRenderer;
 
 public class InputNameFrame extends JFrame {
-
-  private LevelRenderer sm;
+  private static final long serialVersionUID = 1L;
   
   public InputNameFrame() {
     initUI();
@@ -19,7 +17,6 @@ public class InputNameFrame extends JFrame {
     setTitle("Player Name");
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   // setExtendedState(JFrame.MAXIMIZED_BOTH);
   }
 
   public static void main(String[] args) {

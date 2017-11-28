@@ -8,18 +8,17 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 public class MenuPanel extends JPanel implements KeyListener {
-
+  private static final long serialVersionUID = 1L;
   int selectedOption = 0;
   Font menuFont = new Font("Monospaced", Font.PLAIN, 12);
   boolean pressed = false;
 
   /**
-  * Shows the menu options and get the key that user presses
-  * 
-  * @param g2d 
-  */ 
+   * Shows the menu options and get the key that user presses
+   * 
+   * @param g2d
+   */
   private void drawOptions(Graphics2D g2d) {
-
     g2d.setFont(menuFont);
     g2d.drawString("  New Game", 180, 250);
     g2d.drawString("  View Leaderboard", 180, 270);
@@ -27,41 +26,40 @@ public class MenuPanel extends JPanel implements KeyListener {
 
     addKeyListener(this);
     setFocusable(true);
-    //does not get arrow keys as input
+    // does not get arrow keys as input
     setFocusTraversalKeysEnabled(false);
-    
-  }
-  
-  /**
-  * Shows the arrow on the appropriate option according to user's input
-  * 
-  * @param g2d 
-  */ 
-  private void drawMenuArrow(Graphics2D g2d){
-    
-    int ySpacing = 20; // height between menu option
-    g2d.setFont(menuFont);
-    g2d.drawString("→", 180, 250+selectedOption*ySpacing);
-    
   }
 
-   /**
+  /**
+   * Shows the arrow on the appropriate option according to user's input
+   * 
+   * @param g2d
+   */
+  private void drawMenuArrow(Graphics2D g2d) {
+
+    int ySpacing = 20; // height between menu option
+    g2d.setFont(menuFont);
+    g2d.drawString("→", 180, 250 + selectedOption * ySpacing);
+
+  }
+
+  /**
    * Renders the title in the menu frame.
    * 
    * @param g2d
    */
-  void drawTitle(Graphics2D g2d) {
+  private void drawTitle(Graphics2D g2d) {
     String titleArt =
-        " ________  __                            __                   ______                                   __     \n" + 
-        "/        |/  |                          /  |                 /      \\                                 /  |    \n" + 
-        "$$$$$$$$/ $$ |____    ______    _______ $$/   _______       /$$$$$$  | __    __   ______    _______  _$$ |_   \n" + 
-        "   $$ |   $$      \\  /      \\  /       |/  | /       |      $$ |  $$ |/  |  /  | /      \\  /       |/ $$   |  \n" + 
-        "   $$ |   $$$$$$$  |/$$$$$$  |/$$$$$$$/ $$ |/$$$$$$$/       $$ |  $$ |$$ |  $$ |/$$$$$$  |/$$$$$$$/ $$$$$$/   \n" + 
-        "   $$ |   $$ |  $$ |$$    $$ |$$      \\ $$ |$$      \\       $$ |_ $$ |$$ |  $$ |$$    $$ |$$      \\   $$ | __ \n" + 
-        "   $$ |   $$ |  $$ |$$$$$$$$/  $$$$$$  |$$ | $$$$$$  |      $$ / \\$$ |$$ \\__$$ |$$$$$$$$/  $$$$$$  |  $$ |/  |\n" + 
-        "   $$ |   $$ |  $$ |$$       |/     $$/ $$ |/     $$/       $$ $$ $$< $$    $$/ $$       |/     $$/   $$  $$/ \n" + 
-        "   $$/    $$/   $$/  $$$$$$$/ $$$$$$$/  $$/ $$$$$$$/         $$$$$$  | $$$$$$/   $$$$$$$/ $$$$$$$/     $$$$/  \n" + 
-        "                                                                 $$$/                                         ";
+        " ________  __                            __                   ______                                   __     \n"
+            + "/        |/  |                          /  |                 /      \\                                 /  |    \n"
+            + "$$$$$$$$/ $$ |____    ______    _______ $$/   _______       /$$$$$$  | __    __   ______    _______  _$$ |_   \n"
+            + "   $$ |   $$      \\  /      \\  /       |/  | /       |      $$ |  $$ |/  |  /  | /      \\  /       |/ $$   |  \n"
+            + "   $$ |   $$$$$$$  |/$$$$$$  |/$$$$$$$/ $$ |/$$$$$$$/       $$ |  $$ |$$ |  $$ |/$$$$$$  |/$$$$$$$/ $$$$$$/   \n"
+            + "   $$ |   $$ |  $$ |$$    $$ |$$      \\ $$ |$$      \\       $$ |_ $$ |$$ |  $$ |$$    $$ |$$      \\   $$ | __ \n"
+            + "   $$ |   $$ |  $$ |$$$$$$$$/  $$$$$$  |$$ | $$$$$$  |      $$ / \\$$ |$$ \\__$$ |$$$$$$$$/  $$$$$$  |  $$ |/  |\n"
+            + "   $$ |   $$ |  $$ |$$       |/     $$/ $$ |/     $$/       $$ $$ $$< $$    $$/ $$       |/     $$/   $$  $$/ \n"
+            + "   $$/    $$/   $$/  $$$$$$$/ $$$$$$$/  $$/ $$$$$$$/         $$$$$$  | $$$$$$/   $$$$$$$/ $$$$$$$/     $$$$/  \n"
+            + "                                                                 $$$/                                         ";
 
     Font titleFont = new Font("Monospaced", Font.BOLD, 6);
     g2d.setFont(titleFont);
@@ -79,10 +77,10 @@ public class MenuPanel extends JPanel implements KeyListener {
 
 
   /**
-  * Renders all the menu items (title, options, arrow on specified option)
-  * 
-  * @param g 
-  */  
+   * Renders all the menu items (title, options, arrow on specified option)
+   * 
+   * @param g
+   */
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -91,51 +89,52 @@ public class MenuPanel extends JPanel implements KeyListener {
     drawOptions(g2d);
     drawMenuArrow(g2d);
     drawTitle(g2d);
-
-  }
-  
-  public void keyTyped(KeyEvent event){
-
   }
 
   /**
    * Implements logic for key presses when on menu screen.
    * 
-   * @param event
-   *                An event generated when user presses key.
+   * @param event An event generated when user presses key.
    */
-  public void keyPressed(KeyEvent event){
+  @Override
+  public void keyPressed(KeyEvent event) {
     if (!pressed) { // prevents multiple KeyEvents for single keypress
       pressed = true;
-      
-      if(event.getKeyCode()== KeyEvent.VK_DOWN){
+
+      if (event.getKeyCode() == KeyEvent.VK_DOWN) {
         selectedOption++;
-        selectedOption = selectedOption%3; // mod loops back to top option
-        
-        repaint(); 
-      } else if(event.getKeyCode()== KeyEvent.VK_UP){
+        selectedOption = selectedOption % 3; // mod loops back to top option
+
+        repaint();
+      } else if (event.getKeyCode() == KeyEvent.VK_UP) {
         selectedOption--;
-        if(selectedOption == -1) {
+        if (selectedOption == -1) {
           selectedOption = 2; // loop back to bottom option
         }
-        
+
         repaint();
-      } else if (selectedOption == 2 && event.getKeyCode()== KeyEvent.VK_ENTER){
+      } else if (selectedOption == 2 && event.getKeyCode() == KeyEvent.VK_ENTER) {
         System.exit(0);
-        
-      }else if (selectedOption == 0 && event.getKeyCode()== KeyEvent.VK_ENTER) {
-        
+
+      } else if (selectedOption == 0 && event.getKeyCode() == KeyEvent.VK_ENTER) {
+
         InputNameFrame ex = new InputNameFrame();
         ex.setVisible(true);
 
-      } 
-      
+      }
+
     }
   }
 
-  public void keyReleased(KeyEvent event){
+  @Override
+  public void keyReleased(KeyEvent event) {
     // set pressed to false so that keyPressed is not called twice (bug)
-    pressed = false;  
+    pressed = false;
   }
-  
+
+  @Override
+  public void keyTyped(KeyEvent e) {
+    // Unnecessary override
+  }
+
 }

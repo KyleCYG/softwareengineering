@@ -1,7 +1,5 @@
 package softwareengineering.scarlet.coursework2.models;
 
-import java.awt.Point;
-
 /**
  * A model class to represent information about the player.
  */

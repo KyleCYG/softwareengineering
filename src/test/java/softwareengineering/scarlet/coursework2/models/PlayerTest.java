@@ -1,7 +1,6 @@
 package softwareengineering.scarlet.coursework2.models;
 
-import static org.junit.Assert.*;
-import java.awt.Point;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class PlayerTest {

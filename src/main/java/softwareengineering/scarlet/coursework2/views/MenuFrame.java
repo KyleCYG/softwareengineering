@@ -1,16 +1,9 @@
 package softwareengineering.scarlet.coursework2.views;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Font;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 
 public class MenuFrame extends JFrame {
+  private static final long serialVersionUID = 1L;
 
  /**
   * Calls initUI()
