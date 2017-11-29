@@ -12,10 +12,20 @@ public class ItemImage {
   protected Image image;
   protected String filename;
 
+  private InputStream getImageStream() {
+    InputStream stream = getClass().getResourceAsStream("/" + this.filename);
+
+    if (stream == null) {
+      stream = getClass().getResourceAsStream("/placeholder.png");
+    }
+
+    return stream;
+  }
+
   private Image getImage() {
     if (this.image == null) {
       try {
-        InputStream stream = getClass().getResourceAsStream("/" + this.filename);
+        InputStream stream = getImageStream();
         ImageIcon icon = new ImageIcon(ImageIO.read(stream));
         this.image = icon.getImage();
       } catch (IOException io) {
