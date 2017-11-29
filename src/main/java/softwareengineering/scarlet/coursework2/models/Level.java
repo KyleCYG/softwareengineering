@@ -105,6 +105,34 @@ public class Level {
     return height;
   }
 
+  /**
+   * What kind of thing is at grid position x, y?
+   *
+   * @param x Position of where we're looking
+   * @param y Position of where we're looking
+   * @return The type of cell at that point
+   */
+  public CellType getTypeAtPos(int x, int y) {
+    return getGrid()[x][y];
+  }
+
+  /**
+   * Find the entity at grid position x, y
+   *
+   * @param x Position of where we're looking
+   * @param y Position of where we're looking
+   * @return The entity at that position, or null if not found
+   */
+  public Entity getEntityAtPos(int x, int y) {
+    for (Entity entity : getEntities()) {
+      if (entity.getX() == x && entity.getY() == y) {
+        return entity;
+      }
+    }
+
+    return null;
+  }
+
   public void printGrid() {
     /**
      * Dump a textual representation of the map to the console.
