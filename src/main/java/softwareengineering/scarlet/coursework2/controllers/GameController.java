@@ -3,6 +3,7 @@ package softwareengineering.scarlet.coursework2.controllers;
 import java.util.HashMap;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
+import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
@@ -66,8 +67,13 @@ public class GameController implements Controller {
    */
   public void movePlayer(MoveDirection direction) {
     Pair movePair = moveMap.get(direction);
-    // TODO: implement check to see whether the player CAN legally move
-    player.movePlayer(movePair.getX(), movePair.getY());
+
+    int targetX = player.getX() + movePair.getX();
+    int targetY = player.getY() + movePair.getY();
+
+    if (this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY) != CellType.VOID) {
+      player.movePlayer(movePair.getX(), movePair.getY());
+    }
   }
 
   @Override
