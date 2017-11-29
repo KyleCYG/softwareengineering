@@ -17,8 +17,8 @@ public class GameController implements Controller {
   private App app;
 
   // TODO: split these constants into some kind of gameConfig class?
-  private static final int LEVEL_HEIGHT = 64;
-  private static final int LEVEL_WIDTH = 64;
+  private static final int LEVEL_HEIGHT = 20;
+  private static final int LEVEL_WIDTH = 20;
   private static final int NUM_LEVELS = 4;
 
   // Map of movement directions to their x, y movements
@@ -96,6 +96,9 @@ public class GameController implements Controller {
         break;
       case RIGHT:
         movePlayer(MoveDirection.RIGHT);
+        break;
+      case QUIT:
+        app.quit();
         break;
     }
   }
