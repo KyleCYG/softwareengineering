@@ -12,6 +12,10 @@ public class App implements GameApp {
   private Panel panel;
   private MenuController menuController;
 
+  public App() {
+    this.panel = new Panel();
+    this.frame = new Frame(this.panel);
+  }
   public void switchToMenu() {
     if (this.menuController == null) {
       this.menuController = new MenuController(this);
@@ -31,12 +35,13 @@ public class App implements GameApp {
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         
+        // Create the app
         App app = new App();
-        app.panel = new Panel();
-        app.frame = new Frame(app.panel);
 
+        // Hand over control to the Menu
         app.switchToMenu();
 
+        // Once everything is instantiated, actually display the screen
         app.frame.setVisible(true);
       }
     });
