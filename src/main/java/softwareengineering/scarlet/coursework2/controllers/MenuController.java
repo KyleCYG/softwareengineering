@@ -57,15 +57,14 @@ public class MenuController implements Controller {
    */
   private void performAction() {
     switch (this.model.getOption()) {
+      case 0:
+        app.switchToPreGame();
+        break;
+      case 1:
+        // switch to
+        break;
       case 2:
         app.quit();
-        break;
-      case 0:
-        //switch to PreGame
-        app.switchToPreGame();
-       break;
-      case 1:
-        //switch to 
         break;
     }
   }

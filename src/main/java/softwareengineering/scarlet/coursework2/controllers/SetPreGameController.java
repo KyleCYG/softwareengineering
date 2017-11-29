@@ -1,9 +1,7 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import softwareengineering.scarlet.coursework2.App;
-import softwareengineering.scarlet.coursework2.models.Menu;
 import softwareengineering.scarlet.coursework2.models.SetPreGame;
-import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.SetPreGameView;
 import softwareengineering.scarlet.coursework2.views.View;;
 
@@ -11,29 +9,27 @@ import softwareengineering.scarlet.coursework2.views.View;;
 public class SetPreGameController implements Controller {
   private App app;
   private SetPreGameView view;
-  protected SetPreGame model; 
+  protected SetPreGame model;
 
-  public SetPreGameController(App app)
-  {
-    this.app=app;
+  public SetPreGameController(App app) {
+    this.app = app;
   }
+
   @Override
   public View getView() {
-    // TODO Auto-generated method stub
-     return this.view;
+    return this.view;
   }
 
   @Override
   public void init(View view) {
-    // TODO Auto-generated method stub
     this.view = (SetPreGameView) view;
     this.setUpData();
     this.view.setModel(model);
   }
 
+  @SuppressWarnings("incomplete-switch")
   @Override
   public void handleInput(Input input) {
-    // TODO Auto-generated method stub
     switch (input) {
       case A:
         this.model.appendLetter("A");
@@ -118,12 +114,14 @@ public class SetPreGameController implements Controller {
         break;
       case DELETE:
         this.model.deleteLetter();
-    } 
+    }
   }
+
   private void performAction() {
     // TODO Auto-generated method stub
-    String playerName=this.model.getName();
+    String playerName = this.model.getName();
   }
+
   protected void setUpData() {
     this.model = new SetPreGame();
   }

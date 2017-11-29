@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.SetPreGame;
 
-public class SetPreGameView implements View{
-
+public class SetPreGameView implements View {
   private SetPreGame model;
+
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
     // TODO Auto-generated method stub
@@ -14,6 +14,7 @@ public class SetPreGameView implements View{
     this.drawNameTextField(g2d);
     this.drawEnterString(g2d);
   }
+
   /**
    * Renders the input name string.
    *
@@ -22,6 +23,7 @@ public class SetPreGameView implements View{
   private void drawNameString(Graphics2D g2d) {
     g2d.drawString(" Enter Name", 180, 250);
   }
+
   /**
    * Renders the text field to enter name.
    *
@@ -30,6 +32,7 @@ public class SetPreGameView implements View{
   private void drawNameTextField(Graphics2D g2d) {
     g2d.drawString(" ", 180, 250);
   }
+
   /**
    * Renders the Enter option.
    *
@@ -38,7 +41,7 @@ public class SetPreGameView implements View{
   private void drawEnterString(Graphics2D g2d) {
     g2d.drawString("Press Enter ", 200, 250);
   }
-  
+
   public void setModel(SetPreGame preGameModel) {
     this.model = preGameModel;
   }
