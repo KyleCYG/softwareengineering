@@ -4,6 +4,9 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Player;
@@ -26,8 +29,13 @@ public class GameView implements View {
   private Image background;
 
   public GameView() {
-    ImageIcon backgroundIco = new ImageIcon("background.png");
-    background = backgroundIco.getImage();
+    InputStream stream = getClass().getResourceAsStream("/background.png");
+    try {
+      ImageIcon icon = new ImageIcon(ImageIO.read(stream));
+      background = icon.getImage();
+    } catch (IOException e) {
+      throw new RuntimeException("Image %s not found! Assuming problem with resources and quitting");
+    }
   }
 
   protected static int getXForGridX(int gridX) {
