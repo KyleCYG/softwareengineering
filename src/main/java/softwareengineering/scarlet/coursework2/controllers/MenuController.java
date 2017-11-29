@@ -1,17 +1,17 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import softwareengineering.scarlet.coursework2.App;
-import softwareengineering.scarlet.coursework2.GameApp;
+import softwareengineering.scarlet.coursework2.AppInterface;
 import softwareengineering.scarlet.coursework2.models.Menu;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.View;
 
 public class MenuController implements Controller {
-  private GameApp app;
+  private AppInterface app;
   private MenuView view;
   protected Menu model;
 
-  public MenuController(GameApp app) {
+  public MenuController(AppInterface app) {
     this.app = app;
   }
 

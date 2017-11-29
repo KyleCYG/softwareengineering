@@ -1,5 +1,5 @@
 package softwareengineering.scarlet.coursework2;
 
-public interface GameApp {
+public interface AppInterface {
   public void quit();
 }

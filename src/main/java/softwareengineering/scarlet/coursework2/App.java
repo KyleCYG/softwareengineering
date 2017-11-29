@@ -23,7 +23,7 @@ import softwareengineering.scarlet.coursework2.views.Panel;
  * @author Gordon Rennie
  * @author Dan Cosser
  */
-public class App implements GameApp {
+public class App implements AppInterface {
   private Frame frame;
   private Panel panel;
   private MenuController menuController;
