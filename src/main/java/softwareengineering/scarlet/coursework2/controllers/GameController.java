@@ -2,13 +2,18 @@ package softwareengineering.scarlet.coursework2.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
+import softwareengineering.scarlet.coursework2.views.View;
+import softwareengineering.scarlet.coursework2.views.game.GameView;
 
-public class GameController {
+public class GameController implements Controller {
+  private GameView view;
   private Dungeon dungeon;
   private Player player;
+  private App app;
 
   // TODO: split these constants into some kind of gameConfig class?
   private static final int LEVEL_HEIGHT = 64;
@@ -29,13 +34,17 @@ public class GameController {
     moveMap.put(MoveDirection.DOWNRIGHT, new Pair(-1, 1));
   }
 
+  public GameController(App app) {
+    this.app = app;
+  }
+
   /**
-   * Constructor. Assumed to be instantiated once per game, therefore it also creates a dungeon and
+   * Assumed to be instantiated once per game, therefore it also creates a dungeon and
    * player for the game.
-   * 
+   *
    * @param playerName The player's name for this playthrough
    */
-  public GameController(String playerName) {
+  public void setUpModels(String playerName) {
     // create new dungeon
     this.dungeon = new Dungeon(GameController.LEVEL_WIDTH, GameController.LEVEL_HEIGHT,
         GameController.NUM_LEVELS);
@@ -50,19 +59,45 @@ public class GameController {
     this.player = new Player(playerName, startX, startY);
   }
 
-  public void movePlayer() {
-    // TODO Auto-generated method stub
-
-  }
-
   /**
    * Moves the player to adjacent tile in the specified direction.
-   * 
+   *
    * @param direction A valid direction as defined in the MoveDirection enum
    */
   public void movePlayer(MoveDirection direction) {
     Pair movePair = moveMap.get(direction);
     // TODO: implement check to see whether the player CAN legally move
     player.movePlayer(movePair.getX(), movePair.getY());
+  }
+
+  @Override
+  public View getView() {
+    return view;
+  }
+
+  @SuppressWarnings("incomplete-switch")
+  @Override
+  public void handleInput(Input input) {
+    switch (input) {
+      case UP:
+        movePlayer(MoveDirection.UP);
+        break;
+      case DOWN:
+        movePlayer(MoveDirection.DOWN);
+        break;
+      case LEFT:
+        movePlayer(MoveDirection.LEFT);
+        break;
+      case RIGHT:
+        movePlayer(MoveDirection.RIGHT);
+        break;
+    }
+  }
+
+  @Override
+  public void init(View view) {
+    this.view = (GameView) view;
+    setUpModels("Scarlet Pimpernel");
+    this.view.setModels(this.dungeon, this.player);
   }
 }

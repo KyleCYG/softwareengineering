@@ -1,14 +1,14 @@
 package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Graphics2D;
-import softwareengineering.scarlet.coursework2.models.Menu;
+import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.SetPreGame;
 
 public class SetPreGameView implements View{
 
   private SetPreGame model;
   @Override
-  public void render(Graphics2D g2d) {
+  public void render(Graphics2D g2d, ImageObserver observer) {
     // TODO Auto-generated method stub
     this.drawNameString(g2d);
     this.drawNameTextField(g2d);

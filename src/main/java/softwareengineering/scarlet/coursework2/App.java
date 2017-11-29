@@ -14,4 +14,7 @@ public interface App {
    * Quit the application.
    */
   public void quit();
+  public void switchToMenu();
+  public void switchToPreGame();
+  public void switchToGame();
 }

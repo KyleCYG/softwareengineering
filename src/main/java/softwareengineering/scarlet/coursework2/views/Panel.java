@@ -55,7 +55,7 @@ public class Panel extends JPanel implements KeyListener {
     Graphics2D g2d = (Graphics2D) g;
 
     // Call the view's render method
-    this.controller.getView().render(g2d);
+    this.controller.getView().render(g2d, this);
   }
 
   /**

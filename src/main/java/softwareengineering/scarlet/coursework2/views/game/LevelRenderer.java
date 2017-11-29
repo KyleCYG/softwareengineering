@@ -1,17 +1,15 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Graphics2D;
-import javax.swing.JPanel;
+import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Level;
 
 public class LevelRenderer {
   private Level level;
-  private JPanel p;
 
-  public LevelRenderer(Dungeon dungeon, JPanel p) {
-    this.p = p;
+  public LevelRenderer(Dungeon dungeon) {
     init(dungeon);
   }
 
@@ -19,7 +17,7 @@ public class LevelRenderer {
     level = dungeon.getCurrentLevel();
   }
 
-  public void render(Graphics2D g2d) {
+  public void render(Graphics2D g2d, ImageObserver observer) {
     CellType[][] grid = level.getGrid();
     LevelItemsFactory lif = new LevelItemsFactory();
 
@@ -29,31 +27,31 @@ public class LevelRenderer {
           case VOID:
             break;
           case ROOM:
-            lif.init("r").draw(x, y, g2d, p);
+            lif.init("r").draw(x, y, g2d, observer);
             break;
           case CORRIDOR:
-            lif.init("c").draw(x, y, g2d, p);
+            lif.init("c").draw(x, y, g2d, observer);
             break;
           case WALL:
-            lif.init("w").draw(x, y, g2d, p);
+            lif.init("w").draw(x, y, g2d, observer);
             break;
           case EXIT:
-            lif.init("e").draw(x, y, g2d, p);
+            lif.init("e").draw(x, y, g2d, observer);
             break;
           case GOLD:
-            lif.init("g").draw(x, y, g2d, p);
+            lif.init("g").draw(x, y, g2d, observer);
             break;
           case HEALTH:
-            lif.init("h").draw(x, y, g2d, p);
+            lif.init("h").draw(x, y, g2d, observer);
             break;
           case STAIRSDOWN:
-            lif.init("SD").draw(x, y, g2d, p);
+            lif.init("SD").draw(x, y, g2d, observer);
             break;
           case STAIRSUP:
-            lif.init("SU").draw(x, y, g2d, p);
+            lif.init("SU").draw(x, y, g2d, observer);
             break;
           case STRENGTH:
-            lif.init("s").draw(x, y, g2d, p);
+            lif.init("s").draw(x, y, g2d, observer);
             break;
           default:
             break;

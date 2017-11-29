@@ -1,7 +1,7 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
-public class Player extends ItemImage {
-  public Player() {
+public class PlayerAvatar extends ItemImage {
+  public PlayerAvatar() {
     this.filename = "player.png";
   }
 }

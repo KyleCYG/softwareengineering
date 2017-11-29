@@ -2,6 +2,7 @@ package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.Menu;
 
 /**
@@ -22,7 +23,7 @@ public class MenuView implements View {
    * @param g2d The graphics object to render to.
    */
   @Override
-  public void render(Graphics2D g2d) {
+  public void render(Graphics2D g2d, ImageObserver observer) {
     this.drawTitle(g2d);
     this.drawOptions(g2d);
     this.drawMenuArrow(g2d);

@@ -10,4 +10,18 @@ public class DummyApp implements App {
     this.didIQuit = true;
   }
 
+  @Override
+  public void switchToMenu() {
+    // TODO Auto-generated method stub
+  }
+
+  @Override
+  public void switchToPreGame() {
+    // TODO Auto-generated method stub
+  }
+
+  @Override
+  public void switchToGame() {
+    // TODO Auto-generated method stub
+  }
 }

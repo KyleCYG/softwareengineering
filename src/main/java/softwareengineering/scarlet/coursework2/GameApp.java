@@ -1,12 +1,15 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
+import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.controllers.MenuController;
 import softwareengineering.scarlet.coursework2.controllers.SetPreGameController;
 import softwareengineering.scarlet.coursework2.views.Frame;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.Panel;
 import softwareengineering.scarlet.coursework2.views.SetPreGameView;
+import softwareengineering.scarlet.coursework2.views.View;
+import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 /**
  * Main entry point into the application.
@@ -29,7 +32,9 @@ public class GameApp implements App {
   private Frame frame;
   private Panel panel;
   private MenuController menuController;
+  private GameController gameController;
   private SetPreGameController setpregameController;
+
   public GameApp() {
     this.panel = new Panel();
     this.frame = new Frame(this.panel);
@@ -45,9 +50,10 @@ public class GameApp implements App {
 
     this.panel.setController(this.menuController);
 
-    MenuView view = new MenuView();
+    View view = new MenuView();
     this.menuController.init(view);
   }
+
   /**
    * Switch control to the Pre Game Settings
    */
@@ -61,11 +67,33 @@ public class GameApp implements App {
     SetPreGameView view = new SetPreGameView();
     this.setpregameController.init(view);
   }
+
+  /**
+   * Switch control to the Game
+   */
+  public void switchToGame() {
+    if (this.gameController == null) {
+      this.gameController = new GameController(this);
+    }
+
+    this.panel.setController(this.gameController);
+
+    View view = new GameView();
+    this.gameController.init(view);
+  }
+
   /**
    * Quit the application
    */
   public void quit() {
     System.exit(0);
+  }
+
+  /**
+   * Start the application after initialization
+   */
+  public void start() {
+    this.frame.setVisible(true);
   }
 
   /**
@@ -86,7 +114,7 @@ public class GameApp implements App {
         app.switchToMenu();
 
         // Once everything is instantiated, actually display the screen
-        app.frame.setVisible(true);
+        app.start();
       }
     });
   }

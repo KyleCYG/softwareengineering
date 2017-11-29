@@ -4,9 +4,9 @@ public class PlayerFactory {
   public ItemImage init(String item) {
     switch (item) {
       case "m":
-        return new Player();
+        return new PlayerAvatar();
       case "r":
-        return new Player();
+        return new PlayerAvatar();
       default:
         return null;
     }
