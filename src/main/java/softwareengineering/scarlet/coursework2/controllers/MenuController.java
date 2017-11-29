@@ -60,6 +60,13 @@ public class MenuController implements Controller {
       case 2:
         app.quit();
         break;
+      case 0:
+        //switch to PreGame
+        app.switchToPreGame();
+       break;
+      case 1:
+        //switch to 
+        break;
     }
   }
 

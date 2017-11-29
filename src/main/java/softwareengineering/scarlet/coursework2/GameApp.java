@@ -2,9 +2,11 @@ package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
 import softwareengineering.scarlet.coursework2.controllers.MenuController;
+import softwareengineering.scarlet.coursework2.controllers.SetPreGameController;
 import softwareengineering.scarlet.coursework2.views.Frame;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.Panel;
+import softwareengineering.scarlet.coursework2.views.SetPreGameView;
 
 /**
  * Main entry point into the application.
@@ -27,7 +29,7 @@ public class GameApp implements App {
   private Frame frame;
   private Panel panel;
   private MenuController menuController;
-
+  private SetPreGameController setpregameController;
   public GameApp() {
     this.panel = new Panel();
     this.frame = new Frame(this.panel);
@@ -46,7 +48,19 @@ public class GameApp implements App {
     MenuView view = new MenuView();
     this.menuController.init(view);
   }
+  /**
+   * Switch control to the Pre Game Settings
+   */
+  public void switchToPreGame() {
+    if (this.setpregameController == null) {
+      this.setpregameController = new SetPreGameController(this);
+    }
 
+    this.panel.setController(this.setpregameController);
+
+    SetPreGameView view = new SetPreGameView();
+    this.setpregameController.init(view);
+  }
   /**
    * Quit the application
    */
