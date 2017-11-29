@@ -1,8 +1,8 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
-import softwareengineering.scarlet.coursework2.AppInterface;
+import softwareengineering.scarlet.coursework2.App;
 
-public class DummyApp implements AppInterface {
+public class DummyApp implements App {
   public boolean didIQuit = false;
 
   @Override
