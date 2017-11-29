@@ -1,11 +1,19 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
-import softwareengineering.scarlet.coursework2.GameApp;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.Menu;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.View;
 
+/**
+ * Controller for the Menu screen.
+ *
+ * Used by the user to choose which menu option they want, and then switches to the appropriate
+ * controller.
+ *
+ * @author Gordon Rennie
+ * @author Dan Cosser
+ */
 public class MenuController implements Controller {
   private App app;
   private MenuView view;
@@ -15,11 +23,19 @@ public class MenuController implements Controller {
     this.app = app;
   }
 
+  /**
+   * Returns the active view for the controller.
+   */
   @Override
   public View getView() {
     return this.view;
   }
 
+  /**
+   * Handle the up and down motion of the pointer, and the menu choice
+   *
+   * @param key Which key was pressed
+   */
   @SuppressWarnings("incomplete-switch")
   @Override
   public void keyPress(Keyboard key) {
@@ -36,6 +52,9 @@ public class MenuController implements Controller {
     }
   }
 
+  /**
+   * Given the user's choice, actually decide which controller to switch to.
+   */
   private void performAction() {
     switch (this.model.getOption()) {
       case 2:
@@ -44,10 +63,22 @@ public class MenuController implements Controller {
     }
   }
 
+  /**
+   * Create the relevant models.
+   *
+   * Separated from init for ease of testing.
+   */
   protected void setUpData() {
     this.model = new Menu();
   }
 
+  /**
+   * Switch to the menu screen.
+   *
+   * Resets everything, so the menu pointer returns to the top of the options.
+   *
+   * @param view The view to render the menu
+   */
   @Override
   public void init(View view) {
     this.view = (MenuView) view;

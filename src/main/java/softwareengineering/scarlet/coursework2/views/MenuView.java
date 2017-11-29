@@ -4,12 +4,23 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import softwareengineering.scarlet.coursework2.models.Menu;
 
+/**
+ * Renders the title and menu to the screen.
+ *
+ * @author Gordon Rennie
+ * @author Dan Cosser
+ */
 public class MenuView implements View {
   private static final Font TITLE_FONT = new Font("Monospaced", Font.BOLD, 6);
   private static final Font MENU_FONT = new Font("Monospaced", Font.PLAIN, 12);
   private static final int ySpacing = 20; // height between menu option
   private Menu model;
 
+  /**
+   * Render to the screen.
+   *
+   * @param g2d The graphics object to render to.
+   */
   @Override
   public void render(Graphics2D g2d) {
     this.drawTitle(g2d);
@@ -19,8 +30,8 @@ public class MenuView implements View {
   
   /**
    * Renders the menu options.
-   * 
-   * @param g2d
+   *
+   * @param g2d The graphics object the options are rendered to.
    */
   private void drawOptions(Graphics2D g2d) {
     g2d.setFont(MenuView.MENU_FONT);
@@ -28,11 +39,11 @@ public class MenuView implements View {
     g2d.drawString("  View Leaderboard", 180, 270);
     g2d.drawString("  Quit", 180, 290);
   }
-  
+
   /**
    * Renders the menu title.
-   * 
-   * @param g2d
+   *
+   * @param g2d The graphics object the title is rendered to.
    */
   private void drawTitle(Graphics2D g2d) {
     String titleArt =
@@ -59,17 +70,22 @@ public class MenuView implements View {
       g2d.drawString(line, x, y += g2d.getFontMetrics().getHeight());
     }
   }
-  
+
   /**
    * Shows the arrow on the appropriate option.
-   * 
-   * @param g2d
+   *
+   * @param g2d The graphics object the arrow is rendered to.
    */
   private void drawMenuArrow(Graphics2D g2d) {
     g2d.setFont(MenuView.MENU_FONT);
     g2d.drawString("→", 180, 250 + model.getOption() * ySpacing);
   }
-  
+
+  /**
+   * Set the model object that will be used as the source of state for rendering.
+   *
+   * @param menu The Menu object to be used
+   */
   public void setModel(Menu menu) {
     this.model = menu;
   }
