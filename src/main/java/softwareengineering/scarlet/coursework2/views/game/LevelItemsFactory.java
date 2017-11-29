@@ -1,26 +1,63 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
 public class LevelItemsFactory {
-  public ItemImage init(String item) {
+  private static Room room;
+  private static Corridor corridor;
+  private static Wall wall;
+  private static Gold gold;
+  private static Health health;
+  private static Exit exit;
+  private static Strength strength;
+  private static StairsDown stairsdown;
+  private static StairsUp stairsup;
+
+  public static ItemImage init(String item) {
     switch (item) {
       case "r":
-        return new Room();
+        if (room == null) {
+          room = new Room();
+        }
+        return room;
       case "c":
-        return new Corridor();
+        if (corridor == null) {
+          corridor = new Corridor();
+        }
+        return corridor;
       case "w":
-        return new Wall();
+        if (wall == null) {
+          wall = new Wall();
+        }
+        return wall;
       case "g":
-        return new Gold();
+        if (gold == null) {
+          gold = new Gold();
+        }
+        return gold;
       case "h":
-        return new Health();
+        if (health == null) {
+          health = new Health();
+        }
+        return health;
       case "e":
-        return new Exit();
+        if (exit == null) {
+          exit = new Exit();
+        }
+        return exit;
       case "s":
-        return new Strength();
+        if (strength == null) {
+          strength = new Strength();
+        }
+        return strength;
       case "SD":
-        return new StairsDown();
+        if (stairsdown == null) {
+          stairsdown = new StairsDown();
+        }
+        return stairsdown;
       case "SU":
-        return new StairsUp();
+        if (stairsup == null) {
+          stairsup = new StairsUp();
+        }
+        return stairsup;
       default:
         return null;
     }
