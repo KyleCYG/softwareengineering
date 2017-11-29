@@ -2,6 +2,20 @@ package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Graphics2D;
 
+/**
+ * Classes that implement this can be used by the GameApp to render to the screen.
+ *
+ * @author Gordon Rennie
+ * @author Dan Cosser
+ */
 public interface View {
+  /**
+   * Called as part of the paint cycle.
+   *
+   * Should render the current state of the controller's models, regardless of what the controller
+   * is doing.
+   *
+   * @param g2d The Graphics2D to render to.
+   */
   public void render(Graphics2D g2d);
 }
