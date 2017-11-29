@@ -1,9 +1,11 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
+import softwareengineering.scarlet.coursework2.controllers.BackstoryController;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.controllers.MenuController;
 import softwareengineering.scarlet.coursework2.controllers.SetPreGameController;
+import softwareengineering.scarlet.coursework2.views.BackstoryView;
 import softwareengineering.scarlet.coursework2.views.Frame;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.Panel;
@@ -34,6 +36,7 @@ public class GameApp implements App {
   private MenuController menuController;
   private GameController gameController;
   private SetPreGameController setpregameController;
+  private BackstoryController backstoryController;
 
   public GameApp() {
     this.panel = new Panel();
@@ -66,6 +69,18 @@ public class GameApp implements App {
 
     SetPreGameView view = new SetPreGameView();
     this.setpregameController.init(view);
+  }
+  
+  public void switchToBackstory() {
+    if (this.backstoryController == null) {
+      this.backstoryController = new BackstoryController(this);
+    }
+
+    this.panel.setController(this.backstoryController);
+
+    BackstoryView view = new BackstoryView();
+    this.backstoryController.init(view);
+    
   }
 
   /**

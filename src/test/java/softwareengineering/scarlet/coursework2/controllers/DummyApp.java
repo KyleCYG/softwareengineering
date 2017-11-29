@@ -19,6 +19,11 @@ public class DummyApp implements App {
   public void switchToPreGame() {
     // TODO Auto-generated method stub
   }
+  
+  @Override
+  public void switchToBackstory() {
+    // TODO Auto-generated method stub
+  }
 
   @Override
   public void switchToGame() {

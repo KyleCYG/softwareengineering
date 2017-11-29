@@ -16,5 +16,6 @@ public interface App {
   public void quit();
   public void switchToMenu();
   public void switchToPreGame();
+  public void switchToBackstory();
   public void switchToGame();
 }
