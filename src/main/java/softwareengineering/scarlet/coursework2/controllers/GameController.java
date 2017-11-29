@@ -25,14 +25,14 @@ public class GameController implements Controller {
   private static final Map<MoveDirection, Pair> moveMap;
   static {
     moveMap = new HashMap<MoveDirection, Pair>();
-    moveMap.put(MoveDirection.UP, new Pair(1, 0));
-    moveMap.put(MoveDirection.DOWN, new Pair(-1, 0));
-    moveMap.put(MoveDirection.LEFT, new Pair(0, -1));
-    moveMap.put(MoveDirection.RIGHT, new Pair(0, 1));
-    moveMap.put(MoveDirection.UPLEFT, new Pair(1, -1));
-    moveMap.put(MoveDirection.UPRIGHT, new Pair(1, 1));
-    moveMap.put(MoveDirection.DOWNLEFT, new Pair(-1, -1));
-    moveMap.put(MoveDirection.DOWNRIGHT, new Pair(-1, 1));
+    moveMap.put(MoveDirection.RIGHT, new Pair(1, 0));
+    moveMap.put(MoveDirection.LEFT, new Pair(-1, 0));
+    moveMap.put(MoveDirection.UP, new Pair(0, -1));
+    moveMap.put(MoveDirection.DOWN, new Pair(0, 1));
+    moveMap.put(MoveDirection.UPLEFT, new Pair(-1, -1));
+    moveMap.put(MoveDirection.UPRIGHT, new Pair(1, -1));
+    moveMap.put(MoveDirection.DOWNLEFT, new Pair(-1, 1));
+    moveMap.put(MoveDirection.DOWNRIGHT, new Pair(1, 1));
   }
 
   public GameController(App app) {
