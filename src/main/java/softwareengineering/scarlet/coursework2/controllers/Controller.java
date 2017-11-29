@@ -24,13 +24,13 @@ public interface Controller {
   /**
    * Handle an input from the application.
    *
-   * This method may be a no-op if no keyboard input is handled.
+   * This method may be a no-op if no input is handled by the view.
    *
    * Do not call repaint! The Panel will do this after this method has returned.
    *
-   * @param key The pressed key
+   * @param input The input type
    */
-  public void keyPress(Keyboard key);
+  public void handleInput(Input input);
 
   /**
    * Take control of the application.

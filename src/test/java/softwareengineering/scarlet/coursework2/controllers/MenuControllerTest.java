@@ -19,7 +19,7 @@ public class MenuControllerTest {
   public void testGoUp() {
     MenuController controller = new MenuController(app);
     controller.setUpData();
-    controller.keyPress(Keyboard.UP);
+    controller.handleInput(Input.UP);
 
     assertEquals(2, controller.model.getOption());
   }
@@ -28,7 +28,7 @@ public class MenuControllerTest {
   public void testGoDown() {
     MenuController controller = new MenuController(app);
     controller.setUpData();
-    controller.keyPress(Keyboard.DOWN);
+    controller.handleInput(Input.DOWN);
 
     assertEquals(1, controller.model.getOption());
   }
@@ -38,8 +38,8 @@ public class MenuControllerTest {
     app = new DummyApp();
     MenuController controller = new MenuController(app);
     controller.setUpData();
-    controller.keyPress(Keyboard.UP);
-    controller.keyPress(Keyboard.ENTER);
+    controller.handleInput(Input.UP);
+    controller.handleInput(Input.CHOOSE);
 
     assertTrue(app.didIQuit);
   }

@@ -34,19 +34,19 @@ public class MenuController implements Controller {
   /**
    * Handle the up and down motion of the pointer, and the menu choice
    *
-   * @param key Which key was pressed
+   * @param input The type of input sent
    */
   @SuppressWarnings("incomplete-switch")
   @Override
-  public void keyPress(Keyboard key) {
-    switch (key) {
+  public void handleInput(Input input) {
+    switch (input) {
       case UP:
         this.model.decrementOption();
         break;
       case DOWN:
         this.model.incrementOption();
         break;
-      case ENTER:
+      case CHOOSE:
         performAction();
         break;
     }

@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import softwareengineering.scarlet.coursework2.controllers.Controller;
-import softwareengineering.scarlet.coursework2.controllers.Keyboard;
+import softwareengineering.scarlet.coursework2.controllers.Input;
 
 /**
  * Wrapper around JPanel.
@@ -66,25 +66,29 @@ public class Panel extends JPanel implements KeyListener {
    */
   @Override
   public void keyReleased(KeyEvent event) {
-    Keyboard key = Keyboard.NONE;
+    Input key = Input.NONE;
     switch (event.getKeyCode()) {
       case KeyEvent.VK_UP:
-        key = Keyboard.UP;
+        key = Input.UP;
         break;
       case KeyEvent.VK_LEFT:
-        key = Keyboard.LEFT;
+        key = Input.LEFT;
         break;
       case KeyEvent.VK_DOWN:
-        key = Keyboard.DOWN;
+        key = Input.DOWN;
         break;
       case KeyEvent.VK_RIGHT:
-        key = Keyboard.RIGHT;
+        key = Input.RIGHT;
         break;
       case KeyEvent.VK_ENTER:
-        key = Keyboard.ENTER;
+        key = Input.CHOOSE;
+        break;
+      case KeyEvent.VK_ESCAPE:
+      case KeyEvent.VK_Q:
+        key = Input.QUIT;
         break;
     }
-    this.controller.keyPress(key);
+    this.controller.handleInput(key);
 
     // TODO: Have the controller return a "dirty" flag and only repaint if set
     repaint();
