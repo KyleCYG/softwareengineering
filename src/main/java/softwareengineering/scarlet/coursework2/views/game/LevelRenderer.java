@@ -19,7 +19,6 @@ public class LevelRenderer {
 
   public void render(Graphics2D g2d, ImageObserver observer) {
     CellType[][] grid = level.getGrid();
-    LevelItemsFactory lif = new LevelItemsFactory();
 
     for (int x = 0; x < level.getWidth(); x++) {
       for (int y = 0; y < level.getHeight(); y++) {
@@ -27,31 +26,31 @@ public class LevelRenderer {
           case VOID:
             break;
           case ROOM:
-            lif.init("r").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             break;
           case CORRIDOR:
-            lif.init("c").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("c").draw(x, y, g2d, observer);
             break;
           case WALL:
-            lif.init("w").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("w").draw(x, y, g2d, observer);
             break;
           case EXIT:
-            lif.init("e").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("e").draw(x, y, g2d, observer);
             break;
           case GOLD:
-            lif.init("g").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("g").draw(x, y, g2d, observer);
             break;
           case HEALTH:
-            lif.init("h").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("h").draw(x, y, g2d, observer);
             break;
           case STAIRSDOWN:
-            lif.init("SD").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("SD").draw(x, y, g2d, observer);
             break;
           case STAIRSUP:
-            lif.init("SU").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("SU").draw(x, y, g2d, observer);
             break;
           case STRENGTH:
-            lif.init("s").draw(x, y, g2d, observer);
+            LevelItemsFactory.init("s").draw(x, y, g2d, observer);
             break;
           default:
             break;
