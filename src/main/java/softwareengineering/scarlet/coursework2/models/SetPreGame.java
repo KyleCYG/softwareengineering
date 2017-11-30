@@ -25,7 +25,19 @@ public class SetPreGame {
   }
   public void deleteLetter()
   {
-    name= name.substring(0, name.length()-1);
+    if(name.contains("-"))
+    {
+      int index=name.indexOf("-");
+      char[] chars = name.toCharArray();
+      chars[index-1] = '-';
+      name=String.valueOf(chars);
+    }
+    else
+    {
+      name= name.substring(0, name.length()-1);
+      name=name.concat("-");
+    }
+    
   }
   
   

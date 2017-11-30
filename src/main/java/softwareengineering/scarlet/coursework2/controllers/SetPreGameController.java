@@ -121,7 +121,8 @@ public class SetPreGameController implements Controller {
     // TODO Auto-generated method stub
     String playerName = this.model.getName();
     //can pass this player name to APP class
-    this.app.switchToBackstory();
+    if(!playerName.contains("-"))
+      this.app.switchToBackstory();
     
   }
 
