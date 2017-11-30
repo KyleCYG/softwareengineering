@@ -6,7 +6,7 @@ public class SetPreGame {
   
   
   public SetPreGame() {
-    this.name = null;
+    this.name = "----";
   }
   
   public void setName(String name)
@@ -20,7 +20,8 @@ public class SetPreGame {
   }
   public void appendLetter(String letter)
   {
-    name.concat(letter);
+    if(name.contains("-"))
+       name=name.replaceFirst("-", letter);
   }
   public void deleteLetter()
   {

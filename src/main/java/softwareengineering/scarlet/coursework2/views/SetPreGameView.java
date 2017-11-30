@@ -30,7 +30,10 @@ public class SetPreGameView implements View {
    * @param g2d The graphics object the options are rendered to.
    */
   private void drawNameTextField(Graphics2D g2d) {
-    g2d.drawString(" ", 180, 250);
+    if(model.getName()!=null)
+      g2d.drawString(model.getName(), 300, 250);
+    else
+      g2d.drawString("----", 300, 250);
   }
 
   /**
@@ -39,7 +42,7 @@ public class SetPreGameView implements View {
    * @param g2d The graphics object the options are rendered to.
    */
   private void drawEnterString(Graphics2D g2d) {
-    g2d.drawString("Press Enter ", 200, 250);
+    g2d.drawString("Press Enter ", 250, 300);
   }
 
   public void setModel(SetPreGame preGameModel) {

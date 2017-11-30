@@ -87,6 +87,88 @@ public class Panel extends JPanel implements KeyListener {
       case KeyEvent.VK_Q:
         key = Input.QUIT;
         break;
+      case KeyEvent.VK_BACK_SPACE:
+        key = Input.DELETE;
+        break;
+      case KeyEvent.VK_A:
+        key = Input.A;
+        break;
+      case KeyEvent.VK_B:
+        key = Input.B;
+        break;
+      case KeyEvent.VK_C:
+        key = Input.C;
+        break;
+      case KeyEvent.VK_D:
+        key = Input.D;
+        break;
+      case KeyEvent.VK_E:
+        key = Input.E;
+        break;
+      case KeyEvent.VK_F:
+        key = Input.F;
+        break;        
+      case KeyEvent.VK_G:
+        key = Input.G;
+        break;
+      case KeyEvent.VK_H:
+        key = Input.H;
+        break;
+      case KeyEvent.VK_I:
+        key = Input.I;
+        break;
+      case KeyEvent.VK_J:
+        key = Input.J;
+        break;
+      case KeyEvent.VK_K:
+        key = Input.K;
+        break;
+      case KeyEvent.VK_L:
+        key = Input.L;
+        break;
+      case KeyEvent.VK_M:
+        key = Input.M;
+        break;
+      case KeyEvent.VK_N:
+        key = Input.N;
+        break;
+      case KeyEvent.VK_O:
+        key = Input.O;
+        break;
+      case KeyEvent.VK_P:
+        key = Input.P;
+        break;      
+      case KeyEvent.VK_R:
+        key = Input.R;
+        break;
+      case KeyEvent.VK_S:
+        key = Input.S;
+        break;
+      case KeyEvent.VK_T:
+        key = Input.T;
+        break;
+      case KeyEvent.VK_U:
+        key = Input.U;
+        break;
+      case KeyEvent.VK_V:
+        key = Input.V;
+        break;
+        
+      case KeyEvent.VK_W:
+        key = Input.W;
+        break;
+        
+      case KeyEvent.VK_X:
+        key = Input.X;
+        break;
+      case KeyEvent.VK_Y:
+        key = Input.Y;
+        break;
+      case KeyEvent.VK_Z:
+        key = Input.Z;
+        break;
+        
+        
     }
     this.controller.handleInput(key);
 
