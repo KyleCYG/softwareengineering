@@ -1,8 +1,8 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
-public class Strength extends ItemImage {
-  public Strength() {
+public class StrengthType2 extends ItemImage{
+
+  public StrengthType2() {
     this.filename = "strength.png";
   }
 }
-

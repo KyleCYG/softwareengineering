@@ -177,6 +177,15 @@ public class Level {
           case STRENGTH:
             System.out.print("S");
             break;
+          case STRENGTH1:
+            System.out.print("S1");
+            break;
+          case STRENGTH2:
+            System.out.print("S2");
+            break;
+          case STRENGTH3:
+            System.out.print("S3");
+            break;
         }
       }
       System.out.print("\n");

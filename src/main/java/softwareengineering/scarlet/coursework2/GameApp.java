@@ -37,7 +37,7 @@ public class GameApp implements App {
   private GameController gameController;
   private SetPreGameController setpregameController;
   private BackstoryController backstoryController;
-
+  private String playerName;
   public GameApp() {
     this.panel = new Panel();
     this.frame = new Frame(this.panel);
@@ -109,6 +109,14 @@ public class GameApp implements App {
    */
   public void start() {
     this.frame.setVisible(true);
+  }
+    /**
+     * Set Player Name At APP level to pass it to
+     * Pre Game Controller
+     * to Game Controller
+     */
+    public void setPlayerName(String name) {
+      this.playerName=name;
   }
 
   /**

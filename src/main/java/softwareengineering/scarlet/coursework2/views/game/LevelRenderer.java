@@ -52,6 +52,15 @@ public class LevelRenderer {
           case STRENGTH:
             LevelItemsFactory.init("s").draw(x, y, g2d, observer);
             break;
+          case STRENGTH1:
+            LevelItemsFactory.init("s1").draw(x, y, g2d, observer);
+            break;
+          case STRENGTH2:
+            LevelItemsFactory.init("s2").draw(x, y, g2d, observer);
+            break;
+          case STRENGTH3:
+            LevelItemsFactory.init("s3").draw(x, y, g2d, observer);
+            break;
           default:
             break;
         }

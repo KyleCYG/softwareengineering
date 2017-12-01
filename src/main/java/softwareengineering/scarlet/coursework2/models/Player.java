@@ -8,6 +8,12 @@ public class Player {
   private int x;
   private int y;
   private int gold;
+  private int strength;
+  private int healthPoints;
+  private StrengthItem strengthItem;
+
+  
+
 
   /**
    * Constructor.
@@ -20,6 +26,9 @@ public class Player {
     this.x = startX;
     this.y = startY;
     this.gold = 0;
+    this.healthPoints=5;
+    this.strength=5;
+    this.strengthItem= new StrengthItem(5);
   }
 
 
@@ -64,6 +73,51 @@ public class Player {
 
   public String getName() {
     return name;
+  }
+  public int getStrength() {
+    return strength;
+  }
+
+
+  public void setStrength(int strength) {
+    this.strength = strength;
+  }
+
+  public void increaseStrength(int strength)
+  {
+    this.strength+=strength;
+  }
+  public void decreaseStrength(int strength)
+  {
+    this.strength-=strength;
+  }
+
+  /* Health points increase when player collects p*/
+  public int getHealthPoints() {
+    return healthPoints;
+  }
+
+  public void setHealthPoints(int healthPoints) {
+    this.healthPoints = healthPoints;
+  }
+  public void increaseHealthPoint(int healthPoints)
+  {
+    this.healthPoints+=healthPoints; 
+  }
+  public void decreaseHealthPoint(int healthPoints)
+  {
+    this.healthPoints-=healthPoints; 
+  }
+  
+  public StrengthItem getStrengthItem() {
+    return strengthItem;
+  }
+
+  /* Player can hold one Strength Item at a time */
+  /* Player strength will be set to that strength value */
+  public void setStrengthItem(StrengthItem strengthItem) {
+    this.strengthItem = strengthItem;
+    this.setStrength(this.strengthItem.getValue());
   }
 
 }
