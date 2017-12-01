@@ -40,17 +40,13 @@ public class Dungeon {
   }
 
   /**
-   * Generates a list of entities to populate a level with
+   * Generates a list of entities to populate a level
    *
-   * @param difficulty An arbitrary number representing difficulty, higher is harder
+   * @param level The depth of the level to be populated - the higher the number, the harder the level
    * @return A list of entities
    */
   protected static List<Entity> generateEntities(int level, int numLevels) {
-    List<Entity> entities = new ArrayList<Entity>();
-
-    entities.addAll(EntityFactory.generateGold(level, numLevels, REQUIRED_SCORE));
-
-    return entities;
+    return EntityFactory.generateItems(level, numLevels, REQUIRED_SCORE);
   }
 
   /**
