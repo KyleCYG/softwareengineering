@@ -2,9 +2,11 @@ package softwareengineering.scarlet.coursework2.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import softwareengineering.scarlet.coursework2.levelgeneration.EntityFactory;
 import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
 
 public class Dungeon {
+  public static final int REQUIRED_SCORE = 100;
   protected List<Level> levels;
   private Level currentLevel;
   private int numLevels;
@@ -34,15 +36,10 @@ public class Dungeon {
    * @param difficulty An arbitrary number representing difficulty, higher is harder
    * @return A list of entities
    */
-  protected static List<Entity> generateEntities(int difficulty) {
+  protected static List<Entity> generateEntities(int level, int numLevels) {
     List<Entity> entities = new ArrayList<Entity>();
 
-    int numGoldItems = 4;
-
-    // Generate gold (with value proportional to difficulty) and add
-    for (int i = 0; i < numGoldItems; i++) {
-      entities.add(new GoldItem((difficulty + 1) * 10));
-    }
+    entities.addAll(EntityFactory.generateGold(level, numLevels, REQUIRED_SCORE));
 
     return entities;
   }
