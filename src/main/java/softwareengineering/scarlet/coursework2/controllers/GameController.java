@@ -58,6 +58,9 @@ public class GameController implements Controller {
 
     // create player
     this.player = new Player(playerName, startX, startY);
+    
+    //create player status
+    
   }
 
   /**

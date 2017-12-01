@@ -38,4 +38,9 @@ public class ItemImage {
   public void draw(int x, int y, Graphics2D g2d, ImageObserver observer) {
     g2d.drawImage(this.getImage(), GameView.getXForGridX(x), GameView.getYForGridY(y), observer);
   }
+  
+  public void drawStatus(int x, int y, Graphics2D g2d, ImageObserver observer) {
+    g2d.drawImage(this.getImage(), x, y, observer);
+  }
+  
 }

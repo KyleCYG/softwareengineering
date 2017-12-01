@@ -3,9 +3,9 @@ package softwareengineering.scarlet.coursework2.models;
 public class StrengthItem extends Entity {
   private int value;
 
-  public StrengthItem(int value) {
+  public StrengthItem(int value, CellType type) {
     this.value = value;
-    this.type = CellType.STRENGTH;
+    this.type = type;
   }
 
   public int getValue() {

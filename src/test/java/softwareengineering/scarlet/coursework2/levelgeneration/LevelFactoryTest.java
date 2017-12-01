@@ -163,7 +163,7 @@ public class LevelFactoryTest {
 
     entities.add(new GoldItem(1));
     entities.add(new HealthItem(1));
-    entities.add(new StrengthItem(1));
+    entities.add(new StrengthItem(1,CellType.STRENGTH1));
     entities.add(new StairsUpItem(1));
     entities.add(new StairsDownItem(1));
     entities.add(new ExitItem());

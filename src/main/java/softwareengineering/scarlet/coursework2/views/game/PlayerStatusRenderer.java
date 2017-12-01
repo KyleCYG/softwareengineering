@@ -20,23 +20,34 @@ public class PlayerStatusRenderer {
     
     // set these x and y later
     int x=0;int y=0;
-    PlayerItemsFactory.init("g").draw(x, y, g2d, observer);
+    
+    PlayerItemsFactory.init("g").drawStatus(x, y, g2d, observer);
+    
     int currentGold=player.getGold();
-    PlayerItemsFactory.init("h").draw(x, y, g2d, observer);
+    g2d.drawString("x", x+20, y+20);
+    g2d.drawString(Integer.toString(currentGold), x+40, y+20);
+    
+    PlayerItemsFactory.init("h").drawStatus(x+60, y, g2d, observer);
     int hp=player.getHealthPoints();
-    CellType cellType=this.player.getStrengthItem().getType();
+    g2d.drawString("x", x+80, y+20);
+    g2d.drawString(Integer.toString(hp), x+100, y+20);
     int strength=player.getStrength();
+ 
+    
+    CellType cellType=this.player.getStrengthItem().getType();
     switch(cellType)
     {
       case STRENGTH1:
-        PlayerItemsFactory.init("s1").draw(x, y, g2d, observer);
+        PlayerItemsFactory.init("s1").drawStatus(x+120, y, g2d, observer);
         break;
       case STRENGTH2:
-        PlayerItemsFactory.init("s2").draw(x, y, g2d, observer);
+        PlayerItemsFactory.init("s2").drawStatus(x+120, y, g2d, observer);
         break;
       case STRENGTH3:
-        PlayerItemsFactory.init("s3").draw(x, y, g2d, observer);
+        PlayerItemsFactory.init("s3").drawStatus(x+120, y, g2d, observer);
         break;
     }
+    g2d.drawString("x", x+140, y+20);
+    g2d.drawString(Integer.toString(strength), x+160, y+20);
   }
 }

@@ -3,6 +3,7 @@ package softwareengineering.scarlet.coursework2.levelgeneration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.GoldItem;
@@ -161,11 +162,11 @@ public class EntityFactory {
       if (choice < healthLevel) {
         entities.add(new HealthItem(1));
       } else if (choice < strengthOneLevel) {
-        entities.add(new StrengthItem(1));
+        entities.add(new StrengthItem(1,CellType.STRENGTH1));
       } else if (choice < strengthTwoLevel) {
-        entities.add(new StrengthItem(2));
+        entities.add(new StrengthItem(2,CellType.STRENGTH1));
       } else if (choice < strengthThreeLevel) {
-        entities.add(new StrengthItem(3));
+        entities.add(new StrengthItem(3,CellType.STRENGTH1));
       }
     }
 

@@ -26,6 +26,7 @@ public class GameView implements View {
 
   private PlayerRenderer playerRenderer;
   private LevelRenderer levelRenderer;
+  private PlayerStatusRenderer playerStatusRenderer;
   private Image background;
 
   public GameView() {
@@ -49,14 +50,16 @@ public class GameView implements View {
   public void setModels(Dungeon dungeon, Player player) {
     levelRenderer = new LevelRenderer(dungeon);
     playerRenderer = new PlayerRenderer(player);
+    playerStatusRenderer = new PlayerStatusRenderer(player);
   }
 
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
-    g2d.drawImage(this.background, 0, 0, observer);
+    //g2d.drawImage(this.background, 0, 0, observer);
     g2d.setFont(TITLE_FONT);
-    g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
+    //g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
     levelRenderer.render(g2d, observer);
     playerRenderer.render(g2d, observer);
+    playerStatusRenderer.render(g2d, observer);;
   }
 }
