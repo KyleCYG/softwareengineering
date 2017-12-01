@@ -19,11 +19,20 @@ public class Dungeon {
     this.height = height;
   }
 
+  /**
+   * Generate all the levels for the dungeon.
+   *
+   * @param width Size of the dungeon in cells
+   * @param height Size of the dungeon in cells
+   * @param numLevels How many levels are in the dungeon
+   * @return
+   */
   protected static List<Level> generateLevels(int width, int height, int numLevels) {
     List<Level> levels = new ArrayList<Level>();
 
     for (int i = 0; i < numLevels; i++) {
-      List<Entity> entities = Dungeon.generateEntities(i); // difficulty is proportional to level
+      List<Entity> entities = Dungeon.generateEntities(i, numLevels); // difficulty is proportional
+                                                                      // to level
       levels.add(LevelFactory.generateLevel(width, height, entities));
     }
 
@@ -32,7 +41,7 @@ public class Dungeon {
 
   /**
    * Generates a list of entities to populate a level with
-   * 
+   *
    * @param difficulty An arbitrary number representing difficulty, higher is harder
    * @return A list of entities
    */
@@ -44,6 +53,9 @@ public class Dungeon {
     return entities;
   }
 
+  /**
+   * @return The current level being played
+   */
   public Level getCurrentLevel() {
     if (this.levels == null) {
       this.levels = Dungeon.generateLevels(this.width, this.height, this.numLevels);

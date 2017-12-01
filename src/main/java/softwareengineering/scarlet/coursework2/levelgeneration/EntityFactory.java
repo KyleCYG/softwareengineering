@@ -13,7 +13,7 @@ import softwareengineering.scarlet.coursework2.models.GoldItem;
 public class EntityFactory {
   /**
    * Generate gold for the level.
-   * 
+   *
    * Gold is generated on a level in proportion to its level number (+1 for zero base). E.g. level 1
    * gets half as much gold as level 2 and a third as much as level 3.
    *
