@@ -1,5 +1,6 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -30,7 +31,7 @@ public class GameView implements View {
   private Image background;
 
   public GameView() {
-    InputStream stream = getClass().getResourceAsStream("/background.png");
+    InputStream stream = getClass().getResourceAsStream("/background2.png");
     try {
       ImageIcon icon = new ImageIcon(ImageIO.read(stream));
       background = icon.getImage();
@@ -55,8 +56,9 @@ public class GameView implements View {
 
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
-    //g2d.drawImage(this.background, 0, 0, observer);
+    g2d.drawImage(this.background, 0, 0, observer);
     g2d.setFont(TITLE_FONT);
+    g2d.setColor(Color.white);
     //g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
     levelRenderer.render(g2d, observer);
     playerRenderer.render(g2d, observer);

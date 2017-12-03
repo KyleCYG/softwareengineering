@@ -19,7 +19,7 @@ public class PlayerStatusRenderer {
   public void render(Graphics2D g2d, ImageObserver observer) {
     
     // set these x and y later
-    int x=0;int y=0;
+    int x=80;int y=4;
     
     PlayerItemsFactory.init("g").drawStatus(x, y, g2d, observer);
     
