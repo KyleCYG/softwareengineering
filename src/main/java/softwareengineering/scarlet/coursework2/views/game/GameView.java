@@ -60,6 +60,6 @@ public class GameView implements View {
     //g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
     levelRenderer.render(g2d, observer);
     playerRenderer.render(g2d, observer);
-    playerStatusRenderer.render(g2d, observer);;
+    playerStatusRenderer.render(g2d, observer);
   }
 }
