@@ -1,7 +1,5 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
-import java.awt.Graphics2D;
-import java.awt.image.ImageObserver;
 import java.util.HashMap;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
@@ -11,7 +9,6 @@ import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
 import softwareengineering.scarlet.coursework2.views.View;
 import softwareengineering.scarlet.coursework2.views.game.GameView;
-import softwareengineering.scarlet.coursework2.views.game.LevelItemsFactory;
 
 public class GameController implements Controller {
   private GameView view;
@@ -43,8 +40,8 @@ public class GameController implements Controller {
   }
 
   /**
-   * Assumed to be instantiated once per game, therefore it also creates a dungeon and
-   * player for the game.
+   * Assumed to be instantiated once per game, therefore it also creates a dungeon and player for
+   * the game.
    *
    * @param playerName The player's name for this playthrough
    */
@@ -61,9 +58,9 @@ public class GameController implements Controller {
 
     // create player
     this.player = new Player(playerName, startX, startY);
-    
-    //create player status
-    
+
+    // create player status
+
   }
 
   /**
@@ -79,23 +76,20 @@ public class GameController implements Controller {
 
     if (this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY) != CellType.VOID) {
       player.movePlayer(movePair.getX(), movePair.getY());
-    
-      //checks if the player's position is the same as the gold's position and increase the amount of gold
+
+      // checks if the player's position is the same as the gold's position and increase the amount
+      // of gold
       if (this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY) == CellType.GOLD) {
         player.setGold(player.getGold() + 1);
-       
-      //checks if the player's position is the same as the gold's position and increase the amount of health points
-      }else if (this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY) == CellType.HEALTH) {
+
+        // checks if the player's position is the same as the gold's position and increase the
+        // amount of health points
+      } else if (this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY) == CellType.HEALTH) {
 
         player.increaseHealthPoint(1);
       }
     }
-       
-
-    
   }
-  
- 
 
   @Override
   public View getView() {
