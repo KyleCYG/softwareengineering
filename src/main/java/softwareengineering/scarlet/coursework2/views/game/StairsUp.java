@@ -2,6 +2,6 @@ package softwareengineering.scarlet.coursework2.views.game;
 
 public class StairsUp extends ItemImage {
   public StairsUp() {
-    this.filename = "StU.png";
+    this.filename = "stairsup.png";
   }
 }
