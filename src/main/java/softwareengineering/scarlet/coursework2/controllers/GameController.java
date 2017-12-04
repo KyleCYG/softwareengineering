@@ -7,6 +7,7 @@ import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
+import softwareengineering.scarlet.coursework2.models.StrengthItem;
 import softwareengineering.scarlet.coursework2.views.View;
 import softwareengineering.scarlet.coursework2.views.game.GameView;
 
@@ -85,6 +86,18 @@ public class GameController implements Controller {
         break;
       case HEALTH:
         player.increaseHealthPoint(1);
+        player.movePlayer(movePair.getX(), movePair.getY());
+        break;
+      case STRENGTH1:
+        player.setStrengthItem(new StrengthItem(10,CellType.STRENGTH1));
+        player.movePlayer(movePair.getX(), movePair.getY());
+        break;
+      case STRENGTH2:
+        player.setStrengthItem(new StrengthItem(20,CellType.STRENGTH2));
+        player.movePlayer(movePair.getX(), movePair.getY());
+        break;
+      case STRENGTH3:
+        player.setStrengthItem(new StrengthItem(30,CellType.STRENGTH3));
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
       case STAIRSUP:
