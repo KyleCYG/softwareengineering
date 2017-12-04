@@ -194,7 +194,7 @@ public class Level {
 
   private Entity getFirstEntityByType(CellType type) {
     for (Entity entity : this.getEntities()) {
-      if (entity.type == CellType.STAIRSUP) {
+      if (entity.type == type) {
         return entity;
       }
     }
