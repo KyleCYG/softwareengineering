@@ -1,7 +1,6 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Graphics2D;
-
 import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Player;
@@ -26,7 +25,6 @@ public class PlayerStatusRenderer {
     int y = 4;
 
     PlayerItemsFactory.init("g").drawStatus(x, y, g2d, observer);
-
     int currentGold = player.getGold();
     g2d.drawString("x", x + 20, y + 20);
     g2d.drawString(Integer.toString(currentGold), x + 40, y + 20);
@@ -49,6 +47,7 @@ public class PlayerStatusRenderer {
         PlayerItemsFactory.init("s3").drawStatus(x + 120, y, g2d, observer);
         break;
     }
+
     g2d.drawString("x", x + 140, y + 20);
     g2d.drawString(Integer.toString(strength), x + 160, y + 20);
   }

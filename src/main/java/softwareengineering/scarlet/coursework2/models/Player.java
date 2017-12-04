@@ -12,12 +12,9 @@ public class Player {
   private int healthPoints;
   private StrengthItem strengthItem;
 
-  
-
-
   /**
    * Constructor.
-   * 
+   *
    * @param playerName The player's name
    * @param startLocation The starting position of the player
    */
@@ -26,11 +23,10 @@ public class Player {
     this.x = startX;
     this.y = startY;
     this.gold = 0;
-    this.healthPoints=5;
-    this.strength=5;
-    this.strengthItem= new StrengthItem(5,CellType.STRENGTH1);
+    this.healthPoints = 5;
+    this.strength = 5;
+    this.strengthItem = new StrengthItem(5, CellType.STRENGTH1);
   }
-
 
   public int getX() {
     return this.x;
@@ -54,7 +50,7 @@ public class Player {
 
   /**
    * Moves the player location by the input amounts to (x+dx, y+dy)
-   * 
+   *
    * @param dx X-axis movement
    * @param dy Y-axis movement
    */
@@ -74,6 +70,7 @@ public class Player {
   public String getName() {
     return name;
   }
+
   public int getStrength() {
     return strength;
   }
@@ -83,16 +80,15 @@ public class Player {
     this.strength = strength;
   }
 
-  public void increaseStrength(int strength)
-  {
-    this.strength+=strength;
-  }
-  public void decreaseStrength(int strength)
-  {
-    this.strength-=strength;
+  public void increaseStrength(int strength) {
+    this.strength += strength;
   }
 
-  /* Health points increase when player collects p*/
+  public void decreaseStrength(int strength) {
+    this.strength -= strength;
+  }
+
+  /* Health points increase when player collects p */
   public int getHealthPoints() {
     return healthPoints;
   }
@@ -100,15 +96,15 @@ public class Player {
   public void setHealthPoints(int healthPoints) {
     this.healthPoints = healthPoints;
   }
-  public void increaseHealthPoint(int healthPoints)
-  {
-    this.healthPoints+=healthPoints; 
+
+  public void increaseHealthPoint(int healthPoints) {
+    this.healthPoints += healthPoints;
   }
-  public void decreaseHealthPoint(int healthPoints)
-  {
-    this.healthPoints-=healthPoints; 
+
+  public void decreaseHealthPoint(int healthPoints) {
+    this.healthPoints -= healthPoints;
   }
-  
+
   public StrengthItem getStrengthItem() {
     return strengthItem;
   }
@@ -119,5 +115,4 @@ public class Player {
     this.strengthItem = strengthItem;
     this.setStrength(this.strengthItem.getValue());
   }
-
 }

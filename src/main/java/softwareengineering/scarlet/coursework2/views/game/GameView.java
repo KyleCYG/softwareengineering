@@ -59,7 +59,7 @@ public class GameView implements View {
     g2d.drawImage(this.background, 0, 0, observer);
     g2d.setFont(TITLE_FONT);
     g2d.setColor(Color.white);
-    //g2d.drawString("Shalllll.. weeee.. begin?", 300, 25);
+
     levelRenderer.render(g2d, observer);
     playerRenderer.render(g2d, observer);
     playerStatusRenderer.render(g2d, observer);
