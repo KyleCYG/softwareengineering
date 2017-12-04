@@ -107,7 +107,7 @@ public class Panel extends JPanel implements KeyListener {
         break;
       case KeyEvent.VK_F:
         key = Input.F;
-        break;        
+        break;
       case KeyEvent.VK_G:
         key = Input.G;
         break;
@@ -137,7 +137,7 @@ public class Panel extends JPanel implements KeyListener {
         break;
       case KeyEvent.VK_P:
         key = Input.P;
-        break;      
+        break;
       case KeyEvent.VK_R:
         key = Input.R;
         break;
@@ -153,11 +153,9 @@ public class Panel extends JPanel implements KeyListener {
       case KeyEvent.VK_V:
         key = Input.V;
         break;
-        
       case KeyEvent.VK_W:
         key = Input.W;
         break;
-        
       case KeyEvent.VK_X:
         key = Input.X;
         break;
@@ -167,9 +165,8 @@ public class Panel extends JPanel implements KeyListener {
       case KeyEvent.VK_Z:
         key = Input.Z;
         break;
-        
-        
     }
+
     this.controller.handleInput(key);
 
     // TODO: Have the controller return a "dirty" flag and only repaint if set
