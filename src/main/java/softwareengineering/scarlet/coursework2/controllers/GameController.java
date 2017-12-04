@@ -39,6 +39,11 @@ public class GameController implements Controller {
     this.app = app;
   }
 
+  @Override
+  public View getView() {
+    return view;
+  }
+
   /**
    * Assumed to be instantiated once per game, therefore it also creates a dungeon and player for
    * the game.
@@ -59,8 +64,27 @@ public class GameController implements Controller {
     // create player
     this.player = new Player(playerName, startX, startY);
 
-    // create player status
+    // TODO: create player status
+  }
 
+  @SuppressWarnings("incomplete-switch")
+  private void performAction(int targetX, int targetY) {
+    CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
+
+    switch (targetCellType) {
+      case ROOM:
+      case CORRIDOR:
+        player.movePlayer(targetX, targetY);
+        break;
+      case GOLD:
+        player.setGold(player.getGold() + 1);
+        player.movePlayer(targetX, targetY);
+        break;
+      case HEALTH:
+        player.increaseHealthPoint(1);
+        player.movePlayer(targetX, targetY);
+        break;
+    }
   }
 
   /**
@@ -74,26 +98,7 @@ public class GameController implements Controller {
     int targetX = player.getX() + movePair.getX();
     int targetY = player.getY() + movePair.getY();
 
-    if (this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY) != CellType.VOID) {
-      player.movePlayer(movePair.getX(), movePair.getY());
-
-      // checks if the player's position is the same as the gold's position and increase the amount
-      // of gold
-      if (this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY) == CellType.GOLD) {
-        player.setGold(player.getGold() + 1);
-
-        // checks if the player's position is the same as the gold's position and increase the
-        // amount of health points
-      } else if (this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY) == CellType.HEALTH) {
-
-        player.increaseHealthPoint(1);
-      }
-    }
-  }
-
-  @Override
-  public View getView() {
-    return view;
+    performAction(targetX, targetY);
   }
 
   @SuppressWarnings("incomplete-switch")
