@@ -88,6 +88,9 @@ public class GameController implements Controller {
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
       case STAIRSUP:
+        dungeon.goUp();
+        player.setX(dungeon.getCurrentLevel().getStairsDown().getX());
+        player.setY(dungeon.getCurrentLevel().getStairsDown().getY());
         break;
       case STAIRSDOWN:
         dungeon.goDown();

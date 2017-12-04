@@ -70,4 +70,15 @@ public class Dungeon {
     this.currentLevel = levels.get(currentIndex + 1);
     return this.getCurrentLevel();
   }
+
+  /**
+   * Raise the player to the next highest level
+   *
+   * @return The new level
+   */
+  public Level goUp() {
+    int currentIndex = this.levels.indexOf(this.getCurrentLevel());
+    this.currentLevel = levels.get(currentIndex - 1);
+    return this.getCurrentLevel();
+  }
 }

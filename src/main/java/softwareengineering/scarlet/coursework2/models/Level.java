@@ -192,7 +192,7 @@ public class Level {
     }
   }
 
-  public Entity getStairsUp() {
+  private Entity getFirstEntityByType(CellType type) {
     for (Entity entity : this.getEntities()) {
       if (entity.type == CellType.STAIRSUP) {
         return entity;
@@ -200,5 +200,13 @@ public class Level {
     }
 
     return null;
+  }
+
+  public Entity getStairsUp() {
+    return getFirstEntityByType(CellType.STAIRSUP);
+  }
+
+  public Entity getStairsDown() {
+    return getFirstEntityByType(CellType.STAIRSDOWN);
   }
 }
