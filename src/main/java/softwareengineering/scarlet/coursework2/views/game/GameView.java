@@ -20,8 +20,8 @@ import softwareengineering.scarlet.coursework2.views.View;
  * @author Dan Cosser
  */
 public class GameView implements View {
-  public static final int CELL_HEIGHT = 30;
-  public static final int CELL_WIDTH = 30;
+  public static final int CELL_HEIGHT = 32;
+  public static final int CELL_WIDTH = 32;
   public static final int TOP_OFFSET = 40;
   private static final Font TITLE_FONT = new Font("Chalkduster", Font.PLAIN, 20);
 
