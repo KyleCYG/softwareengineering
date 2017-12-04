@@ -37,12 +37,15 @@ public class LevelRenderer {
             LevelItemsFactory.init("w").draw(x, y, g2d, observer);
             break;
           case EXIT:
+            LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("e").draw(x, y, g2d, observer);
             break;
           case GOLD:
+            LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("g").draw(x, y, g2d, observer);
             break;
           case HEALTH:
+            LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("h").draw(x, y, g2d, observer);
             break;
           case STAIRSDOWN:
@@ -52,15 +55,19 @@ public class LevelRenderer {
             LevelItemsFactory.init("SU").draw(x, y, g2d, observer);
             break;
           case STRENGTH:
+            LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("s").draw(x, y, g2d, observer);
             break;
           case STRENGTH1:
+            LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("s1").draw(x, y, g2d, observer);
             break;
           case STRENGTH2:
+            LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("s2").draw(x, y, g2d, observer);
             break;
           case STRENGTH3:
+            LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("s3").draw(x, y, g2d, observer);
             break;
           default:
