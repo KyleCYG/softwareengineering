@@ -68,21 +68,31 @@ public class GameController implements Controller {
   }
 
   @SuppressWarnings("incomplete-switch")
-  private void performAction(int targetX, int targetY) {
+  private void performAction(Pair movePair) {
+    int targetX = player.getX() + movePair.getX();
+    int targetY = player.getY() + movePair.getY();
+
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
 
     switch (targetCellType) {
       case ROOM:
       case CORRIDOR:
-        player.movePlayer(targetX, targetY);
+        player.movePlayer(movePair.getX(), movePair.getY());
         break;
       case GOLD:
         player.setGold(player.getGold() + 1);
-        player.movePlayer(targetX, targetY);
+        player.movePlayer(movePair.getX(), movePair.getY());
         break;
       case HEALTH:
         player.increaseHealthPoint(1);
-        player.movePlayer(targetX, targetY);
+        player.movePlayer(movePair.getX(), movePair.getY());
+        break;
+      case STAIRSUP:
+        break;
+      case STAIRSDOWN:
+        dungeon.goDown();
+        player.setX(dungeon.getCurrentLevel().getStairsUp().getX());
+        player.setY(dungeon.getCurrentLevel().getStairsUp().getY());
         break;
     }
   }
@@ -95,10 +105,7 @@ public class GameController implements Controller {
   public void movePlayer(MoveDirection direction) {
     Pair movePair = moveMap.get(direction);
 
-    int targetX = player.getX() + movePair.getX();
-    int targetY = player.getY() + movePair.getY();
-
-    performAction(targetX, targetY);
+    performAction(movePair);
   }
 
   @SuppressWarnings("incomplete-switch")

@@ -59,4 +59,15 @@ public class Dungeon {
     }
     return this.currentLevel;
   }
+
+  /**
+   * Drop the player to the next lowest level
+   *
+   * @return The new level
+   */
+  public Level goDown() {
+    int currentIndex = this.levels.indexOf(this.getCurrentLevel());
+    this.currentLevel = levels.get(currentIndex + 1);
+    return this.getCurrentLevel();
+  }
 }

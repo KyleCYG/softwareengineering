@@ -191,4 +191,14 @@ public class Level {
       System.out.print("\n");
     }
   }
+
+  public Entity getStairsUp() {
+    for (Entity entity : this.getEntities()) {
+      if (entity.type == CellType.STAIRSUP) {
+        return entity;
+      }
+    }
+
+    return null;
+  }
 }

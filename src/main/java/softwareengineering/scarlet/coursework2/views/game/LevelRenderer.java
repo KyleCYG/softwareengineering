@@ -7,17 +7,19 @@ import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Level;
 
 public class LevelRenderer {
-  private Level level;
+  private Dungeon dungeon;
 
   public LevelRenderer(Dungeon dungeon) {
     init(dungeon);
   }
 
   public void init(Dungeon dungeon) {
-    level = dungeon.getCurrentLevel();
+    this.dungeon = dungeon;
   }
 
   public void render(Graphics2D g2d, ImageObserver observer) {
+    Level level = dungeon.getCurrentLevel();
+
     CellType[][] grid = level.getGrid();
 
     for (int x = 0; x < level.getWidth(); x++) {
