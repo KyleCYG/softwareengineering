@@ -113,6 +113,10 @@ public class Level {
    * @return The type of cell at that point
    */
   public CellType getTypeAtPos(int x, int y) {
+    if (x == width || y == height || x == -1 || y == -1) {
+      return CellType.VOID;
+    }
+
     return getGrid()[x][y];
   }
 

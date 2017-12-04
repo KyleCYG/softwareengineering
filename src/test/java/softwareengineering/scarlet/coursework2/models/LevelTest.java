@@ -25,6 +25,30 @@ public class LevelTest {
   }
 
   @Test
+  public void testGetTypeAtPos_maxX() {
+    Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
+    assertEquals(CellType.VOID, level.getTypeAtPos(50, 5));
+  }
+
+  @Test
+  public void testGetTypeAtPos_minX() {
+    Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
+    assertEquals(CellType.VOID, level.getTypeAtPos(-1, 5));
+  }
+
+  @Test
+  public void testGetTypeAtPos_maxY() {
+    Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
+    assertEquals(CellType.VOID, level.getTypeAtPos(5, 50));
+  }
+
+  @Test
+  public void testGetTypeAtPos_minY() {
+    Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
+    assertEquals(CellType.VOID, level.getTypeAtPos(5, -1));
+  }
+
+  @Test
   public void testEntityTypeAtPos() {
     int entityPositionX = 10;
     int entityPositionY = 10;
