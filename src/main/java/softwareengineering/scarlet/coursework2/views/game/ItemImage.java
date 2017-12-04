@@ -29,7 +29,7 @@ public class ItemImage {
         ImageIcon icon = new ImageIcon(ImageIO.read(stream));
         this.image = icon.getImage();
       } catch (IOException io) {
-        throw new RuntimeException("Image %s not found! Assuming problem with resources and quitting");
+        throw new RuntimeException(String.format("Image %s not found! Assuming problem with resources and quitting", this.filename));
       }
     }
     return this.image;
