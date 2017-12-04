@@ -162,11 +162,14 @@ public class EntityFactory {
       if (choice < healthLevel) {
         entities.add(new HealthItem(1));
       } else if (choice < strengthOneLevel) {
-        entities.add(new StrengthItem(1,CellType.STRENGTH1));
+        entities.add(new StrengthItem(1, CellType.STRENGTH1));
       } else if (choice < strengthTwoLevel) {
-        entities.add(new StrengthItem(2,CellType.STRENGTH1));
+        entities.add(new StrengthItem(2, CellType.STRENGTH2));
       } else if (choice < strengthThreeLevel) {
-        entities.add(new StrengthItem(3,CellType.STRENGTH1));
+        entities.add(new StrengthItem(3, CellType.STRENGTH3));
+      } else {
+        // TOOD: Replace with monster spawner
+        entities.add(new HealthItem(1));
       }
     }
 
