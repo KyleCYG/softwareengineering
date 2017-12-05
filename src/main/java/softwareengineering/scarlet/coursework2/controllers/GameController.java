@@ -5,6 +5,7 @@ import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
+import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
@@ -68,13 +69,14 @@ public class GameController implements Controller {
     // TODO: create player status
   }
 
-  @SuppressWarnings("incomplete-switch")
+  @SuppressWarnings({"incomplete-switch", "unlikely-arg-type"})
   private void performAction(Pair movePair) {
     int targetX = player.getX() + movePair.getX();
     int targetY = player.getY() + movePair.getY();
 
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
 
+    Entity g, h;
     switch (targetCellType) {
       case ROOM:
       case CORRIDOR:
@@ -83,21 +85,28 @@ public class GameController implements Controller {
       case GOLD:
         player.setGold(player.getGold() + 1);
         player.movePlayer(movePair.getX(), movePair.getY());
+        g = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        //remove gold 
+        this.dungeon.getCurrentLevel().getEntities().remove(g);
+
         break;
       case HEALTH:
         player.increaseHealthPoint(1);
         player.movePlayer(movePair.getX(), movePair.getY());
+        h = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        //remove health item
+        this.dungeon.getCurrentLevel().getEntities().remove(h);
         break;
       case STRENGTH1:
-        player.setStrengthItem(new StrengthItem(10,CellType.STRENGTH1));
+        player.setStrengthItem(new StrengthItem(10, CellType.STRENGTH1));
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
       case STRENGTH2:
-        player.setStrengthItem(new StrengthItem(20,CellType.STRENGTH2));
+        player.setStrengthItem(new StrengthItem(20, CellType.STRENGTH2));
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
       case STRENGTH3:
-        player.setStrengthItem(new StrengthItem(30,CellType.STRENGTH3));
+        player.setStrengthItem(new StrengthItem(30, CellType.STRENGTH3));
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
       case STAIRSUP:
