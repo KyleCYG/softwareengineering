@@ -10,6 +10,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
+import softwareengineering.scarlet.coursework2.models.MessageList;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.views.View;
 
@@ -29,6 +30,7 @@ public class GameView implements View {
   private LevelRenderer levelRenderer;
   private PlayerStatusRenderer playerStatusRenderer;
   private Image background;
+  private MessageList messages;
 
   public GameView() {
     InputStream stream = getClass().getResourceAsStream("/background2.png");
@@ -48,18 +50,32 @@ public class GameView implements View {
     return (gridY * CELL_HEIGHT) + TOP_OFFSET;
   }
 
-  public void setModels(Dungeon dungeon, Player player) {
+  public void setModels(Dungeon dungeon, Player player, MessageList messages) {
     levelRenderer = new LevelRenderer(dungeon);
     playerRenderer = new PlayerRenderer(player);
     playerStatusRenderer = new PlayerStatusRenderer(player);
+    this.messages = messages;
+  }
+
+  protected void renderBackground(Graphics2D g2d, ImageObserver observer) {
+    g2d.drawImage(this.background, 0, 0, observer);
+  }
+
+  protected void renderMessages(Graphics2D g2d, ImageObserver observer) {
+    if (!messages.hasMessages()) {
+      return;
+    }
+
+    g2d.drawString(messages.getMessage(), 80, 54);
   }
 
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
-    g2d.drawImage(this.background, 0, 0, observer);
     g2d.setFont(TITLE_FONT);
     g2d.setColor(Color.white);
 
+    renderBackground(g2d, observer);
+    renderMessages(g2d, observer);
     levelRenderer.render(g2d, observer);
     playerRenderer.render(g2d, observer);
     playerStatusRenderer.render(g2d, observer);

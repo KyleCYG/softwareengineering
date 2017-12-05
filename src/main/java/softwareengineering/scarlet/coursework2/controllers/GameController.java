@@ -7,6 +7,7 @@ import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.GameScore;
+import softwareengineering.scarlet.coursework2.models.MessageList;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
@@ -18,6 +19,7 @@ public class GameController implements Controller {
   private Dungeon dungeon;
   private Player player;
   private App app;
+  private MessageList messages;
 
   // TODO: split these constants into some kind of gameConfig class?
   private static final int LEVEL_HEIGHT = 20;
@@ -66,6 +68,9 @@ public class GameController implements Controller {
 
     // create player
     this.player = new Player(playerName, startX, startY);
+
+    // Create a list to hold messages for the player
+    this.messages = new MessageList();
 
     // TODO: create player status
   }
@@ -140,6 +145,9 @@ public class GameController implements Controller {
           GameScore score = new GameScore(player.getName(), player.getGold());
           app.getWinController().setScore(score);
           app.switchToWin();
+        } else {
+          messages.addMessage(String.format("You still need %d more gold!", Dungeon.REQUIRED_SCORE - player.getGold()));
+          player.movePlayer(movePair.getX(), movePair.getY());
         }
         break;
     }
@@ -182,6 +190,6 @@ public class GameController implements Controller {
   public void init(View view) {
     this.view = (GameView) view;
     setUpModels("Scarlet Pimpernel");
-    this.view.setModels(this.dungeon, this.player);
+    this.view.setModels(this.dungeon, this.player, this.messages);
   }
 }
