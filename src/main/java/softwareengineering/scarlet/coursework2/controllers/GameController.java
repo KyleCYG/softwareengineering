@@ -127,9 +127,11 @@ public class GameController implements Controller {
         break;
 
       case EXIT:
+        if (player.getGold() >= Dungeon.REQUIRED_SCORE) {
           GameScore score = new GameScore(player.getName(), player.getGold());
           app.getWinController().setScore(score);
           app.switchToWin();
+        }
         break;
     }
   }
