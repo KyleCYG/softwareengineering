@@ -29,7 +29,7 @@ public class PlayerItemsFactory {
         if (strength2 == null) {
           strength2 = new StrengthType2();
         }
-        return strength1;
+        return strength2;
       case "s3":
         if (strength3 == null) {
           strength3 = new StrengthType3();
