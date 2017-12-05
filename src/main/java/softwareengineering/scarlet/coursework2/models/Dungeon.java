@@ -6,7 +6,7 @@ import softwareengineering.scarlet.coursework2.levelgeneration.EntityFactory;
 import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
 
 public class Dungeon {
-  public static final int REQUIRED_SCORE = 100;
+  public static final int REQUIRED_SCORE = 20;
   protected List<Level> levels;
   private Level currentLevel;
   private int numLevels;

@@ -19,7 +19,7 @@ import softwareengineering.scarlet.coursework2.models.StrengthItem;
  * @author Dan Cosser
  */
 public class EntityFactory {
-  protected static final int NUM_ENTITIES_PER_LEVEL = 10;
+  protected static final int NUM_ENTITIES_PER_LEVEL = 5;
 
   /**
    * Generate gold for the level.
