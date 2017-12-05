@@ -87,7 +87,7 @@ public class GameController implements Controller {
         player.setGold(player.getGold() + 1);
         player.movePlayer(movePair.getX(), movePair.getY());
         Entity gold = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
-        // Remove gold 
+        // Remove gold
         this.dungeon.getCurrentLevel().getEntities().remove(gold);
         break;
 
@@ -102,16 +102,25 @@ public class GameController implements Controller {
       case STRENGTH1:
         player.setStrengthItem(new StrengthItem(10, CellType.STRENGTH1));
         player.movePlayer(movePair.getX(), movePair.getY());
+        Entity strength1 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove strength1
+        this.dungeon.getCurrentLevel().getEntities().remove(strength1);
         break;
 
       case STRENGTH2:
         player.setStrengthItem(new StrengthItem(20, CellType.STRENGTH2));
         player.movePlayer(movePair.getX(), movePair.getY());
+        Entity strength2 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove strength2
+        this.dungeon.getCurrentLevel().getEntities().remove(strength2);
         break;
 
       case STRENGTH3:
         player.setStrengthItem(new StrengthItem(30, CellType.STRENGTH3));
         player.movePlayer(movePair.getX(), movePair.getY());
+        Entity strength3 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove strength3
+        this.dungeon.getCurrentLevel().getEntities().remove(strength3);
         break;
 
       case STAIRSUP:

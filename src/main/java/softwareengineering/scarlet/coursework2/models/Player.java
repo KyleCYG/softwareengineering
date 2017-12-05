@@ -24,8 +24,8 @@ public class Player {
     this.y = startY;
     this.gold = 0;
     this.healthPoints = 5;
-    this.strength = 5;
-    this.strengthItem = new StrengthItem(5, CellType.STRENGTH);
+    this.strength = 10;
+    this.strengthItem = new StrengthItem(10, CellType.STRENGTH1);
   }
 
   public int getX() {
