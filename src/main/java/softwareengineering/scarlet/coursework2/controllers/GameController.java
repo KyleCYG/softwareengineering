@@ -18,6 +18,7 @@ public class GameController implements Controller {
   private GameView view;
   private Dungeon dungeon;
   private Player player;
+  private String playerName;
   private App app;
   private MessageList messages;
 
@@ -44,6 +45,10 @@ public class GameController implements Controller {
     this.app = app;
   }
 
+  public void setPlayerName(String playerName) {
+    this.playerName = playerName;
+  }
+
   @Override
   public View getView() {
     return view;
@@ -55,7 +60,7 @@ public class GameController implements Controller {
    *
    * @param playerName The player's name for this playthrough
    */
-  public void setUpModels(String playerName) {
+  public void setUpModels() {
     // create new dungeon
     this.dungeon = new Dungeon(GameController.LEVEL_WIDTH, GameController.LEVEL_HEIGHT,
         GameController.NUM_LEVELS);
@@ -189,7 +194,7 @@ public class GameController implements Controller {
   @Override
   public void init(View view) {
     this.view = (GameView) view;
-    setUpModels("Scarlet Pimpernel");
+    setUpModels();
     this.view.setModels(this.dungeon, this.player, this.messages);
   }
 }

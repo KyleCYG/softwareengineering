@@ -118,12 +118,13 @@ public class SetPreGameController implements Controller {
   }
 
   private void performAction() {
-    // TODO Auto-generated method stub
     String playerName = this.model.getName();
-    //can pass this player name to APP class
-    if(!playerName.contains("-"))
+
+    if (!playerName.contains("-")) {
+      app.getGameController().setPlayerName(playerName);
+
       this.app.switchToBackstory();
-    
+    }
   }
 
   protected void setUpData() {
