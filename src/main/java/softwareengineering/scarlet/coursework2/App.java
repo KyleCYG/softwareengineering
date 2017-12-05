@@ -18,4 +18,5 @@ public interface App {
   public void switchToPreGame();
   public void switchToBackstory();
   public void switchToGame();
+  public void switchToWin();
 }

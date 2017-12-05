@@ -119,6 +119,9 @@ public class GameController implements Controller {
         player.setX(dungeon.getCurrentLevel().getStairsUp().getX());
         player.setY(dungeon.getCurrentLevel().getStairsUp().getY());
         break;
+      case EXIT:
+        app.switchToWin();
+        break;
     }
   }
 

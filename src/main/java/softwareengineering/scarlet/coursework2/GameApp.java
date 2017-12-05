@@ -5,12 +5,14 @@ import softwareengineering.scarlet.coursework2.controllers.BackstoryController;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
 import softwareengineering.scarlet.coursework2.controllers.MenuController;
 import softwareengineering.scarlet.coursework2.controllers.SetPreGameController;
+import softwareengineering.scarlet.coursework2.controllers.WinController;
 import softwareengineering.scarlet.coursework2.views.BackstoryView;
 import softwareengineering.scarlet.coursework2.views.Frame;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.Panel;
 import softwareengineering.scarlet.coursework2.views.SetPreGameView;
 import softwareengineering.scarlet.coursework2.views.View;
+import softwareengineering.scarlet.coursework2.views.WinView;
 import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 /**
@@ -37,6 +39,7 @@ public class GameApp implements App {
   private GameController gameController;
   private SetPreGameController setpregameController;
   private BackstoryController backstoryController;
+  private WinController winController;
   private String playerName;
 
   public GameApp() {
@@ -96,6 +99,20 @@ public class GameApp implements App {
 
     View view = new GameView();
     this.gameController.init(view);
+  }
+
+  /**
+   * Switch control to the Winning End screen
+   */
+  public void switchToWin() {
+    if (this.winController == null) {
+      this.winController = new WinController(this);
+    }
+
+    this.panel.setController(this.winController);
+
+    View view = new WinView();
+    this.winController.init(view);
   }
 
   /**

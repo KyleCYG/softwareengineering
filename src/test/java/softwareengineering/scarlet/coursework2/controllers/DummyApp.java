@@ -5,6 +5,7 @@ import softwareengineering.scarlet.coursework2.App;
 public class DummyApp implements App {
   public boolean didIQuit = false;
   public boolean didISwitchToBackStory = false;
+
   @Override
   public void quit() {
     this.didIQuit = true;
@@ -28,6 +29,11 @@ public class DummyApp implements App {
 
   @Override
   public void switchToGame() {
+    // TODO Auto-generated method stub
+  }
+
+  @Override
+  public void switchToWin() {
     // TODO Auto-generated method stub
   }
 }
