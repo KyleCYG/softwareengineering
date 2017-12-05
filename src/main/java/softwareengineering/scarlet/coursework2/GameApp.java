@@ -75,6 +75,9 @@ public class GameApp implements App {
     this.setpregameController.init(view);
   }
 
+  /**
+   * Switch control to the backstory screen
+   */
   public void switchToBackstory() {
     if (this.backstoryController == null) {
       this.backstoryController = new BackstoryController(this);
@@ -84,7 +87,6 @@ public class GameApp implements App {
 
     BackstoryView view = new BackstoryView();
     this.backstoryController.init(view);
-
   }
 
   /**

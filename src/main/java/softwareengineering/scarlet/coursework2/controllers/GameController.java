@@ -69,56 +69,62 @@ public class GameController implements Controller {
     // TODO: create player status
   }
 
-  @SuppressWarnings({"incomplete-switch", "unlikely-arg-type"})
+  @SuppressWarnings("incomplete-switch")
   private void performAction(Pair movePair) {
     int targetX = player.getX() + movePair.getX();
     int targetY = player.getY() + movePair.getY();
 
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
 
-    Entity g, h;
     switch (targetCellType) {
       case ROOM:
       case CORRIDOR:
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
+
       case GOLD:
         player.setGold(player.getGold() + 1);
         player.movePlayer(movePair.getX(), movePair.getY());
-        g = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
-        //remove gold 
-        this.dungeon.getCurrentLevel().getEntities().remove(g);
-
+        Entity gold = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove gold 
+        this.dungeon.getCurrentLevel().getEntities().remove(gold);
         break;
+
       case HEALTH:
         player.increaseHealthPoint(1);
         player.movePlayer(movePair.getX(), movePair.getY());
-        h = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
-        //remove health item
-        this.dungeon.getCurrentLevel().getEntities().remove(h);
+        Entity health = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove health item
+        this.dungeon.getCurrentLevel().getEntities().remove(health);
         break;
+
       case STRENGTH1:
         player.setStrengthItem(new StrengthItem(10, CellType.STRENGTH1));
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
+
       case STRENGTH2:
         player.setStrengthItem(new StrengthItem(20, CellType.STRENGTH2));
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
+
       case STRENGTH3:
         player.setStrengthItem(new StrengthItem(30, CellType.STRENGTH3));
         player.movePlayer(movePair.getX(), movePair.getY());
         break;
+
       case STAIRSUP:
         dungeon.goUp();
         player.setX(dungeon.getCurrentLevel().getStairsDown().getX());
         player.setY(dungeon.getCurrentLevel().getStairsDown().getY());
         break;
+
       case STAIRSDOWN:
         dungeon.goDown();
         player.setX(dungeon.getCurrentLevel().getStairsUp().getX());
         player.setY(dungeon.getCurrentLevel().getStairsUp().getY());
         break;
+
       case EXIT:
         app.switchToWin();
         break;
