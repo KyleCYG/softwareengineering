@@ -36,4 +36,34 @@ public class DummyApp implements App {
   public void switchToWin() {
     // TODO Auto-generated method stub
   }
+
+  @Override
+  public MenuController getMenuController() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public SetPreGameController getSetPreGameController() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public BackstoryController getBackstoryController() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public GameController getGameController() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public WinController getWinController() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

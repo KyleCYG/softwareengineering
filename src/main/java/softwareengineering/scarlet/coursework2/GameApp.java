@@ -37,7 +37,7 @@ public class GameApp implements App {
   private Panel panel;
   private MenuController menuController;
   private GameController gameController;
-  private SetPreGameController setpregameController;
+  private SetPreGameController setPreGameController;
   private BackstoryController backstoryController;
   private WinController winController;
   private String playerName;
@@ -47,15 +47,46 @@ public class GameApp implements App {
     this.frame = new Frame(this.panel);
   }
 
+  public MenuController getMenuController() {
+    if (menuController == null) {
+      menuController = new MenuController(this);
+    }
+    return menuController;
+  }
+
+  public GameController getGameController() {
+    if (gameController == null) {
+      gameController = new GameController(this);
+    }
+    return gameController;
+  }
+
+  public SetPreGameController getSetPreGameController() {
+    if (setPreGameController == null) {
+      setPreGameController = new SetPreGameController(this);
+    }
+    return setPreGameController;
+  }
+
+  public BackstoryController getBackstoryController() {
+    if (backstoryController == null) {
+      backstoryController = new BackstoryController(this);
+    }
+    return backstoryController;
+  }
+
+  public WinController getWinController() {
+    if (winController == null) {
+      winController = new WinController(this);
+    }
+    return winController;
+  }
+
   /**
    * Switch control to the Menu
    */
   public void switchToMenu() {
-    if (this.menuController == null) {
-      this.menuController = new MenuController(this);
-    }
-
-    this.panel.setController(this.menuController);
+    this.panel.setController(getMenuController());
 
     View view = new MenuView();
     this.menuController.init(view);
@@ -65,25 +96,17 @@ public class GameApp implements App {
    * Switch control to the Pre Game Settings
    */
   public void switchToPreGame() {
-    if (this.setpregameController == null) {
-      this.setpregameController = new SetPreGameController(this);
-    }
-
-    this.panel.setController(this.setpregameController);
+    this.panel.setController(getSetPreGameController());
 
     SetPreGameView view = new SetPreGameView();
-    this.setpregameController.init(view);
+    this.setPreGameController.init(view);
   }
 
   /**
    * Switch control to the backstory screen
    */
   public void switchToBackstory() {
-    if (this.backstoryController == null) {
-      this.backstoryController = new BackstoryController(this);
-    }
-
-    this.panel.setController(this.backstoryController);
+    this.panel.setController(getBackstoryController());
 
     BackstoryView view = new BackstoryView();
     this.backstoryController.init(view);
@@ -93,11 +116,7 @@ public class GameApp implements App {
    * Switch control to the Game
    */
   public void switchToGame() {
-    if (this.gameController == null) {
-      this.gameController = new GameController(this);
-    }
-
-    this.panel.setController(this.gameController);
+    this.panel.setController(getGameController());
 
     View view = new GameView();
     this.gameController.init(view);
@@ -107,11 +126,7 @@ public class GameApp implements App {
    * Switch control to the Winning End screen
    */
   public void switchToWin() {
-    if (this.winController == null) {
-      this.winController = new WinController(this);
-    }
-
-    this.panel.setController(this.winController);
+    this.panel.setController(getWinController());
 
     View view = new WinView();
     this.winController.init(view);
