@@ -6,6 +6,12 @@ public class DummyApp implements App {
   public boolean didIQuit = false;
   public boolean didISwitchToBackStory = false;
 
+  private MenuController menuController;
+  private GameController gameController;
+  private SetPreGameController setPreGameController;
+  private BackstoryController backstoryController;
+  private WinController winController;
+
   @Override
   public void quit() {
     this.didIQuit = true;
@@ -24,7 +30,6 @@ public class DummyApp implements App {
   @Override
   public void switchToBackstory() {
     this.didISwitchToBackStory=true;
-    // TODO Auto-generated method stub
   }
 
   @Override
@@ -37,33 +42,38 @@ public class DummyApp implements App {
     // TODO Auto-generated method stub
   }
 
-  @Override
   public MenuController getMenuController() {
-    // TODO Auto-generated method stub
-    return null;
+    if (menuController == null) {
+      menuController = new MenuController(this);
+    }
+    return menuController;
   }
 
-  @Override
-  public SetPreGameController getSetPreGameController() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public BackstoryController getBackstoryController() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
   public GameController getGameController() {
-    // TODO Auto-generated method stub
-    return null;
+    if (gameController == null) {
+      gameController = new GameController(this);
+    }
+    return gameController;
   }
 
-  @Override
+  public SetPreGameController getSetPreGameController() {
+    if (setPreGameController == null) {
+      setPreGameController = new SetPreGameController(this);
+    }
+    return setPreGameController;
+  }
+
+  public BackstoryController getBackstoryController() {
+    if (backstoryController == null) {
+      backstoryController = new BackstoryController(this);
+    }
+    return backstoryController;
+  }
+
   public WinController getWinController() {
-    // TODO Auto-generated method stub
-    return null;
+    if (winController == null) {
+      winController = new WinController(this);
+    }
+    return winController;
   }
 }
