@@ -6,6 +6,7 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Entity;
+import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
@@ -126,7 +127,9 @@ public class GameController implements Controller {
         break;
 
       case EXIT:
-        app.switchToWin();
+          GameScore score = new GameScore(player.getName(), player.getGold());
+          app.getWinController().setScore(score);
+          app.switchToWin();
         break;
     }
   }

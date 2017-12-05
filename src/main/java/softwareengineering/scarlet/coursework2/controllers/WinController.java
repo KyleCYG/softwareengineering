@@ -1,15 +1,25 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import softwareengineering.scarlet.coursework2.App;
+import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.views.View;
 import softwareengineering.scarlet.coursework2.views.WinView;
 
 public class WinController implements Controller {
   private App app;
   private WinView view;
+  private GameScore score;
 
   public WinController(App app) {
     this.app = app;
+  }
+
+  public void setScore(GameScore score) {
+    this.score = score;
+  }
+
+  protected void setModels() {
+    this.view.setScore(score);
   }
 
   /**
@@ -20,6 +30,7 @@ public class WinController implements Controller {
   @Override
   public void init(View view) {
     this.view = (WinView) view;
+    setModels();
   }
 
   @Override
