@@ -124,10 +124,12 @@ public class SetPreGameController implements Controller {
       app.getGameController().setPlayerName(playerName);
 
       this.app.switchToBackstory();
+    } else {
+      this.model.setWarning(true);
     }
   }
 
   protected void setUpData() {
-    this.model = new SetPreGame();    
+    this.model = new SetPreGame();
   }
 }

@@ -1,7 +1,10 @@
 package softwareengineering.scarlet.coursework2.models;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
 import org.junit.Test;
+import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactory;
 
 public class PlayerTest {
 
@@ -31,6 +34,71 @@ public class PlayerTest {
     assertEquals(8, newX);
     assertEquals(1, newY);
 
+  }
+
+  @Test
+  public void testPlayerhasStrengthItem() {
+    Player player = new Player("test", 5, 3);
+    player.setStrengthItem(new StrengthItem(10, CellType.STRENGTH1));
+    assertEquals(10, player.getStrength());
+  }
+
+  @Test
+  public void testPlayerhasHealthItem() {
+    Player player = new Player("test", 5, 3);
+    player.setHealthPoints(15);
+    player.increaseHealthPoint(5);
+    assertEquals(20, player.getHealthPoints());
+  }
+
+  @Test
+  public void testCollectStrengthItem() {
+    Player player = new Player("test", 5, 3);
+    int entityPositionX = 10;
+    int entityPositionY = 10;
+    Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
+    Entity entity = new StrengthItem(20, CellType.STRENGTH2);
+    entity.setPosition(entityPositionX, entityPositionY);
+    level.getEntities().add(entity);
+    player.movePlayer(entityPositionX, entityPositionY);
+    player.setStrengthItem((StrengthItem) entity);
+    assertEquals(entity, level.getEntityAtPos(entityPositionX, entityPositionY));
+    assertEquals(20, player.getStrength());
+    assertTrue(level.getEntities().remove(entity));
+  }
+
+  @Test
+  public void testCollectHealthItem() {
+    Player player = new Player("test", 5, 3);
+    int entityPositionX = 10;
+    int entityPositionY = 10;
+    Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
+    Entity entity = new HealthItem(5);
+    entity.setPosition(entityPositionX, entityPositionY);
+    level.getEntities().add(entity);
+    player.movePlayer(entityPositionX, entityPositionY);
+    HealthItem hp = (HealthItem) entity;
+    player.increaseHealthPoint(hp.getValue());
+    assertEquals(entity, level.getEntityAtPos(entityPositionX, entityPositionY));
+    assertEquals(10, player.getHealthPoints());
+    assertTrue(level.getEntities().remove(entity));
+  }
+
+  @Test
+  public void testCollectGoldItem() {
+    Player player = new Player("test", 5, 3);
+    int entityPositionX = 10;
+    int entityPositionY = 10;
+    Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
+    Entity entity = new GoldItem(5);
+    entity.setPosition(entityPositionX, entityPositionY);
+    level.getEntities().add(entity);
+    player.movePlayer(entityPositionX, entityPositionY);
+    GoldItem gold = (GoldItem) entity;
+    player.setGold(player.getGold() + gold.getValue());
+    assertEquals(entity, level.getEntityAtPos(entityPositionX, entityPositionY));
+    assertEquals(5, player.getHealthPoints());
+    assertTrue(level.getEntities().remove(entity));
   }
 
 }
