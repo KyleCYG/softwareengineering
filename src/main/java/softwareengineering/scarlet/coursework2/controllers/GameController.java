@@ -16,8 +16,8 @@ import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 public class GameController implements Controller {
   private GameView view;
-  private Dungeon dungeon;
-  private Player player;
+  protected Dungeon dungeon;
+  protected Player player;
   private String playerName;
   private App app;
   private MessageList messages;

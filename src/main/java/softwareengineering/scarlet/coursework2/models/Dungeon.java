@@ -19,6 +19,14 @@ public class Dungeon {
     this.height = height;
   }
 
+  public Dungeon(int width, int height, List<Level> levels) {
+    this.levels = levels;
+    this.numLevels = levels.size();
+    this.width = width;
+    this.height = height;
+    this.currentLevel = this.levels.get(0);
+  }
+
   /**
    * Generate all the levels for the dungeon.
    *
@@ -53,7 +61,7 @@ public class Dungeon {
    * @return The current level being played
    */
   public Level getCurrentLevel() {
-    if (this.levels == null) {
+    if (this.levels == null || this.levels.size() == 0) {
       this.levels = Dungeon.generateLevels(this.width, this.height, this.numLevels);
       this.currentLevel = this.levels.get(0);
     }

@@ -1,5 +1,6 @@
 package softwareengineering.scarlet.coursework2.levelgeneration;
 
+import java.util.ArrayList;
 import java.util.List;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Level;
@@ -16,11 +17,23 @@ import softwareengineering.scarlet.coursework2.models.Room;
  */
 public class SimpleLevelFactory extends LevelFactory {
   /**
-   * Make a Map of a defined size containing a single room.
+   * Make a Level of a defined size containing a single room.
    *
    * @param width Width of the map in cells
    * @param height Height of the map in cells
-   * @return A Map with a single room
+   * @return A Level with a single room
+   */
+  public static Level generateLevel(int width, int height) {
+    return generateLevel(width, height, new ArrayList<Entity>());
+  }
+
+  /**
+   * Make a Level of a defined size containing a single room.
+   *
+   * @param width Width of the map in cells
+   * @param height Height of the map in cells
+   * @param entities A list of entities to place in the level
+   * @return A Level with a single room
    */
   public static Level generateLevel(int width, int height, List<Entity> entities) {
     Room room = new Room(2, 2, width - 4, height - 4);
