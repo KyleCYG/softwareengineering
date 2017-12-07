@@ -5,7 +5,7 @@ import softwareengineering.scarlet.coursework2.App;
 public class DummyApp implements App {
   public boolean didIQuit = false;
   public boolean didISwitchToBackStory = false;
-
+  public boolean didISwitchToWin = false;
   private MenuController menuController;
   private GameController gameController;
   private SetPreGameController setPreGameController;
@@ -40,6 +40,7 @@ public class DummyApp implements App {
   @Override
   public void switchToWin() {
     // TODO Auto-generated method stub
+    this.didISwitchToWin=true;
   }
 
   public MenuController getMenuController() {

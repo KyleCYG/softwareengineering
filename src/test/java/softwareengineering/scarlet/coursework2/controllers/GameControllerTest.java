@@ -3,11 +3,14 @@ package softwareengineering.scarlet.coursework2.controllers;
 import static org.junit.Assert.*;
 import java.util.Arrays;
 import org.junit.Test;
+import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactory;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
+import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.StairsDownItem;
+import softwareengineering.scarlet.coursework2.models.StairsUpItem;
 
 public class GameControllerTest {
 
@@ -93,5 +96,52 @@ public class GameControllerTest {
     assertEquals(level2, controller.dungeon.getCurrentLevel());
     assertEquals(level2.getStairsUp().getX(), controller.player.getX());
     assertEquals(level2.getStairsUp().getY(), controller.player.getY());
+  }
+
+  @Test
+  public void testPerformAction_stairsUp() {
+    GameController controller = new GameController(new DummyApp());
+    controller.setUpModels();
+
+    Level level1 = controller.dungeon.getLevels().get(0);
+    Level level2 = controller.dungeon.getLevels().get(1);
+
+    StairsDownItem stairsDown = new StairsDownItem();
+    stairsDown.setPosition(controller.player.getX() + 1, controller.player.getY());
+    level1.getEntities().add(stairsDown);
+    controller.performAction(new Pair(1, 0));
+
+    StairsUpItem stairsUp = new StairsUpItem();
+    stairsUp.setPosition(controller.player.getX() + 1, controller.player.getY());
+    level2.getEntities().add(stairsUp);
+    controller.performAction(new Pair(1, 0));
+
+    assertEquals(level1, controller.dungeon.getCurrentLevel());
+    assertEquals(level1.getStairsDown().getX(), controller.player.getX());
+    assertEquals(level1.getStairsDown().getY(), controller.player.getY());
+  }
+  
+  @Test
+  public void testPerformAction_Exit() {
+    DummyApp app=new DummyApp();
+    GameController controller = new GameController(app);
+    controller.setUpModels();
+
+    Level level1 = controller.dungeon.getLevels().get(0);
+    Level level2 = controller.dungeon.getLevels().get(1);
+
+    StairsDownItem stairsDown = new StairsDownItem();
+    stairsDown.setPosition(controller.player.getX() + 1, controller.player.getY());
+    level1.getEntities().add(stairsDown);
+    controller.performAction(new Pair(1, 0));
+    
+    ExitItem exitItem= new ExitItem();
+    exitItem.setPosition(controller.player.getX() + 1, controller.player.getY());
+    level2.getEntities().add(exitItem);
+    controller.player.setGold(Dungeon.REQUIRED_SCORE);
+    controller.performAction(new Pair(1, 0));
+    
+    assertEquals(level2, controller.dungeon.getCurrentLevel());
+    assertTrue(app.didISwitchToWin);
   }
 }
