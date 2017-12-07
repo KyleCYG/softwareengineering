@@ -187,12 +187,12 @@ public class EntityFactory {
     List<Entity> entities = new ArrayList<Entity>();
 
     if (levelNumber != 0) {
-      entities.add(new StairsUpItem(levelNumber - 1));
+      entities.add(new StairsUpItem());
     }
     if (levelNumber == totalLevels - 1) {
       entities.add(new ExitItem());
     } else {
-      entities.add(new StairsDownItem(levelNumber + 1));
+      entities.add(new StairsDownItem());
     }
 
     return entities;
