@@ -7,6 +7,7 @@ import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactor
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.Player;
+import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 
 public class GameControllerTest {
 
@@ -60,5 +61,37 @@ public class GameControllerTest {
 
     assertEquals(4, controller.player.getX());
     assertEquals(5, controller.player.getY());
+  }
+
+  @Test
+  public void testPerformAction_room() {
+    GameController controller = new GameController(new DummyApp());
+    Level level = SimpleLevelFactory.generateLevel(10, 10);
+    controller.dungeon = new Dungeon(10, 10, Arrays.asList(level));
+    controller.player = new Player("", 4, 4);
+
+    controller.performAction(new Pair(1, 0));
+
+    assertEquals(5, controller.player.getX());
+    assertEquals(4, controller.player.getY());
+  }
+
+  @Test
+  public void testPerformAction_stairsDown() {
+    GameController controller = new GameController(new DummyApp());
+    controller.setUpModels();
+
+    Level level1 = controller.dungeon.getLevels().get(0);
+    Level level2 = controller.dungeon.getLevels().get(1);
+
+    StairsDownItem stairsDown = new StairsDownItem();
+    stairsDown.setPosition(controller.player.getX() + 1, controller.player.getY());
+    level1.getEntities().add(stairsDown);
+
+    controller.performAction(new Pair(1, 0));
+
+    assertEquals(level2, controller.dungeon.getCurrentLevel());
+    assertEquals(level2.getStairsUp().getX(), controller.player.getX());
+    assertEquals(level2.getStairsUp().getY(), controller.player.getY());
   }
 }

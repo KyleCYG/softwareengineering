@@ -81,7 +81,7 @@ public class GameController implements Controller {
   }
 
   @SuppressWarnings("incomplete-switch")
-  private void performAction(Pair movePair) {
+  protected void performAction(Pair movePair) {
     int targetX = player.getX() + movePair.getX();
     int targetY = player.getY() + movePair.getY();
 

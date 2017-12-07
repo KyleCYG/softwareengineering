@@ -89,4 +89,8 @@ public class Dungeon {
     this.currentLevel = levels.get(currentIndex - 1);
     return this.getCurrentLevel();
   }
+
+  public List<Level> getLevels() {
+    return levels;
+  }
 }
