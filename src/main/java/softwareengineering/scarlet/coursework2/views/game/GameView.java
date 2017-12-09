@@ -30,7 +30,6 @@ public class GameView implements View {
   private LevelRenderer levelRenderer;
   private PlayerStatusRenderer playerStatusRenderer;
   private Image background;
-  private MessageList messages;
 
   public GameView() {
     InputStream stream = getClass().getResourceAsStream("/background2.png");
@@ -50,11 +49,10 @@ public class GameView implements View {
     return (gridY * CELL_HEIGHT) + TOP_OFFSET;
   }
 
-  public void setModels(Dungeon dungeon, Player player, MessageList messages) {
+  public void setModels(Dungeon dungeon, Player player) {
     levelRenderer = new LevelRenderer(dungeon);
     playerRenderer = new PlayerRenderer(player);
     playerStatusRenderer = new PlayerStatusRenderer(player);
-    this.messages = messages;
   }
 
   protected void renderBackground(Graphics2D g2d, ImageObserver observer) {
@@ -62,11 +60,15 @@ public class GameView implements View {
   }
 
   protected void renderMessages(Graphics2D g2d, ImageObserver observer) {
-    if (!messages.hasMessages()) {
+    if (!MessageList.hasMessages()) {
       return;
     }
 
-    g2d.drawString(messages.getMessage(), 80, 54);
+    for (int i = 0; i < MessageList.getMessages().size(); i++) {
+      g2d.drawString(MessageList.getMessages().get(i), 80, 54 + (i*20));
+    }
+
+    MessageList.clear();
   }
 
   @Override

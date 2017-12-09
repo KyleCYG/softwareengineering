@@ -7,6 +7,7 @@ import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactor
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.Level;
+import softwareengineering.scarlet.coursework2.models.MessageList;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
@@ -152,6 +153,7 @@ public class GameControllerTest {
     assertFalse(app.didISwitchToWin);
     assertEquals(exitItem.getX(), controller.player.getX());
     assertEquals(exitItem.getY(), controller.player.getY());
-    assertTrue(controller.messages.hasMessages());
+    assertTrue(MessageList.hasMessages());
+    MessageList.clear();
   }
 }
