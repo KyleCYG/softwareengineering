@@ -41,6 +41,13 @@ public class SetPreGameControllerTest {
   }
 
   @Test
+  public void testDeleteWithEmptyString() {
+    SetPreGameController controller = new SetPreGameController(app);
+    controller.setUpData();
+    controller.handleInput(Input.DELETE);
+  }
+
+  @Test
   public void testValidName() {
     app = new DummyApp();
     SetPreGameController controller = new SetPreGameController(app);
@@ -62,5 +69,14 @@ public class SetPreGameControllerTest {
     controller.handleInput(Input.D);
     controller.handleInput(Input.CHOOSE);
     assertTrue(app.didISwitchToBackStory);
+  }
+
+  @Test
+  public void testReturnToMenu() {
+    app = new DummyApp();
+    SetPreGameController controller = new SetPreGameController(app);
+    controller.setUpData();
+    controller.handleInput(Input.QUIT);
+    assertTrue(app.didISwitchToMenu);
   }
 }

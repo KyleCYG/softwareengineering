@@ -6,6 +6,7 @@ public class DummyApp implements App {
   public boolean didIQuit = false;
   public boolean didISwitchToBackStory = false;
   public boolean didISwitchToWin = false;
+  public boolean didISwitchToMenu = false;
   private MenuController menuController;
   private GameController gameController;
   private SetPreGameController setPreGameController;
@@ -19,7 +20,7 @@ public class DummyApp implements App {
 
   @Override
   public void switchToMenu() {
-    // TODO Auto-generated method stub
+    this.didISwitchToMenu = true;
   }
 
   @Override
