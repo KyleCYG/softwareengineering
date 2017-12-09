@@ -24,7 +24,7 @@ public class PlayerTest {
     int dx = 3;
     int dy = -2;
 
-    player.movePlayer(dx, dy);
+    player.move(dx, dy);
 
     int newX = player.getX();
     int newY = player.getY();
@@ -60,7 +60,7 @@ public class PlayerTest {
     Entity entity = new StrengthItem(20, CellType.STRENGTH2);
     entity.setPosition(entityPositionX, entityPositionY);
     level.getEntities().add(entity);
-    player.movePlayer(entityPositionX, entityPositionY);
+    player.move(entityPositionX, entityPositionY);
     player.setStrengthItem((StrengthItem) entity);
     assertEquals(entity, level.getEntityAtPos(entityPositionX, entityPositionY));
     assertEquals(20, player.getStrength());
@@ -76,7 +76,7 @@ public class PlayerTest {
     Entity entity = new HealthItem(5);
     entity.setPosition(entityPositionX, entityPositionY);
     level.getEntities().add(entity);
-    player.movePlayer(entityPositionX, entityPositionY);
+    player.move(entityPositionX, entityPositionY);
     HealthItem hp = (HealthItem) entity;
     player.increaseHealthPoint(hp.getValue());
     assertEquals(entity, level.getEntityAtPos(entityPositionX, entityPositionY));
@@ -93,7 +93,7 @@ public class PlayerTest {
     Entity entity = new GoldItem(5);
     entity.setPosition(entityPositionX, entityPositionY);
     level.getEntities().add(entity);
-    player.movePlayer(entityPositionX, entityPositionY);
+    player.move(entityPositionX, entityPositionY);
     GoldItem gold = (GoldItem) entity;
     player.setGold(player.getGold() + gold.getValue());
     assertEquals(entity, level.getEntityAtPos(entityPositionX, entityPositionY));

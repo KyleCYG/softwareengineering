@@ -90,12 +90,12 @@ public class GameController implements Controller {
     switch (targetCellType) {
       case ROOM:
       case CORRIDOR:
-        player.movePlayer(movePair.getX(), movePair.getY());
+        player.move(movePair.getX(), movePair.getY());
         break;
 
       case GOLD:
         player.setGold(player.getGold() + 1);
-        player.movePlayer(movePair.getX(), movePair.getY());
+        player.move(movePair.getX(), movePair.getY());
         Entity gold = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
         // Remove gold
         this.dungeon.getCurrentLevel().getEntities().remove(gold);
@@ -103,7 +103,7 @@ public class GameController implements Controller {
 
       case HEALTH:
         player.increaseHealthPoint(1);
-        player.movePlayer(movePair.getX(), movePair.getY());
+        player.move(movePair.getX(), movePair.getY());
         Entity health = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
         // Remove health item
         this.dungeon.getCurrentLevel().getEntities().remove(health);
@@ -111,7 +111,7 @@ public class GameController implements Controller {
 
       case STRENGTH1:
         player.setStrengthItem(new StrengthItem(10, CellType.STRENGTH1));
-        player.movePlayer(movePair.getX(), movePair.getY());
+        player.move(movePair.getX(), movePair.getY());
         Entity strength1 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
         // Remove strength1
         this.dungeon.getCurrentLevel().getEntities().remove(strength1);
@@ -119,7 +119,7 @@ public class GameController implements Controller {
 
       case STRENGTH2:
         player.setStrengthItem(new StrengthItem(20, CellType.STRENGTH2));
-        player.movePlayer(movePair.getX(), movePair.getY());
+        player.move(movePair.getX(), movePair.getY());
         Entity strength2 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
         // Remove strength2
         this.dungeon.getCurrentLevel().getEntities().remove(strength2);
@@ -127,7 +127,7 @@ public class GameController implements Controller {
 
       case STRENGTH3:
         player.setStrengthItem(new StrengthItem(30, CellType.STRENGTH3));
-        player.movePlayer(movePair.getX(), movePair.getY());
+        player.move(movePair.getX(), movePair.getY());
         Entity strength3 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
         // Remove strength3
         this.dungeon.getCurrentLevel().getEntities().remove(strength3);
@@ -152,7 +152,7 @@ public class GameController implements Controller {
           app.switchToWin();
         } else {
           messages.addMessage(String.format("You still need %d more gold!", Dungeon.REQUIRED_SCORE - player.getGold()));
-          player.movePlayer(movePair.getX(), movePair.getY());
+          player.move(movePair.getX(), movePair.getY());
         }
         break;
     }
