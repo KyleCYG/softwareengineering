@@ -3,7 +3,6 @@ package softwareengineering.scarlet.coursework2.controllers;
 import static org.junit.Assert.*;
 import java.util.Arrays;
 import org.junit.Test;
-import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactory;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.ExitItem;

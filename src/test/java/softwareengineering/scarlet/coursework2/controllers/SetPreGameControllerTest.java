@@ -58,6 +58,7 @@ public class SetPreGameControllerTest {
     controller.handleInput(Input.D);
     assertEquals("ABCD", controller.model.getName());
   }
+
   @Test
   public void testSwitchtoBackStory() {
     app = new DummyApp();

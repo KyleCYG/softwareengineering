@@ -27,10 +27,10 @@ public class DummyApp implements App {
   public void switchToPreGame() {
     // TODO Auto-generated method stub
   }
-  
+
   @Override
   public void switchToBackstory() {
-    this.didISwitchToBackStory=true;
+    this.didISwitchToBackStory = true;
   }
 
   @Override
@@ -40,8 +40,7 @@ public class DummyApp implements App {
 
   @Override
   public void switchToWin() {
-    // TODO Auto-generated method stub
-    this.didISwitchToWin=true;
+    this.didISwitchToWin = true;
   }
 
   public MenuController getMenuController() {
