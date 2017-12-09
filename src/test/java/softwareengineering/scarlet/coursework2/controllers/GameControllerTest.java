@@ -105,11 +105,12 @@ public class GameControllerTest {
     Level level1 = controller.dungeon.getLevels().get(0);
     Level level2 = controller.dungeon.getLevels().get(1);
 
-    StairsDownItem stairsDown = new StairsDownItem();
-    stairsDown.setPosition(controller.player.getX() + 1, controller.player.getY());
-    level1.getEntities().add(stairsDown);
-    controller.performAction(new Pair(1, 0));
+    // Go down a level first
+    assertEquals(level1, controller.dungeon.getCurrentLevel());
+    controller.dungeon.goDown();
+    assertEquals(level2, controller.dungeon.getCurrentLevel());
 
+    // Go back up again and confirm that it's the same level we came from
     StairsUpItem stairsUp = new StairsUpItem();
     stairsUp.setPosition(controller.player.getX() + 1, controller.player.getY());
     level2.getEntities().add(stairsUp);
@@ -119,28 +120,38 @@ public class GameControllerTest {
     assertEquals(level1.getStairsDown().getX(), controller.player.getX());
     assertEquals(level1.getStairsDown().getY(), controller.player.getY());
   }
-  
+
   @Test
-  public void testPerformAction_Exit() {
-    DummyApp app=new DummyApp();
+  public void testPerformAction_ExitWithGold() {
+    DummyApp app = new DummyApp();
     GameController controller = new GameController(app);
     controller.setUpModels();
-
     Level level1 = controller.dungeon.getLevels().get(0);
-    Level level2 = controller.dungeon.getLevels().get(1);
 
-    StairsDownItem stairsDown = new StairsDownItem();
-    stairsDown.setPosition(controller.player.getX() + 1, controller.player.getY());
-    level1.getEntities().add(stairsDown);
-    controller.performAction(new Pair(1, 0));
-    
-    ExitItem exitItem= new ExitItem();
+    ExitItem exitItem = new ExitItem();
     exitItem.setPosition(controller.player.getX() + 1, controller.player.getY());
-    level2.getEntities().add(exitItem);
+    level1.getEntities().add(exitItem);
     controller.player.setGold(Dungeon.REQUIRED_SCORE);
     controller.performAction(new Pair(1, 0));
-    
-    assertEquals(level2, controller.dungeon.getCurrentLevel());
+
     assertTrue(app.didISwitchToWin);
+  }
+
+  @Test
+  public void testPerformAction_ExitWithoutGold() {
+    DummyApp app = new DummyApp();
+    GameController controller = new GameController(app);
+    controller.setUpModels();
+    Level level1 = controller.dungeon.getLevels().get(0);
+
+    ExitItem exitItem = new ExitItem();
+    exitItem.setPosition(controller.player.getX() + 1, controller.player.getY());
+    level1.getEntities().add(exitItem);
+    controller.performAction(new Pair(1, 0));
+
+    assertFalse(app.didISwitchToWin);
+    assertEquals(exitItem.getX(), controller.player.getX());
+    assertEquals(exitItem.getY(), controller.player.getY());
+    assertTrue(controller.messages.hasMessages());
   }
 }

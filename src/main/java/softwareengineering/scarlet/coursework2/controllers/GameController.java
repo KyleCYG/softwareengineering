@@ -20,7 +20,7 @@ public class GameController implements Controller {
   protected Player player;
   private String playerName;
   private App app;
-  private MessageList messages;
+  protected MessageList messages;
 
   // TODO: split these constants into some kind of gameConfig class?
   private static final int LEVEL_HEIGHT = 20;
