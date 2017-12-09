@@ -61,17 +61,17 @@ public class GameController implements Controller {
    * @param playerName The player's name for this playthrough
    */
   public void setUpModels() {
-    // create new dungeon
+    // Create new dungeon
     this.dungeon = new Dungeon(GameController.LEVEL_WIDTH, GameController.LEVEL_HEIGHT,
         GameController.NUM_LEVELS);
 
-    // get the location of the first room (arbitrarily...) in the dungeon
+    // Get the location of the first room (arbitrarily...) in the dungeon
     // TODO: make the start location selection more intelligent
     Room startRoom = dungeon.getCurrentLevel().getRooms().get(0);
     int startX = startRoom.getX();
     int startY = startRoom.getY();
 
-    // create player
+    // Create player
     this.player = new Player(playerName, startX, startY);
 
     // Create a list to hold messages for the player

@@ -5,7 +5,6 @@ import softwareengineering.scarlet.coursework2.models.SetPreGame;
 import softwareengineering.scarlet.coursework2.views.SetPreGameView;
 import softwareengineering.scarlet.coursework2.views.View;;
 
-
 public class SetPreGameController implements Controller {
   private App app;
   private SetPreGameView view;

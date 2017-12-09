@@ -61,7 +61,7 @@ public class MenuController implements Controller {
         app.switchToPreGame();
         break;
       case 1:
-        // switch to
+        // switch to leaderboard
         break;
       case 2:
         app.quit();
