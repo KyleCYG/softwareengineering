@@ -5,6 +5,7 @@ import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Level;
+import softwareengineering.scarlet.coursework2.models.Monster;
 
 public class LevelRenderer {
   private Dungeon dungeon;
@@ -17,9 +18,7 @@ public class LevelRenderer {
     this.dungeon = dungeon;
   }
 
-  public void render(Graphics2D g2d, ImageObserver observer) {
-    Level level = dungeon.getCurrentLevel();
-
+  private void renderGrid(Level level, Graphics2D g2d, ImageObserver observer) {
     CellType[][] grid = level.getGrid();
 
     for (int x = 0; x < level.getWidth(); x++) {
@@ -74,6 +73,20 @@ public class LevelRenderer {
             break;
         }
       }
+    }
+  }
+
+  public void renderMonster(Monster monster, Graphics2D g2d, ImageObserver observer) {
+    // TODO: Render monster avatar
+  }
+
+  public void render(Graphics2D g2d, ImageObserver observer) {
+    Level level = dungeon.getCurrentLevel();
+
+    renderGrid(level, g2d, observer);
+
+    for (Monster monster : level.getMonsters()) {
+      renderMonster(monster, g2d, observer);
     }
   }
 }
