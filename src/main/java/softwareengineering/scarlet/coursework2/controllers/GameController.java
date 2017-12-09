@@ -8,6 +8,7 @@ import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.models.MessageList;
+import softwareengineering.scarlet.coursework2.models.Monster;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
@@ -163,6 +164,12 @@ public class GameController implements Controller {
     performAction(movePair);
   }
 
+  protected void handleMonsters() {
+    for (Monster monster : dungeon.getCurrentLevel().getMonsters()) {
+      monster.performAction(dungeon, player);
+    }
+  }
+
   @SuppressWarnings("incomplete-switch")
   @Override
   public void handleInput(Input input) {
@@ -183,6 +190,8 @@ public class GameController implements Controller {
         app.quit();
         break;
     }
+
+    handleMonsters();
   }
 
   @Override
