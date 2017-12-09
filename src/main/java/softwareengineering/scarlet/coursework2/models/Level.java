@@ -18,6 +18,7 @@ public class Level {
   private ArrayList<Room> rooms;
   private ArrayList<Corridor> corridors;
   private List<Entity> entities;
+  private List<Monster> monsters;
   private int width;
   private int height;
 
@@ -25,6 +26,7 @@ public class Level {
     this.rooms = new ArrayList<Room>();
     this.corridors = new ArrayList<Corridor>();
     this.entities = new ArrayList<Entity>();
+    this.monsters = new ArrayList<Monster>();
     this.width = width;
     this.height = height;
   }
@@ -49,6 +51,10 @@ public class Level {
 
   public List<Entity> getEntities() {
     return entities;
+  }
+
+  public List<Monster> getMonsters() {
+    return monsters;
   }
 
   public CellType[][] getGrid() {
