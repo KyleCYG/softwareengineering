@@ -1,6 +1,8 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.CellType;
@@ -83,7 +85,7 @@ public class GameController implements Controller {
     int targetY = player.getY() + movePair.getY();
 
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
-
+    scanForMonsters();
     switch (targetCellType) {
       case ROOM:
       case CORRIDOR:
@@ -141,6 +143,7 @@ public class GameController implements Controller {
         player.setX(dungeon.getCurrentLevel().getStairsUp().getX());
         player.setY(dungeon.getCurrentLevel().getStairsUp().getY());
         break;
+      case MONSTER:
 
       case EXIT:
         if (player.getGold() >= Dungeon.REQUIRED_SCORE) {
@@ -156,6 +159,28 @@ public class GameController implements Controller {
     }
   }
 
+  private void scanForMonsters() {
+    // TODO Auto-generated method stub
+    List<Monster> monsterList = this.dungeon.getCurrentLevel().getMonsters();
+    for (Iterator<Monster> it = monsterList.iterator(); it.hasNext();) {
+      Monster monster = it.next();
+      if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
+          || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
+          || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
+          || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
+        // find monster next to you
+        monster.decreaseHealthPoint(player.getStrength());
+        MessageList.addMessage("You hit the monster! Damage: " + -player.getStrength()
+            + " Monster's current health:" + monster.getHealthPoints());
+
+        if (monster.getHealthPoints() <= 0) {
+          it.remove();
+          MessageList.addMessage("Monster is dead!");
+        }
+      }
+    }
+  }
+
   /**
    * Moves the player to adjacent tile in the specified direction.
    *
@@ -163,7 +188,6 @@ public class GameController implements Controller {
    */
   public void movePlayer(MoveDirection direction) {
     Pair movePair = moveMap.get(direction);
-
     performAction(movePair);
   }
 

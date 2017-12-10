@@ -6,6 +6,7 @@ import java.util.Random;
 import softwareengineering.scarlet.coursework2.controllers.Input;
 import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
 import softwareengineering.scarlet.coursework2.controllers.Pair;
+import softwareengineering.scarlet.coursework2.levelgeneration.MonsterFactory;
 
 public class MonsterBehaviourType1 implements MonsterBehaviour {
 
@@ -25,10 +26,15 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       case ROOM:
         monster.move(movePair.getX(), movePair.getY());
         if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
-            || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))) {
+            || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
+            || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
+            || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
 
-          System.out.println("I WILL KILL YOU " + "monster coords: " + monster.getX() + ", "
-              + monster.getY() + " player coords: " + player.getX() + ", " + player.getY());
+          player.decreaseHealthPoint(monster.getStrength());
+          MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
+          
+          // System.out.println("I WILL KILL YOU " + "monster coords: " + monster.getX() + ", "
+          // + monster.getY() + " player coords: " + player.getX() + ", " + player.getY());
 
         }
 
