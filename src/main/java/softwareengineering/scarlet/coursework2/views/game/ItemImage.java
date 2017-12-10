@@ -6,15 +6,12 @@ import java.awt.Toolkit;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class ItemImage {
   protected Image image;
   protected String filename;
-  private URL url;
-
   private InputStream getImageStream() {
     InputStream stream = getClass().getResourceAsStream("/" + this.filename);
 

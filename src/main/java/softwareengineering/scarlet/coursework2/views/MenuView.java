@@ -17,7 +17,6 @@ import softwareengineering.scarlet.coursework2.models.Menu;
  * @author Dan Cosser
  */
 public class MenuView implements View {
-  private static final Font TITLE_FONT = new Font("Chalkduster", Font.BOLD, 6);
   private static final Font MENU_FONT = new Font("Chalkduster", Font.PLAIN, 18);
   private static final int ySpacing = 30; // height between menu option
   private Menu model;

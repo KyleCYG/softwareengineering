@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Random;
 import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
 import softwareengineering.scarlet.coursework2.controllers.Pair;
-import softwareengineering.scarlet.coursework2.levelgeneration.MonsterFactory;
 
 public class MonsterBehaviourType1 implements MonsterBehaviour {
 

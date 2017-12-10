@@ -38,8 +38,10 @@ public class WinView implements View {
     String bsTitle = "You got there!";
     g2d.drawString(bsTitle, 200, 170);
     String backstoryText = String.format(
-        "Congratulations %s! You got %s gold, enough to print your thesis, and made it\n"
-            + " to the print shop. Handing it in is easy now - hopefully you will get a good \n"
+        "Congratulations %s!\n"
+            + "You got %s gold, enough to print your thesis,\n"
+            + "and made it to the print shop.\n"
+            + "Handing it in is easy now - hopefully you will get a good \n"
             + "grade! Go enjoy a well earned rest... until the next time!"
             + "\n\n\n                              Press Enter To Continue...",
         score.getPlayerName(), score.getScore());
