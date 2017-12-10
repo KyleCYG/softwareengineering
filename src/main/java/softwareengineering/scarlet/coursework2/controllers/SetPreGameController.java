@@ -26,6 +26,12 @@ public class SetPreGameController implements Controller {
     this.view.setModel(model);
   }
 
+  /**
+   * Handle the user's input.
+   *
+   * Letters are added to the name. All four letters must be entered to proceed. The player can hit
+   * quit (escape) to return to the menu.
+   */
   @SuppressWarnings("incomplete-switch")
   @Override
   public void handleInput(Input input) {
@@ -120,6 +126,9 @@ public class SetPreGameController implements Controller {
     }
   }
 
+  /**
+   * Implementation of enter name logic
+   */
   private void performAction() {
     String playerName = this.model.getName();
 

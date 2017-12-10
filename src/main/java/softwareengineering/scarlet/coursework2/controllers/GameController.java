@@ -49,6 +49,14 @@ public class GameController implements Controller {
     this.app = app;
   }
 
+  /**
+   * Set the player's name for this play through.
+   *
+   * Used by the SetPreGameController to pass the name to the GameController so it can be recorded
+   * in the Player object
+   *
+   * @param playerName The player's chosen name
+   */
   public void setPlayerName(String playerName) {
     this.playerName = playerName;
   }
@@ -79,6 +87,13 @@ public class GameController implements Controller {
     this.player = new Player(playerName, startX, startY);
   }
 
+  /**
+   * Implementation of player actions, based on movement.
+   *
+   * The actual action performed depends on the type of the cell the player is moving on to.
+   *
+   * @param movePair The movement action of the player
+   */
   @SuppressWarnings("incomplete-switch")
   protected void performAction(Pair movePair) {
     int targetX = player.getX() + movePair.getX();
@@ -191,12 +206,26 @@ public class GameController implements Controller {
     performAction(movePair);
   }
 
+  /**
+   * Give the monster's a turn each.
+   *
+   * Iterates through each monster on the level, asking each to perform an action based on the state
+   * of the dungeon and the player.
+   */
   protected void handleMonsters() {
     for (Monster monster : dungeon.getCurrentLevel().getMonsters()) {
       monster.performAction(dungeon, player);
     }
   }
 
+  /**
+   * Perform an action based on the player's input when the game is in the "game" mode (i.e. normal
+   * game actions)
+   *
+   * Once complete, control is handed to the monsters for them to have a turn
+   *
+   * @param input The input from the view
+   */
   @SuppressWarnings("incomplete-switch")
   private void handleGameInput(Input input) {
     switch (input) {
@@ -222,8 +251,16 @@ public class GameController implements Controller {
         yn = true;
         break;
     }
+
+    handleMonsters();
   }
 
+  /**
+   * Perform an action based on the player's input when the game is in the "abandon" mode (i.e. the
+   * user has an expressed a desire to quit and the game is asking for confirmation)
+   *
+   * @param input The input from the view
+   */
   @SuppressWarnings("incomplete-switch")
   private void handleAbandonInput(Input input) {
     switch (input) {
@@ -236,6 +273,13 @@ public class GameController implements Controller {
     }
   }
 
+  /**
+   * Perform an action based on the player's input
+   *
+   * The action depends on what "mode" the game is in - normal play, or the abandon question
+   *
+   * @param input The input from the view
+   */
   @Override
   public void handleInput(Input input) {
     if (yn) {
@@ -243,8 +287,6 @@ public class GameController implements Controller {
     } else {
       handleGameInput(input);
     }
-
-    handleMonsters();
   }
 
 
