@@ -2,7 +2,12 @@ package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.Menu;
 
 /**
@@ -12,10 +17,11 @@ import softwareengineering.scarlet.coursework2.models.Menu;
  * @author Dan Cosser
  */
 public class MenuView implements View {
-  private static final Font TITLE_FONT = new Font("Monospaced", Font.BOLD, 6);
-  private static final Font MENU_FONT = new Font("Monospaced", Font.PLAIN, 12);
-  private static final int ySpacing = 20; // height between menu option
+  private static final Font TITLE_FONT = new Font("Chalkduster", Font.BOLD, 6);
+  private static final Font MENU_FONT = new Font("Chalkduster", Font.PLAIN, 18);
+  private static final int ySpacing = 30; // height between menu option
   private Menu model;
+  private Image background;
 
   /**
    * Render to the screen.
@@ -24,9 +30,22 @@ public class MenuView implements View {
    */
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
-    this.drawTitle(g2d);
+    this.drawBackground(g2d,observer);
+    //this.drawTitle(g2d);
     this.drawOptions(g2d);
     this.drawMenuArrow(g2d);
+  }
+
+  private void drawBackground(Graphics2D g2d, ImageObserver observer) {
+    InputStream stream = getClass().getResourceAsStream("/background1.png");
+    try {
+      ImageIcon icon = new ImageIcon(ImageIO.read(stream));
+      background = icon.getImage();
+    } catch (IOException e) {
+      throw new RuntimeException(
+          "Image %s not found! Assuming problem with resources and quitting");
+    }
+    g2d.drawImage(this.background, 0, 0, observer);
   }
 
   /**
@@ -36,9 +55,9 @@ public class MenuView implements View {
    */
   private void drawOptions(Graphics2D g2d) {
     g2d.setFont(MenuView.MENU_FONT);
-    g2d.drawString("  New Game", 180, 250);
-    g2d.drawString("  View Leaderboard", 180, 270);
-    g2d.drawString("  Quit", 180, 290);
+    g2d.drawString("  New Game", 270, 350);
+    g2d.drawString("  View Leaderboard", 270, 380);
+    g2d.drawString("  Quit", 270, 410);
   }
 
   /**
@@ -79,7 +98,7 @@ public class MenuView implements View {
    */
   private void drawMenuArrow(Graphics2D g2d) {
     g2d.setFont(MenuView.MENU_FONT);
-    g2d.drawString("→", 180, 250 + model.getOption() * ySpacing);
+    g2d.drawString("→", 270, 350 + model.getOption() * ySpacing);
   }
 
   /**
