@@ -85,11 +85,6 @@ public class Level {
       grid[entity.getX()][entity.getY()] = entity.type;
     }
 
-    // Draw monsters
-    for (Monster monster : getMonsters()) {
-      grid[monster.getX()][monster.getY()] = CellType.MONSTER;
-    }
-
     // Draw corridors
     for (Corridor corridor : getCorridors()) {
       for (int x = corridor.getX1(); x <= corridor.getX2(); x++) {

@@ -16,21 +16,38 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     // TODO Auto-generated method stub
     getDirection();
     Pair movePair = moveMap.get(moveDirection);
-    int targetX = player.getX() + movePair.getX();
-    int targetY = player.getY() + movePair.getY();
+    int targetX = monster.getX() + movePair.getX();
+    int targetY = monster.getY() + movePair.getY();
 
     CellType targetCellType = dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
 
     switch (targetCellType) {
       case ROOM:
-      case CORRIDOR:
-      case GOLD:
-      case HEALTH:
-      case STRENGTH1:
-      case STRENGTH2:
-      case STRENGTH3:
         monster.move(movePair.getX(), movePair.getY());
+        if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
+            || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))) {
+
+          System.out.println("I WILL KILL YOU " + "monster coords: " + monster.getX() + ", "
+              + monster.getY() + " player coords: " + player.getX() + ", " + player.getY());
+
+        }
+
         break;
+      case CORRIDOR:
+        break;
+      case GOLD:
+        break;
+      case HEALTH:
+        break;
+      case STRENGTH1:
+        break;
+      case STRENGTH2:
+        break;
+      case STRENGTH3:
+        break;
+      case VOID:
+        break;
+
     }
   }
 

@@ -69,9 +69,6 @@ public class LevelRenderer {
             LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("s3").draw(x, y, g2d, observer);
             break;
-          // case MONSTER:
-          // LevelItemsFactory.init("r").draw(x, y, g2d, observer);
-          // LevelItemsFactory.init("x").draw(x, y, g2d, observer);
           default:
             break;
         }
