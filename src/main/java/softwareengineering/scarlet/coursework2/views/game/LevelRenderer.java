@@ -81,7 +81,8 @@ public class LevelRenderer {
 
   public void renderMonster(Monster monster, Graphics2D g2d, ImageObserver observer) {
     // TODO: Render monster avatar
-    LevelItemsFactory.init("x").draw(monster.getX(), monster.getY(), g2d, observer);
+    // LevelItemsFactory.init("r").draw(monster.getX(), monster.getY(), g2d, observer);
+    // LevelItemsFactory.init("x").draw(monster.getX(), monster.getY(), g2d, observer);
   }
 
   public void render(Graphics2D g2d, ImageObserver observer) {
@@ -89,8 +90,8 @@ public class LevelRenderer {
 
     renderGrid(level, g2d, observer);
 
-    for (Monster monster : level.getMonsters()) {
-      renderMonster(monster, g2d, observer);
-    }
+    /*
+     * for (Monster monster : level.getMonsters()) { renderMonster(monster, g2d, observer); }
+     */
   }
 }

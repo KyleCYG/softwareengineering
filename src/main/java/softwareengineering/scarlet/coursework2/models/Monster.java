@@ -5,6 +5,7 @@ public abstract class Monster extends Character {
 
   public Monster(String name, int startX, int startY, int health, int strength) {
     super(name, startX, startY, health, strength);
+    behaviour = new MonsterBehaviourType1();
   }
 
   public void performAction(Dungeon dungeon, Player player) {
