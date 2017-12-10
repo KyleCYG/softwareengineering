@@ -113,6 +113,10 @@ public class SetPreGameController implements Controller {
         break;
       case DELETE:
         this.model.deleteLetter();
+        break;
+      case QUIT:
+        this.app.switchToMenu();
+        break;
     }
   }
 

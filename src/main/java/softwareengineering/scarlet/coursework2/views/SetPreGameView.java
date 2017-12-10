@@ -15,6 +15,7 @@ public class SetPreGameView implements View {
     this.drawEnterString(g2d);
     if (this.model.isWarning()) {
       this.drawWarning(g2d);
+      this.model.setWarning(false);
     }
   }
 
