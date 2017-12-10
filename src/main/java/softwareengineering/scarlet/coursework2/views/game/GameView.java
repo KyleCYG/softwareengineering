@@ -67,8 +67,6 @@ public class GameView implements View {
     for (int i = 0; i < MessageList.getMessages().size(); i++) {
       g2d.drawString(MessageList.getMessages().get(i), 80, 54 + (i*20));
     }
-
-    MessageList.clear();
   }
 
   @Override

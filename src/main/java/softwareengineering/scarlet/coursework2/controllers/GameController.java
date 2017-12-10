@@ -174,34 +174,50 @@ public class GameController implements Controller {
   }
 
   @SuppressWarnings("incomplete-switch")
-  @Override
-  public void handleInput(Input input) {
+  private void handleGameInput(Input input) {
     switch (input) {
       case UP:
+        MessageList.clear();
         movePlayer(MoveDirection.UP);
         break;
       case DOWN:
+        MessageList.clear();
         movePlayer(MoveDirection.DOWN);
         break;
       case LEFT:
+        MessageList.clear();
         movePlayer(MoveDirection.LEFT);
         break;
       case RIGHT:
+        MessageList.clear();
         movePlayer(MoveDirection.RIGHT);
         break;
       case QUIT:
+      case Q:
         MessageList.addMessage("Are you sure you want to quit? (Y/N)");
         yn = true;
         break;
-      case Y:
-        if (yn)
-          app.quit();
-        else
-          break;
-      case N:
-        if (yn)
-          break;
+    }
+  }
 
+  @SuppressWarnings("incomplete-switch")
+  private void handleAbandonInput(Input input) {
+    switch (input) {
+      case Y:
+        app.quit();
+      case N:
+        MessageList.clear();
+        yn = false;
+        break;
+    }
+  }
+
+  @Override
+  public void handleInput(Input input) {
+    if (yn) {
+      handleAbandonInput(input);
+    } else {
+      handleGameInput(input);
     }
 
     handleMonsters();
