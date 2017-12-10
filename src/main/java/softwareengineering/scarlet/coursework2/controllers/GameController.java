@@ -27,6 +27,8 @@ public class GameController implements Controller {
   private static final int LEVEL_WIDTH = 20;
   private static final int NUM_LEVELS = 4;
 
+  private boolean yn = false;
+
   // Map of movement directions to their x, y movements
   private static final Map<MoveDirection, Pair> moveMap;
   static {
@@ -146,7 +148,8 @@ public class GameController implements Controller {
           app.getWinController().setScore(score);
           app.switchToWin();
         } else {
-          MessageList.addMessage(String.format("You still need %d more gold!", Dungeon.REQUIRED_SCORE - player.getGold()));
+          MessageList.addMessage(String.format("You still need %d more gold!",
+              Dungeon.REQUIRED_SCORE - player.getGold()));
           player.move(movePair.getX(), movePair.getY());
         }
         break;
@@ -187,12 +190,23 @@ public class GameController implements Controller {
         movePlayer(MoveDirection.RIGHT);
         break;
       case QUIT:
-        app.quit();
+        MessageList.addMessage("Are you sure you want to quit? (Y/N)");
+        yn = true;
         break;
+      case Y:
+        if (yn)
+          app.quit();
+        else
+          break;
+      case N:
+        if (yn)
+          break;
+
     }
 
     handleMonsters();
   }
+
 
   @Override
   public void init(View view) {
