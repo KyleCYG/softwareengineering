@@ -283,7 +283,8 @@ public class LevelFactory {
    * @param entities List of monsters to place in the dungeon
    * @return A new Level containing rooms and corridors
    */
-  public static Level generateLevel(int width, int height, List<Entity> entities, List<Monster> monsters) {
+  public static Level generateLevel(int width, int height, List<Entity> entities,
+      List<Monster> monsters) {
     Level level = new Level(width, height);
     Leaf root = makeNode(0, 0, width, height, Direction.HORIZONTAL);
     level.getRooms().addAll(root.getRooms());

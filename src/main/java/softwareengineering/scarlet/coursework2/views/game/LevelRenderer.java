@@ -69,6 +69,9 @@ public class LevelRenderer {
             LevelItemsFactory.init("r").draw(x, y, g2d, observer);
             LevelItemsFactory.init("s3").draw(x, y, g2d, observer);
             break;
+          // case MONSTER:
+          // LevelItemsFactory.init("r").draw(x, y, g2d, observer);
+          // LevelItemsFactory.init("x").draw(x, y, g2d, observer);
           default:
             break;
         }
@@ -78,6 +81,7 @@ public class LevelRenderer {
 
   public void renderMonster(Monster monster, Graphics2D g2d, ImageObserver observer) {
     // TODO: Render monster avatar
+    LevelItemsFactory.init("x").draw(monster.getX(), monster.getY(), g2d, observer);
   }
 
   public void render(Graphics2D g2d, ImageObserver observer) {

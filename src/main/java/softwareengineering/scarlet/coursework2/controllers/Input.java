@@ -10,5 +10,5 @@ package softwareengineering.scarlet.coursework2.controllers;
  * @author Dan Cosser
  */
 public enum Input {
-  NONE, UP, DOWN, LEFT, RIGHT, CHOOSE, QUIT, SPACE,DELETE, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
+  NONE, UP, DOWN, LEFT, RIGHT, CHOOSE, QUIT, SPACE, DELETE, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
 }

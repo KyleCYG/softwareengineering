@@ -37,7 +37,8 @@ public class GameView implements View {
       ImageIcon icon = new ImageIcon(ImageIO.read(stream));
       background = icon.getImage();
     } catch (IOException e) {
-      throw new RuntimeException("Image %s not found! Assuming problem with resources and quitting");
+      throw new RuntimeException(
+          "Image %s not found! Assuming problem with resources and quitting");
     }
   }
 
@@ -65,7 +66,7 @@ public class GameView implements View {
     }
 
     for (int i = 0; i < MessageList.getMessages().size(); i++) {
-      g2d.drawString(MessageList.getMessages().get(i), 80, 54 + (i*20));
+      g2d.drawString(MessageList.getMessages().get(i), 80, 54 + (i * 20));
     }
   }
 

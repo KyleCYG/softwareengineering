@@ -11,6 +11,7 @@ public class StrengthItem extends Entity {
   public int getValue() {
     return value;
   }
+
   public CellType getType() {
     return type;
   }

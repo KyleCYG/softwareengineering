@@ -61,7 +61,7 @@ public class EntityFactoryTest {
     double previousChance = EntityFactory.generateChance(0, totalLevels, 0, 100, true);
     double chance;
 
-    for (int level=1; level<totalLevels; level++ ) {
+    for (int level = 1; level < totalLevels; level++) {
       chance = EntityFactory.generateChance(level, totalLevels, 0, 100, true);
       assertTrue(chance > previousChance);
     }
@@ -73,7 +73,7 @@ public class EntityFactoryTest {
     double previousChance = EntityFactory.generateChance(0, totalLevels, 0, 100, false);
     double chance;
 
-    for (int level=1; level<totalLevels; level++ ) {
+    for (int level = 1; level < totalLevels; level++) {
       chance = EntityFactory.generateChance(level, totalLevels, 0, 100, false);
       assertTrue(chance < previousChance);
     }
@@ -84,7 +84,7 @@ public class EntityFactoryTest {
     int totalLevels = 6;
     double chance;
 
-    for (int level=0; level<totalLevels; level++ ) {
+    for (int level = 0; level < totalLevels; level++) {
       chance = EntityFactory.generateStrengthOneChance(level, totalLevels);
       if (level > totalLevels / 2) {
         assertTrue(chance == 0);
@@ -99,7 +99,7 @@ public class EntityFactoryTest {
     int totalLevels = 6;
     double chance;
 
-    for (int level=0; level<totalLevels; level++ ) {
+    for (int level = 0; level < totalLevels; level++) {
       chance = EntityFactory.generateStrengthThreeChance(level, totalLevels);
       if (level < totalLevels / 2) {
         assertTrue(chance == 0);

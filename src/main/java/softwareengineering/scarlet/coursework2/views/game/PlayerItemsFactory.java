@@ -35,7 +35,7 @@ public class PlayerItemsFactory {
           strength3 = new StrengthType3();
         }
         return strength3;
-       default:
+      default:
         return null;
     }
   }

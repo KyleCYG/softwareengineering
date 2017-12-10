@@ -29,21 +29,24 @@ public class ItemImage {
     if (this.image == null) {
       try {
         InputStream stream = getImageStream();
-        if(this.filename.equals("paperpage.gif") || this.filename.equals("health.gif") || this.filename.equals("bomb.gif") || this.filename.equals("hammer.gif") || this.filename.equals("sword.gif")){
-          this.image = Toolkit.getDefaultToolkit().createImage(this.filename);}
-        else{
+        if (this.filename.equals("paperpage.gif") || this.filename.equals("health.gif")
+            || this.filename.equals("bomb.gif") || this.filename.equals("hammer.gif")
+            || this.filename.equals("sword.gif")) {
+          this.image = Toolkit.getDefaultToolkit().createImage(this.filename);
+        } else {
           ImageIcon icon = new ImageIcon(ImageIO.read(stream));
           this.image = icon.getImage();
         }
-        
+
       } catch (IOException io) {
-        throw new RuntimeException(String.format("Image %s not found! Assuming problem with resources and quitting", this.filename));
+        throw new RuntimeException(String.format(
+            "Image %s not found! Assuming problem with resources and quitting", this.filename));
       }
     }
     return this.image;
   }
-  
-  private Image getGif(){
+
+  private Image getGif() {
     if (this.image == null) {
       this.image = Toolkit.getDefaultToolkit().createImage(this.filename);
     }

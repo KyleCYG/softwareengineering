@@ -28,7 +28,7 @@ public class MenuView implements View {
     this.drawOptions(g2d);
     this.drawMenuArrow(g2d);
   }
-  
+
   /**
    * Renders the menu options.
    *
