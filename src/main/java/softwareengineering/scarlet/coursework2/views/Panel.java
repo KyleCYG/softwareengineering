@@ -84,7 +84,6 @@ public class Panel extends JPanel implements KeyListener {
         key = Input.CHOOSE;
         break;
       case KeyEvent.VK_ESCAPE:
-      case KeyEvent.VK_Q:
         key = Input.QUIT;
         break;
       case KeyEvent.VK_BACK_SPACE:
@@ -137,6 +136,9 @@ public class Panel extends JPanel implements KeyListener {
         break;
       case KeyEvent.VK_P:
         key = Input.P;
+        break;
+      case KeyEvent.VK_Q:
+        key = Input.Q;
         break;
       case KeyEvent.VK_R:
         key = Input.R;
