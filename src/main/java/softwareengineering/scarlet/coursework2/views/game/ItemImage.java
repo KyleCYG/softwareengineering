@@ -2,7 +2,10 @@ package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
@@ -26,11 +29,23 @@ public class ItemImage {
     if (this.image == null) {
       try {
         InputStream stream = getImageStream();
-        ImageIcon icon = new ImageIcon(ImageIO.read(stream));
-        this.image = icon.getImage();
+        if(this.filename.equals("paperpage.gif") || this.filename.equals("health.gif") || this.filename.equals("bomb.gif") || this.filename.equals("hammer.gif") || this.filename.equals("sword.gif")){
+          this.image = Toolkit.getDefaultToolkit().createImage(this.filename);}
+        else{
+          ImageIcon icon = new ImageIcon(ImageIO.read(stream));
+          this.image = icon.getImage();
+        }
+        
       } catch (IOException io) {
         throw new RuntimeException(String.format("Image %s not found! Assuming problem with resources and quitting", this.filename));
       }
+    }
+    return this.image;
+  }
+  
+  private Image getGif(){
+    if (this.image == null) {
+      this.image = Toolkit.getDefaultToolkit().createImage(this.filename);
     }
     return this.image;
   }
