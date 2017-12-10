@@ -168,8 +168,7 @@ public class EntityFactory {
       } else if (choice < strengthThreeLevel) {
         entities.add(new StrengthItem(3, CellType.STRENGTH3));
       } else {
-        // TOOD: Replace with monster spawner
-        entities.add(new HealthItem(1));
+        entities.add(new MonsterSpawner());
       }
     }
 

@@ -11,6 +11,7 @@ import java.util.Set;
 import softwareengineering.scarlet.coursework2.models.Corridor;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Level;
+import softwareengineering.scarlet.coursework2.models.Monster;
 import softwareengineering.scarlet.coursework2.models.Room;
 
 public class LevelFactory {
@@ -267,15 +268,28 @@ public class LevelFactory {
    *
    * @param width Width in cells
    * @param height Height in cells
-   * @param entities List of objects to place in the dungeon (gold etc)
    * @return A new Level containing rooms and corridors
    */
-  public static Level generateLevel(int width, int height, List<Entity> entities) {
+  public static Level generateLevel(int width, int height) {
+    return generateLevel(width, height, new ArrayList<Entity>(), new ArrayList<Monster>());
+  }
+
+  /**
+   * Make a level of a given size
+   *
+   * @param width Width in cells
+   * @param height Height in cells
+   * @param entities List of objects to place in the dungeon (gold etc)
+   * @param entities List of monsters to place in the dungeon
+   * @return A new Level containing rooms and corridors
+   */
+  public static Level generateLevel(int width, int height, List<Entity> entities, List<Monster> monsters) {
     Level level = new Level(width, height);
     Leaf root = makeNode(0, 0, width, height, Direction.HORIZONTAL);
     level.getRooms().addAll(root.getRooms());
     level.getCorridors().addAll(root.getCorridors());
     level = placeObjects(level, entities);
+    level.getMonsters().addAll(monsters);
     return level;
   }
 }

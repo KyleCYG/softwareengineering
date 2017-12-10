@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import softwareengineering.scarlet.coursework2.levelgeneration.EntityFactory;
 import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
+import softwareengineering.scarlet.coursework2.levelgeneration.MonsterFactory;
 
 public class Dungeon {
   public static final int REQUIRED_SCORE = 20;
@@ -39,9 +40,11 @@ public class Dungeon {
     List<Level> levels = new ArrayList<Level>();
 
     for (int i = 0; i < numLevels; i++) {
-      List<Entity> entities = Dungeon.generateEntities(i, numLevels); // difficulty is proportional
-                                                                      // to level
-      levels.add(LevelFactory.generateLevel(width, height, entities));
+      // Pass in level information as difficulty is proportional to level
+      List<Entity> entities = Dungeon.generateEntities(i, numLevels);
+      List<Monster> monsters = Dungeon.generateMonsters(entities, i, numLevels);
+
+      levels.add(LevelFactory.generateLevel(width, height, entities, monsters));
     }
 
     return levels;
@@ -55,6 +58,16 @@ public class Dungeon {
    */
   protected static List<Entity> generateEntities(int level, int numLevels) {
     return EntityFactory.generateItems(level, numLevels, REQUIRED_SCORE);
+  }
+
+  /**
+   * Generates a list of monsters to populate a level
+   *
+   * @param level The depth of the level to be populated - the higher the number, the harder the level
+   * @return A list of entities
+   */
+  protected static List<Monster> generateMonsters(List<Entity> entities, int level, int numLevels) {
+    return MonsterFactory.generateMonsters(entities, level, numLevels);
   }
 
   /**
