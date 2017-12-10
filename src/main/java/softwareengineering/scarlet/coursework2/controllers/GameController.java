@@ -8,6 +8,7 @@ import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.models.MessageList;
+import softwareengineering.scarlet.coursework2.models.Monster;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.Room;
 import softwareengineering.scarlet.coursework2.models.StrengthItem;
@@ -20,7 +21,6 @@ public class GameController implements Controller {
   protected Player player;
   private String playerName;
   private App app;
-  protected MessageList messages;
 
   // TODO: split these constants into some kind of gameConfig class?
   private static final int LEVEL_HEIGHT = 20;
@@ -73,11 +73,6 @@ public class GameController implements Controller {
 
     // Create player
     this.player = new Player(playerName, startX, startY);
-
-    // Create a list to hold messages for the player
-    this.messages = new MessageList();
-
-    // TODO: create player status
   }
 
   @SuppressWarnings("incomplete-switch")
@@ -151,7 +146,7 @@ public class GameController implements Controller {
           app.getWinController().setScore(score);
           app.switchToWin();
         } else {
-          messages.addMessage(String.format("You still need %d more gold!", Dungeon.REQUIRED_SCORE - player.getGold()));
+          MessageList.addMessage(String.format("You still need %d more gold!", Dungeon.REQUIRED_SCORE - player.getGold()));
           player.move(movePair.getX(), movePair.getY());
         }
         break;
@@ -167,6 +162,12 @@ public class GameController implements Controller {
     Pair movePair = moveMap.get(direction);
 
     performAction(movePair);
+  }
+
+  protected void handleMonsters() {
+    for (Monster monster : dungeon.getCurrentLevel().getMonsters()) {
+      monster.performAction(dungeon, player);
+    }
   }
 
   @SuppressWarnings("incomplete-switch")
@@ -189,12 +190,14 @@ public class GameController implements Controller {
         app.quit();
         break;
     }
+
+    handleMonsters();
   }
 
   @Override
   public void init(View view) {
     this.view = (GameView) view;
     setUpModels();
-    this.view.setModels(this.dungeon, this.player, this.messages);
+    this.view.setModels(this.dungeon, this.player);
   }
 }

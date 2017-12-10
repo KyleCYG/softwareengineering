@@ -4,9 +4,12 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import org.junit.Test;
 import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactory;
+import softwareengineering.scarlet.coursework2.models.DummyMonster;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.Level;
+import softwareengineering.scarlet.coursework2.models.MessageList;
+import softwareengineering.scarlet.coursework2.models.Monster;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
@@ -152,6 +155,20 @@ public class GameControllerTest {
     assertFalse(app.didISwitchToWin);
     assertEquals(exitItem.getX(), controller.player.getX());
     assertEquals(exitItem.getY(), controller.player.getY());
-    assertTrue(controller.messages.hasMessages());
+    assertTrue(MessageList.hasMessages());
+    MessageList.clear();
+  }
+
+  @Test
+  public void testHandleMonsters() {
+    DummyApp app = new DummyApp();
+    GameController controller = new GameController(app);
+    controller.setUpModels();
+
+    controller.handleMonsters();
+
+    for (Monster monster : controller.dungeon.getCurrentLevel().getMonsters()) {
+      assertTrue(((DummyMonster) monster).hasHadTurn);
+    }
   }
 }

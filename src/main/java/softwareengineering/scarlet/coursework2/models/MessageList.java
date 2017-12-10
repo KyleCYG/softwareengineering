@@ -1,24 +1,31 @@
 package softwareengineering.scarlet.coursework2.models;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MessageList {
-  private Queue<String> messages;
+  private static List<String> messages;
 
-  public MessageList() {
-    messages = new LinkedList<String>();
+  private static List<String> getMessageList() {
+    if (messages == null) {
+      messages = new ArrayList<String>();
+    }
+    return messages;
   }
 
-  public void addMessage(String message) {
-    messages.add(message);
+  public static void addMessage(String message) {
+    getMessageList().add(message);
   }
 
-  public boolean hasMessages() {
-    return messages.peek() != null;
+  public static boolean hasMessages() {
+    return getMessageList().size() > 0;
   }
 
-  public String getMessage() {
-    return messages.poll();
+  public static void clear() {
+    messages = null;
+  }
+
+  public static List<String> getMessages() {
+    return messages;
   }
 }
