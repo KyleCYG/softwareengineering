@@ -15,11 +15,12 @@ public class WinView implements View {
   private void drawBackstory(Graphics2D g2d) {
     String bsTitle = "You got there!";
     g2d.drawString(bsTitle, 200, 170);
-    String backstoryText =
-        String.format("Congratulations %s! You got %s gold, enough to print your thesis, and made it\n"
+    String backstoryText = String.format(
+        "Congratulations %s! You got %s gold, enough to print your thesis, and made it\n"
             + " to the print shop. Handing it in is easy now - hopefully you will get a good \n"
             + "grade! Go enjoy a well earned rest... until the next time!"
-            + "\n\n\n                              Press Enter To Continue...", score.getPlayerName(), score.getScore());
+            + "\n\n\n                              Press Enter To Continue...",
+        score.getPlayerName(), score.getScore());
 
     int x = 40;
     int y = 200;

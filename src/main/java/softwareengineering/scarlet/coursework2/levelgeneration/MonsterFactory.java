@@ -13,7 +13,8 @@ public class MonsterFactory {
     return new DemoMonster(startX, startY);
   }
 
-  public static List<Monster> generateMonsters(List<Entity> entities, int levelNumber, int totalLevels) {
+  public static List<Monster> generateMonsters(List<Entity> entities, int levelNumber,
+      int totalLevels) {
     List<Monster> monsters = new ArrayList<Monster>();
     List<Entity> entitiesToRemove = new ArrayList<Entity>();
 

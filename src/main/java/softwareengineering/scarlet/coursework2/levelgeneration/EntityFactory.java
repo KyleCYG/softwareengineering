@@ -122,8 +122,8 @@ public class EntityFactory {
   }
 
   /**
-   * Ranges from a 25% chance to a 0% chance of getting a strength three item, but only considers the
-   * second half of the levels.
+   * Ranges from a 25% chance to a 0% chance of getting a strength three item, but only considers
+   * the second half of the levels.
    *
    * @param levelNumber Current level
    * @param totalLevels Total number of levels to consider

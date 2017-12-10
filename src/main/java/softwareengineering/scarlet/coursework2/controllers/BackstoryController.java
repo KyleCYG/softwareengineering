@@ -4,7 +4,7 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.views.BackstoryView;
 import softwareengineering.scarlet.coursework2.views.View;
 
-public class BackstoryController implements Controller{
+public class BackstoryController implements Controller {
   private App app;
   private BackstoryView view;
 
@@ -35,7 +35,7 @@ public class BackstoryController implements Controller{
    */
   public void handleInput(Input input) {
     if (input == Input.CHOOSE) {
-        app.switchToGame();
+      app.switchToGame();
     }
   }
 }

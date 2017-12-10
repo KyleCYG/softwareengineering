@@ -53,7 +53,8 @@ public class Dungeon {
   /**
    * Generates a list of entities to populate a level
    *
-   * @param level The depth of the level to be populated - the higher the number, the harder the level
+   * @param level The depth of the level to be populated - the higher the number, the harder the
+   *        level
    * @return A list of entities
    */
   protected static List<Entity> generateEntities(int level, int numLevels) {
@@ -63,7 +64,8 @@ public class Dungeon {
   /**
    * Generates a list of monsters to populate a level
    *
-   * @param level The depth of the level to be populated - the higher the number, the harder the level
+   * @param level The depth of the level to be populated - the higher the number, the harder the
+   *        level
    * @return A list of entities
    */
   protected static List<Monster> generateMonsters(List<Entity> entities, int level, int numLevels) {
