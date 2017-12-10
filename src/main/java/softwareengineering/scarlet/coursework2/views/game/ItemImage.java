@@ -27,21 +27,18 @@ public class ItemImage {
     if (this.image == null) {
       try {
         InputStream stream = getImageStream();
-        if (this.filename.equals("paperpage.gif") || this.filename.equals("health.gif")
-            || this.filename.equals("sickle.gif") || this.filename.equals("hammer.gif")
-            || this.filename.equals("sword.gif") 
-            || this.filename.equals("player.gif") || this.filename.equals("monster.gif")) {
+        if (this.filename.endsWith(".gif")) {
           this.image = Toolkit.getDefaultToolkit().createImage(this.filename);
         } else {
           ImageIcon icon = new ImageIcon(ImageIO.read(stream));
           this.image = icon.getImage();
         }
-
       } catch (IOException io) {
         throw new RuntimeException(String.format(
             "Image %s not found! Assuming problem with resources and quitting", this.filename));
       }
     }
+
     return this.image;
   }
 

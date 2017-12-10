@@ -13,18 +13,30 @@ public class Menu {
     this.selectedOption = 0;
   }
 
+  /**
+   * Move to the next menu option
+   */
   public void incrementOption() {
     this.selectedOption++;
     this.selectedOption = this.selectedOption % 3;
   }
 
+  /**
+   * Move to the previous menu option
+   */
   public void decrementOption() {
     this.selectedOption--;
     if (this.selectedOption == -1) {
-      this.selectedOption = 2; // loop back to bottom option
+      // Loop back to bottom option
+      this.selectedOption = 2; 
     }
   }
 
+  /**
+   * Get the currently selected menu option
+   *
+   * @return The selected option
+   */
   public int getOption() {
     return this.selectedOption;
   }

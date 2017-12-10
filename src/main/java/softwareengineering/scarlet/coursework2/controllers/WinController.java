@@ -42,7 +42,7 @@ public class WinController implements Controller {
   /**
    * User should press enter to continue to go back to the menu
    *
-   * @param input
+   * @param input The user's input
    */
   public void handleInput(Input input) {
     if (input == Input.CHOOSE) {

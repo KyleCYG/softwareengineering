@@ -1,6 +1,8 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.CellType;
@@ -47,6 +49,14 @@ public class GameController implements Controller {
     this.app = app;
   }
 
+  /**
+   * Set the player's name for this play through.
+   *
+   * Used by the SetPreGameController to pass the name to the GameController so it can be recorded
+   * in the Player object
+   *
+   * @param playerName The player's chosen name
+   */
   public void setPlayerName(String playerName) {
     this.playerName = playerName;
   }
@@ -77,13 +87,20 @@ public class GameController implements Controller {
     this.player = new Player(playerName, startX, startY);
   }
 
+  /**
+   * Implementation of player actions, based on movement.
+   *
+   * The actual action performed depends on the type of the cell the player is moving on to.
+   *
+   * @param movePair The movement action of the player
+   */
   @SuppressWarnings("incomplete-switch")
   protected void performAction(Pair movePair) {
     int targetX = player.getX() + movePair.getX();
     int targetY = player.getY() + movePair.getY();
 
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
-
+    scanForMonsters();
     switch (targetCellType) {
       case ROOM:
       case CORRIDOR:
@@ -141,6 +158,7 @@ public class GameController implements Controller {
         player.setX(dungeon.getCurrentLevel().getStairsUp().getX());
         player.setY(dungeon.getCurrentLevel().getStairsUp().getY());
         break;
+      case MONSTER:
 
       case EXIT:
         if (player.getGold() >= Dungeon.REQUIRED_SCORE) {
@@ -156,6 +174,28 @@ public class GameController implements Controller {
     }
   }
 
+  private void scanForMonsters() {
+    // TODO Auto-generated method stub
+    List<Monster> monsterList = this.dungeon.getCurrentLevel().getMonsters();
+    for (Iterator<Monster> it = monsterList.iterator(); it.hasNext();) {
+      Monster monster = it.next();
+      if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
+          || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
+          || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
+          || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
+        // find monster next to you
+        monster.decreaseHealthPoint(player.getStrength());
+        MessageList.addMessage("You hit the monster! Damage: " + -player.getStrength()
+            + " Monster's current health:" + monster.getHealthPoints());
+
+        if (monster.getHealthPoints() <= 0) {
+          it.remove();
+          MessageList.addMessage("Monster is dead!");
+        }
+      }
+    }
+  }
+
   /**
    * Moves the player to adjacent tile in the specified direction.
    *
@@ -163,16 +203,29 @@ public class GameController implements Controller {
    */
   public void movePlayer(MoveDirection direction) {
     Pair movePair = moveMap.get(direction);
-
     performAction(movePair);
   }
 
+  /**
+   * Give the monster's a turn each.
+   *
+   * Iterates through each monster on the level, asking each to perform an action based on the state
+   * of the dungeon and the player.
+   */
   protected void handleMonsters() {
     for (Monster monster : dungeon.getCurrentLevel().getMonsters()) {
       monster.performAction(dungeon, player);
     }
   }
 
+  /**
+   * Perform an action based on the player's input when the game is in the "game" mode (i.e. normal
+   * game actions)
+   *
+   * Once complete, control is handed to the monsters for them to have a turn
+   *
+   * @param input The input from the view
+   */
   @SuppressWarnings("incomplete-switch")
   private void handleGameInput(Input input) {
     switch (input) {
@@ -198,8 +251,16 @@ public class GameController implements Controller {
         yn = true;
         break;
     }
+
+    handleMonsters();
   }
 
+  /**
+   * Perform an action based on the player's input when the game is in the "abandon" mode (i.e. the
+   * user has an expressed a desire to quit and the game is asking for confirmation)
+   *
+   * @param input The input from the view
+   */
   @SuppressWarnings("incomplete-switch")
   private void handleAbandonInput(Input input) {
     switch (input) {
@@ -212,6 +273,13 @@ public class GameController implements Controller {
     }
   }
 
+  /**
+   * Perform an action based on the player's input
+   *
+   * The action depends on what "mode" the game is in - normal play, or the abandon question
+   *
+   * @param input The input from the view
+   */
   @Override
   public void handleInput(Input input) {
     if (yn) {
@@ -219,8 +287,6 @@ public class GameController implements Controller {
     } else {
       handleGameInput(input);
     }
-
-    handleMonsters();
   }
 
 

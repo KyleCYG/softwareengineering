@@ -18,20 +18,40 @@ public class Player extends Character {
     this.strengthItem = new StrengthItem(10, CellType.STRENGTH1);
   }
 
+  /**
+   * The player's current gold count
+   *
+   * @return Player's gold count
+   */
   public int getGold() {
     return gold;
   }
 
+  /**
+   * Set the player's current gold count.
+   *
+   * Replaces the existing count.
+   *
+   * @param gold The amount to set
+   */
   public void setGold(int gold) {
     this.gold = gold;
   }
 
+  /**
+   * The player's current strength item
+   *
+   * @return The strength item
+   */
   public StrengthItem getStrengthItem() {
     return strengthItem;
   }
 
-  /* Player can hold one Strength Item at a time */
-  /* Player strength will be set to that strength value */
+  /**
+   * Set the player's current strength item
+   *
+   * @param strengthItem The strength item to set
+   */
   public void setStrengthItem(StrengthItem strengthItem) {
     this.strengthItem = strengthItem;
     this.setStrength(this.strengthItem.getValue());

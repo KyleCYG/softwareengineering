@@ -2,9 +2,16 @@ package softwareengineering.scarlet.coursework2.levelgeneration;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import softwareengineering.scarlet.coursework2.models.Corridor;
 import softwareengineering.scarlet.coursework2.models.Room;
 
+/**
+ * A node in the BSP tree used in level generation. Represents an area of the grid.
+ *
+ * The nodes won't all be leaves, but the logic only really applies when the BSP is rolled back - so
+ * when the logic takes affect it is actually a leaf
+ */
 public class Leaf {
   private ArrayList<Room> rooms;
   private ArrayList<Corridor> corridors;
@@ -13,6 +20,14 @@ public class Leaf {
   private int width;
   private int height;
 
+  /**
+   * Create a new node in the BSP
+   *
+   * @param x X position of the area covered by the node
+   * @param y Y position of the area covered by the node
+   * @param width Width of the area covered by the node
+   * @param height Height of the area covered by the node
+   */
   public Leaf(int x, int y, int width, int height) {
     this.x = x;
     this.y = y;
@@ -22,40 +37,74 @@ public class Leaf {
     this.corridors = new ArrayList<Corridor>();
   }
 
-  public ArrayList<Room> getRooms() {
+  /**
+   * Rooms covered by this node
+   *
+   * @return A list of rooms
+   */
+  public List<Room> getRooms() {
     return rooms;
   }
 
-  public ArrayList<Corridor> getCorridors() {
+  /**
+   * Corridors covered by this node
+   *
+   * @return A list of corridors
+   */
+  public List<Corridor> getCorridors() {
     return corridors;
   }
 
+  /**
+   * @return Far left X coordinate of the area covered by the node
+   */
   public int getX() {
     return x;
   }
 
+  /**
+   * @return Uppermost Y coordinate of the area covered by the node
+   */
   public int getY() {
     return y;
   }
 
+  /**
+   * @return Width of the area covered by the node
+   */
   public int getWidth() {
     return width;
   }
 
+  /**
+   * @return Height of the area covered by the node
+   */
   public int getHeight() {
     return height;
   }
 
+  /**
+   * @return Far right X coordinate of the area covered by the node
+   */
   public int getX2() {
     return x + width;
   }
 
+  /**
+   * @return Lowermost Y coordinate of the area covered by the node
+   */
   public int getY2() {
     return y + height;
   }
 
-  // The functions below demonstrate how much I dislike Java.
-
+  /**
+   * Find the maximum X coordinate covered by a room along a particular Y line
+   *
+   * Used to figure out corridor placement.
+   *
+   * @param targetY The Y line along which to search
+   * @return The maximum X coordinate
+   */
   public int findMaxXAtY(int targetY) {
     // Sort rooms by their far right edge
     getRooms().sort(new Comparator<Room>() {
@@ -75,6 +124,14 @@ public class Leaf {
     return result;
   }
 
+  /**
+   * Find the minimum X coordinate covered by a room along a particular Y line.
+   *
+   * Used to figure out corridor placement.
+   *
+   * @param targetY The Y line along which to search
+   * @return The minimum X coordinate
+   */
   public int findMinXAtY(int targetY) {
     // Sort rooms by their far left edge
     getRooms().sort(new Comparator<Room>() {
@@ -94,6 +151,14 @@ public class Leaf {
     return result;
   }
 
+  /**
+   * Find the maximum Y coordinate covered by a room along a particular X line
+   *
+   * Used to figure out corridor placement.
+   *
+   * @param targetX The X line along which to search
+   * @return The maximum Y coordinate
+   */
   public int findMaxYAtX(int targetX) {
     // Sort rooms by bottom edge
     getRooms().sort(new Comparator<Room>() {
@@ -113,6 +178,15 @@ public class Leaf {
     return result;
   }
 
+
+  /**
+   * Find the minimum Y coordinate covered by a room along a particular X line
+   *
+   * Used to figure out corridor placement.
+   *
+   * @param targetX The X line along which to search
+   * @return The maximum Y coordinate
+   */
   public int findMinYAtX(int targetX) {
     // Sort rooms by top edge
     getRooms().sort(new Comparator<Room>() {

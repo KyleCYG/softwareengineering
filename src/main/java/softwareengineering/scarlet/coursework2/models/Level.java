@@ -31,32 +31,55 @@ public class Level {
     this.height = height;
   }
 
+  /**
+   * Get the list of rooms within the level.
+   *
+   * The ordering of this list is not consistent and may change.
+   *
+   * @return The list of rooms
+   */
   public ArrayList<Room> getRooms() {
-    /**
-     * A list of rooms within the dungeon.
-     *
-     * The ordering of this list is not consistent and may change.
-     */
     return rooms;
   }
 
+  /**
+   * Get the list of corridors within the level.
+   *
+   * The ordering of this list is not consistent and may change.
+   *
+   * @return The list of corridors
+   */
   public ArrayList<Corridor> getCorridors() {
-    /**
-     * A list of corridors within the dungeon.
-     *
-     * The ordering of this list is not consistent and may change.
-     */
     return corridors;
   }
 
+  /**
+   * Get the list of entities within the level.
+   *
+   * The ordering of this list is not consistent and may change.
+   *
+   * @return The list of entities
+   */
   public List<Entity> getEntities() {
     return entities;
   }
 
+  /**
+   * Get the list of monsters within the level.
+   *
+   * The ordering of this list is not consistent and may change.
+   *
+   * @return The list of monsters
+   */
   public List<Monster> getMonsters() {
     return monsters;
   }
 
+  /**
+   * Return a two dimensional representation of the level
+   *
+   * @return A two dimensional array, width first then height
+   */
   public CellType[][] getGrid() {
     /**
      * Return a 2-dimensional grid representing the dungeon.
@@ -97,13 +120,20 @@ public class Level {
     return grid;
   }
 
+  /**
+   * The width of the level
+   *
+   * @return The width of the level in cells, zero based
+   */
   public int getWidth() {
-    /**
-     * The width of the dungeon in cells, zero based
-     */
     return width;
   }
 
+  /**
+   * The height of the level
+   *
+   * @return The height of the level in cells, zero based
+   */
   public int getHeight() {
     /**
      * The height of the dungeon in cells, zero based
@@ -119,7 +149,7 @@ public class Level {
    * @return The type of cell at that point
    */
   public CellType getTypeAtPos(int x, int y) {
-    if (x == width || y == height || x == -1 || y == -1) {
+    if (x >= width || y >= height || x <= -1 || y <= -1) {
       return CellType.VOID;
     }
 
@@ -143,15 +173,15 @@ public class Level {
     return null;
   }
 
+  /**
+   * Dump a textual representation of the map to the console.
+   *
+   * Be careful with large maps!
+   *
+   * Note that the default font is not square, and one character is used per cell, so it will appear
+   * stretched.
+   */
   public void printGrid() {
-    /**
-     * Dump a textual representation of the map to the console.
-     *
-     * Be careful with large maps!
-     *
-     * Note that the default font is not square, and one character is used per cell, so it will
-     * appear stretched.
-     */
     CellType[][] grid = this.getGrid();
 
     for (int x = 0; x < this.getWidth(); x++) {
@@ -208,6 +238,12 @@ public class Level {
     }
   }
 
+  /**
+   * Find the first entity of a given type in the level
+   *
+   * @param type The type to search for
+   * @return The first occurrence of the type, or null if not found
+   */
   private Entity getFirstEntityByType(CellType type) {
     for (Entity entity : this.getEntities()) {
       if (entity.type == type) {
@@ -218,10 +254,24 @@ public class Level {
     return null;
   }
 
+  /**
+   * Find the "stairs up" entity on the level.
+   *
+   * If there are multiple "stairs up" entities, one will be returned
+   *
+   * @return The StairsUpItem on the level, or null if there isn't one
+   */
   public Entity getStairsUp() {
     return getFirstEntityByType(CellType.STAIRSUP);
   }
 
+  /**
+   * Find the "stairs down" entity on the level.
+   *
+   * If there are multiple "stairs down" entities, one will be returned
+   *
+   * @return The StairsDownItem on the level, or null if there isn't one
+   */
   public Entity getStairsDown() {
     return getFirstEntityByType(CellType.STAIRSDOWN);
   }

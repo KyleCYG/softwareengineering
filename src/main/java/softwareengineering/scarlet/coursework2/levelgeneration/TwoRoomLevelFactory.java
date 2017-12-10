@@ -6,7 +6,18 @@ import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.Room;
 
+/**
+ * Level factory used to test corridor generation
+ */
 public class TwoRoomLevelFactory extends LevelFactory {
+  /**
+   * Generates two rooms side by side and attempts to draw a corridor between them
+   *
+   * @param width Total width of the grid
+   * @param height Total height of the grid
+   * @param entities Entities to place on the level
+   * @return A level with two rooms and a corridor
+   */
   public static Level generateLevel(int width, int height, List<Entity> entities) {
     int leafWidth = width / 2;
     int leafHeight = height;
