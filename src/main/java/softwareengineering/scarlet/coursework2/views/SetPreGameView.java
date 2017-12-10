@@ -13,7 +13,7 @@ import softwareengineering.scarlet.coursework2.models.SetPreGame;
 public class SetPreGameView implements View {
   private SetPreGame model;
   private Image background;
-  private static final Font namefont = new Font("Chalkduster", Font.PLAIN, 18);
+  private final Font namefont = new Font("Chalkduster", Font.PLAIN, 18);
 
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {

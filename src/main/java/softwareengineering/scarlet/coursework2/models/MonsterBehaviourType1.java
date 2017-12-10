@@ -3,7 +3,6 @@ package softwareengineering.scarlet.coursework2.models;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import softwareengineering.scarlet.coursework2.controllers.Input;
 import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
 import softwareengineering.scarlet.coursework2.controllers.Pair;
 
@@ -46,6 +45,8 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       case STRENGTH3:
         break;
       case VOID:
+        break;
+      default:
         break;
 
     }

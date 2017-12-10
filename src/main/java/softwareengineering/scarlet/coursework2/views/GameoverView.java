@@ -10,12 +10,11 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 
-public class WinView implements View {
+public class GameoverView implements View {
   private GameScore score;
   private final Font namefont = new Font("Chalkduster", Font.PLAIN, 18);
   private Image background;
 
-  @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
     g2d.setFont(this.namefont);
     this.drawBackground(g2d,observer);
@@ -38,7 +37,7 @@ public class WinView implements View {
     String bsTitle = "You got there!";
     g2d.drawString(bsTitle, 200, 170);
     String backstoryText = String.format(
-        "Congratulations %s! You got %s gold, enough to print your thesis, and made it\n"
+        "Gameover %s! You got %s gold, enough to print your thesis, and made it\n"
             + " to the print shop. Handing it in is easy now - hopefully you will get a good \n"
             + "grade! Go enjoy a well earned rest... until the next time!"
             + "\n\n\n                              Press Enter To Continue...",

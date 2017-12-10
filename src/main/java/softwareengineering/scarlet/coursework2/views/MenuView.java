@@ -61,37 +61,6 @@ public class MenuView implements View {
   }
 
   /**
-   * Renders the menu title.
-   *
-   * @param g2d The graphics object the title is rendered to.
-   */
-  private void drawTitle(Graphics2D g2d) {
-    String titleArt =
-        " ________  __                            __                   ______                                   __     \n"
-            + "/        |/  |                          /  |                 /      \\                                 /  |    \n"
-            + "$$$$$$$$/ $$ |____    ______    _______ $$/   _______       /$$$$$$  | __    __   ______    _______  _$$ |_   \n"
-            + "   $$ |   $$      \\  /      \\  /       |/  | /       |      $$ |  $$ |/  |  /  | /      \\  /       |/ $$   |  \n"
-            + "   $$ |   $$$$$$$  |/$$$$$$  |/$$$$$$$/ $$ |/$$$$$$$/       $$ |  $$ |$$ |  $$ |/$$$$$$  |/$$$$$$$/ $$$$$$/   \n"
-            + "   $$ |   $$ |  $$ |$$    $$ |$$      \\ $$ |$$      \\       $$ |_ $$ |$$ |  $$ |$$    $$ |$$      \\   $$ | __ \n"
-            + "   $$ |   $$ |  $$ |$$$$$$$$/  $$$$$$  |$$ | $$$$$$  |      $$ / \\$$ |$$ \\__$$ |$$$$$$$$/  $$$$$$  |  $$ |/  |\n"
-            + "   $$ |   $$ |  $$ |$$       |/     $$/ $$ |/     $$/       $$ $$ $$< $$    $$/ $$       |/     $$/   $$  $$/ \n"
-            + "   $$/    $$/   $$/  $$$$$$$/ $$$$$$$/  $$/ $$$$$$$/         $$$$$$  | $$$$$$/   $$$$$$$/ $$$$$$$/     $$$$/  \n"
-            + "                                                                 $$$/                                         ";
-
-    g2d.setFont(MenuView.TITLE_FONT);
-
-    // Set title draw coordinates
-    int x = 30;
-    int y = 100;
-
-    // Print line by line; N.B. Graphics.drawString method does not break
-    // across lines, so we must do it for it.
-    for (String line : titleArt.split("\n")) {
-      g2d.drawString(line, x, y += g2d.getFontMetrics().getHeight());
-    }
-  }
-
-  /**
    * Shows the arrow on the appropriate option.
    *
    * @param g2d The graphics object the arrow is rendered to.

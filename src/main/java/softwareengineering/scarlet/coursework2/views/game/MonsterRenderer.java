@@ -2,10 +2,8 @@ package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
-import java.util.List;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Monster;
-import softwareengineering.scarlet.coursework2.models.Player;
 
 public class MonsterRenderer {
   private MonsterAvatar avatar;
