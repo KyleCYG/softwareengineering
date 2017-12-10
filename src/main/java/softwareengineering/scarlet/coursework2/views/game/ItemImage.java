@@ -6,12 +6,14 @@ import java.awt.Toolkit;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class ItemImage {
   protected Image image;
   protected String filename;
+  private URL url;
 
   private InputStream getImageStream() {
     InputStream stream = getClass().getResourceAsStream("/" + this.filename);
@@ -28,7 +30,7 @@ public class ItemImage {
       try {
         InputStream stream = getImageStream();
         if (this.filename.endsWith(".gif")) {
-          this.image = Toolkit.getDefaultToolkit().createImage(this.filename);
+          this.image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/" + this.filename));
         } else {
           ImageIcon icon = new ImageIcon(ImageIO.read(stream));
           this.image = icon.getImage();
