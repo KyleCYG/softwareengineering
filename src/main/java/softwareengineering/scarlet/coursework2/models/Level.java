@@ -193,13 +193,14 @@ public class Level {
             System.out.print("S");
             break;
           case STRENGTH1:
-            System.out.print("S1");
+            System.out.print("1");
             break;
           case STRENGTH2:
-            System.out.print("S2");
+            System.out.print("2");
             break;
           case STRENGTH3:
-            System.out.print("S3");
+            System.out.print("3");
+            break;
           case MONSTERSPAWNER:
             System.out.print("#");
             break;
