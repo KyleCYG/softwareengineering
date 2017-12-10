@@ -34,7 +34,7 @@ public class Dungeon {
    * @param width Size of the dungeon in cells
    * @param height Size of the dungeon in cells
    * @param numLevels How many levels are in the dungeon
-   * @return
+   * @return The full list of levels, in order of difficulty
    */
   protected static List<Level> generateLevels(int width, int height, int numLevels) {
     List<Level> levels = new ArrayList<Level>();
@@ -42,9 +42,16 @@ public class Dungeon {
     for (int i = 0; i < numLevels; i++) {
       // Pass in level information as difficulty is proportional to level
       List<Entity> entities = Dungeon.generateEntities(i, numLevels);
-      List<Monster> monsters = Dungeon.generateMonsters(entities, i, numLevels);
 
-      levels.add(LevelFactory.generateLevel(width, height, entities, monsters));
+      // Make a level given the generated entities
+      Level level = LevelFactory.generateLevel(width, height, entities);
+
+      // Now generate monsters based on the placed entities
+      List<Monster> monsters = Dungeon.generateMonsters(level.getEntities(), i, numLevels);
+      level.getMonsters().addAll(monsters);
+
+      // Finally add the level to the list of levels
+      levels.add(level);
     }
 
     return levels;

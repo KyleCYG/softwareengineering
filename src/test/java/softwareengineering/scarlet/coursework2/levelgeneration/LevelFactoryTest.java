@@ -14,7 +14,6 @@ import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.GoldItem;
 import softwareengineering.scarlet.coursework2.models.HealthItem;
 import softwareengineering.scarlet.coursework2.models.Level;
-import softwareengineering.scarlet.coursework2.models.Monster;
 import softwareengineering.scarlet.coursework2.models.Room;
 import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
@@ -169,7 +168,7 @@ public class LevelFactoryTest {
     entities.add(new StairsDownItem());
     entities.add(new ExitItem());
 
-    Level level = LevelFactory.generateLevel(50, 50, entities, new ArrayList<Monster>());
+    Level level = LevelFactory.generateLevel(50, 50, entities);
 
     assertEquals(entities.size(), level.getEntities().size());
   }

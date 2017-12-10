@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.MessageList;
+import softwareengineering.scarlet.coursework2.models.Monster;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.views.View;
 
@@ -25,7 +26,7 @@ public class GameView implements View {
   public static final int CELL_WIDTH = 32;
   public static final int TOP_OFFSET = 40;
   private static final Font TITLE_FONT = new Font("Chalkduster", Font.PLAIN, 20);
-
+  private MonsterRenderer monsterRenderer;
   private PlayerRenderer playerRenderer;
   private LevelRenderer levelRenderer;
   private PlayerStatusRenderer playerStatusRenderer;
@@ -53,6 +54,7 @@ public class GameView implements View {
   public void setModels(Dungeon dungeon, Player player) {
     levelRenderer = new LevelRenderer(dungeon);
     playerRenderer = new PlayerRenderer(player);
+    monsterRenderer = new MonsterRenderer(dungeon);
     playerStatusRenderer = new PlayerStatusRenderer(player);
   }
 
@@ -79,6 +81,11 @@ public class GameView implements View {
     renderMessages(g2d, observer);
     levelRenderer.render(g2d, observer);
     playerRenderer.render(g2d, observer);
+    for (Monster monster : monsterRenderer.getDungeon().getCurrentLevel().getMonsters()) {
+      monsterRenderer.setMonster(monster);
+      monsterRenderer.render(g2d, observer);
+    }
+
     playerStatusRenderer.render(g2d, observer);
   }
 }

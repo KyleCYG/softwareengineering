@@ -13,7 +13,7 @@ public class LevelItemsFactory {
   private static StrengthType3 strength3;
   private static StairsDown stairsdown;
   private static StairsUp stairsup;
-  // static MonsterAvatar monster;
+  private static MonsterAvatar monster;
 
   public static ItemImage init(String item) {
     switch (item) {
@@ -77,11 +77,11 @@ public class LevelItemsFactory {
           stairsup = new StairsUp();
         }
         return stairsup;
-      // case "x":
-      // if (monster == null) {
-      // monster = new MonsterAvatar();
-      // }
-      // return monster;
+      case "x":
+        if (monster == null) {
+          monster = new MonsterAvatar();
+        }
+        return monster;
       default:
         return null;
     }
