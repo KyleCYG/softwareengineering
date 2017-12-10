@@ -29,17 +29,12 @@ public class ItemImage {
     if (this.image == null) {
       try {
         InputStream stream = getImageStream();
-<<<<<<< HEAD
         if (this.filename.equals("paperpage.gif") || this.filename.equals("health.gif")
             || this.filename.equals("bomb.gif") || this.filename.equals("hammer.gif")
             || this.filename.equals("sword.gif")) {
           this.image = Toolkit.getDefaultToolkit().createImage(this.filename);
         } else {
-=======
-        if(this.filename.equals("paperpage.gif") || this.filename.equals("health.gif") || this.filename.equals("bomb.gif") || this.filename.equals("hammer.gif") || this.filename.equals("sword.gif")|| this.filename.equals("monster.gif")){
-          this.image = Toolkit.getDefaultToolkit().createImage(this.filename);}
-        else{
->>>>>>> f91d6feee86006fd7b8539124bd91d4c2d44fb0b
+
           ImageIcon icon = new ImageIcon(ImageIO.read(stream));
           this.image = icon.getImage();
         }
