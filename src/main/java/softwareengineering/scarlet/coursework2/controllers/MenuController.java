@@ -13,6 +13,7 @@ import softwareengineering.scarlet.coursework2.views.View;
  *
  * @author Gordon Rennie
  * @author Dan Cosser
+ * @author George Kleanthous
  */
 public class MenuController implements Controller {
   private App app;

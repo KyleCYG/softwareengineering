@@ -121,7 +121,7 @@ public class EntityFactoryTest {
     List<Entity> entities = EntityFactory.generateStairs(0, 6);
 
     assertEquals(1, entities.size());
-    assertEquals(CellType.STAIRSDOWN, entities.get(0).type);
+    assertEquals(CellType.STAIRSDOWN, entities.get(0).getType());
   }
 
   @Test
@@ -133,9 +133,9 @@ public class EntityFactoryTest {
     assertEquals(2, entities.size());
 
     for (Entity entity : entities) {
-      if (entity.type == CellType.STAIRSUP) {
+      if (entity.getType() == CellType.STAIRSUP) {
         up = (StairsUpItem) entity;
-      } else if (entity.type == CellType.STAIRSDOWN) {
+      } else if (entity.getType() == CellType.STAIRSDOWN) {
         down = (StairsDownItem) entity;
       } else {
         fail();
@@ -155,9 +155,9 @@ public class EntityFactoryTest {
     assertEquals(2, entities.size());
 
     for (Entity entity : entities) {
-      if (entity.type == CellType.STAIRSUP) {
+      if (entity.getType() == CellType.STAIRSUP) {
         up = (StairsUpItem) entity;
-      } else if (entity.type == CellType.EXIT) {
+      } else if (entity.getType() == CellType.EXIT) {
         exit = (ExitItem) entity;
       } else {
         fail();

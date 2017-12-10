@@ -6,6 +6,12 @@ import softwareengineering.scarlet.coursework2.levelgeneration.EntityFactory;
 import softwareengineering.scarlet.coursework2.levelgeneration.LevelFactory;
 import softwareengineering.scarlet.coursework2.levelgeneration.MonsterFactory;
 
+/**
+ * A container class for the current game, most notably holding all of the levels within the
+ * dungeon.
+ *
+ * Should be one instance per play through - when the player starts again, a new dungeon is created.
+ */
 public class Dungeon {
   public static final int REQUIRED_SCORE = 20;
   protected List<Level> levels;
@@ -14,12 +20,28 @@ public class Dungeon {
   private int width;
   private int height;
 
+  /**
+   * Create a new, empty dungeon of a given size.
+   *
+   * New levels will be created as needed.
+   *
+   * @param width The width, in cells, of all levels within the dungeon
+   * @param height The height, in cells, of all levels within the dungeon
+   * @param numLevels How many levels there should be within the dungeon
+   */
   public Dungeon(int width, int height, int numLevels) {
     this.numLevels = numLevels;
     this.width = width;
     this.height = height;
   }
 
+  /**
+   * Create a new dungeon with a given list of levels
+   *
+   * @param width The width, in cells, of all levels within the dungeon
+   * @param height The height, in cells, of all levels within the dungeon
+   * @param levels A List of levels to hold in the dungeon
+   */
   public Dungeon(int width, int height, List<Level> levels) {
     this.levels = levels;
     this.numLevels = levels.size();
@@ -112,6 +134,11 @@ public class Dungeon {
     return this.getCurrentLevel();
   }
 
+  /**
+   * Get the list of levels within the dungeon
+   *
+   * @return A list of levels
+   */
   public List<Level> getLevels() {
     return levels;
   }

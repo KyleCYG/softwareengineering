@@ -181,4 +181,7 @@ public class LevelFactoryTest {
 
     assertEquals(entities.size(), level.getEntities().size());
   }
+
+  // Monsters are generated
+  // No MonsterSpawners remain
 }
