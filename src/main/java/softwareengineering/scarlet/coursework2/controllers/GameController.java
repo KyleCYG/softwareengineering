@@ -1,5 +1,6 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +22,7 @@ public class GameController implements Controller {
   private GameView view;
   protected Dungeon dungeon;
   protected Player player;
+  protected Character ch;
   private String playerName;
   private App app;
 
@@ -180,9 +182,13 @@ public class GameController implements Controller {
    */
   private void scanForMonsters() {
     // TODO Auto-generated method stub
+
     List<Monster> monsterList = this.dungeon.getCurrentLevel().getMonsters();
     for (Iterator<Monster> it = monsterList.iterator(); it.hasNext();) {
       Monster monster = it.next();
+
+      characterRoom(monster, player);
+
 
       if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
           || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
@@ -202,9 +208,40 @@ public class GameController implements Controller {
           app.switchToGameOver();
 
         }
+
       }
     }
   }
+
+  public void characterRoom(Monster monster, Player player) {
+    boolean m = false;
+    boolean p = false;
+    ArrayList<Room> rooms = dungeon.getCurrentLevel().getRooms();
+    for (Room room : rooms) {
+      if ((monster.getX() < room.getX2() && monster.getX() > room.getX())
+          && (monster.getY() < room.getY2() && monster.getY() > room.getY())) {
+        m = true;
+
+      } else {
+        m = false;
+      }
+      if ((player.getX() < room.getX2() && player.getX() > room.getX())
+          && (player.getY() < room.getY2() && player.getY() > room.getY())) {
+
+        p = true;
+
+      } else {
+        p = false;
+      }
+      if (m && p)
+        System.out.println("Same room");
+
+
+    }
+
+
+  }
+
 
   /**
    * Moves the player to adjacent tile in the specified direction.
