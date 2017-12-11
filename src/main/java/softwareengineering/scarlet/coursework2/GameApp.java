@@ -9,7 +9,6 @@ import softwareengineering.scarlet.coursework2.controllers.MenuController;
 import softwareengineering.scarlet.coursework2.controllers.SetPreGameController;
 import softwareengineering.scarlet.coursework2.controllers.WinController;
 import softwareengineering.scarlet.coursework2.views.AbandonGameView;
-import softwareengineering.scarlet.coursework2.models.MessageList;
 import softwareengineering.scarlet.coursework2.views.BackstoryView;
 import softwareengineering.scarlet.coursework2.views.Frame;
 import softwareengineering.scarlet.coursework2.views.GameoverView;
