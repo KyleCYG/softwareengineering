@@ -33,12 +33,12 @@ public class MonsterTest {
   @Test
   public void testMonsterhasStrengthItem() {
     DemoMonster monster = new DemoMonster(5, 3);
-    assertEquals(5,monster.getStrength());
+    assertEquals(5, monster.getStrength());
   }
-  
+
   @Test
   public void testMonsterhasHealthItem() {
     DemoMonster monster = new DemoMonster(5, 3);
-    assertEquals(50,monster.getHealthPoints());
+    assertEquals(50, monster.getHealthPoints());
   }
 }

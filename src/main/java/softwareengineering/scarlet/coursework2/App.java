@@ -49,4 +49,5 @@ public interface App {
   public void switchToAbandonGame();
 
   public void switchToGameOver();
+
 }

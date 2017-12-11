@@ -10,12 +10,14 @@ public class DummyApp implements App {
   public boolean didISwitchToWin = false;
   public boolean didISwitchToMenu = false;
   public boolean didISwitchtoAbandonGame = false;
+  public boolean didISwitchToGameOver=false;
   private MenuController menuController;
   private GameController gameController;
   private SetPreGameController setPreGameController;
   private BackstoryController backstoryController;
   private WinController winController;
   private AbandonGameController abandonGameController;
+  private GameoverController gameOverController;
 
   @Override
   public void quit() {
@@ -50,6 +52,7 @@ public class DummyApp implements App {
   @Override
   public void switchToGameOver() {
     // TODO Auto-generated method stub
+    this.didISwitchToGameOver=true;
 
   }
 
@@ -107,7 +110,11 @@ public class DummyApp implements App {
   @Override
   public GameoverController getGameOverController() {
     // TODO Auto-generated method stub
-    return null;
+    if (gameOverController == null) {
+      gameOverController = new GameoverController(this);
+
+    }
+    return gameOverController;
   }
 
 }

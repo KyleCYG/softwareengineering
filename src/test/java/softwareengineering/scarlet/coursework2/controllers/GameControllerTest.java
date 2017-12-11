@@ -4,12 +4,14 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import org.junit.Test;
 import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactory;
+import softwareengineering.scarlet.coursework2.models.DemoMonster;
 import softwareengineering.scarlet.coursework2.models.DummyMonster;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.Level;
 import softwareengineering.scarlet.coursework2.models.MessageList;
 import softwareengineering.scarlet.coursework2.models.Monster;
+import softwareengineering.scarlet.coursework2.models.MonsterBehaviourType1;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.models.StairsDownItem;
 import softwareengineering.scarlet.coursework2.models.StairsUpItem;
@@ -168,7 +170,66 @@ public class GameControllerTest {
     controller.handleMonsters();
 
     for (Monster monster : controller.dungeon.getCurrentLevel().getMonsters()) {
-      assertTrue(((DummyMonster) monster).hasHadTurn);
+      assertTrue(((DemoMonster) monster).hasHadTurn);
+    }
+
+  }
+
+  @Test
+  public void testMoveMonsters() {
+    DummyApp app = new DummyApp();
+    GameController controller = new GameController(app);
+    controller.setUpModels();
+    controller.handleMonsters();
+    int prevX, prevY;
+    for (Monster monster : controller.dungeon.getCurrentLevel().getMonsters()) {
+      prevX = monster.getX();
+      prevY = monster.getY();
+      monster.performAction(controller.dungeon, controller.player);
+      assertTrue(prevX != monster.getX() || prevY != monster.getY());
     }
   }
+
+  @Test
+  public void testPlayerAttackMonster() {
+    DummyApp app = new DummyApp();
+    GameController controller = new GameController(app);
+    controller.setUpModels();
+    DemoMonster monster = new DemoMonster(5, 5);
+    int prevHealth = monster.getHealthPoints();
+    controller.player.move(3, 5);
+    // controller.performAction(new Pair(1, 0));
+    monster.decreaseHealthPoint(controller.player.getStrength());
+    assertTrue(monster.getHealthPoints() == prevHealth - controller.player.getStrength());
+  }
+
+  @Test
+  public void testPlayerDies() {
+    DummyApp app = new DummyApp();
+    GameController controller = new GameController(app);
+    controller.setUpModels();
+    DemoMonster monster = new DemoMonster(controller.player.getX() + 2, controller.player.getY());
+    MonsterBehaviourType1 behaviour = new MonsterBehaviourType1();
+    int prevHealth = controller.player.getHealthPoints();
+    controller.performAction(new Pair(1, 0));
+    behaviour.fightPlayer(controller.player, monster);
+    assertTrue(controller.player.getHealthPoints() == prevHealth - monster.getStrength());
+
+
+  }
+
+  public void testMonsterFightPlayer() {
+    DummyApp app = new DummyApp();
+    GameController controller = new GameController(app);
+    controller.setUpModels();
+    DemoMonster monster = new DemoMonster(controller.player.getX() + 2, controller.player.getY());
+    MonsterBehaviourType1 behaviour = new MonsterBehaviourType1();
+    int prevHealth = controller.player.getHealthPoints();
+    controller.performAction(new Pair(1, 0));
+    behaviour.fightPlayer(controller.player, monster);
+    assertTrue(controller.player.getHealthPoints() < prevHealth);
+
+  }
+
+
 }
