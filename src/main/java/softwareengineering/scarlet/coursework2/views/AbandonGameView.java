@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +16,7 @@ public class AbandonGameView implements View {
   private GameScore score;
   private Image background;
   private Font sizedFont;
+  private Image paperpageIcon;
 
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
@@ -29,11 +31,11 @@ public class AbandonGameView implements View {
     }
     g2d.setFont(sizedFont);
     this.drawBackground(g2d, observer);
-    this.drawBackstory(g2d);
+    this.drawBackstory(g2d, observer);
   }
 
   private void drawBackground(Graphics2D g2d, ImageObserver observer) {
-    InputStream stream = getClass().getResourceAsStream("/background.png");
+    InputStream stream = getClass().getResourceAsStream("/abandonbackground.png");
     try {
       ImageIcon icon = new ImageIcon(ImageIO.read(stream));
       background = icon.getImage();
@@ -44,21 +46,11 @@ public class AbandonGameView implements View {
     g2d.drawImage(this.background, 0, 0, observer);
   }
 
-  private void drawBackstory(Graphics2D g2d) {
-    String bsTitle = "You Quit!";
-    g2d.drawString(bsTitle, 200, 170);
-    String backstoryText = String.format(
-        "You Abandon the Game %s!\n" + "You got %s thesis papers,\n"
-            + "\n\n\n      Press Enter To Go Back to Main Menu...",
-        score.getPlayerName(), score.getScore());
-
-    int x = 40;
-    int y = 200;
-
-    // Print line by line; N.B. Graphics.drawString method does not break
-    // across lines, so we must do it for it.
-    for (String line : backstoryText.split("\n"))
-      g2d.drawString(line, x, y += g2d.getFontMetrics().getHeight());
+  private void drawBackstory(Graphics2D g2d, ImageObserver observer) {
+    this.paperpageIcon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/paperpage.gif"));
+    g2d.drawImage(this.paperpageIcon, 327, 397, observer);
+    g2d.drawString("x", 360, 417);
+    g2d.drawString(Integer.toString(score.getScore()), 377, 417);
   }
 
   public void setScore(GameScore score) {
