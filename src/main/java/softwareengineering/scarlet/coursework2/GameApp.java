@@ -45,10 +45,9 @@ public class GameApp implements App {
   private SetPreGameController setPreGameController;
   private BackstoryController backstoryController;
   private WinController winController;
-
+  private GameoverController gameOverController;
   private AbandonGameController abandonGameController;
 
-  private GameoverController gameOverController;
 
 
   public GameApp() {
@@ -91,7 +90,6 @@ public class GameApp implements App {
     return winController;
   }
 
-
   @Override
   public AbandonGameController getAbandonGameController() {
     // TODO Auto-generated method stub
@@ -107,7 +105,6 @@ public class GameApp implements App {
 
     }
     return gameOverController;
-
   }
 
   /**

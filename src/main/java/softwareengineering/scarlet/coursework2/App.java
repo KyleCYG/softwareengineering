@@ -36,7 +36,6 @@ public interface App {
 
   public GameoverController getGameOverController();
 
-
   public void switchToMenu();
 
   public void switchToPreGame();
@@ -50,5 +49,4 @@ public interface App {
   public void switchToAbandonGame();
 
   public void switchToGameOver();
-
 }

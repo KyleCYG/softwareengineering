@@ -32,11 +32,13 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
           MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
 
 
+
           // System.out.println("I WILL KILL YOU " + "monster coords: " + monster.getX() + ", "
           // + monster.getY() + " player coords: " + player.getX() + ", " + player.getY());
 
           if (player.healthPoints <= 0)
             MessageList.clear();
+
 
 
         }

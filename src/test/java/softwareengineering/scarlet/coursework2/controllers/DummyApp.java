@@ -88,7 +88,6 @@ public class DummyApp implements App {
     return winController;
   }
 
-  @Override
 
   public AbandonGameController getAbandonGameController() {
     // TODO Auto-generated method stub
@@ -105,10 +104,10 @@ public class DummyApp implements App {
 
   }
 
+  @Override
   public GameoverController getGameOverController() {
     // TODO Auto-generated method stub
     return null;
   }
-
 
 }
