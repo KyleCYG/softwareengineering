@@ -22,6 +22,7 @@ public class MenuView implements View {
   private Menu model;
   private Image background;
   private Font sizedFont;
+  private String[] options;
 
   /**
    * Render to the screen.
@@ -63,9 +64,9 @@ public class MenuView implements View {
       e.printStackTrace();
     }
     g2d.setFont(sizedFont);
-    g2d.drawString("  New Game", 270, 350);
-    g2d.drawString("  View Leaderboard", 270, 390);
-    g2d.drawString("  Quit", 270, 430);
+    for (int i = 0; i < options.length; i++) {
+      g2d.drawString("  " + options[i], 270, 350 + ySpacing * i);
+    }
   }
 
   /**
@@ -85,5 +86,9 @@ public class MenuView implements View {
    */
   public void setModel(Menu menu) {
     this.model = menu;
+  }
+
+  public void setOptions(String[] options) {
+    this.options = options;
   }
 }

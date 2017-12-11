@@ -20,6 +20,12 @@ public class MenuController implements Controller {
   private MenuView view;
   protected Menu model;
 
+  protected static String[] options = new String[] {
+      "New Game", // 0
+      "View Leaderboard", // 1
+      "Quit" // 2
+  };
+
   public MenuController(App app) {
     this.app = app;
   }
@@ -76,7 +82,7 @@ public class MenuController implements Controller {
    * Separated from init for ease of testing.
    */
   protected void setUpData() {
-    this.model = new Menu();
+    this.model = new Menu(options.length);
   }
 
   /**
@@ -89,6 +95,7 @@ public class MenuController implements Controller {
   @Override
   public void init(View view) {
     this.view = (MenuView) view;
+    this.view.setOptions(options);
     this.setUpData();
     this.view.setModel(model);
   }

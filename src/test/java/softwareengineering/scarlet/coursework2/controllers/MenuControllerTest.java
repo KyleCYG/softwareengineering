@@ -21,7 +21,7 @@ public class MenuControllerTest {
     controller.setUpData();
     controller.handleInput(Input.UP);
 
-    assertEquals(2, controller.model.getOption());
+    assertEquals(MenuController.options.length - 1, controller.model.getOption());
   }
 
   @Test

@@ -8,9 +8,11 @@ package softwareengineering.scarlet.coursework2.models;
  */
 public class Menu {
   private int selectedOption;
+  private int numOptions;
 
-  public Menu() {
+  public Menu(int numOptions) {
     this.selectedOption = 0;
+    this.numOptions = numOptions;
   }
 
   /**
@@ -18,7 +20,7 @@ public class Menu {
    */
   public void incrementOption() {
     this.selectedOption++;
-    this.selectedOption = this.selectedOption % 3;
+    this.selectedOption = this.selectedOption % numOptions;
   }
 
   /**
@@ -28,7 +30,7 @@ public class Menu {
     this.selectedOption--;
     if (this.selectedOption == -1) {
       // Loop back to bottom option
-      this.selectedOption = 2;
+      this.selectedOption = numOptions - 1;
     }
   }
 
