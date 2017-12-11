@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
@@ -12,12 +13,21 @@ import softwareengineering.scarlet.coursework2.models.GameScore;
 
 public class AbandonGameView implements View {
   private GameScore score;
-  private final Font namefont = new Font("Chalkduster", Font.PLAIN, 18);
   private Image background;
+  private Font sizedFont;
 
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
-    g2d.setFont(this.namefont);
+    InputStream is = MenuView.class.getResourceAsStream("/Chalkduster.ttf");
+    try {
+      Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+      sizedFont = font.deriveFont(Font.BOLD, 18f);
+    } catch (FontFormatException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    g2d.setFont(sizedFont);
     this.drawBackground(g2d, observer);
     this.drawBackstory(g2d);
   }
