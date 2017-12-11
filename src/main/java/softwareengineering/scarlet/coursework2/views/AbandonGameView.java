@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 
-public class WinView implements View {
+public class AbandonGameView implements View {
   private GameScore score;
   private Image background;
   private Font sizedFont;
@@ -45,14 +45,11 @@ public class WinView implements View {
   }
 
   private void drawBackstory(Graphics2D g2d) {
-    String bsTitle = "You got there!";
+    String bsTitle = "You Quit!";
     g2d.drawString(bsTitle, 200, 170);
     String backstoryText = String.format(
-        "Congratulations %s!\n" + "You got %s gold, enough to print your thesis,\n"
-            + "and made it to the print shop.\n"
-            + "Handing it in is easy now - hopefully you will get a good \n"
-            + "grade! Go enjoy a well earned rest... until the next time!"
-            + "\n\n\n                              Press Enter To Continue...",
+        "You Abandon the Game %s!\n" + "You got %s thesis papers,\n"
+            + "\n\n\n      Press Enter To Go Back to Main Menu...",
         score.getPlayerName(), score.getScore());
 
     int x = 40;

@@ -2,15 +2,16 @@ package softwareengineering.scarlet.coursework2.controllers;
 
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.GameScore;
+import softwareengineering.scarlet.coursework2.views.AbandonGameView;
 import softwareengineering.scarlet.coursework2.views.GameoverView;
 import softwareengineering.scarlet.coursework2.views.View;
 
-public class GameoverController implements Controller {
+public class AbandonGameController implements Controller {
   private App app;
-  private GameoverView view;
+  private AbandonGameView view;
   private GameScore score;
 
-  public GameoverController(App app) {
+  public AbandonGameController(App app) {
     this.app = app;
   }
 
@@ -29,7 +30,7 @@ public class GameoverController implements Controller {
    */
   @Override
   public void init(View view) {
-    this.view = (GameoverView) view;
+    this.view = (AbandonGameView) view;
     setModels();
   }
 

@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
@@ -13,12 +14,21 @@ import softwareengineering.scarlet.coursework2.models.SetPreGame;
 public class SetPreGameView implements View {
   private SetPreGame model;
   private Image background;
-  private final Font namefont = new Font("Chalkduster", Font.PLAIN, 18);
+  private Font sizedFont;
 
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
-    g2d.setFont(this.namefont);
-    this.drawBackground(g2d,observer);
+    InputStream is = MenuView.class.getResourceAsStream("/Chalkduster.ttf");
+    try {
+      Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+      sizedFont = font.deriveFont(Font.BOLD, 18f);
+    } catch (FontFormatException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    g2d.setFont(sizedFont);
+    this.drawBackground(g2d, observer);
     this.drawNameString(g2d);
     this.drawNameTextField(g2d);
     this.drawEnterString(g2d);
@@ -56,7 +66,7 @@ public class SetPreGameView implements View {
    */
   private void drawNameTextField(Graphics2D g2d) {
     if (model.getName() != null)
-      g2d.drawString(model.getName(),350, 250);
+      g2d.drawString(model.getName(), 350, 250);
     else
       g2d.drawString("----", 350, 250);
   }

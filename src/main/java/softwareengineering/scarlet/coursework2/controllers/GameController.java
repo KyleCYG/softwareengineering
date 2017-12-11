@@ -312,7 +312,12 @@ public class GameController implements Controller {
   private void handleAbandonInput(Input input) {
     switch (input) {
       case Y:
-        app.quit();
+        GameScore score = new GameScore(player.getName(), player.getGold());
+        MessageList.clear();
+        yn = false;
+        app.getAbandonGameController().setScore(score);
+        app.switchToAbandonGame();
+        break;
       case N:
         MessageList.clear();
         yn = false;

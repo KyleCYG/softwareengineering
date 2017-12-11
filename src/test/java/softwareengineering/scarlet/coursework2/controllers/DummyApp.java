@@ -1,17 +1,23 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import softwareengineering.scarlet.coursework2.App;
+import softwareengineering.scarlet.coursework2.views.AbandonGameView;
+import softwareengineering.scarlet.coursework2.views.View;
 
 public class DummyApp implements App {
   public boolean didIQuit = false;
   public boolean didISwitchToBackStory = false;
   public boolean didISwitchToWin = false;
   public boolean didISwitchToMenu = false;
+  public boolean didISwitchtoAbandonGame = false;
+  public boolean didISwitchToGameOver=false;
   private MenuController menuController;
   private GameController gameController;
   private SetPreGameController setPreGameController;
   private BackstoryController backstoryController;
   private WinController winController;
+  private AbandonGameController abandonGameController;
+  private GameoverController gameOverController;
 
   @Override
   public void quit() {
@@ -46,6 +52,7 @@ public class DummyApp implements App {
   @Override
   public void switchToGameOver() {
     // TODO Auto-generated method stub
+    this.didISwitchToGameOver=true;
 
   }
 
@@ -84,10 +91,30 @@ public class DummyApp implements App {
     return winController;
   }
 
+
+  public AbandonGameController getAbandonGameController() {
+    // TODO Auto-generated method stub
+    if (abandonGameController == null) {
+      abandonGameController = new AbandonGameController(this);
+    }
+    return abandonGameController;
+  }
+
+  @Override
+  public void switchToAbandonGame() {
+    // TODO Auto-generated method stub
+    this.didISwitchtoAbandonGame = true;
+
+  }
+
   @Override
   public GameoverController getGameOverController() {
     // TODO Auto-generated method stub
-    return null;
+    if (gameOverController == null) {
+      gameOverController = new GameoverController(this);
+
+    }
+    return gameOverController;
   }
 
 }

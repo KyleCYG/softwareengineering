@@ -7,7 +7,7 @@ public class MenuTest {
 
   @Test
   public void testCreation() {
-    Menu menu = new Menu();
+    Menu menu = new Menu(3);
 
     // menu should start at top option
     assertEquals(0, menu.getOption());
@@ -15,7 +15,7 @@ public class MenuTest {
 
   @Test
   public void testIncrement() {
-    Menu menu = new Menu();
+    Menu menu = new Menu(3);
     menu.incrementOption();
 
     assertEquals(1, menu.getOption());
@@ -23,20 +23,26 @@ public class MenuTest {
 
   @Test
   public void testIncrementOverBound() {
-    Menu menu = new Menu();
-    menu.incrementOption();
-    menu.incrementOption();
-    menu.incrementOption();
+    int numOptions = 3;
+    Menu menu = new Menu(numOptions);
 
-    // menu wraps back to first option
+    for (int i = 0; i < numOptions; i++) {
+      menu.incrementOption();
+    }
+
+    // Menu wraps back to first option
     assertEquals(0, menu.getOption());
   }
 
   @Test
   public void testDecrement() {
-    Menu menu = new Menu();
-    menu.incrementOption();
-    menu.incrementOption();
+    int numOptions = 3;
+    Menu menu = new Menu(numOptions);
+
+    for (int i = 0; i < numOptions - 1; i++) {
+      menu.incrementOption();
+    }
+
     menu.decrementOption();
 
     assertEquals(1, menu.getOption());
@@ -44,11 +50,12 @@ public class MenuTest {
 
   @Test
   public void testDecrementOverBound() {
-    Menu menu = new Menu();
+    int numOptions = 3;
+    Menu menu = new Menu(numOptions);
     menu.decrementOption();
 
-    // menu wraps to bottom option
-    assertEquals(2, menu.getOption());
+    // Menu wraps to bottom option
+    assertEquals(numOptions - 1, menu.getOption());
   }
 
 }

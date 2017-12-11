@@ -23,18 +23,8 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     switch (targetCellType) {
       case ROOM:
         monster.move(movePair.getX(), movePair.getY());
-        if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
-            || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
-            || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
-            || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
 
-          player.decreaseHealthPoint(monster.getStrength());
-          MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
-
-          if (player.healthPoints <= 0)
-            MessageList.clear();
-
-        }
+        fightPlayer(player, monster);
 
         break;
       case CORRIDOR:
@@ -54,6 +44,25 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       default:
         break;
 
+    }
+  }
+
+  public void fightPlayer(Player player, Monster monster) {
+    if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
+        || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
+        || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
+        || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
+
+      player.decreaseHealthPoint(monster.getStrength());
+      MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
+
+
+
+      // System.out.println("I WILL KILL YOU " + "monster coords: " + monster.getX() + ", "
+      // + monster.getY() + " player coords: " + player.getX() + ", " + player.getY());
+
+      if (player.healthPoints <= 0)
+        MessageList.clear();
     }
   }
 
