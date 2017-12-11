@@ -174,16 +174,20 @@ public class GameController implements Controller {
     }
   }
 
+  /**
+   * Checks if there is a monster 1 tile away from the player in x and/or y axis
+   * 
+   */
   private void scanForMonsters() {
     // TODO Auto-generated method stub
     List<Monster> monsterList = this.dungeon.getCurrentLevel().getMonsters();
     for (Iterator<Monster> it = monsterList.iterator(); it.hasNext();) {
       Monster monster = it.next();
+
       if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
           || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
           || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
           || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
-        // find monster next to you
         monster.decreaseHealthPoint(player.getStrength());
         MessageList.addMessage("You hit the monster! Damage: " + -player.getStrength()
             + " Monster's current health:" + monster.getHealthPoints());
@@ -191,6 +195,12 @@ public class GameController implements Controller {
         if (monster.getHealthPoints() <= 0) {
           it.remove();
           MessageList.addMessage("Monster is dead!");
+        } else if (player.getHealthPoints() <= 0) {
+          MessageList.clear();
+          GameScore score = new GameScore(player.getName(), player.getGold());
+          app.getGameOverController().setScore(score);
+          app.switchToGameOver();
+
         }
       }
     }
@@ -288,7 +298,6 @@ public class GameController implements Controller {
       handleGameInput(input);
     }
   }
-
 
   @Override
   public void init(View view) {

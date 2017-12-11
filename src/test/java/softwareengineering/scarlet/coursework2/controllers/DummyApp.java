@@ -43,6 +43,12 @@ public class DummyApp implements App {
     this.didISwitchToWin = true;
   }
 
+  @Override
+  public void switchToGameOver() {
+    // TODO Auto-generated method stub
+
+  }
+
   public MenuController getMenuController() {
     if (menuController == null) {
       menuController = new MenuController(this);
@@ -77,4 +83,11 @@ public class DummyApp implements App {
     }
     return winController;
   }
+
+  @Override
+  public GameoverController getGameOverController() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }

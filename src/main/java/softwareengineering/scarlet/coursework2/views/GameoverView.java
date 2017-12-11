@@ -11,13 +11,17 @@ import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 
 public class GameoverView implements View {
+  public GameoverView() {
+    super();
+  }
+
   private GameScore score;
   private final Font namefont = new Font("Chalkduster", Font.PLAIN, 18);
   private Image background;
 
   public void render(Graphics2D g2d, ImageObserver observer) {
     g2d.setFont(this.namefont);
-    this.drawBackground(g2d,observer);
+    this.drawBackground(g2d, observer);
     this.drawBackstory(g2d);
   }
 
