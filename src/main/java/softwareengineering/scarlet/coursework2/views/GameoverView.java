@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,13 +13,13 @@ import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 
 public class GameoverView implements View {
-  public GameoverView() {
-    super();
-  }
-
   private GameScore score;
   private Image background;
   private Font sizedFont;
+  protected Image paperpageIcon;
+  public GameoverView() {
+    super();
+  }
 
   public void render(Graphics2D g2d, ImageObserver observer) {
     InputStream is = MenuView.class.getResourceAsStream("/Chalkduster.ttf");
@@ -32,11 +33,11 @@ public class GameoverView implements View {
     }
     g2d.setFont(sizedFont);
     this.drawBackground(g2d, observer);
-    this.drawBackstory(g2d);
+    this.drawBackstory(g2d, observer);
   }
 
   private void drawBackground(Graphics2D g2d, ImageObserver observer) {
-    InputStream stream = getClass().getResourceAsStream("/background.png");
+    InputStream stream = getClass().getResourceAsStream("/gameoverbackground.png");
     try {
       ImageIcon icon = new ImageIcon(ImageIO.read(stream));
       background = icon.getImage();
@@ -47,23 +48,11 @@ public class GameoverView implements View {
     g2d.drawImage(this.background, 0, 0, observer);
   }
 
-  private void drawBackstory(Graphics2D g2d) {
-    String bsTitle = "You got there!";
-    g2d.drawString(bsTitle, 200, 170);
-    String backstoryText = String.format(
-        "Gameover %s! You got %s gold, enough to print your thesis, and made it\n"
-            + " to the print shop. Handing it in is easy now - hopefully you will get a good \n"
-            + "grade! Go enjoy a well earned rest... until the next time!"
-            + "\n\n\n                              Press Enter To Continue...",
-        score.getPlayerName(), score.getScore());
-
-    int x = 40;
-    int y = 200;
-
-    // Print line by line; N.B. Graphics.drawString method does not break
-    // across lines, so we must do it for it.
-    for (String line : backstoryText.split("\n"))
-      g2d.drawString(line, x, y += g2d.getFontMetrics().getHeight());
+  private void drawBackstory(Graphics2D g2d, ImageObserver observer) {
+    this.paperpageIcon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/paperpage.gif"));
+    g2d.drawImage(this.paperpageIcon, 327, 397, observer);
+    g2d.drawString("x", 360, 417);
+    g2d.drawString(Integer.toString(score.getScore()), 377, 417);
   }
 
   public void setScore(GameScore score) {
