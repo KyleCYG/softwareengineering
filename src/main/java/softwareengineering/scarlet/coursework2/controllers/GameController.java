@@ -198,18 +198,18 @@ public class GameController implements Controller {
         MessageList.addMessage("You hit the monster! Damage: " + -player.getStrength()
             + " Monster's current health:" + monster.getHealthPoints());
 
-        if (monster.getHealthPoints() <= 0) {
-          it.remove();
-          MessageList.addMessage("Monster is dead!");
-        } else if (player.getHealthPoints() <= 0) {
-          MessageList.clear();
-          GameScore score = new GameScore(player.getName(), player.getGold());
-          app.getGameOverController().setScore(score);
-          app.switchToGameOver();
-
-        }
+      }
+      if (monster.getHealthPoints() <= 0) {
+        it.remove();
+        MessageList.addMessage("Monster is dead!");
+      } else if (player.getHealthPoints() <= 0) {
+        MessageList.clear();
+        GameScore score = new GameScore(player.getName(), player.getGold());
+        app.getGameOverController().setScore(score);
+        app.switchToGameOver();
 
       }
+
     }
   }
 
@@ -233,9 +233,11 @@ public class GameController implements Controller {
       } else {
         p = false;
       }
-      if (m && p)
-        System.out.println("Same room");
-
+      if (m && p) {
+        monster.setHunt(true);
+        monster.performAction(dungeon, player);
+      } else
+        monster.setHunt(false);
 
     }
 

@@ -13,7 +13,11 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   @Override
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     // TODO Auto-generated method stub
-    getDirection();
+    if (monster.isHunt()) {
+      huntPlayer(monster, player);
+    } else {
+      getDirection();
+    }
     Pair movePair = moveMap.get(moveDirection);
     int targetX = monster.getX() + movePair.getX();
     int targetY = monster.getY() + movePair.getY();
@@ -100,35 +104,25 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   }
 
   public void huntPlayer(Monster monster, Player player) {
-
     int dx = monster.getX() - player.getX(), dy = monster.getY() - player.getY();
     int nx = Math.abs(dx), ny = Math.abs(dy);
-    int sign_x = dx > 0 ? 1 : -1, sign_y = dy > 0 ? 1 : -1;
-
-    int huntX = 0;
-    int huntY = 0;
-    int ix = 0;
-    int iy = 0;
+    int sign_x = dx > 0 ? -1 : 1, sign_y = dy > 0 ? -1 : 1;
+    int ix = 0, iy = 0;
 
     if ((0.5 + ix) / nx < (0.5 + iy) / ny) {
       // next step is horizontal
-      huntX += sign_x;
-      if (huntX > monster.getX())
+      if (sign_x == 1)
         moveDirection = MoveDirection.RIGHT;
       else
         moveDirection = MoveDirection.LEFT;
-
-
     } else {
       // next step is vertical
-      huntY += sign_y;
-      if (huntY > monster.getY())
+      if (sign_y == 1)
         moveDirection = MoveDirection.DOWN;
       else
         moveDirection = MoveDirection.UP;
 
     }
-
 
   }
 
