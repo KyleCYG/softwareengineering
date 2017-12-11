@@ -1,13 +1,18 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
+import softwareengineering.scarlet.coursework2.controllers.AbandonGameController;
 import softwareengineering.scarlet.coursework2.controllers.BackstoryController;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
+import softwareengineering.scarlet.coursework2.controllers.GameoverController;
 import softwareengineering.scarlet.coursework2.controllers.MenuController;
 import softwareengineering.scarlet.coursework2.controllers.SetPreGameController;
 import softwareengineering.scarlet.coursework2.controllers.WinController;
+import softwareengineering.scarlet.coursework2.views.AbandonGameView;
+import softwareengineering.scarlet.coursework2.models.MessageList;
 import softwareengineering.scarlet.coursework2.views.BackstoryView;
 import softwareengineering.scarlet.coursework2.views.Frame;
+import softwareengineering.scarlet.coursework2.views.GameoverView;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.Panel;
 import softwareengineering.scarlet.coursework2.views.SetPreGameView;
@@ -40,6 +45,11 @@ public class GameApp implements App {
   private SetPreGameController setPreGameController;
   private BackstoryController backstoryController;
   private WinController winController;
+
+  private AbandonGameController abandonGameController;
+
+  private GameoverController gameOverController;
+
 
   public GameApp() {
     this.panel = new Panel();
@@ -79,6 +89,25 @@ public class GameApp implements App {
       winController = new WinController(this);
     }
     return winController;
+  }
+
+
+  @Override
+  public AbandonGameController getAbandonGameController() {
+    // TODO Auto-generated method stub
+    if (abandonGameController == null) {
+      abandonGameController = new AbandonGameController(this);
+    }
+    return abandonGameController;
+  }
+
+  public GameoverController getGameOverController() {
+    if (gameOverController == null) {
+      gameOverController = new GameoverController(this);
+
+    }
+    return gameOverController;
+
   }
 
   /**
@@ -131,6 +160,23 @@ public class GameApp implements App {
     this.winController.init(view);
   }
 
+  public void switchToAbandonGame() {
+    this.panel.setController(getAbandonGameController());
+
+    View view = new AbandonGameView();
+    this.abandonGameController.init(view);
+  }
+
+  /**
+   * Switch to GameoverView when the player dies
+   */
+  public void switchToGameOver() {
+    this.panel.setController(getGameOverController());
+
+    View view = new GameoverView();
+    this.gameOverController.init(view);
+  }
+
   /**
    * Quit the application
    */
@@ -167,4 +213,6 @@ public class GameApp implements App {
       }
     });
   }
+
+
 }

@@ -18,7 +18,7 @@ public class WinView implements View {
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
     g2d.setFont(this.namefont);
-    this.drawBackground(g2d,observer);
+    this.drawBackground(g2d, observer);
     this.drawBackstory(g2d);
   }
 
@@ -38,8 +38,7 @@ public class WinView implements View {
     String bsTitle = "You got there!";
     g2d.drawString(bsTitle, 200, 170);
     String backstoryText = String.format(
-        "Congratulations %s!\n"
-            + "You got %s gold, enough to print your thesis,\n"
+        "Congratulations %s!\n" + "You got %s gold, enough to print your thesis,\n"
             + "and made it to the print shop.\n"
             + "Handing it in is easy now - hopefully you will get a good \n"
             + "grade! Go enjoy a well earned rest... until the next time!"

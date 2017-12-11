@@ -18,7 +18,7 @@ public class SetPreGameView implements View {
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
     g2d.setFont(this.namefont);
-    this.drawBackground(g2d,observer);
+    this.drawBackground(g2d, observer);
     this.drawNameString(g2d);
     this.drawNameTextField(g2d);
     this.drawEnterString(g2d);
@@ -56,7 +56,7 @@ public class SetPreGameView implements View {
    */
   private void drawNameTextField(Graphics2D g2d) {
     if (model.getName() != null)
-      g2d.drawString(model.getName(),350, 250);
+      g2d.drawString(model.getName(), 350, 250);
     else
       g2d.drawString("----", 350, 250);
   }
