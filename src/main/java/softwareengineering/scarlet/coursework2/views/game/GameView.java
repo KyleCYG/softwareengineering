@@ -79,7 +79,7 @@ public class GameView implements View {
     InputStream is = MenuView.class.getResourceAsStream("/Chalkduster.ttf");
     try {
       Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-      sizedFont = font.deriveFont(Font.BOLD, 18f);
+      sizedFont = font.deriveFont(Font.PLAIN, 18f);
     } catch (FontFormatException e) {
       e.printStackTrace();
     } catch (IOException e) {
