@@ -2,6 +2,7 @@ package softwareengineering.scarlet.coursework2.views.game;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
@@ -13,6 +14,7 @@ import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.MessageList;
 import softwareengineering.scarlet.coursework2.models.Monster;
 import softwareengineering.scarlet.coursework2.models.Player;
+import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.View;
 
 /**
@@ -25,12 +27,12 @@ public class GameView implements View {
   public static final int CELL_HEIGHT = 32;
   public static final int CELL_WIDTH = 32;
   public static final int TOP_OFFSET = 40;
-  private static final Font TITLE_FONT = new Font("Chalkduster", Font.PLAIN, 20);
   private MonsterRenderer monsterRenderer;
   private PlayerRenderer playerRenderer;
   private LevelRenderer levelRenderer;
   private PlayerStatusRenderer playerStatusRenderer;
   private Image background;
+  private Font sizedFont;
 
   public GameView() {
     InputStream stream = getClass().getResourceAsStream("/background2.png");
@@ -74,7 +76,16 @@ public class GameView implements View {
 
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
-    g2d.setFont(TITLE_FONT);
+    InputStream is = MenuView.class.getResourceAsStream("/Chalkduster.ttf");
+    try {
+      Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+      sizedFont = font.deriveFont(Font.BOLD, 18f);
+    } catch (FontFormatException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    g2d.setFont(sizedFont);
     g2d.setColor(Color.white);
 
     renderBackground(g2d, observer);
