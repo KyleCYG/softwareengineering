@@ -29,8 +29,8 @@ public class MenuView implements View {
    */
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
-    this.drawBackground(g2d,observer);
-    //this.drawTitle(g2d);
+    this.drawBackground(g2d, observer);
+    // this.drawTitle(g2d);
     this.drawOptions(g2d);
     this.drawMenuArrow(g2d);
   }

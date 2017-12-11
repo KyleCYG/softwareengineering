@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 public class ItemImage {
   protected Image image;
   protected String filename;
+
   private InputStream getImageStream() {
     InputStream stream = getClass().getResourceAsStream("/" + this.filename);
 
@@ -27,7 +28,8 @@ public class ItemImage {
       try {
         InputStream stream = getImageStream();
         if (this.filename.endsWith(".gif")) {
-          this.image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/" + this.filename));
+          this.image =
+              Toolkit.getDefaultToolkit().getImage(getClass().getResource("/" + this.filename));
         } else {
           ImageIcon icon = new ImageIcon(ImageIO.read(stream));
           this.image = icon.getImage();

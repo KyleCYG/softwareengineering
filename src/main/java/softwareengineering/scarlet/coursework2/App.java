@@ -1,7 +1,9 @@
 package softwareengineering.scarlet.coursework2;
 
+import softwareengineering.scarlet.coursework2.controllers.AbandonGameController;
 import softwareengineering.scarlet.coursework2.controllers.BackstoryController;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
+import softwareengineering.scarlet.coursework2.controllers.GameoverController;
 import softwareengineering.scarlet.coursework2.controllers.MenuController;
 import softwareengineering.scarlet.coursework2.controllers.SetPreGameController;
 import softwareengineering.scarlet.coursework2.controllers.WinController;
@@ -30,6 +32,10 @@ public interface App {
 
   public WinController getWinController();
 
+  public AbandonGameController getAbandonGameController();
+
+  public GameoverController getGameOverController();
+
   public void switchToMenu();
 
   public void switchToPreGame();
@@ -39,4 +45,8 @@ public interface App {
   public void switchToGame();
 
   public void switchToWin();
+
+  public void switchToAbandonGame();
+
+  public void switchToGameOver();
 }

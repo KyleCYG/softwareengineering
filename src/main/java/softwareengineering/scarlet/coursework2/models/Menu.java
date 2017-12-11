@@ -28,7 +28,7 @@ public class Menu {
     this.selectedOption--;
     if (this.selectedOption == -1) {
       // Loop back to bottom option
-      this.selectedOption = 2; 
+      this.selectedOption = 2;
     }
   }
 
