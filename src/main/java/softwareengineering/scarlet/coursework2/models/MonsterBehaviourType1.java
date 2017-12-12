@@ -26,9 +26,13 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
 
     switch (targetCellType) {
       case ROOM:
-        monster.move(movePair.getX(), movePair.getY());
+        if (targetX == player.getX() && targetY == player.getY()) {
+          // player and monster are on same tile dont move
 
-        fightPlayer(player, monster);
+        } else {
+          monster.move(movePair.getX(), movePair.getY());
+          fightPlayer(player, monster);
+        }
 
         break;
       case CORRIDOR:
@@ -58,16 +62,18 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
         || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
 
       player.decreaseHealthPoint(monster.getStrength());
+      if (player.getHealthPoints() <= 0)
+      {
+        MessageList.addMessage("You got killed by Monster.Game Over!");
+      }
+     else {
       MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
-
-
-
-      // System.out.println("I WILL KILL YOU " + "monster coords: " + monster.getX() + ", "
-      // + monster.getY() + " player coords: " + player.getX() + ", " + player.getY());
-
-      if (player.healthPoints <= 0)
-        MessageList.clear();
     }
+    }
+    // System.out.println("I WILL KILL YOU " + "monster coords: " + monster.getX() + ", "
+    // + monster.getY() + " player coords: " + player.getX() + ", " + player.getY());
+
+
   }
 
   private static final Map<MoveDirection, Pair> moveMap;

@@ -2,7 +2,7 @@ package softwareengineering.scarlet.coursework2.models;
 
 public class DemoMonster extends Monster {
   private static int monsterStrength = 5;
-  private static int monsterHealth = 50;
+  private static int monsterHealth = 20;
 
   public boolean hasHadTurn = false;
 

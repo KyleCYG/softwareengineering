@@ -186,10 +186,7 @@ public class GameController implements Controller {
     List<Monster> monsterList = this.dungeon.getCurrentLevel().getMonsters();
     for (Iterator<Monster> it = monsterList.iterator(); it.hasNext();) {
       Monster monster = it.next();
-
       characterRoom(monster, player);
-
-
       if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
           || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
           || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
@@ -202,10 +199,11 @@ public class GameController implements Controller {
       if (monster.getHealthPoints() <= 0) {
         it.remove();
         MessageList.addMessage("Monster is dead!");
-      } else if (player.getHealthPoints() <= 0) {
-        MessageList.clear();
+      }
+      if (player.getHealthPoints() <= 0) {
         GameScore score = new GameScore(player.getName(), player.getGold());
         app.getGameOverController().setScore(score);
+        MessageList.clear();
         app.switchToGameOver();
 
       }

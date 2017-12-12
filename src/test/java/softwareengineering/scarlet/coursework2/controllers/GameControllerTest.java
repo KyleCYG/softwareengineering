@@ -1,7 +1,9 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import static org.junit.Assert.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.Test;
 import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactory;
 import softwareengineering.scarlet.coursework2.models.DemoMonster;
@@ -177,15 +179,24 @@ public class GameControllerTest {
 
   @Test
   public void testMoveMonsters() {
-    DummyApp app = new DummyApp();
-    GameController controller = new GameController(app);
-    controller.setUpModels();
-    controller.handleMonsters();
+    GameController controller = new GameController(new DummyApp());
+    Level level = SimpleLevelFactory.generateLevel(10, 10);
+    controller.dungeon = new Dungeon(10, 10, Arrays.asList(level));
+    controller.player = new Player("", 4, 4);
     int prevX, prevY;
-    for (Monster monster : controller.dungeon.getCurrentLevel().getMonsters()) {
+    DemoMonster monster1 = new DemoMonster(6, 6);
+    DemoMonster monster2 = new DemoMonster(6, 6);
+    DemoMonster monster3 = new DemoMonster(6, 6);
+
+    List<DemoMonster> monsterList=new ArrayList< DemoMonster>();
+    monsterList.add(monster1);
+    monsterList.add(monster2);
+    monsterList.add(monster3);
+    MonsterBehaviourType1 behaviour = new MonsterBehaviourType1();
+    for (Monster monster : monsterList) {
       prevX = monster.getX();
       prevY = monster.getY();
-      monster.performAction(controller.dungeon, controller.player);
+      behaviour.performAction(monster, controller.dungeon, controller.player);
       assertTrue(prevX != monster.getX() || prevY != monster.getY());
     }
   }
