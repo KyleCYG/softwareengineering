@@ -188,7 +188,7 @@ public class GameControllerTest {
     DemoMonster monster2 = new DemoMonster(6, 6);
     DemoMonster monster3 = new DemoMonster(6, 6);
 
-    List<DemoMonster> monsterList=new ArrayList< DemoMonster>();
+    List<DemoMonster> monsterList = new ArrayList<DemoMonster>();
     monsterList.add(monster1);
     monsterList.add(monster2);
     monsterList.add(monster3);
@@ -223,7 +223,7 @@ public class GameControllerTest {
     MonsterBehaviourType1 behaviour = new MonsterBehaviourType1();
     int prevHealth = controller.player.getHealthPoints();
     controller.performAction(new Pair(1, 0));
-    behaviour.fightPlayer(controller.player, monster);
+    behaviour.fightPlayer(controller.player, monster, new Pair(1, 0));
     assertTrue(controller.player.getHealthPoints() == prevHealth - monster.getStrength());
 
 
@@ -237,7 +237,7 @@ public class GameControllerTest {
     MonsterBehaviourType1 behaviour = new MonsterBehaviourType1();
     int prevHealth = controller.player.getHealthPoints();
     controller.performAction(new Pair(1, 0));
-    behaviour.fightPlayer(controller.player, monster);
+    behaviour.fightPlayer(controller.player, monster, new Pair(1, 0));
     assertTrue(controller.player.getHealthPoints() < prevHealth);
 
   }

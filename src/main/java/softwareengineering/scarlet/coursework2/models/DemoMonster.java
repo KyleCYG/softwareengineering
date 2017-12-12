@@ -16,4 +16,12 @@ public class DemoMonster extends Monster {
     super.performAction(dungeon, player);
     hasHadTurn = true;
   }
+
+  public boolean isHasHadTurn() {
+    return hasHadTurn;
+  }
+
+  public void setHasHadTurn(boolean hasHadTurn) {
+    this.hasHadTurn = hasHadTurn;
+  }
 }

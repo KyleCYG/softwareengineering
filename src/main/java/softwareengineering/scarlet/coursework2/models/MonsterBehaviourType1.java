@@ -26,23 +26,23 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     CellType targetCellType = dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
 
     switch (targetCellType) {
-      case ROOM:       
-      case GOLD:       
+      case ROOM:
+      case GOLD:
       case HEALTH:
       case STRENGTH1:
       case STRENGTH2:
       case STRENGTH3:
         if (targetX == player.getX() && targetY == player.getY()) {
-          // player and monster are on same tile dont move
+          // if player and monster are on same tile dont move
 
         } else {
-          monster.move(movePair.getX(), movePair.getY());
-          fightPlayer(player, monster);
+          if (monster.isHunt())
+            fightPlayer(player, monster, movePair);
         }
         break;
       case CORRIDOR:
         break;
-      
+
       case VOID:
         break;
       default:
@@ -51,7 +51,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     }
   }
 
-  public void fightPlayer(Player player, Monster monster) {
+  public void fightPlayer(Player player, Monster monster, Pair movePair) {
     if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
         || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
         || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
@@ -63,7 +63,11 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       } else {
         MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
       }
+    } else {
+
+      monster.move(movePair.getX(), movePair.getY());
     }
+
 
   }
 
