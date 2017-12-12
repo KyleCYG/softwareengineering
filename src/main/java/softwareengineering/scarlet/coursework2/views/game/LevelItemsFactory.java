@@ -1,5 +1,7 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
+import softwareengineering.scarlet.coursework2.models.CellType;
+
 public class LevelItemsFactory {
   private static Room room;
   private static Corridor corridor;
@@ -15,69 +17,69 @@ public class LevelItemsFactory {
   private static StairsUp stairsup;
   private static MonsterAvatar monster;
 
-  public static ItemImage init(String item) {
+  public static ItemImage init(CellType item) {
     switch (item) {
-      case "r":
+      case ROOM:
         if (room == null) {
           room = new Room();
         }
         return room;
-      case "c":
+      case CORRIDOR:
         if (corridor == null) {
           corridor = new Corridor();
         }
         return corridor;
-      case "w":
+      case WALL:
         if (wall == null) {
           wall = new Wall();
         }
         return wall;
-      case "g":
+      case GOLD:
         if (gold == null) {
           gold = new Gold();
         }
         return gold;
-      case "h":
+      case HEALTH:
         if (health == null) {
           health = new Health();
         }
         return health;
-      case "e":
+      case EXIT:
         if (exit == null) {
           exit = new Exit();
         }
         return exit;
-      case "s":
+      case STRENGTH:
         if (strength == null) {
           strength = new Strength();
         }
         return strength;
-      case "s1":
+      case STRENGTH1:
         if (strength1 == null) {
           strength1 = new StrengthType1();
         }
         return strength1;
-      case "s2":
+      case STRENGTH2:
         if (strength2 == null) {
           strength2 = new StrengthType2();
         }
         return strength2;
-      case "s3":
+      case STRENGTH3:
         if (strength3 == null) {
           strength3 = new StrengthType3();
         }
         return strength3;
-      case "SD":
+      case STAIRSDOWN:
         if (stairsdown == null) {
           stairsdown = new StairsDown();
         }
         return stairsdown;
-      case "SU":
+      case STAIRSUP:
         if (stairsup == null) {
           stairsup = new StairsUp();
         }
         return stairsup;
-      case "x":
+      case MONSTER:
         if (monster == null) {
           monster = new MonsterAvatar();
         }
