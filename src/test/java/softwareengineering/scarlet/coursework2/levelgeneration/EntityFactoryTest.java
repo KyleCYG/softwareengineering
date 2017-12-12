@@ -143,7 +143,7 @@ public class EntityFactoryTest {
 
   @Test
   public void testGenerateHealthAndStrength() {
-    List<Entity> entities = EntityFactory.generateHealthAndStrength(0, 6);
+    List<Entity> entities = EntityFactory.generateEntities(0, 6);
 
     assertEquals(EntityFactory.NUM_ENTITIES_PER_LEVEL, entities.size());
   }

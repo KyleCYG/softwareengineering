@@ -154,21 +154,23 @@ public class EntityFactory {
   }
 
   /**
-   * Generate health and strength items.
+   * Generate a list of entities, e.g. health and strength
    *
    * @param levelNumber Current level
    * @param totalLevels Total number of levels to consider
-   * @return A list of HealthItems and Strength*Items appropriate for the level
+   * @return A list of entities appropriate for the level
    */
-  protected static List<Entity> generateHealthAndStrength(int levelNumber, int totalLevels) {
+  protected static List<Entity> generateEntities(int levelNumber, int totalLevels) {
     List<Entity> entities = new ArrayList<Entity>();
 
-    // Make cumulative chance boundaries
+    // Make cumulative chance boundaries using the functions for each entity type
+    // The total chance of all the entities should equal 1
     float healthLevel = generateHealthChance(levelNumber, totalLevels);
     float strengthOneLevel = healthLevel + generateStrengthOneChance(levelNumber, totalLevels);
     float strengthTwoLevel = strengthOneLevel + generateStrengthTwoChance(levelNumber, totalLevels);
     float strengthThreeLevel =
         strengthTwoLevel + generateStrengthThreeChance(levelNumber, totalLevels);
+
     float choice;
     Random random = new Random();
 
@@ -227,7 +229,7 @@ public class EntityFactory {
     entities.addAll(generateGold(levelNumber, totalLevels, totalGold));
 
     // Next, randomly choose health and strength items
-    entities.addAll(generateHealthAndStrength(levelNumber, totalLevels));
+    entities.addAll(generateEntities(levelNumber, totalLevels));
 
     // Finally add "stairs up" and "stairs down"
     entities.addAll(generateStairs(levelNumber, totalLevels));
