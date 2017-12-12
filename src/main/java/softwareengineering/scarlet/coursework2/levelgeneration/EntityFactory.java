@@ -50,90 +50,107 @@ public class EntityFactory {
   /**
    * Determine the percentage chance of an entity appearing, between bounds
    *
+   * The "from" and "to" determine the starting and ending probabilities as the depth of the dungeon
+   * increases - "from" will be at level 0, and "to" will be the final level
+   *
    * @param levelNumber The current level to determine a chance for
    * @param totalLevels The maximum number of levels to consider
-   * @param min The minimum chance of appearing between 0.0 and 1.0
-   * @param max The maximum chance of appearing between 0.0 and 1.0
-   * @param positive True if the chance rises as you go deeper into the dungeon
+   * @param from The starting chance of appearing between 0.0 and 1.0
+   * @param to The ending chance of appearing between 0.0 and 1.0
+   * @param direction True if the chance rises as you go deeper into the dungeon
    * @return The chance of appearing, between 0.0 and 1.0
    */
-  protected static double generateChance(int levelNumber, int totalLevels, double min, double max,
-      boolean positive) {
-    max = max > 1 ? 1 : max;
-    min = min > 1 ? 1 : min;
-    double gradient = (max - min) / totalLevels;
-    int direction = positive ? 1 : -1;
-    double constant = positive ? min : max;
-    return constant + (gradient * levelNumber) * direction;
+  protected static float generateChance(int levelNumber, int totalLevels, float from, float to) {
+    // Pin min/max values
+    to = to > 1 ? 1 : to;
+    from = from > 1 ? 1 : from;
+    to = to < 0 ? 0 : to;
+    from = from < 0 ? 0 : from;
+
+    // Determine gradient
+    float gradient = (Math.max(from, to) - Math.min(from, to)) / (totalLevels - 1);
+
+    // Determine direction of gradient
+    if (from > to) {
+      gradient *= -1;
+    }
+
+    // Turn the parameters into the line equation and solve for the level number
+    return from + (gradient * levelNumber);
   }
 
   /**
-   * Ranges from a 74% chance to a 1% chance of getting a health item
+   * Ranges from a 7/8 chance to a 0% chance of getting a health item
    *
    * @param levelNumber Current level
    * @param totalLevels Total number of levels to consider
    * @return Chance of return a health item for this level, between 0.0 and 1.0
    */
-  protected static double generateHealthChance(int levelNumber, int totalLevels) {
-    return generateChance(levelNumber, totalLevels, 0.01, 0.74, false);
+  protected static float generateHealthChance(int levelNumber, int totalLevels) {
+    return generateChance(levelNumber, totalLevels, 0.875f, 0);
   }
 
   /**
-   * Ranges from a 1% chance to a 74% chance of getting a monster spawn
+   * Ranges from a 0% chance to a 7/8 chance of getting a monster spawn
    *
    * @param levelNumber Current level
    * @param totalLevels Total number of levels to consider
    * @return Chance of return a health item for this level, between 0.0 and 1.0
    */
-  protected static double generateMonsterChance(int levelNumber, int totalLevels) {
-    return generateChance(levelNumber, totalLevels, 0.01, 0.74, true);
+  protected static float generateMonsterChance(int levelNumber, int totalLevels) {
+    return generateChance(levelNumber, totalLevels, 0, 0.875f);
   }
 
   /**
-   * Ranges from a 0% chance to a 25% chance of getting a strength one item, but only considers the
+   * Ranges from a 0% chance to a 1/8 chance of getting a strength one item, but only considers the
    * first half of the levels.
    *
    * @param levelNumber Current level
    * @param totalLevels Total number of levels to consider
    * @return Chance of return a health item for this level, between 0.0 and 1.0
    */
-  protected static double generateStrengthOneChance(int levelNumber, int totalLevels) {
+  protected static float generateStrengthOneChance(int levelNumber, int totalLevels) {
     // Ranges between 25% and 0%, but only for the first half of the levels
-    if (levelNumber > totalLevels / 2) {
+    if (levelNumber >= totalLevels / 2) {
       return 0;
     }
-    return generateChance(levelNumber, totalLevels / 2, 0.01, 0.25, false);
+
+    return generateChance(levelNumber, (totalLevels / 2) + 1, 0.125f, 0);
   }
 
   /**
-   * Ranges from a 0% chance to a 25% chance of getting a strength two item, rising and then
+   * Ranges from a 0% chance to a 1/8 chance of getting a strength two item, rising and then
    * falling.
    *
    * @param levelNumber Current level
    * @param totalLevels Total number of levels to consider
    * @return Chance of return a health item for this level, between 0.0 and 1.0
    */
-  protected static double generateStrengthTwoChance(int levelNumber, int totalLevels) {
-    if (levelNumber < totalLevels / 2) {
-      return generateChance(levelNumber, totalLevels / 2, 0, 0.25, true);
+  protected static float generateStrengthTwoChance(int levelNumber, int totalLevels) {
+    if (levelNumber <= totalLevels / 2) {
+      return generateChance(levelNumber, totalLevels / 2, 0, 0.125f);
     } else {
-      return generateChance(levelNumber - (totalLevels / 2), totalLevels / 2, 0, 0.25, false);
+      return generateChance(levelNumber - (totalLevels / 2), totalLevels / 2, 0.125f, 0);
     }
   }
 
   /**
-   * Ranges from a 25% chance to a 0% chance of getting a strength three item, but only considers
+   * Ranges from a 0% chance to a 1/8 chance of getting a strength three item, but only considers
    * the second half of the levels.
    *
    * @param levelNumber Current level
    * @param totalLevels Total number of levels to consider
    * @return Chance of return a health item for this level, between 0.0 and 1.0
    */
-  protected static double generateStrengthThreeChance(int levelNumber, int totalLevels) {
+  protected static float generateStrengthThreeChance(int levelNumber, int totalLevels) {
     if (levelNumber < totalLevels / 2) {
       return 0;
     }
-    return generateChance(levelNumber - (totalLevels / 2), totalLevels / 2, 0, 0.25, false);
+
+    int minLevel = levelNumber - ((totalLevels / 2) - 1); // Off by one so the zero point is beyond
+                                                          // the range of consideration
+
+    return generateChance(minLevel, totalLevels / 2, 0, 0.125f);
   }
 
   /**
@@ -147,18 +164,17 @@ public class EntityFactory {
     List<Entity> entities = new ArrayList<Entity>();
 
     // Make cumulative chance boundaries
-    double healthLevel = generateHealthChance(levelNumber, totalLevels);
-    double strengthOneLevel = healthLevel + generateStrengthOneChance(levelNumber, totalLevels);
-    double strengthTwoLevel =
-        strengthOneLevel + generateStrengthTwoChance(levelNumber, totalLevels);
-    double strengthThreeLevel =
+    float healthLevel = generateHealthChance(levelNumber, totalLevels);
+    float strengthOneLevel = healthLevel + generateStrengthOneChance(levelNumber, totalLevels);
+    float strengthTwoLevel = strengthOneLevel + generateStrengthTwoChance(levelNumber, totalLevels);
+    float strengthThreeLevel =
         strengthTwoLevel + generateStrengthThreeChance(levelNumber, totalLevels);
-    double choice;
+    float choice;
     Random random = new Random();
 
     // For each "slot" in a level, randomly pick an entity
     for (int i = 0; i < NUM_ENTITIES_PER_LEVEL; i++) {
-      choice = random.nextDouble();
+      choice = random.nextFloat();
       if (choice < healthLevel) {
         entities.add(new HealthItem(1));
       } else if (choice < strengthOneLevel) {
