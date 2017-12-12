@@ -201,10 +201,11 @@ public class GameController implements Controller {
       if (monster.getHealthPoints() <= 0) {
         it.remove();
         MessageList.addMessage("Monster is dead!");
-      } else if (player.getHealthPoints() <= 0) {
-        MessageList.clear();
+      }
+      if (player.getHealthPoints() <= 0) {
         GameScore score = new GameScore(player.getName(), player.getGold());
         app.getGameOverController().setScore(score);
+        MessageList.clear();
         app.switchToGameOver();
 
       }

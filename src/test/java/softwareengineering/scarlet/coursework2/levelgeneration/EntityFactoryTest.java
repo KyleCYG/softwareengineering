@@ -49,7 +49,7 @@ public class EntityFactoryTest {
 
   @Test
   public void testGenerateChance_generation() {
-    double chance = EntityFactory.generateChance(0, 5, 0, 100, true);
+    double chance = EntityFactory.generateChance(0, 5, 0, 100);
 
     assertTrue(chance >= 0);
     assertTrue(chance <= 1);
@@ -58,11 +58,11 @@ public class EntityFactoryTest {
   @Test
   public void testGenerateChance_positiveProgression() {
     int totalLevels = 5;
-    double previousChance = EntityFactory.generateChance(0, totalLevels, 0, 100, true);
+    double previousChance = EntityFactory.generateChance(0, totalLevels, 0, 100);
     double chance;
 
     for (int level = 1; level < totalLevels; level++) {
-      chance = EntityFactory.generateChance(level, totalLevels, 0, 100, true);
+      chance = EntityFactory.generateChance(level, totalLevels, 0, 100);
       assertTrue(chance > previousChance);
     }
   }
@@ -70,13 +70,45 @@ public class EntityFactoryTest {
   @Test
   public void testGenerateChance_negativeProgression() {
     int totalLevels = 5;
-    double previousChance = EntityFactory.generateChance(0, totalLevels, 0, 100, false);
+    double previousChance = EntityFactory.generateChance(0, totalLevels, 100, 0);
     double chance;
 
     for (int level = 1; level < totalLevels; level++) {
-      chance = EntityFactory.generateChance(level, totalLevels, 0, 100, false);
+      chance = EntityFactory.generateChance(level, totalLevels, 100, 0);
       assertTrue(chance < previousChance);
     }
+  }
+
+  @Test
+  public void testGenerateChange_maxChanceAtTop() {
+    int totalLevels = 5;
+    float maxChance = 0.75f;
+    float chosenChance = EntityFactory.generateChance(totalLevels - 1, totalLevels, 0, maxChance);
+    assertEquals(maxChance, chosenChance, 0);
+  }
+
+  @Test
+  public void testGenerateChange_maxChanceAtBottom() {
+    int totalLevels = 5;
+    float maxChance = 0.75f;
+    float chosenChance = EntityFactory.generateChance(0, totalLevels, maxChance, 0);
+    assertEquals(maxChance, chosenChance, 0);
+  }
+
+  @Test
+  public void testGenerateChange_minChanceAtTop() {
+    int totalLevels = 5;
+    float maxChance = 0.75f;
+    float chosenChance = EntityFactory.generateChance(totalLevels - 1, totalLevels, maxChance, 0);
+    assertEquals(0, chosenChance, 0);
+  }
+
+  @Test
+  public void testGenerateChange_minChanceAtBottom() {
+    int totalLevels = 5;
+    float maxChance = 0.75f;
+    float chosenChance = EntityFactory.generateChance(0, totalLevels, 0, maxChance);
+    assertEquals(0, chosenChance, 0);
   }
 
   @Test
@@ -86,7 +118,7 @@ public class EntityFactoryTest {
 
     for (int level = 0; level < totalLevels; level++) {
       chance = EntityFactory.generateStrengthOneChance(level, totalLevels);
-      if (level > totalLevels / 2) {
+      if (level >= totalLevels / 2) {
         assertTrue(chance == 0);
       } else {
         assertTrue(chance > 0);
