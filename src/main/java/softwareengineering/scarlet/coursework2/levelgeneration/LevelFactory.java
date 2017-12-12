@@ -116,7 +116,7 @@ public class LevelFactory {
     // Will replace this later, hate having randomness when testing
     Random random = new Random();
 
-    // We'll add a boundary of 1 space around the edge (for a wall)
+    // We'll add a boundary of 1 space around the edge (for an imaginary wall)
     int maxWidth = width - 2;
     int maxHeight = height - 2;
 
