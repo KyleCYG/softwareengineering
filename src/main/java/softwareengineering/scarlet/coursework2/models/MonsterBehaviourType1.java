@@ -14,6 +14,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     // TODO Auto-generated method stub
     if (monster.isHunt()) {
+      MessageList.addMessage("A monster is hunting you!");
       huntPlayer(monster, player);
     } else {
       getDirection();
@@ -27,7 +28,6 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     switch (targetCellType) {
       case ROOM:
         monster.move(movePair.getX(), movePair.getY());
-
         fightPlayer(player, monster);
 
         break;
@@ -59,11 +59,6 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
 
       player.decreaseHealthPoint(monster.getStrength());
       MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
-
-
-
-      // System.out.println("I WILL KILL YOU " + "monster coords: " + monster.getX() + ", "
-      // + monster.getY() + " player coords: " + player.getX() + ", " + player.getY());
 
       if (player.healthPoints <= 0)
         MessageList.clear();
@@ -106,24 +101,30 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   public void huntPlayer(Monster monster, Player player) {
     int dx = monster.getX() - player.getX(), dy = monster.getY() - player.getY();
     int nx = Math.abs(dx), ny = Math.abs(dy);
-    int sign_x = dx > 0 ? -1 : 1, sign_y = dy > 0 ? -1 : 1;
+    int sign_x = dx > 0 ? 1 : -1, sign_y = dy > 0 ? 1 : -1;
     int ix = 0, iy = 0;
 
     if ((0.5 + ix) / nx < (0.5 + iy) / ny) {
       // next step is horizontal
-      if (sign_x == 1)
-        moveDirection = MoveDirection.RIGHT;
-      else
+      if (sign_x == 1) {
+
         moveDirection = MoveDirection.LEFT;
+      } else {
+
+        moveDirection = MoveDirection.RIGHT;
+      }
     } else {
       // next step is vertical
-      if (sign_y == 1)
-        moveDirection = MoveDirection.DOWN;
-      else
+      if (sign_y == 1) {
+
         moveDirection = MoveDirection.UP;
+      } else {
+
+        moveDirection = MoveDirection.DOWN;
+
+      }
 
     }
-
   }
 
 }

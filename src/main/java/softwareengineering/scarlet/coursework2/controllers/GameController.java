@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.CellType;
+import softwareengineering.scarlet.coursework2.models.DemoMonster;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.GameScore;
@@ -22,7 +23,6 @@ public class GameController implements Controller {
   private GameView view;
   protected Dungeon dungeon;
   protected Player player;
-  protected Character ch;
   private String playerName;
   private App app;
 
@@ -103,6 +103,8 @@ public class GameController implements Controller {
 
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
     scanForMonsters();
+    characterRoom(player);
+
     switch (targetCellType) {
       case ROOM:
       case CORRIDOR:
@@ -187,9 +189,6 @@ public class GameController implements Controller {
     for (Iterator<Monster> it = monsterList.iterator(); it.hasNext();) {
       Monster monster = it.next();
 
-      characterRoom(monster, player);
-
-
       if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
           || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
           || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
@@ -213,34 +212,40 @@ public class GameController implements Controller {
     }
   }
 
-  public void characterRoom(Monster monster, Player player) {
+  public void characterRoom(Player player) {
     boolean m = false;
     boolean p = false;
     ArrayList<Room> rooms = dungeon.getCurrentLevel().getRooms();
-    for (Room room : rooms) {
-      if ((monster.getX() < room.getX2() && monster.getX() > room.getX())
-          && (monster.getY() < room.getY2() && monster.getY() > room.getY())) {
-        m = true;
-
-      } else {
-        m = false;
-      }
-      if ((player.getX() < room.getX2() && player.getX() > room.getX())
-          && (player.getY() < room.getY2() && player.getY() > room.getY())) {
+    List<Monster> monsters = dungeon.getCurrentLevel().getMonsters();
+    DemoMonster tempMonster = null;
+    Player tempPlayer;
+    Room roomwithPlayer = null;;
+    for (Room room : rooms) {// player is in room 0
+      if ((player.getX() <= room.getX2() && player.getX() >= room.getX())
+          && (player.getY() <= room.getY2() && player.getY() >= room.getY())) {
 
         p = true;
-
-      } else {
-        p = false;
+        tempPlayer = player;
+        roomwithPlayer = room;
+        break;
       }
-      if (m && p) {
-        monster.setHunt(true);
-        monster.performAction(dungeon, player);
-      } else
-        monster.setHunt(false);
-
     }
 
+    if (monsters.size() != 0 && roomwithPlayer != null) {
+      for (Monster monster : monsters) {
+        if ((monster.getX() <= roomwithPlayer.getX2() && monster.getX() >= roomwithPlayer.getX())
+            && (monster.getY() <= roomwithPlayer.getY2()
+                && monster.getY() >= roomwithPlayer.getY())) {
+          m = true;
+          // tempMonster=(DemoMonster) monster;
+          monster.setHunt(true);
+
+        } else {
+          m = false;
+          monster.setHunt(false);
+        }
+      }
+    }
 
   }
 
