@@ -30,6 +30,7 @@
         <mainClass>softwareengineering.scarlet.coursework2.GameApp</mainClass>
        </manifest>
       </archive>
+      <finalName>thesisquest</finalName>
      </configuration>
     </plugin>
    </plugins>
