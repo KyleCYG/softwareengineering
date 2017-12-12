@@ -1,14 +1,8 @@
 package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.ImageObserver;
-import java.io.IOException;
-import java.io.InputStream;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import softwareengineering.scarlet.coursework2.models.Menu;
 
 /**
@@ -20,7 +14,6 @@ import softwareengineering.scarlet.coursework2.models.Menu;
 public class MenuView implements View {
   private static final int ySpacing = 40; // height between menu option
   private Menu model;
-  private Image background;
   private Font sizedFont;
   private String[] options;
 
@@ -37,15 +30,7 @@ public class MenuView implements View {
   }
 
   private void drawBackground(Graphics2D g2d, ImageObserver observer) {
-    InputStream stream = getClass().getResourceAsStream("/background1.png");
-    try {
-      ImageIcon icon = new ImageIcon(ImageIO.read(stream));
-      background = icon.getImage();
-    } catch (IOException e) {
-      throw new RuntimeException(
-          "Image %s not found! Assuming problem with resources and quitting");
-    }
-    g2d.drawImage(this.background, 0, 0, observer);
+    g2d.drawImage(BackgroundFactory.getMenuBackground(), 0, 0, observer);
   }
 
   /**
@@ -54,16 +39,7 @@ public class MenuView implements View {
    * @param g2d The graphics object the options are rendered to.
    */
   private void drawOptions(Graphics2D g2d) {
-    InputStream is = MenuView.class.getResourceAsStream("/Chalkduster.ttf");
-    try {
-      Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-      sizedFont = font.deriveFont(Font.BOLD, 18f);
-    } catch (FontFormatException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    g2d.setFont(sizedFont);
+    g2d.setFont(FontFactory.getSizedFont());
     for (int i = 0; i < options.length; i++) {
       g2d.drawString("  " + options[i], 270, 350 + ySpacing * i);
     }
