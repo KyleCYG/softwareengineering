@@ -34,8 +34,6 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       case STRENGTH3:
         if (targetX == player.getX() && targetY == player.getY()) {
           // if player and monster are on same tile dont move
-
-        } else if (monster.isHunt()) {
           fightPlayer(player, monster, movePair);
         } else {
           monster.move(movePair.getX(), movePair.getY());
@@ -46,8 +44,8 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
 
       case VOID:
         break;
-        
-        
+
+
       default:
         break;
 
@@ -59,19 +57,17 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
         || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
         || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
         || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
-    /*if (((player.getX() == monster.getX() ) && (player.getY() == monster.getY()))
-        || ((player.getX() == monster.getX() ) && (player.getY() == monster.getY()))) {*/
+      /*
+       * if (((player.getX() == monster.getX() ) && (player.getY() == monster.getY())) ||
+       * ((player.getX() == monster.getX() ) && (player.getY() == monster.getY()))) {
+       */
       player.decreaseHealthPoint(monster.getStrength());
       if (player.getHealthPoints() <= 0) {
         MessageList.addMessage("You got killed by Monster.Game Over!");
       } else {
         MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
       }
-    } else {
-
-      monster.move(movePair.getX(), movePair.getY());
     }
-
 
   }
 
