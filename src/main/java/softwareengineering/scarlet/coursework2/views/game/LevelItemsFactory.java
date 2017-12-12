@@ -5,7 +5,6 @@ import softwareengineering.scarlet.coursework2.models.CellType;
 public class LevelItemsFactory {
   private static Room room;
   private static Corridor corridor;
-  private static Wall wall;
   private static Gold gold;
   private static Health health;
   private static Exit exit;
@@ -28,11 +27,6 @@ public class LevelItemsFactory {
           corridor = new Corridor();
         }
         return corridor;
-      case WALL:
-        if (wall == null) {
-          wall = new Wall();
-        }
-        return wall;
       case GOLD:
         if (gold == null) {
           gold = new Gold();

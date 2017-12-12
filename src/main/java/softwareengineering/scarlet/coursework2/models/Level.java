@@ -196,9 +196,6 @@ public class Level {
           case CORRIDOR:
             System.out.print("*");
             break;
-          case WALL:
-            System.out.print("#");
-            break;
           case EXIT:
             System.out.print("X");
             break;
