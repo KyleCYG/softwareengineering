@@ -15,7 +15,6 @@ public class LevelItemsFactory {
   private static StrengthType3 strength3;
   private static StairsDown stairsdown;
   private static StairsUp stairsup;
-  private static MonsterAvatar monster;
 
   public static ItemImage init(CellType item) {
     switch (item) {
@@ -79,11 +78,6 @@ public class LevelItemsFactory {
           stairsup = new StairsUp();
         }
         return stairsup;
-      case MONSTER:
-        if (monster == null) {
-          monster = new MonsterAvatar();
-        }
-        return monster;
       default:
         return null;
     }
