@@ -26,9 +26,12 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     CellType targetCellType = dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
 
     switch (targetCellType) {
-      case ROOM:
-        monster.move(movePair.getX(), movePair.getY());
-        fightPlayer(player, monster);
+      case ROOM:       
+      case GOLD:       
+      case HEALTH:
+      case STRENGTH1:
+      case STRENGTH2:
+      case STRENGTH3:
         if (targetX == player.getX() && targetY == player.getY()) {
           // player and monster are on same tile dont move
 
@@ -36,20 +39,10 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
           monster.move(movePair.getX(), movePair.getY());
           fightPlayer(player, monster);
         }
-
         break;
       case CORRIDOR:
         break;
-      case GOLD:
-        break;
-      case HEALTH:
-        break;
-      case STRENGTH1:
-        break;
-      case STRENGTH2:
-        break;
-      case STRENGTH3:
-        break;
+      
       case VOID:
         break;
       default:

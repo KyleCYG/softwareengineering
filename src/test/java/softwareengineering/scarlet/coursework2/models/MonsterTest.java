@@ -39,6 +39,6 @@ public class MonsterTest {
   @Test
   public void testMonsterhasHealthItem() {
     DemoMonster monster = new DemoMonster(5, 3);
-    assertEquals(50, monster.getHealthPoints());
+    assertEquals(20, monster.getHealthPoints());
   }
 }
