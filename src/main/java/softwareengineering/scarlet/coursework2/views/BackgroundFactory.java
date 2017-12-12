@@ -13,6 +13,7 @@ public class BackgroundFactory {
   private static Image gameoverBackground;
   private static Image menuBackground;
   private static Image winBackground;
+  private static Image gameBackground;
 
   private static Image getImageFromDisk(String filename) {
     InputStream stream = BackgroundFactory.class.getClassLoader().getResourceAsStream(filename);
@@ -31,6 +32,14 @@ public class BackgroundFactory {
     }
 
     return background;
+  }
+
+  public static Image getGameBackground() {
+    if (gameBackground == null) {
+      gameBackground = getImageFromDisk("background2.png");
+    }
+
+    return gameBackground;
   }
 
   public static Image getAbandonBackground() {
