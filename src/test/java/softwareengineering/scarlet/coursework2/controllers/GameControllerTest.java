@@ -223,7 +223,7 @@ public class GameControllerTest {
     MonsterBehaviourType1 behaviour = new MonsterBehaviourType1();
     int prevHealth = controller.player.getHealthPoints();
     controller.performAction(new Pair(1, 0));
-    behaviour.fightPlayer(controller.player, monster, new Pair(1, 0));
+    behaviour.fightPlayer(controller.player, monster);
     assertTrue(controller.player.getHealthPoints() == prevHealth - monster.getStrength());
 
 
@@ -237,7 +237,7 @@ public class GameControllerTest {
     MonsterBehaviourType1 behaviour = new MonsterBehaviourType1();
     int prevHealth = controller.player.getHealthPoints();
     controller.performAction(new Pair(1, 0));
-    behaviour.fightPlayer(controller.player, monster, new Pair(1, 0));
+    behaviour.fightPlayer(controller.player, monster);
     assertTrue(controller.player.getHealthPoints() < prevHealth);
 
   }
