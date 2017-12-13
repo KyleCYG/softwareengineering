@@ -11,6 +11,10 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   private MoveDirection moveDirection;
 
   @Override
+  /**
+   * Implementation of monster's actions depending on the player's position
+   * @param  monster, dungeon, player 
+   */
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     // TODO Auto-generated method stub
     if (monster.isHunt()) {
@@ -57,16 +61,10 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
         || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
         || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
         || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
-      /*
-       * if (((player.getX() == monster.getX() ) && (player.getY() == monster.getY())) ||
-       * ((player.getX() == monster.getX() ) && (player.getY() == monster.getY()))) {
-       */
+
       player.decreaseHealthPoint(monster.getStrength());
-      if (player.getHealthPoints() <= 0) {
-        MessageList.addMessage("You got killed by Monster.Game Over!");
-      } else {
-        MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
-      }
+      MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
+
     }
 
   }

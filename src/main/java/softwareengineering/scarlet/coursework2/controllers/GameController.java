@@ -183,8 +183,8 @@ public class GameController implements Controller {
   /**
    * Checks if there is a monster 1 tile away from the player in x and/or y axis
    * 
-   * @param targetY
-   * @param targetX
+   * @param targetY The position that the user intends to move the player in y axis
+   * @param targetX The position that the user intends to move the player in x axis
    * 
    */
   private boolean scanForMonsters(int targetX, int targetY) {
@@ -199,7 +199,8 @@ public class GameController implements Controller {
           || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
           || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
 
-        if (monster.getX() == targetX && monster.getY() == targetY) {
+        if (monster.getX() == targetX && monster.getY() == targetY && this.dungeon.getCurrentLevel()
+            .getTypeAtPos(player.getX(), player.getY()) == CellType.ROOM) {
           monster.decreaseHealthPoint(player.getStrength());
           MessageList.addMessage("You hit the monster! Damage: " + -player.getStrength()
               + " Monster's current health:" + monster.getHealthPoints());
@@ -217,6 +218,7 @@ public class GameController implements Controller {
 
     }
     if (player.getHealthPoints() <= 0) {
+      MessageList.addMessage("You got killed by Monster.Game Over!");
       GameScore score = new GameScore(player.getName(), player.getGold());
       app.getGameOverController().setScore(score);
       MessageList.clear();
@@ -228,6 +230,11 @@ public class GameController implements Controller {
 
   }
 
+  /**
+   * Checks if the player and a monster are in the same room
+   * 
+   * @param player The player object
+   */
   public void CharacterinSameRoom(Player player) {
     boolean m = false;
     boolean p = false;
