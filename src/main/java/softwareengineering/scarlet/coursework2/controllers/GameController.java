@@ -169,7 +169,7 @@ public class GameController implements Controller {
             app.getWinController().setScore(score);
             app.switchToWin();
           } else {
-            MessageList.addMessage(String.format("You still need %d more gold!",
+            MessageList.addMessage(String.format("You still need %d more pages!",
                 Dungeon.REQUIRED_SCORE - player.getGold()));
             player.move(movePair.getX(), movePair.getY());
           }
