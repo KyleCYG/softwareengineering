@@ -3,7 +3,8 @@ package softwareengineering.scarlet.coursework2.controllers;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.SetPreGame;
 import softwareengineering.scarlet.coursework2.views.SetPreGameView;
-import softwareengineering.scarlet.coursework2.views.View;;
+import softwareengineering.scarlet.coursework2.views.View;
+import softwareengineering.scarlet.coursework2.views.game.GameView;;
 
 public class SetPreGameController implements Controller {
   private App app;
@@ -143,5 +144,11 @@ public class SetPreGameController implements Controller {
 
   protected void setUpData() {
     this.model = new SetPreGame();
+  }
+
+  @Override
+  public GameView getGameView() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

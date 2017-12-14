@@ -377,4 +377,9 @@ public class GameController implements Controller {
     setUpModels();
     this.view.setModels(this.dungeon, this.player);
   }
+
+  @Override
+  public GameView getGameView() {
+    return view;
+  }
 }

@@ -3,8 +3,8 @@ package softwareengineering.scarlet.coursework2.controllers;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.views.AbandonGameView;
-import softwareengineering.scarlet.coursework2.views.GameoverView;
 import softwareengineering.scarlet.coursework2.views.View;
+import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 public class AbandonGameController implements Controller {
   private App app;
@@ -49,5 +49,11 @@ public class AbandonGameController implements Controller {
     if (input == Input.CHOOSE) {
       app.switchToMenu();;
     }
+  }
+
+  @Override
+  public GameView getGameView() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

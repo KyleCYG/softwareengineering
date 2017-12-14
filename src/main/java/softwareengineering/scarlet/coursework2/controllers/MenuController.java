@@ -4,6 +4,7 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.Menu;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.View;
+import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 /**
  * Controller for the Menu screen.
@@ -94,5 +95,11 @@ public class MenuController implements Controller {
     this.view.setOptions(options);
     this.setUpData();
     this.view.setModel(model);
+  }
+
+  @Override
+  public GameView getGameView() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

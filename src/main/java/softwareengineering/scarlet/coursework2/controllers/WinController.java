@@ -4,6 +4,7 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.views.View;
 import softwareengineering.scarlet.coursework2.views.WinView;
+import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 public class WinController implements Controller {
   private App app;
@@ -48,5 +49,11 @@ public class WinController implements Controller {
     if (input == Input.CHOOSE) {
       app.switchToMenu();;
     }
+  }
+
+  @Override
+  public GameView getGameView() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

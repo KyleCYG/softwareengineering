@@ -2,6 +2,7 @@ package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
+import javax.swing.JTextArea;
 import softwareengineering.scarlet.coursework2.models.SetPreGame;
 
 public class SetPreGameView implements View {
@@ -62,5 +63,11 @@ public class SetPreGameView implements View {
 
   public void setModel(SetPreGame preGameModel) {
     this.model = preGameModel;
+  }
+
+  @Override
+  public void renderMessages(JTextArea textArea) {
+    // TODO Auto-generated method stub
+    
   }
 }

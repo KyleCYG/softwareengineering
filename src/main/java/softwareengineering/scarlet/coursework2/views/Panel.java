@@ -1,10 +1,13 @@
 package softwareengineering.scarlet.coursework2.views;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import softwareengineering.scarlet.coursework2.controllers.Controller;
 import softwareengineering.scarlet.coursework2.controllers.Input;
 
@@ -19,13 +22,17 @@ import softwareengineering.scarlet.coursework2.controllers.Input;
 public class Panel extends JPanel implements KeyListener {
   private static final long serialVersionUID = 1L;
   private Controller controller;
+  private JTextArea textArea;
 
   /**
    * Creates the JPanel, and applies the necessary application-level settings.
+   * @param textArea 
    */
-  public Panel() {
+  public Panel(JTextArea textArea) {
     addKeyListener(this);
     setFocusable(true);
+    //setSize(700, 720);
+    this.textArea = textArea;
     // does not get arrow keys as input
     setFocusTraversalKeysEnabled(false);
   }
@@ -56,6 +63,7 @@ public class Panel extends JPanel implements KeyListener {
 
     // Call the view's render method
     this.controller.getView().render(g2d, this);
+    this.controller.getView().renderMessages(this.textArea);
   }
 
   /**

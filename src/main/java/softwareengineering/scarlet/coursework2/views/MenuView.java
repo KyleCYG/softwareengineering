@@ -3,6 +3,7 @@ package softwareengineering.scarlet.coursework2.views;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
+import javax.swing.JTextArea;
 import softwareengineering.scarlet.coursework2.models.Menu;
 
 /**
@@ -66,5 +67,11 @@ public class MenuView implements View {
 
   public void setOptions(String[] options) {
     this.options = options;
+  }
+
+  @Override
+  public void renderMessages(JTextArea textArea) {
+    // TODO Auto-generated method stub
+    
   }
 }

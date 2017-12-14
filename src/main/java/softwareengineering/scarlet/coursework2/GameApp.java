@@ -1,6 +1,8 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import javax.swing.JTextArea;
 import softwareengineering.scarlet.coursework2.controllers.AbandonGameController;
 import softwareengineering.scarlet.coursework2.controllers.BackstoryController;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
@@ -46,12 +48,16 @@ public class GameApp implements App {
   private WinController winController;
   private GameoverController gameOverController;
   private AbandonGameController abandonGameController;
-
+  private JTextArea textArea;
 
 
   public GameApp() {
-    this.panel = new Panel();
-    this.frame = new Frame(this.panel);
+    textArea = new JTextArea(1, 63);
+    textArea.setText("");
+    //textArea.setFont(new Font("Serif", Font.PLAIN, 18));
+    this.panel = new Panel(textArea);
+    this.panel.setSize(700, 720);
+    this.frame = new Frame(this.panel,textArea);
   }
 
   public MenuController getMenuController() {

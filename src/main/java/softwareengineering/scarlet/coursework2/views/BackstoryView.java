@@ -2,6 +2,7 @@ package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
+import javax.swing.JTextArea;
 
 public class BackstoryView implements View {
   @Override
@@ -14,6 +15,12 @@ public class BackstoryView implements View {
     g2d.drawString(bsTitle, 200, 170);
 
     g2d.drawImage(BackgroundFactory.getBackstoryBackground(), 0, 0, observer);
+  }
+
+  @Override
+  public void renderMessages(JTextArea textArea) {
+    // TODO Auto-generated method stub
+    
   }
 }
 
