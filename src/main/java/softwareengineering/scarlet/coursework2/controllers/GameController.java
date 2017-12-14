@@ -88,6 +88,7 @@ public class GameController implements Controller {
 
     // Create player
     this.player = new Player(playerName, startX, startY);
+
   }
 
   /**
@@ -103,7 +104,7 @@ public class GameController implements Controller {
     int targetY = player.getY() + movePair.getY();
 
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
-    CharacterinSameRoom(player);
+    CharacterInSameRoom(player);
     scanForMonsters(targetX, targetY);
     if (moveOn) {
       switch (targetCellType) {
@@ -169,7 +170,7 @@ public class GameController implements Controller {
             app.getWinController().setScore(score);
             app.switchToWin();
           } else {
-            MessageList.addMessage(String.format("You still need %d more gold!",
+            MessageList.addMessage(String.format("You still need %d more pages!",
                 Dungeon.REQUIRED_SCORE - player.getGold()));
             player.move(movePair.getX(), movePair.getY());
           }
@@ -189,7 +190,6 @@ public class GameController implements Controller {
    */
   private boolean scanForMonsters(int targetX, int targetY) {
     // TODO Auto-generated method stub
-
     List<Monster> monsterList = this.dungeon.getCurrentLevel().getMonsters();
     for (Iterator<Monster> it = monsterList.iterator(); it.hasNext();) {
       Monster monster = it.next();
@@ -208,34 +208,31 @@ public class GameController implements Controller {
         } else
           moveOn = true;
 
+
         if (monster.getHealthPoints() <= 0) {
           it.remove();
           MessageList.addMessage("Monster is dead!");
           moveOn = true;
         }
 
+        playerDeath();
+
       }
 
-    }
-    if (player.getHealthPoints() <= 0) {
-      MessageList.addMessage("You got killed by Monster.Game Over!");
-      GameScore score = new GameScore(player.getName(), player.getGold());
-      app.getGameOverController().setScore(score);
-      MessageList.clear();
-      moveOn = true;
-      app.switchToGameOver();
+
 
     }
     return moveOn;
-
   }
+
+
 
   /**
    * Checks if the player and a monster are in the same room
    * 
    * @param player The player object
    */
-  public void CharacterinSameRoom(Player player) {
+  public void CharacterInSameRoom(Player player) {
     boolean m = false;
     boolean p = false;
     ArrayList<Room> rooms = dungeon.getCurrentLevel().getRooms();
@@ -328,9 +325,22 @@ public class GameController implements Controller {
         break;
     }
 
+
     handleMonsters();
+  }
+
+  public void playerDeath() {
+    if (player.getHealthPoints() <= 0) {
+      GameScore score = new GameScore(player.getName(), player.getGold());
+      app.getGameOverController().setScore(score);
+      moveOn = true;
+      app.switchToGameOver();
+
+
+    }
 
   }
+
 
   /**
    * Perform an action based on the player's input when the game is in the "abandon" mode (i.e. the
@@ -373,6 +383,7 @@ public class GameController implements Controller {
 
   @Override
   public void init(View view) {
+    MessageList.clear();
     this.view = (GameView) view;
     setUpModels();
     this.view.setModels(this.dungeon, this.player);

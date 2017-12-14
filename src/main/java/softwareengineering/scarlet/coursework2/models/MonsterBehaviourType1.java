@@ -13,10 +13,12 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   @Override
   /**
    * Implementation of monster's actions depending on the player's position
-   * @param  monster, dungeon, player 
+   * 
+   * @param monster, dungeon, player
    */
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     // TODO Auto-generated method stub
+
     if (monster.isHunt()) {
       MessageList.addMessage("A monster is hunting you!");
       huntPlayer(monster, player);
@@ -36,9 +38,12 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       case STRENGTH1:
       case STRENGTH2:
       case STRENGTH3:
+        if (dungeon.getCurrentLevel().getTypeAtPos(player.getX(),
+            player.getY()) == CellType.CORRIDOR)
+          monster.setHunt(false);
         if (targetX == player.getX() && targetY == player.getY()) {
           // if player and monster are on same tile dont move
-          fightPlayer(player, monster, movePair);
+          fightPlayer(player, monster);
         } else {
           monster.move(movePair.getX(), movePair.getY());
         }
@@ -56,7 +61,13 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     }
   }
 
-  public void fightPlayer(Player player, Monster monster, Pair movePair) {
+  /**
+   * Monster fights player if the player is one tile away
+   * 
+   * @param player The player object
+   * @param monster The monster object
+   */
+  public void fightPlayer(Player player, Monster monster) {
     if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
         || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
         || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
@@ -64,8 +75,10 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
 
       player.decreaseHealthPoint(monster.getStrength());
       MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
-
+      if (player.healthPoints <= 0)
+        MessageList.addMessage("You got killed by Monster.Game Over!");
     }
+
 
   }
 
@@ -82,6 +95,10 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     moveMap.put(MoveDirection.DOWNRIGHT, new Pair(1, 1));
   }
 
+  /**
+   * Implementation of the monster's idle state. The monster moves randomly in the room when it is
+   * not in hunt state
+   */
   private void getDirection() {
     Random rand = new Random();
     int randomNumber = rand.nextInt(4);
@@ -102,6 +119,12 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     }
   }
 
+  /**
+   * Implementation of the player hunting algorithm
+   * 
+   * @param monster The monster object
+   * @param player The player object
+   */
   public void huntPlayer(Monster monster, Player player) {
     int dx = monster.getX() - player.getX(), dy = monster.getY() - player.getY();
     int nx = Math.abs(dx), ny = Math.abs(dy);
