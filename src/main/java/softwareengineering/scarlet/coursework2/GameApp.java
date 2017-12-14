@@ -52,7 +52,7 @@ public class GameApp implements App {
 
 
   public GameApp() {
-    textArea = new JTextArea(1, 63);
+    textArea = new JTextArea();
     textArea.setText("");
     //textArea.setFont(new Font("Serif", Font.PLAIN, 18));
     this.panel = new Panel(textArea);
