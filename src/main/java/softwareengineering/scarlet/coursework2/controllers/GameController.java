@@ -104,7 +104,7 @@ public class GameController implements Controller {
     int targetY = player.getY() + movePair.getY();
 
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
-    CharacterInSameRoom(player);
+
     scanForMonsters(targetX, targetY);
     if (moveOn) {
       switch (targetCellType) {
@@ -211,7 +211,7 @@ public class GameController implements Controller {
 
         if (monster.getHealthPoints() <= 0) {
           it.remove();
-          MessageList.addMessage("Monster is dead!");
+          MessageList.addMessage("You killed the monster!");
           moveOn = true;
         }
 
@@ -225,48 +225,6 @@ public class GameController implements Controller {
     return moveOn;
   }
 
-
-
-  /**
-   * Checks if the player and a monster are in the same room
-   * 
-   * @param player The player object
-   */
-  public void CharacterInSameRoom(Player player) {
-    boolean m = false;
-    boolean p = false;
-    ArrayList<Room> rooms = dungeon.getCurrentLevel().getRooms();
-    List<Monster> monsters = dungeon.getCurrentLevel().getMonsters();
-    DemoMonster tempMonster = null;
-    Player tempPlayer;
-    Room roomwithPlayer = null;;
-    for (Room room : rooms) {// player is in room 0
-      if ((player.getX() <= room.getX2() && player.getX() >= room.getX())
-          && (player.getY() <= room.getY2() && player.getY() >= room.getY())) {
-
-        p = true;
-        tempPlayer = player;
-        roomwithPlayer = room;
-        break;
-      }
-    }
-
-    if (monsters.size() != 0 && roomwithPlayer != null) {
-      for (Monster monster : monsters) {
-        if ((monster.getX() <= roomwithPlayer.getX2() && monster.getX() >= roomwithPlayer.getX())
-            && (monster.getY() <= roomwithPlayer.getY2()
-                && monster.getY() >= roomwithPlayer.getY())) {
-          m = true;
-          monster.setHunt(true);
-
-        } else {
-          m = false;
-          monster.setHunt(false);
-        }
-      }
-    }
-
-  }
 
 
   /**

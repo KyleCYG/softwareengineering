@@ -1,6 +1,8 @@
 package softwareengineering.scarlet.coursework2.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
@@ -18,7 +20,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
    */
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     // TODO Auto-generated method stub
-
+    CharacterInSameRoom(player, dungeon);
     if (monster.isHunt()) {
       MessageList.addMessage("A monster is hunting you!");
       huntPlayer(monster, player);
@@ -118,6 +120,50 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
 
     }
   }
+
+
+
+  /**
+   * Checks if the player and a monster are in the same room
+   * 
+   * @param player The player object
+   */
+  public void CharacterInSameRoom(Player player, Dungeon dungeon) {
+    boolean m = false;
+    boolean p = false;
+    ArrayList<Room> rooms = dungeon.getCurrentLevel().getRooms();
+    List<Monster> monsters = dungeon.getCurrentLevel().getMonsters();
+    DemoMonster tempMonster = null;
+    Player tempPlayer;
+    Room roomwithPlayer = null;;
+    for (Room room : rooms) {// player is in room 0
+      if ((player.getX() <= room.getX2() && player.getX() >= room.getX())
+          && (player.getY() <= room.getY2() && player.getY() >= room.getY())) {
+
+        p = true;
+        tempPlayer = player;
+        roomwithPlayer = room;
+        break;
+      }
+    }
+
+    if (monsters.size() != 0 && roomwithPlayer != null) {
+      for (Monster monster : monsters) {
+        if ((monster.getX() <= roomwithPlayer.getX2() && monster.getX() >= roomwithPlayer.getX())
+            && (monster.getY() <= roomwithPlayer.getY2()
+                && monster.getY() >= roomwithPlayer.getY())) {
+          m = true;
+          monster.setHunt(true);
+
+        } else {
+          m = false;
+          monster.setHunt(false);
+        }
+      }
+    }
+
+  }
+
 
   /**
    * Implementation of the player hunting algorithm
