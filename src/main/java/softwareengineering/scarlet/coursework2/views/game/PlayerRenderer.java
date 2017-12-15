@@ -20,6 +20,8 @@ public class PlayerRenderer {
    * Draw the player to the screen
    */
   public void render(Graphics2D g2d, ImageObserver observer) {
-    this.avatar.draw(this.player.getX(), this.player.getY(), g2d, observer);
+    int screenX = GameView.getXForGridX(this.player.getX());
+    int screenY = GameView.getYForGridY(this.player.getY());
+    this.avatar.draw(screenX, screenY, g2d, observer);
   }
 }

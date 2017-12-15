@@ -30,8 +30,11 @@ public class MonsterRenderer {
    * Render current monster to the screen
    */
   public void render(Graphics2D g2d, ImageObserver observer) {
-    if (monster != null)
-      this.avatar.draw(monster.getX(), monster.getY(), g2d, observer);
+    if (monster != null) {
+      int screenX = GameView.getXForGridX(monster.getX());
+      int screenY = GameView.getYForGridY(monster.getY());
+      this.avatar.draw(screenX, screenY, g2d, observer);
+    }
   }
 
   public Dungeon getDungeon() {
