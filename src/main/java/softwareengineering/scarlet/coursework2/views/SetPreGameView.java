@@ -24,7 +24,6 @@ public class SetPreGameView implements View {
 
     if (this.model.isWarning()) {
       this.drawWarning(g2d);
-      this.model.setWarning(false);
     }
   }
 
@@ -41,7 +40,7 @@ public class SetPreGameView implements View {
    * @param g2d The graphics object the options are rendered to.
    */
   private void drawNameString(Graphics2D g2d) {
-    g2d.drawString(" Enter Name", 200, 250);
+    g2d.drawString(" Enter Name", 300, 250);
   }
 
   /**
@@ -51,9 +50,9 @@ public class SetPreGameView implements View {
    */
   private void drawNameTextField(Graphics2D g2d) {
     if (model.getName() != null)
-      g2d.drawString(model.getName(), 350, 250);
+      g2d.drawString(model.getName(), 450, 250);
     else
-      g2d.drawString("----", 350, 250);
+      g2d.drawString("----", 450, 250);
   }
 
   /**
@@ -62,14 +61,14 @@ public class SetPreGameView implements View {
    * @param g2d The graphics object the options are rendered to.
    */
   private void drawEnterString(Graphics2D g2d) {
-    g2d.drawString("Press Enter ", 250, 300);
+    g2d.drawString("Press Enter ", 350, 300);
   }
 
   /**
    * Render the warning message when not enough characters have been entered
    */
   private void drawWarning(Graphics2D g2d) {
-    g2d.drawString("Please Input 4 Characters ", 250, 350);
+    g2d.drawString("Please Input 4 Characters ", 350, 350);
   }
 
   /**

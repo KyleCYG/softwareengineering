@@ -31,9 +31,10 @@ public class GameController implements Controller {
   private App app;
 
   // TODO: split these constants into some kind of gameConfig class?
-  private static final int LEVEL_HEIGHT = 17;
+
+  private static final int LEVEL_HEIGHT = 18;
   private static final int LEVEL_WIDTH = 25;
-  private static final int NUM_LEVELS = 4;
+  private static final int NUM_LEVELS = 6;
 
   private boolean yn = false;
   private boolean moveOn = true;
