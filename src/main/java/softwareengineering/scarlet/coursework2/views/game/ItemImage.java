@@ -51,16 +51,9 @@ public class ItemImage {
   }
 
   /**
-   * Draw the image at the specified *grid* position to the screen
+   * Draw the image at the specified screen position
    */
   public void draw(int x, int y, Graphics2D g2d, ImageObserver observer) {
-    g2d.drawImage(this.getImage(), GameView.getXForGridX(x), GameView.getYForGridY(y), observer);
-  }
-
-  /**
-   * Draw the image at the specified *pixel* position to the screen
-   */
-  public void drawStatus(int x, int y, Graphics2D g2d, ImageObserver observer) {
     g2d.drawImage(this.getImage(), x, y, observer);
   }
 }
