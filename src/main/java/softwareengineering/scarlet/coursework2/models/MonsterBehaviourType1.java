@@ -33,7 +33,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       MessageList.addMessage("A monster is hunting you!");
       moveDirection = huntPlayer(myMonster, player);
     } else {
-      moveDirection = getDirection();
+      moveDirection = idleMovement();
     }
 
     Pair movePair = moveMap.get(moveDirection);
@@ -105,7 +105,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
    * Implementation of the monster's idle state. The monster moves randomly in the room when it is
    * not in hunt state
    */
-  private static MoveDirection getDirection() {
+  private static MoveDirection idleMovement() {
     Random rand = new Random();
     int randomNumber = rand.nextInt(4);
     switch (randomNumber) {
