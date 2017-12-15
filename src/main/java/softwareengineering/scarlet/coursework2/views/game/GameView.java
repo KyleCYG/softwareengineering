@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.MessageList;
-import softwareengineering.scarlet.coursework2.models.Monster;
 import softwareengineering.scarlet.coursework2.models.Player;
 import softwareengineering.scarlet.coursework2.views.BackgroundFactory;
 import softwareengineering.scarlet.coursework2.views.FontFactory;
@@ -77,13 +76,8 @@ public class GameView implements View {
     renderBackground(g2d, observer);
     levelRenderer.render(g2d, observer);
     playerRenderer.render(g2d, observer);
-    renderMessages(g2d, observer);
-
-    for (Monster monster : monsterRenderer.getDungeon().getCurrentLevel().getMonsters()) {
-      monsterRenderer.setMonster(monster);
-      monsterRenderer.render(g2d, observer);
-    }
-
+    monsterRenderer.render(g2d, observer);
     playerStatusRenderer.render(g2d, observer);
+    renderMessages(g2d, observer);
   }
 }
