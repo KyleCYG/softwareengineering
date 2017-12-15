@@ -179,6 +179,23 @@ public class Level {
   }
 
   /**
+   * Find the monsters at grid position x, y
+   *
+   * @param x Position of where we're looking
+   * @param y Position of where we're looking
+   * @return The monster at that position, or null if not found
+   */
+  public Monster getMonsterAtPos(int x, int y) {
+    for (Monster monster : getMonsters()) {
+      if (monster.getX() == x && monster.getY() == y) {
+        return monster;
+      }
+    }
+
+    return null;
+  }
+
+  /**
    * Dump a textual representation of the map to the console, for debugging.
    *
    * Be careful with large maps!
