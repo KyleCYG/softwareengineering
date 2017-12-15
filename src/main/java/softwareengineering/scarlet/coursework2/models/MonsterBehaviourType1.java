@@ -12,15 +12,14 @@ import softwareengineering.scarlet.coursework2.controllers.Pair;
  * Only works with DemoMonster
  */
 public class MonsterBehaviourType1 implements MonsterBehaviour {
-
   private MoveDirection moveDirection;
 
-  @Override
   /**
    * Implementation of monster's actions depending on the player's position
    *
    * @param monster, dungeon, player
    */
+  @Override
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     DemoMonster myMonster = (DemoMonster) monster;
 
@@ -64,12 +63,8 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
         break;
 
       case CORRIDOR:
-        break;
       case MONSTER:
-        break;
       case MONSTERSPAWNER:
-        break;
-
       case VOID:
         break;
 
