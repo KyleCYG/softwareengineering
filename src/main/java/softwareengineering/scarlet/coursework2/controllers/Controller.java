@@ -8,9 +8,6 @@ import softwareengineering.scarlet.coursework2.views.game.GameView;
  * between using App.
  *
  * All of these methods must be implemented correctly for the switching to work.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public interface Controller {
   /**

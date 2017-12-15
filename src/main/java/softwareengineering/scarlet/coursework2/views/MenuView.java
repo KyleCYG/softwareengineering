@@ -7,9 +7,6 @@ import softwareengineering.scarlet.coursework2.models.Menu;
 
 /**
  * Renders the title and menu to the screen.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public class MenuView implements View {
   private static final int ySpacing = 40; // height between menu option

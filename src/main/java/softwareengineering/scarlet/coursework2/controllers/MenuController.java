@@ -11,10 +11,6 @@ import softwareengineering.scarlet.coursework2.views.game.GameView;
  *
  * Used by the user to choose which menu option they want, and then switches to the appropriate
  * controller.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
- * @author George Kleanthous
  */
 public class MenuController implements Controller {
   private App app;

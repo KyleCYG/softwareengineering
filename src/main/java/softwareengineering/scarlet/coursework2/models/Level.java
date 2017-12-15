@@ -11,8 +11,6 @@ import java.util.List;
  * Use {@code getGrid} to get a 2-dimensional array giving every cell in the entire map.
  *
  * You can use {@code printGrid} to dump the map to the console.
- *
- * @author Dan Cosser
  */
 public class Level {
   private ArrayList<Room> rooms;

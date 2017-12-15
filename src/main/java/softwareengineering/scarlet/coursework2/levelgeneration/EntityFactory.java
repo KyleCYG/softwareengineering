@@ -14,9 +14,6 @@ import softwareengineering.scarlet.coursework2.models.StrengthItem;
 
 /**
  * Used to generate entity items over appropriate distributions for the difficulty of a level.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public class EntityFactory {
   protected static final int NUM_ENTITIES_PER_LEVEL = 5;

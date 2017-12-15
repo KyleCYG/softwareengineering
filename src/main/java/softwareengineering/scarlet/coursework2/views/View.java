@@ -5,9 +5,6 @@ import java.awt.image.ImageObserver;
 
 /**
  * Classes that implement this can be used by the GameApp to render to the screen.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public interface View {
   /**

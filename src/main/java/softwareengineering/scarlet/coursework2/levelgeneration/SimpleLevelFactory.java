@@ -12,8 +12,6 @@ import softwareengineering.scarlet.coursework2.models.Room;
  * The room almost fills the entire map.
  *
  * Used for testing.
- *
- * @author Dan Cosser
  */
 public class SimpleLevelFactory extends LevelFactory {
   /**

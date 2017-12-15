@@ -7,8 +7,6 @@ import softwareengineering.scarlet.coursework2.models.Player;
 
 /**
  * Use for Display Player combat status at bottom of the screen.
- *
- * @author Tehniat Fatima
  */
 public class PlayerStatusRenderer {
 

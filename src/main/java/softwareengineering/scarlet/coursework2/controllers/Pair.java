@@ -2,8 +2,6 @@ package softwareengineering.scarlet.coursework2.controllers;
 
 /**
  * A simple data structure class for holding pairs of integers.
- *
- * @author Gordon
  */
 public class Pair {
   private int x;
