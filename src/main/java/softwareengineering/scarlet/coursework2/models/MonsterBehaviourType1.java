@@ -61,12 +61,6 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
         }
         break;
 
-      case CORRIDOR:
-      case MONSTER:
-      case MONSTERSPAWNER:
-      case VOID:
-        break;
-
       default:
         break;
     }
@@ -85,9 +79,12 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
         || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
 
       player.decreaseHealthPoint(monster.getStrength());
-      MessageList.addMessage("You got hit by the monster! Damage:" + -monster.getStrength());
-      if (player.healthPoints <= 0)
-        MessageList.addMessage("You got killed by Monster.Game Over!");
+
+      MessageList.addMessage("You got hit by the monster! Damage: " + -monster.getStrength());
+
+      if (player.healthPoints <= 0) {
+        MessageList.addMessage("You were killed by a Monster. Game Over!");
+      }
     }
   }
 
