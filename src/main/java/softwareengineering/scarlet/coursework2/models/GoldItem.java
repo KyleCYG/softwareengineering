@@ -5,14 +5,7 @@ package softwareengineering.scarlet.coursework2.models;
  * dungeon.
  */
 public class GoldItem extends Entity {
-  private int value;
-
-  public GoldItem(int value) {
-    this.value = value;
+  public GoldItem() {
     this.type = CellType.GOLD;
-  }
-
-  public int getValue() {
-    return value;
   }
 }

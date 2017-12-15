@@ -31,7 +31,7 @@ public class MonsterFactoryTest {
   @Test
   public void testGenerateMonsters_noSpawners() {
     List<Entity> entities =
-        Arrays.asList(new GoldItem(1), new HealthItem(1), new StrengthItem(1, CellType.STRENGTH1));
+        Arrays.asList(new GoldItem(), new HealthItem(), new StrengthItem(1, CellType.STRENGTH1));
 
     List<Monster> monsters = MonsterFactory.generateMonsters(entities, 0, 1);
 

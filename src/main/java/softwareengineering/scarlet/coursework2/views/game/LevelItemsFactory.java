@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
 import softwareengineering.scarlet.coursework2.models.CellType;
+import softwareengineering.scarlet.coursework2.models.NullImage;
 
 /**
  * Utility class to cache image objects for items in the dungeon
@@ -11,12 +12,12 @@ public class LevelItemsFactory {
   private static Gold gold;
   private static Health health;
   private static Exit exit;
-  private static Strength strength;
   private static StrengthType1 strength1;
   private static StrengthType2 strength2;
   private static StrengthType3 strength3;
   private static StairsDown stairsdown;
   private static StairsUp stairsup;
+  private static NullImage nullimage;
 
   /**
    * Get the image object for the given type
@@ -48,11 +49,6 @@ public class LevelItemsFactory {
           exit = new Exit();
         }
         return exit;
-      case STRENGTH:
-        if (strength == null) {
-          strength = new Strength();
-        }
-        return strength;
       case STRENGTH1:
         if (strength1 == null) {
           strength1 = new StrengthType1();
@@ -79,7 +75,10 @@ public class LevelItemsFactory {
         }
         return stairsup;
       default:
-        return null;
+        if (nullimage == null) {
+          nullimage = new NullImage();
+        }
+        return nullimage;
     }
   }
 }

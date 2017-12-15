@@ -25,7 +25,7 @@ public class Frame extends JFrame {
   public void build(Panel panel) {
     this.add(panel);
 
-    setSize(900, 700);
+    setSize(900, 720);
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setFocusTraversalKeysEnabled(false); // stops treating arrow keys/tabs as changing focus

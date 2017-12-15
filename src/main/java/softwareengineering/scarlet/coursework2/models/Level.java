@@ -101,11 +101,6 @@ public class Level {
       }
     }
 
-    // Draw entities
-    for (Entity entity : getEntities()) {
-      grid[entity.getX()][entity.getY()] = entity.type;
-    }
-
     // Draw corridors
     for (Corridor corridor : getCorridors()) {
       for (int x = corridor.getX1(); x <= corridor.getX2(); x++) {
@@ -113,6 +108,16 @@ public class Level {
           grid[x][y] = CellType.CORRIDOR;
         }
       }
+    }
+
+    // Draw entities
+    for (Entity entity : getEntities()) {
+      grid[entity.getX()][entity.getY()] = entity.type;
+    }
+
+    // Draw monsters
+    for (Monster monster : getMonsters()) {
+      grid[monster.getX()][monster.getY()] = CellType.MONSTER;
     }
 
     return grid;
@@ -174,6 +179,23 @@ public class Level {
   }
 
   /**
+   * Find the monsters at grid position x, y
+   *
+   * @param x Position of where we're looking
+   * @param y Position of where we're looking
+   * @return The monster at that position, or null if not found
+   */
+  public Monster getMonsterAtPos(int x, int y) {
+    for (Monster monster : getMonsters()) {
+      if (monster.getX() == x && monster.getY() == y) {
+        return monster;
+      }
+    }
+
+    return null;
+  }
+
+  /**
    * Dump a textual representation of the map to the console, for debugging.
    *
    * Be careful with large maps!
@@ -210,9 +232,6 @@ public class Level {
             break;
           case STAIRSUP:
             System.out.print(">");
-            break;
-          case STRENGTH:
-            System.out.print("S");
             break;
           case STRENGTH1:
             System.out.print("1");

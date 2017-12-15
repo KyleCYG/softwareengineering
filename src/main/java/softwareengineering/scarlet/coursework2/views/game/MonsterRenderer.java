@@ -10,35 +10,21 @@ import softwareengineering.scarlet.coursework2.models.Monster;
  */
 public class MonsterRenderer {
   private MonsterAvatar avatar;
-  private Monster monster;
   private Dungeon dungeon;
 
   public MonsterRenderer(Dungeon dungeon) {
     avatar = new MonsterAvatar();
-    this.monster = null;
-    this.setDungeon(dungeon);
+    this.dungeon = dungeon;
   }
 
   /**
-   * Set which monster to render
-   */
-  public void setMonster(Monster monster) {
-    this.monster = monster;
-  }
-
-  /**
-   * Render current monster to the screen
+   * Render all monsters in the level to the screen
    */
   public void render(Graphics2D g2d, ImageObserver observer) {
-    if (monster != null)
-      this.avatar.draw(monster.getX(), monster.getY(), g2d, observer);
-  }
-
-  public Dungeon getDungeon() {
-    return dungeon;
-  }
-
-  public void setDungeon(Dungeon dungeon) {
-    this.dungeon = dungeon;
+    for (Monster monster : dungeon.getCurrentLevel().getMonsters()) {
+      int screenX = GameView.getXForGridX(monster.getX());
+      int screenY = GameView.getYForGridY(monster.getY());
+      this.avatar.draw(screenX, screenY, g2d, observer);
+    }
   }
 }

@@ -13,8 +13,8 @@ import softwareengineering.scarlet.coursework2.models.Level;
  */
 public class LevelRenderer {
   private static List<CellType> needsFloor = Arrays.asList(CellType.EXIT, CellType.GOLD,
-      CellType.HEALTH, CellType.STAIRSDOWN, CellType.STAIRSUP, CellType.STRENGTH,
-      CellType.STRENGTH1, CellType.STRENGTH2, CellType.STRENGTH3, CellType.MONSTER);
+      CellType.HEALTH, CellType.STAIRSDOWN, CellType.STAIRSUP, CellType.STRENGTH1,
+      CellType.STRENGTH2, CellType.STRENGTH3, CellType.MONSTER);
 
   private Dungeon dungeon;
 
@@ -46,13 +46,16 @@ public class LevelRenderer {
           continue;
         }
 
+        int screenX = GameView.getXForGridX(x);
+        int screenY = GameView.getYForGridY(y);
+
         // Some entities require floor to be drawn beneath them, so draw that first
         if (needsFloor.contains(grid[x][y])) {
-          LevelItemsFactory.init(CellType.ROOM).draw(x, y, g2d, observer);
+          LevelItemsFactory.init(CellType.ROOM).draw(screenX, screenY, g2d, observer);
         }
 
         // Finally load the entity image from the cache and draw it
-        LevelItemsFactory.init(grid[x][y]).draw(x, y, g2d, observer);
+        LevelItemsFactory.init(grid[x][y]).draw(screenX, screenY, g2d, observer);
       }
     }
   }

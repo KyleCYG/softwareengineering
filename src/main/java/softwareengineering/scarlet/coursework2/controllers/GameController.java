@@ -1,8 +1,6 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.CellType;
@@ -32,12 +30,11 @@ public class GameController implements Controller {
 
   // TODO: split these constants into some kind of gameConfig class?
 
-  private static final int LEVEL_HEIGHT = 18;
+  private static final int LEVEL_HEIGHT = 16;
   private static final int LEVEL_WIDTH = 25;
   private static final int NUM_LEVELS = 6;
 
   private boolean yn = false;
-  private boolean moveOn = true;
 
   // Map of movement directions to their x, y movements
   private static final Map<MoveDirection, Pair> moveMap;
@@ -112,117 +109,87 @@ public class GameController implements Controller {
 
     CellType targetCellType = this.dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
 
-    scanForMonsters(targetX, targetY);
-    if (moveOn) {
-      switch (targetCellType) {
-        case ROOM:
-        case CORRIDOR:
+    switch (targetCellType) {
+      case ROOM:
+      case CORRIDOR:
+        player.move(movePair.getX(), movePair.getY());
+        break;
+
+      case GOLD:
+        player.setGold(player.getGold() + 1);
+        player.move(movePair.getX(), movePair.getY());
+        Entity gold = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove gold
+        this.dungeon.getCurrentLevel().getEntities().remove(gold);
+        break;
+
+      case HEALTH:
+        player.increaseHealthPoint(1);
+        player.move(movePair.getX(), movePair.getY());
+        Entity health = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove health item
+        this.dungeon.getCurrentLevel().getEntities().remove(health);
+        break;
+
+      case STRENGTH1:
+        player.setStrengthItem(new StrengthItem(10, CellType.STRENGTH1));
+        player.move(movePair.getX(), movePair.getY());
+        Entity strength1 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove strength1
+        this.dungeon.getCurrentLevel().getEntities().remove(strength1);
+        break;
+
+      case STRENGTH2:
+        player.setStrengthItem(new StrengthItem(20, CellType.STRENGTH2));
+        player.move(movePair.getX(), movePair.getY());
+        Entity strength2 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove strength2
+        this.dungeon.getCurrentLevel().getEntities().remove(strength2);
+        break;
+
+      case STRENGTH3:
+        player.setStrengthItem(new StrengthItem(30, CellType.STRENGTH3));
+        player.move(movePair.getX(), movePair.getY());
+        Entity strength3 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
+        // Remove strength3
+        this.dungeon.getCurrentLevel().getEntities().remove(strength3);
+        break;
+
+      case STAIRSUP:
+        dungeon.goUp();
+        player.setX(dungeon.getCurrentLevel().getStairsDown().getX());
+        player.setY(dungeon.getCurrentLevel().getStairsDown().getY());
+        break;
+
+      case STAIRSDOWN:
+        dungeon.goDown();
+        player.setX(dungeon.getCurrentLevel().getStairsUp().getX());
+        player.setY(dungeon.getCurrentLevel().getStairsUp().getY());
+        break;
+
+      case EXIT:
+        if (player.getGold() >= Dungeon.REQUIRED_SCORE) {
+          GameScore score = new GameScore(player.getName(), player.getGold());
+          app.getWinController().setScore(score);
+          app.switchToWin();
+        } else {
+          MessageList.addMessage(String.format("You still need %d more pages!",
+              Dungeon.REQUIRED_SCORE - player.getGold()));
           player.move(movePair.getX(), movePair.getY());
-          break;
+        }
+        break;
 
-        case GOLD:
-          player.setGold(player.getGold() + 1);
-          player.move(movePair.getX(), movePair.getY());
-          Entity gold = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
-          // Remove gold
-          this.dungeon.getCurrentLevel().getEntities().remove(gold);
-          break;
-
-        case HEALTH:
-          player.increaseHealthPoint(1);
-          player.move(movePair.getX(), movePair.getY());
-          Entity health = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
-          // Remove health item
-          this.dungeon.getCurrentLevel().getEntities().remove(health);
-          break;
-
-        case STRENGTH1:
-          player.setStrengthItem(new StrengthItem(10, CellType.STRENGTH1));
-          player.move(movePair.getX(), movePair.getY());
-          Entity strength1 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
-          // Remove strength1
-          this.dungeon.getCurrentLevel().getEntities().remove(strength1);
-          break;
-
-        case STRENGTH2:
-          player.setStrengthItem(new StrengthItem(20, CellType.STRENGTH2));
-          player.move(movePair.getX(), movePair.getY());
-          Entity strength2 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
-          // Remove strength2
-          this.dungeon.getCurrentLevel().getEntities().remove(strength2);
-          break;
-
-        case STRENGTH3:
-          player.setStrengthItem(new StrengthItem(30, CellType.STRENGTH3));
-          player.move(movePair.getX(), movePair.getY());
-          Entity strength3 = this.dungeon.getCurrentLevel().getEntityAtPos(targetX, targetY);
-          // Remove strength3
-          this.dungeon.getCurrentLevel().getEntities().remove(strength3);
-          break;
-
-        case STAIRSUP:
-          dungeon.goUp();
-          player.setX(dungeon.getCurrentLevel().getStairsDown().getX());
-          player.setY(dungeon.getCurrentLevel().getStairsDown().getY());
-          break;
-
-        case STAIRSDOWN:
-          dungeon.goDown();
-          player.setX(dungeon.getCurrentLevel().getStairsUp().getX());
-          player.setY(dungeon.getCurrentLevel().getStairsUp().getY());
-          break;
-
-        case EXIT:
-          if (player.getGold() >= Dungeon.REQUIRED_SCORE) {
-            GameScore score = new GameScore(player.getName(), player.getGold());
-            app.getWinController().setScore(score);
-            app.switchToWin();
-          } else {
-            MessageList.addMessage(String.format("You still need %d more pages!",
-                Dungeon.REQUIRED_SCORE - player.getGold()));
-            player.move(movePair.getX(), movePair.getY());
-          }
-          break;
-      }
-    }
-  }
-
-  /**
-   * Checks if there is a monster 1 tile away from the player in x and/or y axis
-   *
-   * @param targetY The position that the user intends to move the player in y axis
-   * @param targetX The position that the user intends to move the player in x axis
-   */
-  private boolean scanForMonsters(int targetX, int targetY) {
-    // TODO Auto-generated method stub
-    List<Monster> monsterList = this.dungeon.getCurrentLevel().getMonsters();
-    for (Iterator<Monster> it = monsterList.iterator(); it.hasNext();) {
-      Monster monster = it.next();
-
-      if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
-          || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
-          || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
-          || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
-
-        if (monster.getX() == targetX && monster.getY() == targetY && this.dungeon.getCurrentLevel()
-            .getTypeAtPos(player.getX(), player.getY()) == CellType.ROOM) {
-          monster.decreaseHealthPoint(player.getStrength());
-          MessageList.addMessage("You hit the monster! Damage: " + -player.getStrength()
-              + " Monster's current health:" + monster.getHealthPoints());
-          moveOn = false;
-        } else
-          moveOn = true;
+      case MONSTER:
+        Monster monster = dungeon.getCurrentLevel().getMonsterAtPos(targetX, targetY);
+        monster.decreaseHealthPoint(player.getStrength());
+        MessageList.addMessage("You hit the monster! Damage: " + -player.getStrength()
+            + " Monster's current health:" + monster.getHealthPoints());
 
         if (monster.getHealthPoints() <= 0) {
-          it.remove();
-          MessageList.addMessage("You killed the monster!");
-          moveOn = true;
+          dungeon.getCurrentLevel().getMonsters().remove(monster);
         }
-
-        playerDeath();
-      }
+        break;
     }
-    return moveOn;
   }
 
   /**
@@ -281,14 +248,17 @@ public class GameController implements Controller {
         break;
     }
 
+    checkPlayerDeath();
     handleMonsters();
   }
 
-  public void playerDeath() {
+  /**
+   * Check to see if the player has died - if so, move to the game over screen
+   */
+  public void checkPlayerDeath() {
     if (player.getHealthPoints() <= 0) {
       GameScore score = new GameScore(player.getName(), player.getGold());
       app.getGameOverController().setScore(score);
-      moveOn = true;
       app.switchToGameOver();
     }
   }
