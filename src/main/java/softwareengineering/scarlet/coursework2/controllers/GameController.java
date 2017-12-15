@@ -345,9 +345,4 @@ public class GameController implements Controller {
     this.view.setModels(this.dungeon, this.player);
   }
 
-  @Override
-  public GameView getGameView() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }

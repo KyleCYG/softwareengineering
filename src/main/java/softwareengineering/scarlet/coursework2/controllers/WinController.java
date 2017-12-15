@@ -63,9 +63,4 @@ public class WinController implements Controller {
     }
   }
 
-  @Override
-  public GameView getGameView() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }
