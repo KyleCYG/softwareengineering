@@ -1,9 +1,6 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import javax.swing.JTextArea;
@@ -17,9 +14,6 @@ import softwareengineering.scarlet.coursework2.views.View;
 
 /**
  * View for the main game
- *
- * @author Clark Yang
- * @author Dan Cosser
  */
 public class GameView implements View {
   public static final int CELL_HEIGHT = 32;

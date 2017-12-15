@@ -1,8 +1,6 @@
 package softwareengineering.scarlet.coursework2.views;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
@@ -18,7 +16,7 @@ public class Frame extends JFrame {
   private static final long serialVersionUID = 1L;
 
   public Frame(Panel panel, JTextArea textArea) {
-    this.build(panel,textArea);
+    this.build(panel, textArea);
   }
 
   /**
@@ -28,7 +26,7 @@ public class Frame extends JFrame {
    */
   public void build(Panel panel, JTextArea textArea) {
     this.add(panel, BorderLayout.CENTER);
-    this.add(textArea,BorderLayout.SOUTH);
+    this.add(textArea, BorderLayout.SOUTH);
     setSize(700, 730);
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,13 +1,14 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 import softwareengineering.scarlet.coursework2.levelgeneration.SimpleLevelFactory;
 import softwareengineering.scarlet.coursework2.models.DemoMonster;
-import softwareengineering.scarlet.coursework2.models.DummyMonster;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.ExitItem;
 import softwareengineering.scarlet.coursework2.models.Level;
@@ -174,7 +175,6 @@ public class GameControllerTest {
     for (Monster monster : controller.dungeon.getCurrentLevel().getMonsters()) {
       assertTrue(((DemoMonster) monster).hasHadTurn);
     }
-
   }
 
   @Test
@@ -225,8 +225,6 @@ public class GameControllerTest {
     controller.performAction(new Pair(1, 0));
     behaviour.fightPlayer(controller.player, monster);
     assertTrue(controller.player.getHealthPoints() == prevHealth - monster.getStrength());
-
-
   }
 
   public void testMonsterFightPlayer() {
@@ -239,8 +237,5 @@ public class GameControllerTest {
     controller.performAction(new Pair(1, 0));
     behaviour.fightPlayer(controller.player, monster);
     assertTrue(controller.player.getHealthPoints() < prevHealth);
-
   }
-
-
 }
