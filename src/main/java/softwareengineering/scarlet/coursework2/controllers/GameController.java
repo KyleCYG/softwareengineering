@@ -27,7 +27,7 @@ public class GameController implements Controller {
   // TODO: split these constants into some kind of gameConfig class?
   private static final int LEVEL_HEIGHT = 20;
   private static final int LEVEL_WIDTH = 20;
-  private static final int NUM_LEVELS = 4;
+  private static final int NUM_LEVELS = 6;
 
   private boolean yn = false;
   private boolean moveOn = true;
