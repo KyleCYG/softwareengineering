@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.ImageObserver;
-import javax.swing.JTextArea;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 
 public class GameoverView implements View {
@@ -33,11 +32,5 @@ public class GameoverView implements View {
 
   public void setScore(GameScore score) {
     this.score = score;
-  }
-
-  @Override
-  public void renderMessages(JTextArea textArea) {
-    // TODO Auto-generated method stub
-    
   }
 }

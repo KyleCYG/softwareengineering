@@ -1,10 +1,6 @@
 package softwareengineering.scarlet.coursework2.views;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Font;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
 
 /**
  * Wrapper around JFrame.
@@ -17,8 +13,8 @@ import javax.swing.JTextArea;
 public class Frame extends JFrame {
   private static final long serialVersionUID = 1L;
 
-  public Frame(Panel panel, JTextArea textArea) {
-    this.build(panel,textArea);
+  public Frame(Panel panel) {
+    this.build(panel);
   }
 
   /**
@@ -26,10 +22,9 @@ public class Frame extends JFrame {
    *
    * @param panel
    */
-  public void build(Panel panel, JTextArea textArea) {
-    this.add(panel, BorderLayout.CENTER);
-    this.add(textArea,BorderLayout.SOUTH);
-    setSize(700, 730);
+  public void build(Panel panel) {
+    this.add(panel);
+    setSize(700, 760);
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setFocusTraversalKeysEnabled(false); // stops treating arrow keys/tabs as changing focus
