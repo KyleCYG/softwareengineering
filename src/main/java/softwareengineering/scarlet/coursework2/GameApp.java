@@ -1,10 +1,6 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
-<<<<<<< HEAD
-=======
-import javax.swing.JTextArea;
->>>>>>> 2d66e1ddde464953ba19edba6de55988626b347b
 import softwareengineering.scarlet.coursework2.controllers.AbandonGameController;
 import softwareengineering.scarlet.coursework2.controllers.BackstoryController;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
@@ -50,18 +46,9 @@ public class GameApp implements App {
 
 
   public GameApp() {
-<<<<<<< HEAD
     this.panel = new Panel();
     this.panel.setSize(700, 720);
     this.frame = new Frame(this.panel);
-=======
-    textArea = new JTextArea();
-    textArea.setText("");
-    // textArea.setFont(new Font("Serif", Font.PLAIN, 18));
-    this.panel = new Panel(textArea);
-    this.panel.setSize(700, 720);
-    this.frame = new Frame(this.panel, textArea);
->>>>>>> 2d66e1ddde464953ba19edba6de55988626b347b
   }
 
   public MenuController getMenuController() {
