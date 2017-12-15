@@ -49,10 +49,6 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       case STRENGTH1:
       case STRENGTH2:
       case STRENGTH3:
-        if (dungeon.getCurrentLevel().getTypeAtPos(player.getX(),
-            player.getY()) == CellType.CORRIDOR)
-          myMonster.setHunt(false);
-
         if (targetX == player.getX() && targetY == player.getY()) {
           // if player and monster are on same tile don't move
           fightPlayer(player, myMonster);
@@ -73,18 +69,12 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
    * @param monster The monster object
    */
   public void fightPlayer(Player player, Monster monster) {
-    if (((player.getX() == monster.getX() + 1) && (player.getY() == monster.getY()))
-        || ((player.getX() == monster.getX() - 1) && (player.getY() == monster.getY()))
-        || (player.getX() == monster.getX()) && (player.getY() == monster.getY() + 1)
-        || (player.getX() == monster.getX()) && (player.getY() == monster.getY() - 1)) {
+    player.decreaseHealthPoint(monster.getStrength());
 
-      player.decreaseHealthPoint(monster.getStrength());
+    MessageList.addMessage("You got hit by the monster! Damage: " + -monster.getStrength());
 
-      MessageList.addMessage("You got hit by the monster! Damage: " + -monster.getStrength());
-
-      if (player.healthPoints <= 0) {
-        MessageList.addMessage("You were killed by a Monster. Game Over!");
-      }
+    if (player.healthPoints <= 0) {
+      MessageList.addMessage("You were killed by a Monster. Game Over!");
     }
   }
 
