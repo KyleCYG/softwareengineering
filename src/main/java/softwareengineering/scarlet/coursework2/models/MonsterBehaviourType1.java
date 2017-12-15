@@ -24,7 +24,12 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     DemoMonster myMonster = (DemoMonster) monster;
 
-    CharacterInSameRoom(myMonster, player, dungeon);
+    if (isMonsterInRoomWithPlayer(myMonster, player, dungeon.getCurrentLevel())) {
+      myMonster.setHunt(true);
+    } else {
+      myMonster.setHunt(false);
+    }
+
     if (myMonster.isHunt()) {
       MessageList.removeDuplicateMessages();
       MessageList.addMessage("A monster is hunting you!");
@@ -129,19 +134,10 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   }
 
   /**
-   * Checks if the player and the monster are in the same room, and if so set the monster's hunt
-   * status
+   * Are the player and the monster in the same room?
    */
-  private static void CharacterInSameRoom(DemoMonster monster, Player player, Dungeon dungeon) {
-    Level level = dungeon.getCurrentLevel();
-
-    if (level.getRoomAtPos(player.getX(), player.getY()) == level.getRoomAtPos(monster.getX(), monster.getY())) {
-      // Player is in the same room
-      monster.setHunt(true);
-    } else {
-      // Player isn't in the same room
-      monster.setHunt(false);
-    }
+  private static boolean isMonsterInRoomWithPlayer(DemoMonster monster, Player player, Level level) {
+    return level.getRoomAtPos(player.getX(), player.getY()) == level.getRoomAtPos(monster.getX(), monster.getY());
   }
 
   /**
