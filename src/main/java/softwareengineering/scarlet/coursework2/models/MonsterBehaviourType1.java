@@ -12,8 +12,6 @@ import softwareengineering.scarlet.coursework2.controllers.Pair;
  * Only works with DemoMonster
  */
 public class MonsterBehaviourType1 implements MonsterBehaviour {
-  private MoveDirection moveDirection;
-
   /**
    * Implementation of monster's actions depending on the player's position
    *
@@ -22,6 +20,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   @Override
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     DemoMonster myMonster = (DemoMonster) monster;
+    MoveDirection moveDirection;
 
     if (isMonsterInRoomWithPlayer(myMonster, player, dungeon.getCurrentLevel())) {
       myMonster.setHunt(true);
@@ -32,9 +31,9 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     if (myMonster.isHunt()) {
       MessageList.removeDuplicateMessages();
       MessageList.addMessage("A monster is hunting you!");
-      huntPlayer(myMonster, player);
+      moveDirection = huntPlayer(myMonster, player);
     } else {
-      getDirection();
+      moveDirection = getDirection();
     }
 
     Pair movePair = moveMap.get(moveDirection);
@@ -109,22 +108,18 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
    * Implementation of the monster's idle state. The monster moves randomly in the room when it is
    * not in hunt state
    */
-  private void getDirection() {
+  private static MoveDirection getDirection() {
     Random rand = new Random();
     int randomNumber = rand.nextInt(4);
     switch (randomNumber) {
       case 0:
-        moveDirection = MoveDirection.UP;
-        break;
+        return MoveDirection.UP;
       case 1:
-        moveDirection = MoveDirection.DOWN;
-        break;
+        return MoveDirection.DOWN;
       case 2:
-        moveDirection = MoveDirection.LEFT;
-        break;
-      case 3:
-        moveDirection = MoveDirection.RIGHT;
-        break;
+        return MoveDirection.LEFT;
+      default:
+        return MoveDirection.RIGHT;
     }
   }
 
@@ -141,7 +136,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
    * @param monster The monster object
    * @param player The player object
    */
-  public void huntPlayer(Monster monster, Player player) {
+  private static MoveDirection huntPlayer(Monster monster, Player player) {
     int dx = monster.getX() - player.getX(), dy = monster.getY() - player.getY();
     int nx = Math.abs(dx), ny = Math.abs(dy);
     int sign_x = dx > 0 ? 1 : -1, sign_y = dy > 0 ? 1 : -1;
@@ -150,16 +145,16 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     if ((0.5 + ix) / nx < (0.5 + iy) / ny) {
       // next step is horizontal
       if (sign_x == 1) {
-        moveDirection = MoveDirection.LEFT;
+        return MoveDirection.LEFT;
       } else {
-        moveDirection = MoveDirection.RIGHT;
+        return MoveDirection.RIGHT;
       }
     } else {
       // next step is vertical
       if (sign_y == 1) {
-        moveDirection = MoveDirection.UP;
+        return MoveDirection.UP;
       } else {
-        moveDirection = MoveDirection.DOWN;
+        return MoveDirection.DOWN;
       }
     }
   }
