@@ -20,26 +20,43 @@ public class ItemImage {
   protected Image image;
   protected String filename;
 
-  private InputStream getImageStream() {
+  /**
+   * Loads a gif from disk
+   */
+  private Image getGif(String filename) throws IOException {
+    Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/" + this.filename));
+
+    if (image == null) {
+      return getPng("placeholder.png");
+    }
+
+    return image;
+  }
+
+  /**
+   * Loads a png from disk
+   */
+  private Image getPng(String filename) throws IOException {
     InputStream stream = getClass().getResourceAsStream("/" + this.filename);
 
     if (stream == null) {
       stream = getClass().getResourceAsStream("/placeholder.png");
     }
 
-    return stream;
+    ImageIcon icon = new ImageIcon(ImageIO.read(stream));
+    return icon.getImage();
   }
 
+  /**
+   * Load an image from disk and cache it
+   */
   private Image getImage() {
     if (this.image == null) {
       try {
-        InputStream stream = getImageStream();
         if (this.filename.endsWith(".gif")) {
-          this.image =
-              Toolkit.getDefaultToolkit().getImage(getClass().getResource("/" + this.filename));
+          this.image = getGif(filename);
         } else {
-          ImageIcon icon = new ImageIcon(ImageIO.read(stream));
-          this.image = icon.getImage();
+          this.image = getPng(filename);
         }
       } catch (IOException io) {
         throw new RuntimeException(String.format(
