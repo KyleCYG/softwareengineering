@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  *
  * This class can handle pngs and gifs.
  */
-public class ItemImage {
+public abstract class ItemImage {
   protected Image image;
   protected String filename;
 
