@@ -1,8 +1,6 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.CellType;
@@ -35,7 +33,6 @@ public class GameController implements Controller {
   private static final int NUM_LEVELS = 6;
 
   private boolean yn = false;
-  private boolean moveOn = true;
 
   // Map of movement directions to their x, y movements
   private static final Map<MoveDirection, Pair> moveMap;
