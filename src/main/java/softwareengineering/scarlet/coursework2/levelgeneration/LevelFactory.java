@@ -163,7 +163,8 @@ public class LevelFactory {
    * @return A leaf object representing the space
    */
   public static Leaf makeNode(int x, int y, int width, int height, Direction direction) {
-    if ((width <= minRoomSize * 2) || (height <= minRoomSize * 2)) {
+    if ((direction == Direction.VERTICAL && width <= minRoomSize * 2)
+        || (direction == Direction.HORIZONTAL && height <= minRoomSize * 2)) {
       Leaf leaf = new Leaf(x, y, width, height);
       Room room = makeRoom(x, y, width, height);
       leaf.getRooms().add(room);
