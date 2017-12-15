@@ -4,8 +4,10 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.views.View;
 import softwareengineering.scarlet.coursework2.views.WinView;
-import softwareengineering.scarlet.coursework2.views.game.GameView;
 
+/**
+ * The controller for the win game screen, shown after the player successfully exits the dungeon
+ */
 public class WinController implements Controller {
   private App app;
   private WinView view;
@@ -15,10 +17,16 @@ public class WinController implements Controller {
     this.app = app;
   }
 
+  /**
+   * Receive the score object from the game controller
+   */
   public void setScore(GameScore score) {
     this.score = score;
   }
 
+  /**
+   * Set the score object in the view
+   */
   protected void setModels() {
     this.view.setScore(score);
   }
@@ -34,6 +42,9 @@ public class WinController implements Controller {
     setModels();
   }
 
+  /**
+   * Get the current view
+   */
   @Override
   public View getView() {
     return this.view;
@@ -47,13 +58,7 @@ public class WinController implements Controller {
    */
   public void handleInput(Input input) {
     if (input == Input.CHOOSE) {
-      app.switchToMenu();;
+      app.switchToMenu();
     }
-  }
-
-  @Override
-  public GameView getGameView() {
-    // TODO Auto-generated method stub
-    return null;
   }
 }

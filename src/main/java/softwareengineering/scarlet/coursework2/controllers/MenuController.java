@@ -4,7 +4,6 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.Menu;
 import softwareengineering.scarlet.coursework2.views.MenuView;
 import softwareengineering.scarlet.coursework2.views.View;
-import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 /**
  * Controller for the Menu screen.
@@ -17,6 +16,8 @@ public class MenuController implements Controller {
   private MenuView view;
   protected Menu model;
 
+  // List of menu options to display
+  // TODO: Tie the behaviour of each option to its display text
   protected static String[] options = new String[] {
       "New Game", // 0
       "Quit" // 1
@@ -91,11 +92,5 @@ public class MenuController implements Controller {
     this.view.setOptions(options);
     this.setUpData();
     this.view.setModel(model);
-  }
-
-  @Override
-  public GameView getGameView() {
-    // TODO Auto-generated method stub
-    return null;
   }
 }

@@ -4,8 +4,10 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.views.AbandonGameView;
 import softwareengineering.scarlet.coursework2.views.View;
-import softwareengineering.scarlet.coursework2.views.game.GameView;
 
+/**
+ * Controller for the "abandoned game" screen, shown after the player abandons their game
+ */
 public class AbandonGameController implements Controller {
   private App app;
   private AbandonGameView view;
@@ -15,16 +17,22 @@ public class AbandonGameController implements Controller {
     this.app = app;
   }
 
+  /**
+   * Receive a score object from the game controller
+   */
   public void setScore(GameScore score) {
     this.score = score;
   }
 
+  /**
+   * Set the score object in the view
+   */
   protected void setModels() {
     this.view.setScore(score);
   }
 
   /**
-   * Switch to the "winning" game end screen.
+   * Switch to the "winning" game end screen
    *
    * @param view The view to render the back story
    */
@@ -34,6 +42,9 @@ public class AbandonGameController implements Controller {
     setModels();
   }
 
+  /**
+   * Get the view associated with the controller
+   */
   @Override
   public View getView() {
     return this.view;
@@ -49,11 +60,5 @@ public class AbandonGameController implements Controller {
     if (input == Input.CHOOSE) {
       app.switchToMenu();;
     }
-  }
-
-  @Override
-  public GameView getGameView() {
-    // TODO Auto-generated method stub
-    return null;
   }
 }

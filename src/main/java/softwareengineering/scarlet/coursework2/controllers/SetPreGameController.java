@@ -3,9 +3,12 @@ package softwareengineering.scarlet.coursework2.controllers;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.SetPreGame;
 import softwareengineering.scarlet.coursework2.views.SetPreGameView;
-import softwareengineering.scarlet.coursework2.views.View;
-import softwareengineering.scarlet.coursework2.views.game.GameView;;
+import softwareengineering.scarlet.coursework2.views.View;;
 
+/**
+ * Controller for the controller shown before the game starts, and is used to collect information
+ * from the player
+ */
 public class SetPreGameController implements Controller {
   private App app;
   private SetPreGameView view;
@@ -15,11 +18,17 @@ public class SetPreGameController implements Controller {
     this.app = app;
   }
 
+  /**
+   * Get the current view
+   */
   @Override
   public View getView() {
     return this.view;
   }
 
+  /**
+   * Start the view, setting up required state
+   */
   @Override
   public void init(View view) {
     this.view = (SetPreGameView) view;
@@ -142,13 +151,10 @@ public class SetPreGameController implements Controller {
     }
   }
 
+  /**
+   * Set up state required for the view
+   */
   protected void setUpData() {
     this.model = new SetPreGame();
-  }
-
-  @Override
-  public GameView getGameView() {
-    // TODO Auto-generated method stub
-    return null;
   }
 }
