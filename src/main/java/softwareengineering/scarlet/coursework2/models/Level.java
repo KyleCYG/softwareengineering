@@ -179,7 +179,7 @@ public class Level {
   }
 
   /**
-   * Find the monsters at grid position x, y
+   * Find the monster at grid position x, y
    *
    * @param x Position of where we're looking
    * @param y Position of where we're looking
@@ -189,6 +189,25 @@ public class Level {
     for (Monster monster : getMonsters()) {
       if (monster.getX() == x && monster.getY() == y) {
         return monster;
+      }
+    }
+
+    return null;
+  }
+
+
+  /**
+   * Find the room at grid position x, y
+   *
+   * @param x Position of where we're looking
+   * @param y Position of where we're looking
+   * @return The room at that position, or null if not found
+   */
+  public Room getRoomAtPos(int x, int y) {
+    for (Room room : getRooms()) {
+      if ((x <= room.getX2() && x >= room.getX())
+          && (y <= room.getY2() && y >= room.getY())) {
+        return room;
       }
     }
 

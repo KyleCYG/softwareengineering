@@ -5,15 +5,6 @@ package softwareengineering.scarlet.coursework2.models;
  */
 public abstract class Monster extends Character {
   protected MonsterBehaviour behaviour;
-  protected boolean hunt;
-
-  public boolean isHunt() {
-    return hunt;
-  }
-
-  public void setHunt(boolean hunt) {
-    this.hunt = hunt;
-  }
 
   /**
    * Create a new monster
@@ -26,7 +17,6 @@ public abstract class Monster extends Character {
    */
   public Monster(String name, int startX, int startY, int health, int strength) {
     super(name, startX, startY, health, strength);
-    behaviour = new MonsterBehaviourType1();
   }
 
   /**

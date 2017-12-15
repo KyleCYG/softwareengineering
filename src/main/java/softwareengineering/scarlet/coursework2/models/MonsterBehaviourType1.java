@@ -1,13 +1,16 @@
 package softwareengineering.scarlet.coursework2.models;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import softwareengineering.scarlet.coursework2.controllers.MoveDirection;
 import softwareengineering.scarlet.coursework2.controllers.Pair;
 
+/**
+ * Implementation of monster's actions depending on the player's position
+ *
+ * Only works with DemoMonster
+ */
 public class MonsterBehaviourType1 implements MonsterBehaviour {
 
   private MoveDirection moveDirection;
@@ -19,19 +22,20 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
    * @param monster, dungeon, player
    */
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
-    CharacterInSameRoom(player, dungeon);
-    if (monster.isHunt()) {
+    DemoMonster myMonster = (DemoMonster) monster;
 
+    CharacterInSameRoom(myMonster, player, dungeon);
+    if (myMonster.isHunt()) {
       MessageList.removeDuplicateMessages();
       MessageList.addMessage("A monster is hunting you!");
-      huntPlayer(monster, player);
+      huntPlayer(myMonster, player);
     } else {
       getDirection();
     }
 
     Pair movePair = moveMap.get(moveDirection);
-    int targetX = monster.getX() + movePair.getX();
-    int targetY = monster.getY() + movePair.getY();
+    int targetX = myMonster.getX() + movePair.getX();
+    int targetY = myMonster.getY() + movePair.getY();
 
     CellType targetCellType = dungeon.getCurrentLevel().getTypeAtPos(targetX, targetY);
 
@@ -44,15 +48,13 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       case STRENGTH3:
         if (dungeon.getCurrentLevel().getTypeAtPos(player.getX(),
             player.getY()) == CellType.CORRIDOR)
-          monster.setHunt(false);
+          myMonster.setHunt(false);
 
         if (targetX == player.getX() && targetY == player.getY()) {
-
           // if player and monster are on same tile don't move
-          fightPlayer(player, monster);
-
+          fightPlayer(player, myMonster);
         } else {
-          monster.move(movePair.getX(), movePair.getY());
+          myMonster.move(movePair.getX(), movePair.getY());
         }
         break;
 
@@ -127,34 +129,18 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   }
 
   /**
-   * Checks if the player and a monster are in the same room
-   *
-   * @param player The player object
+   * Checks if the player and the monster are in the same room, and if so set the monster's hunt
+   * status
    */
-  public void CharacterInSameRoom(Player player, Dungeon dungeon) {
-    List<Room> rooms = dungeon.getCurrentLevel().getRooms();
-    List<Monster> monsters = dungeon.getCurrentLevel().getMonsters();
-    Room roomWithPlayer = null;
+  private static void CharacterInSameRoom(DemoMonster monster, Player player, Dungeon dungeon) {
+    Level level = dungeon.getCurrentLevel();
 
-    // player is in room 0
-    for (Room room : rooms) {
-      if ((player.getX() <= room.getX2() && player.getX() >= room.getX())
-          && (player.getY() <= room.getY2() && player.getY() >= room.getY())) {
-        roomWithPlayer = room;
-        break;
-      }
-    }
-
-    if (monsters.size() != 0 && roomWithPlayer != null) {
-      for (Monster monster : monsters) {
-        if ((monster.getX() <= roomWithPlayer.getX2() && monster.getX() >= roomWithPlayer.getX())
-            && (monster.getY() <= roomWithPlayer.getY2()
-                && monster.getY() >= roomWithPlayer.getY())) {
-          monster.setHunt(true);
-        } else {
-          monster.setHunt(false);
-        }
-      }
+    if (level.getRoomAtPos(player.getX(), player.getY()) == level.getRoomAtPos(monster.getX(), monster.getY())) {
+      // Player is in the same room
+      monster.setHunt(true);
+    } else {
+      // Player isn't in the same room
+      monster.setHunt(false);
     }
   }
 
