@@ -7,9 +7,6 @@ import softwareengineering.scarlet.coursework2.models.Menu;
 
 /**
  * Renders the title and menu to the screen.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public class MenuView implements View {
   private static final int ySpacing = 40; // height between menu option
@@ -29,6 +26,9 @@ public class MenuView implements View {
     this.drawMenuArrow(g2d);
   }
 
+  /**
+   * Draw the background
+   */
   private void drawBackground(Graphics2D g2d, ImageObserver observer) {
     g2d.drawImage(BackgroundFactory.getMenuBackground(), 0, 0, observer);
   }
@@ -64,6 +64,9 @@ public class MenuView implements View {
     this.model = menu;
   }
 
+  /**
+   * Receive the options to render from the controller
+   */
   public void setOptions(String[] options) {
     this.options = options;
   }

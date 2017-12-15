@@ -17,6 +17,12 @@ import softwareengineering.scarlet.coursework2.models.StrengthItem;
 import softwareengineering.scarlet.coursework2.views.View;
 import softwareengineering.scarlet.coursework2.views.game.GameView;
 
+/**
+ * Controller for the game screen, where the actual game is played
+ *
+ * This controller holds logic for handling player actions, references to state in the Dungeon and
+ * Player models, and hooks for monster implementations
+ */
 public class GameController implements Controller {
   private GameView view;
   protected Dungeon dungeon;
@@ -62,6 +68,9 @@ public class GameController implements Controller {
     this.playerName = playerName;
   }
 
+  /**
+   * Return the current view
+   */
   @Override
   public View getView() {
     return view;
@@ -177,8 +186,6 @@ public class GameController implements Controller {
     }
   }
 
-
-
   /**
    * Checks if there is a monster 1 tile away from the player in x and/or y axis
    *
@@ -228,7 +235,7 @@ public class GameController implements Controller {
   }
 
   /**
-   * Give the monster's a turn each.
+   * Give the monsters a turn each.
    *
    * Iterates through each monster on the level, asking each to perform an action based on the state
    * of the dungeon and the player.
@@ -324,6 +331,11 @@ public class GameController implements Controller {
     }
   }
 
+  /**
+   * Start the game
+   *
+   * Resets various bits of game state so that it's a new game
+   */
   @Override
   public void init(View view) {
     MessageList.clear();
@@ -334,6 +346,7 @@ public class GameController implements Controller {
 
   @Override
   public GameView getGameView() {
-    return view;
+    // TODO Auto-generated method stub
+    return null;
   }
 }

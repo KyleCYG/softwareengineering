@@ -1,16 +1,12 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import softwareengineering.scarlet.coursework2.views.View;
-import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 /**
  * Classes that implement this can be used as controllers within the application, and be switched
  * between using App.
  *
  * All of these methods must be implemented correctly for the switching to work.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public interface Controller {
   /**
@@ -21,18 +17,6 @@ public interface Controller {
    * @return An implementation of View
    */
   public View getView();
-
-  /**
-   * Handle an input from the application.
-   *
-   * This method may be a no-op if no input is handled by the view.
-   *
-   * Do not call repaint! The Panel will do this after this method has returned.
-   *
-   * @param input The input type
-   */
-  
-  abstract GameView getGameView();
 
   /**
    * Handle an input from the application.

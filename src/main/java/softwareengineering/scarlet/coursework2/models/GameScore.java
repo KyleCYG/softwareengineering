@@ -2,8 +2,6 @@ package softwareengineering.scarlet.coursework2.models;
 
 /**
  * Represents a name/score pairing for the leaderboard
- *
- * @author Dan Cosser
  */
 public class GameScore {
   private String playerName;

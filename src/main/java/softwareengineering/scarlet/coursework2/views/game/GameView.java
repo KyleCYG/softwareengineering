@@ -23,15 +23,23 @@ public class GameView implements View {
   private LevelRenderer levelRenderer;
   private PlayerStatusRenderer playerStatusRenderer;
 
-
+  /**
+   * Translate a grid x coordinate into a screen x coordinate
+   */
   protected static int getXForGridX(int gridX) {
     return gridX * CELL_WIDTH;
   }
 
+  /**
+   * Translate a grid y coordinate into a screen y coordinate
+   */
   protected static int getYForGridY(int gridY) {
     return (gridY * CELL_HEIGHT) + TOP_OFFSET;
   }
 
+  /**
+   * Set up renderers with references to state
+   */
   public void setModels(Dungeon dungeon, Player player) {
     levelRenderer = new LevelRenderer(dungeon);
     playerRenderer = new PlayerRenderer(player);
@@ -39,19 +47,29 @@ public class GameView implements View {
     playerStatusRenderer = new PlayerStatusRenderer(player);
   }
 
+  /**
+   * Render the background to the screen
+   */
   protected void renderBackground(Graphics2D g2d, ImageObserver observer) {
     g2d.drawImage(BackgroundFactory.getGameBackground(), 0, 0, observer);
   }
 
+  /**
+   * Render the message list to the screen
+   */
   protected void renderMessages(Graphics2D g2d, ImageObserver observer) {
     if (!MessageList.hasMessages()) {
       return;
     }
+
     for (int i = 0; i < MessageList.getMessages().size(); i++) {   
       g2d.drawString(MessageList.getMessages().get(i), 80, 54 + (i * 20));
     }
   }
 
+  /**
+   * Render the game to the screen
+   */
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
     g2d.setFont(FontFactory.getSizedFont());

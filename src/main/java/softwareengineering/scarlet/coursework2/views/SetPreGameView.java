@@ -4,9 +4,15 @@ import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.SetPreGame;
 
+/**
+ * View for the pre-game screen, used to collect information from the player
+ */
 public class SetPreGameView implements View {
   private SetPreGame model;
 
+  /**
+   * Render the current state to the screen
+   */
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
     g2d.setFont(FontFactory.getSizedFont());
@@ -22,6 +28,9 @@ public class SetPreGameView implements View {
     }
   }
 
+  /**
+   * Draw the background
+   */
   private void drawBackground(Graphics2D g2d, ImageObserver observer) {
     g2d.drawImage(BackgroundFactory.getMainBackground(), 0, 0, observer);
   }
@@ -56,10 +65,16 @@ public class SetPreGameView implements View {
     g2d.drawString("Press Enter ", 250, 300);
   }
 
+  /**
+   * Render the warning message when not enough characters have been entered
+   */
   private void drawWarning(Graphics2D g2d) {
     g2d.drawString("Please Input 4 Characters ", 250, 350);
   }
 
+  /**
+   * Receive the model state from the view
+   */
   public void setModel(SetPreGame preGameModel) {
     this.model = preGameModel;
   }

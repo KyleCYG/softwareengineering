@@ -39,12 +39,15 @@ public class MonsterFactory {
     List<Entity> entitiesToRemove = new ArrayList<Entity>();
 
     for (Entity entity : entities) {
+      // Only care about monster spawners
       if (entity.getType() != CellType.MONSTERSPAWNER) {
         continue;
       }
 
+      // Add a monster on the spot of the monster spawner
       monsters.add(generateMonster(entity.getX(), entity.getY()));
 
+      // Add the spawner to the list of entities to remove
       entitiesToRemove.add(entity);
     }
 

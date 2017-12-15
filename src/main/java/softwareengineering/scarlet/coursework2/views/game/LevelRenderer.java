@@ -8,6 +8,9 @@ import softwareengineering.scarlet.coursework2.models.CellType;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Level;
 
+/**
+ * Render a level and the static entities contained within to the screen
+ */
 public class LevelRenderer {
   private static List<CellType> needsFloor = Arrays.asList(CellType.EXIT, CellType.GOLD,
       CellType.HEALTH, CellType.STAIRSDOWN, CellType.STAIRSUP, CellType.STRENGTH,
@@ -19,10 +22,20 @@ public class LevelRenderer {
     init(dungeon);
   }
 
+  /**
+   * Prepare the renderer with a link to the current dungeon that needs rendering
+   */
   public void init(Dungeon dungeon) {
     this.dungeon = dungeon;
   }
 
+  /**
+   * Render a level and entities within to the screen in a grid
+   *
+   * @param level The level to render
+   * @param g2d The screen to render to
+   * @param observer Link to the panel's observer
+   */
   private void renderGrid(Level level, Graphics2D g2d, ImageObserver observer) {
     CellType[][] grid = level.getGrid();
 
@@ -44,6 +57,9 @@ public class LevelRenderer {
     }
   }
 
+  /**
+   * Render the dungeon to the screen
+   */
   public void render(Graphics2D g2d, ImageObserver observer) {
     Level level = dungeon.getCurrentLevel();
 

@@ -68,9 +68,7 @@ public class SetPreGame {
   public void deleteLetter() {
     if (name.contains("-")) {
       int index = name.indexOf("-");
-      if (index == 0) {
-        // do nothing
-      } else {
+      if (index > 0) {
         char[] chars = name.toCharArray();
         chars[index - 1] = '-';
         name = String.valueOf(chars);

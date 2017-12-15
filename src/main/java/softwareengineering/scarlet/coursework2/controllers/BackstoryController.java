@@ -3,8 +3,10 @@ package softwareengineering.scarlet.coursework2.controllers;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.views.BackstoryView;
 import softwareengineering.scarlet.coursework2.views.View;
-import softwareengineering.scarlet.coursework2.views.game.GameView;
 
+/**
+ * Controller for the backstory screen, shown just before the game starts
+ */
 public class BackstoryController implements Controller {
   private App app;
   private BackstoryView view;
@@ -38,11 +40,5 @@ public class BackstoryController implements Controller {
     if (input == Input.CHOOSE) {
       app.switchToGame();
     }
-  }
-
-  @Override
-  public GameView getGameView() {
-    // TODO Auto-generated method stub
-    return null;
   }
 }

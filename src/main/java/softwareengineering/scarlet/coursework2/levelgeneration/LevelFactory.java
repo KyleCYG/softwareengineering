@@ -51,16 +51,20 @@ public class LevelFactory {
     Set<Integer> setA = new HashSet<Integer>();
     Set<Integer> setB = new HashSet<Integer>();
 
+    // Find all possibilities in side A
     for (Room room : sideA) {
       setA.addAll(roomSideRange(room, direction));
     }
 
+    // Find all possibilities in side B
     for (Room room : sideB) {
       setB.addAll(roomSideRange(room, direction));
     }
 
+    // Find those that match
     setA.retainAll(setB);
 
+    // Turn the set into an array before returning it
     return new ArrayList<Integer>(setA);
   }
 
@@ -81,9 +85,11 @@ public class LevelFactory {
     int choice = matches.get(random.nextInt(matches.size()));
 
     if (direction == Direction.HORIZONTAL) {
+      // Order leaves correctly
       Leaf top = leafA.getY() > leafB.getY() ? leafB : leafA;
       Leaf bottom = leafA.getY() > leafB.getY() ? leafA : leafB;
 
+      // Figure out correct x's and y's
       int x1 = choice;
       int y1 = top.findMaxYAtX(choice) + 1;
       int x2 = choice;
@@ -91,9 +97,11 @@ public class LevelFactory {
 
       return new Corridor(x1, y1, x2, y2);
     } else {
+      // Order leaves correctly
       Leaf left = leafA.getX() > leafB.getX() ? leafB : leafA;
       Leaf right = leafA.getX() > leafB.getX() ? leafA : leafB;
 
+      // Figure out correct x's and y's
       int x1 = left.findMaxXAtY(choice) + 1;
       int y1 = choice;
       int x2 = right.findMinXAtY(choice) - 1;
@@ -248,6 +256,9 @@ public class LevelFactory {
     Collections.shuffle(toPlace);
     Iterator<Room> roomIterator = rooms.iterator();
 
+    // Iterate through the rooms, place an entity in each
+    // When there are no rooms left, shuffle the list of rooms and start again
+    // Continue until no new entities to place
     while (toPlace.size() > 0) {
       try {
         room = roomIterator.next();

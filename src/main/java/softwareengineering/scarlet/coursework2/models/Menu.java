@@ -2,9 +2,6 @@ package softwareengineering.scarlet.coursework2.models;
 
 /**
  * Simple model to store the state of the menu.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public class Menu {
   private int selectedOption;

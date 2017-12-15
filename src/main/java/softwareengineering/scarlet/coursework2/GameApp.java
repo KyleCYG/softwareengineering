@@ -44,13 +44,15 @@ public class GameApp implements App {
   private GameoverController gameOverController;
   private AbandonGameController abandonGameController;
 
-
   public GameApp() {
     this.panel = new Panel();
     this.panel.setSize(700, 720);
     this.frame = new Frame(this.panel);
   }
 
+  /**
+   * Get the controller singleton for the menu screen
+   */
   public MenuController getMenuController() {
     if (menuController == null) {
       menuController = new MenuController(this);
@@ -58,6 +60,9 @@ public class GameApp implements App {
     return menuController;
   }
 
+  /**
+   * Get the controller singleton for the game screen
+   */
   public GameController getGameController() {
     if (gameController == null) {
       gameController = new GameController(this);
@@ -65,6 +70,9 @@ public class GameApp implements App {
     return gameController;
   }
 
+  /**
+   * Get the controller singleton for the pre-game (enter name) screen
+   */
   public SetPreGameController getSetPreGameController() {
     if (setPreGameController == null) {
       setPreGameController = new SetPreGameController(this);
@@ -72,6 +80,9 @@ public class GameApp implements App {
     return setPreGameController;
   }
 
+  /**
+   * Get the controller singleton for the backstory screen
+   */
   public BackstoryController getBackstoryController() {
     if (backstoryController == null) {
       backstoryController = new BackstoryController(this);
@@ -79,6 +90,9 @@ public class GameApp implements App {
     return backstoryController;
   }
 
+  /**
+   * Get the controller singleton for the win game screen
+   */
   public WinController getWinController() {
     if (winController == null) {
       winController = new WinController(this);
@@ -86,15 +100,19 @@ public class GameApp implements App {
     return winController;
   }
 
-  @Override
+  /**
+   * Get the controller singleton for the abandoned game screen
+   */
   public AbandonGameController getAbandonGameController() {
-    // TODO Auto-generated method stub
     if (abandonGameController == null) {
       abandonGameController = new AbandonGameController(this);
     }
     return abandonGameController;
   }
 
+  /**
+   * Get the controller singleton for the game over screen
+   */
   public GameoverController getGameOverController() {
     if (gameOverController == null) {
       gameOverController = new GameoverController(this);
@@ -104,7 +122,7 @@ public class GameApp implements App {
   }
 
   /**
-   * Switch control to the Menu
+   * Switch control to the menu screen
    */
   public void switchToMenu() {
     this.panel.setController(getMenuController());
@@ -114,7 +132,7 @@ public class GameApp implements App {
   }
 
   /**
-   * Switch control to the Pre Game Settings
+   * Switch control to the pre-game (enter name) screen
    */
   public void switchToPreGame() {
     this.panel.setController(getSetPreGameController());
@@ -134,7 +152,7 @@ public class GameApp implements App {
   }
 
   /**
-   * Switch control to the Game
+   * Switch control to the game screen
    */
   public void switchToGame() {
     this.panel.setController(getGameController());
@@ -144,7 +162,7 @@ public class GameApp implements App {
   }
 
   /**
-   * Switch control to the Winning End screen
+   * Switch control to the win game screen
    */
   public void switchToWin() {
     this.panel.setController(getWinController());
@@ -153,6 +171,9 @@ public class GameApp implements App {
     this.winController.init(view);
   }
 
+  /**
+   * Switch control to the abandoned game screen
+   */
   public void switchToAbandonGame() {
     this.panel.setController(getAbandonGameController());
 
@@ -206,6 +227,4 @@ public class GameApp implements App {
       }
     });
   }
-
-
 }
