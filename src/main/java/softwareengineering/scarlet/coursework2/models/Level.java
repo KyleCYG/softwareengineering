@@ -211,9 +211,6 @@ public class Level {
           case STAIRSUP:
             System.out.print(">");
             break;
-          case STRENGTH:
-            System.out.print("S");
-            break;
           case STRENGTH1:
             System.out.print("1");
             break;
