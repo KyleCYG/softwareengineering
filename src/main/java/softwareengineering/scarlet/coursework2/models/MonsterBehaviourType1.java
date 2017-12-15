@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.models;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -20,6 +21,8 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
     CharacterInSameRoom(player, dungeon);
     if (monster.isHunt()) {
+
+      MessageList.removeDuplicateMessages();
       MessageList.addMessage("A monster is hunting you!");
       huntPlayer(monster, player);
     } else {
@@ -42,15 +45,22 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
         if (dungeon.getCurrentLevel().getTypeAtPos(player.getX(),
             player.getY()) == CellType.CORRIDOR)
           monster.setHunt(false);
+
         if (targetX == player.getX() && targetY == player.getY()) {
-          // if player and monster are on same tile dont move
+
+          // if player and monster are on same tile don't move
           fightPlayer(player, monster);
+
         } else {
           monster.move(movePair.getX(), movePair.getY());
         }
         break;
 
       case CORRIDOR:
+        break;
+      case MONSTER:
+        break;
+      case MONSTERSPAWNER:
         break;
 
       case VOID:
@@ -124,22 +134,22 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   public void CharacterInSameRoom(Player player, Dungeon dungeon) {
     List<Room> rooms = dungeon.getCurrentLevel().getRooms();
     List<Monster> monsters = dungeon.getCurrentLevel().getMonsters();
-    Room roomwithPlayer = null;
+    Room roomWithPlayer = null;
 
     // player is in room 0
     for (Room room : rooms) {
       if ((player.getX() <= room.getX2() && player.getX() >= room.getX())
           && (player.getY() <= room.getY2() && player.getY() >= room.getY())) {
-        roomwithPlayer = room;
+        roomWithPlayer = room;
         break;
       }
     }
 
-    if (monsters.size() != 0 && roomwithPlayer != null) {
+    if (monsters.size() != 0 && roomWithPlayer != null) {
       for (Monster monster : monsters) {
-        if ((monster.getX() <= roomwithPlayer.getX2() && monster.getX() >= roomwithPlayer.getX())
-            && (monster.getY() <= roomwithPlayer.getY2()
-                && monster.getY() >= roomwithPlayer.getY())) {
+        if ((monster.getX() <= roomWithPlayer.getX2() && monster.getX() >= roomWithPlayer.getX())
+            && (monster.getY() <= roomWithPlayer.getY2()
+                && monster.getY() >= roomWithPlayer.getY())) {
           monster.setHunt(true);
         } else {
           monster.setHunt(false);

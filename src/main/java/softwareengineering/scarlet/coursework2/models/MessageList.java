@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -49,5 +50,18 @@ public class MessageList {
       messages = new ArrayList<String>();
     }
     return messages;
+  }
+
+  /**
+   * Checks if a message exists already in the message list and remove it
+   */
+  public static void removeDuplicateMessages() {
+    for (Iterator<String> it = MessageList.getMessages().iterator(); it.hasNext();) {
+      String msg = it.next();
+      if (msg == "A monster is hunting you!")
+        it.remove();
+    }
+
+
   }
 }
