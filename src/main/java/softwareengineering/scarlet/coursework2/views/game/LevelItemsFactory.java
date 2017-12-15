@@ -2,6 +2,9 @@ package softwareengineering.scarlet.coursework2.views.game;
 
 import softwareengineering.scarlet.coursework2.models.CellType;
 
+/**
+ * Utility class to cache image objects for items in the dungeon
+ */
 public class LevelItemsFactory {
   private static Room room;
   private static Corridor corridor;
@@ -15,8 +18,11 @@ public class LevelItemsFactory {
   private static StairsDown stairsdown;
   private static StairsUp stairsup;
 
-  public static ItemImage init(CellType item) {
-    switch (item) {
+  /**
+   * Get the image object for the given type
+   */
+  public static ItemImage init(CellType type) {
+    switch (type) {
       case ROOM:
         if (room == null) {
           room = new Room();

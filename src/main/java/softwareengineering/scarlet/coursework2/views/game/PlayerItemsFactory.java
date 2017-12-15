@@ -1,13 +1,29 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
+/**
+ * Utility class to load and cache images for the player status bar
+ */
 public class PlayerItemsFactory {
-
   private static Gold gold;
   private static Health health;
   private static StrengthType1 strength1;
   private static StrengthType2 strength2;
   private static StrengthType3 strength3;
 
+  /**
+   * Load and return images for the status bar.
+   *
+   * The image returned depends on the passed in string, which is a short code for a
+   * particular image. These codes are as follows:
+   *
+   * * g: gold
+   * * h: health
+   * * s1: lowest strength item
+   * * s2: medium strength item
+   * * s3: highest strength item
+   *
+   * @param item The "code" for the required image
+   */
   public static ItemImage init(String item) {
     switch (item) {
       case "g":
