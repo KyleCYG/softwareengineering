@@ -79,7 +79,7 @@ public class PlayerTest {
     player.move(entityPositionX, entityPositionY);
     player.increaseHealthPoint(1);
     assertEquals(entity, level.getEntityAtPos(entityPositionX, entityPositionY));
-    assertEquals(10, player.getHealthPoints());
+    assertEquals(6, player.getHealthPoints());
     assertTrue(level.getEntities().remove(entity));
   }
 
