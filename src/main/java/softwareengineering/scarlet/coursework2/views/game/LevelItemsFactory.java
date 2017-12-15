@@ -1,6 +1,7 @@
 package softwareengineering.scarlet.coursework2.views.game;
 
 import softwareengineering.scarlet.coursework2.models.CellType;
+import softwareengineering.scarlet.coursework2.models.NullImage;
 
 /**
  * Utility class to cache image objects for items in the dungeon
@@ -16,6 +17,7 @@ public class LevelItemsFactory {
   private static StrengthType3 strength3;
   private static StairsDown stairsdown;
   private static StairsUp stairsup;
+  private static NullImage nullimage;
 
   /**
    * Get the image object for the given type
@@ -73,7 +75,10 @@ public class LevelItemsFactory {
         }
         return stairsup;
       default:
-        return null;
+        if (nullimage == null) {
+          nullimage = new NullImage();
+        }
+        return nullimage;
     }
   }
 }

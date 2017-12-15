@@ -101,11 +101,6 @@ public class Level {
       }
     }
 
-    // Draw entities
-    for (Entity entity : getEntities()) {
-      grid[entity.getX()][entity.getY()] = entity.type;
-    }
-
     // Draw corridors
     for (Corridor corridor : getCorridors()) {
       for (int x = corridor.getX1(); x <= corridor.getX2(); x++) {
@@ -113,6 +108,16 @@ public class Level {
           grid[x][y] = CellType.CORRIDOR;
         }
       }
+    }
+
+    // Draw entities
+    for (Entity entity : getEntities()) {
+      grid[entity.getX()][entity.getY()] = entity.type;
+    }
+
+    // Draw monsters
+    for (Monster monster : getMonsters()) {
+      grid[monster.getX()][monster.getY()] = CellType.MONSTER;
     }
 
     return grid;
