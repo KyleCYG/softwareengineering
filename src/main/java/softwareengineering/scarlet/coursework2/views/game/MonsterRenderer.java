@@ -5,6 +5,9 @@ import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Monster;
 
+/**
+ * Render monsters to the screen
+ */
 public class MonsterRenderer {
   private MonsterAvatar avatar;
   private Monster monster;
@@ -16,10 +19,16 @@ public class MonsterRenderer {
     this.setDungeon(dungeon);
   }
 
+  /**
+   * Set which monster to render
+   */
   public void setMonster(Monster monster) {
     this.monster = monster;
   }
 
+  /**
+   * Render current monster to the screen
+   */
   public void render(Graphics2D g2d, ImageObserver observer) {
     if (monster != null)
       this.avatar.draw(monster.getX(), monster.getY(), g2d, observer);

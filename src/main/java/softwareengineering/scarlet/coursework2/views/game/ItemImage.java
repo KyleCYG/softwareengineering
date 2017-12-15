@@ -9,6 +9,13 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+/**
+ * Base class for images rendered to the screen.
+ *
+ * Subclasses should set "filename" to an appropriate value.
+ *
+ * This class can handle pngs and gifs.
+ */
 public class ItemImage {
   protected Image image;
   protected String filename;
@@ -43,10 +50,16 @@ public class ItemImage {
     return this.image;
   }
 
+  /**
+   * Draw the image at the specified *grid* position to the screen
+   */
   public void draw(int x, int y, Graphics2D g2d, ImageObserver observer) {
     g2d.drawImage(this.getImage(), GameView.getXForGridX(x), GameView.getYForGridY(y), observer);
   }
 
+  /**
+   * Draw the image at the specified *pixel* position to the screen
+   */
   public void drawStatus(int x, int y, Graphics2D g2d, ImageObserver observer) {
     g2d.drawImage(this.getImage(), x, y, observer);
   }
