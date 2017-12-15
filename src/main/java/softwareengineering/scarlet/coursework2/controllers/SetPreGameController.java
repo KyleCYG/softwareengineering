@@ -3,8 +3,7 @@ package softwareengineering.scarlet.coursework2.controllers;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.SetPreGame;
 import softwareengineering.scarlet.coursework2.views.SetPreGameView;
-import softwareengineering.scarlet.coursework2.views.View;
-import softwareengineering.scarlet.coursework2.views.game.GameView;;
+import softwareengineering.scarlet.coursework2.views.View;;
 
 /**
  * Controller for the controller shown before the game starts, and is used to collect information

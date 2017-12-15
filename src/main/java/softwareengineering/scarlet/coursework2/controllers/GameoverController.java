@@ -4,7 +4,6 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.views.GameoverView;
 import softwareengineering.scarlet.coursework2.views.View;
-import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 /**
  * Controller for the game over screen

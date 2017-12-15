@@ -4,7 +4,6 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.views.View;
 import softwareengineering.scarlet.coursework2.views.WinView;
-import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 /**
  * The controller for the win game screen, shown after the player successfully exits the dungeon

@@ -4,7 +4,6 @@ import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 import softwareengineering.scarlet.coursework2.views.AbandonGameView;
 import softwareengineering.scarlet.coursework2.views.View;
-import softwareengineering.scarlet.coursework2.views.game.GameView;
 
 /**
  * Controller for the "abandoned game" screen, shown after the player abandons their game
