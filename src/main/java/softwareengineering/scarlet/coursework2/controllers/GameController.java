@@ -30,8 +30,8 @@ public class GameController implements Controller {
   private String playerName;
   private App app;
 
-  private static final int LEVEL_HEIGHT = 20;
-  private static final int LEVEL_WIDTH = 20;
+  private static final int LEVEL_HEIGHT = 18;
+  private static final int LEVEL_WIDTH = 25;
   private static final int NUM_LEVELS = 6;
 
   private boolean yn = false;
