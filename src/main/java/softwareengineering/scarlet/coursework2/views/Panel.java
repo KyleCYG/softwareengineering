@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import softwareengineering.scarlet.coursework2.controllers.Controller;
 import softwareengineering.scarlet.coursework2.controllers.Input;
 

@@ -41,7 +41,7 @@ public class MenuView implements View {
   private void drawOptions(Graphics2D g2d) {
     g2d.setFont(FontFactory.getSizedFont());
     for (int i = 0; i < options.length; i++) {
-      g2d.drawString("  " + options[i], 270, 350 + ySpacing * i);
+      g2d.drawString("  " + options[i], 370, 350 + ySpacing * i);
     }
   }
 
@@ -52,7 +52,7 @@ public class MenuView implements View {
    */
   private void drawMenuArrow(Graphics2D g2d) {
     g2d.setFont(sizedFont);
-    g2d.drawString("=>", 260, 350 + model.getOption() * ySpacing);
+    g2d.drawString("=>", 360, 350 + model.getOption() * ySpacing);
   }
 
   /**

@@ -18,6 +18,7 @@ public class GameView implements View {
   public static final int CELL_HEIGHT = 32;
   public static final int CELL_WIDTH = 32;
   public static final int TOP_OFFSET = 90;
+  public static final int LEFT_OFFSET = 20;
   private MonsterRenderer monsterRenderer;
   private PlayerRenderer playerRenderer;
   private LevelRenderer levelRenderer;
@@ -25,7 +26,7 @@ public class GameView implements View {
 
 
   protected static int getXForGridX(int gridX) {
-    return gridX * CELL_WIDTH;
+    return (gridX * CELL_WIDTH) + LEFT_OFFSET;
   }
 
   protected static int getYForGridY(int gridY) {
