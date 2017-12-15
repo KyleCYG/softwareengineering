@@ -13,9 +13,6 @@ import softwareengineering.scarlet.coursework2.controllers.Input;
  * Wrapper around JPanel.
  *
  * Handles rendering and key presses from the user, using the appropriate view and controller.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public class Panel extends JPanel implements KeyListener {
   private static final long serialVersionUID = 1L;
@@ -23,7 +20,8 @@ public class Panel extends JPanel implements KeyListener {
 
   /**
    * Creates the JPanel, and applies the necessary application-level settings.
-   * @param textArea 
+   *
+   * @param textArea
    */
   public Panel() {
     addKeyListener(this);

@@ -15,5 +15,13 @@ public class BackstoryView implements View {
 
     g2d.drawImage(BackgroundFactory.getBackstoryBackground(), 0, 0, observer);
   }
+<<<<<<< HEAD
+=======
+
+  @Override
+  public void renderMessages(JTextArea textArea) {
+    // Unnecessary override
+  }
+>>>>>>> 2d66e1ddde464953ba19edba6de55988626b347b
 }
 

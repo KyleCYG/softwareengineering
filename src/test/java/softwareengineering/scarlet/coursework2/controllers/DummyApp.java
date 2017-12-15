@@ -1,8 +1,6 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
 import softwareengineering.scarlet.coursework2.App;
-import softwareengineering.scarlet.coursework2.views.AbandonGameView;
-import softwareengineering.scarlet.coursework2.views.View;
 
 public class DummyApp implements App {
   public boolean didIQuit = false;
@@ -91,7 +89,6 @@ public class DummyApp implements App {
     return winController;
   }
 
-
   public AbandonGameController getAbandonGameController() {
     // TODO Auto-generated method stub
     if (abandonGameController == null) {
@@ -104,7 +101,6 @@ public class DummyApp implements App {
   public void switchToAbandonGame() {
     // TODO Auto-generated method stub
     this.didISwitchtoAbandonGame = true;
-
   }
 
   @Override
@@ -112,9 +108,7 @@ public class DummyApp implements App {
     // TODO Auto-generated method stub
     if (gameOverController == null) {
       gameOverController = new GameoverController(this);
-
     }
     return gameOverController;
   }
-
 }

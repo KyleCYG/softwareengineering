@@ -13,8 +13,10 @@ import javax.swing.JFrame;
 public class Frame extends JFrame {
   private static final long serialVersionUID = 1L;
 
+
   public Frame(Panel panel) {
     this.build(panel);
+
   }
 
   /**
@@ -22,6 +24,7 @@ public class Frame extends JFrame {
    *
    * @param panel
    */
+
   public void build(Panel panel) {
     this.add(panel);
     setSize(700, 760);

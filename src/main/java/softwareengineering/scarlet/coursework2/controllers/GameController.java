@@ -1,13 +1,11 @@
 package softwareengineering.scarlet.coursework2.controllers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import softwareengineering.scarlet.coursework2.App;
 import softwareengineering.scarlet.coursework2.models.CellType;
-import softwareengineering.scarlet.coursework2.models.DemoMonster;
 import softwareengineering.scarlet.coursework2.models.Dungeon;
 import softwareengineering.scarlet.coursework2.models.Entity;
 import softwareengineering.scarlet.coursework2.models.GameScore;
@@ -88,7 +86,6 @@ public class GameController implements Controller {
 
     // Create player
     this.player = new Player(playerName, startX, startY);
-
   }
 
   /**
@@ -164,6 +161,7 @@ public class GameController implements Controller {
           player.setX(dungeon.getCurrentLevel().getStairsUp().getX());
           player.setY(dungeon.getCurrentLevel().getStairsUp().getY());
           break;
+
         case EXIT:
           if (player.getGold() >= Dungeon.REQUIRED_SCORE) {
             GameScore score = new GameScore(player.getName(), player.getGold());
@@ -183,10 +181,9 @@ public class GameController implements Controller {
 
   /**
    * Checks if there is a monster 1 tile away from the player in x and/or y axis
-   * 
+   *
    * @param targetY The position that the user intends to move the player in y axis
    * @param targetX The position that the user intends to move the player in x axis
-   * 
    */
   private boolean scanForMonsters(int targetX, int targetY) {
     // TODO Auto-generated method stub
@@ -208,7 +205,6 @@ public class GameController implements Controller {
         } else
           moveOn = true;
 
-
         if (monster.getHealthPoints() <= 0) {
           it.remove();
           MessageList.addMessage("You killed the monster!");
@@ -216,16 +212,10 @@ public class GameController implements Controller {
         }
 
         playerDeath();
-
       }
-
-
-
     }
     return moveOn;
   }
-
-
 
   /**
    * Moves the player to adjacent tile in the specified direction.
@@ -283,7 +273,6 @@ public class GameController implements Controller {
         break;
     }
 
-
     handleMonsters();
   }
 
@@ -293,12 +282,8 @@ public class GameController implements Controller {
       app.getGameOverController().setScore(score);
       moveOn = true;
       app.switchToGameOver();
-
-
     }
-
   }
-
 
   /**
    * Perform an action based on the player's input when the game is in the "abandon" mode (i.e. the

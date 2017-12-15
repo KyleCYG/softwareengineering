@@ -1,6 +1,10 @@
 package softwareengineering.scarlet.coursework2;
 
 import java.awt.EventQueue;
+<<<<<<< HEAD
+=======
+import javax.swing.JTextArea;
+>>>>>>> 2d66e1ddde464953ba19edba6de55988626b347b
 import softwareengineering.scarlet.coursework2.controllers.AbandonGameController;
 import softwareengineering.scarlet.coursework2.controllers.BackstoryController;
 import softwareengineering.scarlet.coursework2.controllers.GameController;
@@ -32,9 +36,6 @@ import softwareengineering.scarlet.coursework2.views.game.GameView;
  * the controller. This should also include the creation of the relevant View, so that the view
  * implementation is separated from the controller. Other objects should be instantiated by the
  * controller itself.
- *
- * @author Gordon Rennie
- * @author Dan Cosser
  */
 public class GameApp implements App {
   private Frame frame;
@@ -49,9 +50,18 @@ public class GameApp implements App {
 
 
   public GameApp() {
+<<<<<<< HEAD
     this.panel = new Panel();
     this.panel.setSize(700, 720);
     this.frame = new Frame(this.panel);
+=======
+    textArea = new JTextArea();
+    textArea.setText("");
+    // textArea.setFont(new Font("Serif", Font.PLAIN, 18));
+    this.panel = new Panel(textArea);
+    this.panel.setSize(700, 720);
+    this.frame = new Frame(this.panel, textArea);
+>>>>>>> 2d66e1ddde464953ba19edba6de55988626b347b
   }
 
   public MenuController getMenuController() {

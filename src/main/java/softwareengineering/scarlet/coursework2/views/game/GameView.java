@@ -13,9 +13,6 @@ import softwareengineering.scarlet.coursework2.views.View;
 
 /**
  * View for the main game
- *
- * @author Clark Yang
- * @author Dan Cosser
  */
 public class GameView implements View {
   public static final int CELL_HEIGHT = 32;

@@ -1,6 +1,5 @@
 package softwareengineering.scarlet.coursework2.models;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +14,10 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   @Override
   /**
    * Implementation of monster's actions depending on the player's position
-   * 
+   *
    * @param monster, dungeon, player
    */
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
-    // TODO Auto-generated method stub
     CharacterInSameRoom(player, dungeon);
     if (monster.isHunt()) {
       MessageList.addMessage("A monster is hunting you!");
@@ -27,6 +25,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     } else {
       getDirection();
     }
+
     Pair movePair = moveMap.get(moveDirection);
     int targetX = monster.getX() + movePair.getX();
     int targetY = monster.getY() + movePair.getY();
@@ -50,22 +49,21 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
           monster.move(movePair.getX(), movePair.getY());
         }
         break;
+
       case CORRIDOR:
         break;
 
       case VOID:
         break;
 
-
       default:
         break;
-
     }
   }
 
   /**
    * Monster fights player if the player is one tile away
-   * 
+   *
    * @param player The player object
    * @param monster The monster object
    */
@@ -80,8 +78,6 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       if (player.healthPoints <= 0)
         MessageList.addMessage("You got killed by Monster.Game Over!");
     }
-
-
   }
 
   private static final Map<MoveDirection, Pair> moveMap;
@@ -117,31 +113,23 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
       case 3:
         moveDirection = MoveDirection.RIGHT;
         break;
-
     }
   }
 
-
-
   /**
    * Checks if the player and a monster are in the same room
-   * 
+   *
    * @param player The player object
    */
   public void CharacterInSameRoom(Player player, Dungeon dungeon) {
-    boolean m = false;
-    boolean p = false;
-    ArrayList<Room> rooms = dungeon.getCurrentLevel().getRooms();
+    List<Room> rooms = dungeon.getCurrentLevel().getRooms();
     List<Monster> monsters = dungeon.getCurrentLevel().getMonsters();
-    DemoMonster tempMonster = null;
-    Player tempPlayer;
-    Room roomwithPlayer = null;;
-    for (Room room : rooms) {// player is in room 0
+    Room roomwithPlayer = null;
+
+    // player is in room 0
+    for (Room room : rooms) {
       if ((player.getX() <= room.getX2() && player.getX() >= room.getX())
           && (player.getY() <= room.getY2() && player.getY() >= room.getY())) {
-
-        p = true;
-        tempPlayer = player;
         roomwithPlayer = room;
         break;
       }
@@ -152,22 +140,17 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
         if ((monster.getX() <= roomwithPlayer.getX2() && monster.getX() >= roomwithPlayer.getX())
             && (monster.getY() <= roomwithPlayer.getY2()
                 && monster.getY() >= roomwithPlayer.getY())) {
-          m = true;
           monster.setHunt(true);
-
         } else {
-          m = false;
           monster.setHunt(false);
         }
       }
     }
-
   }
-
 
   /**
    * Implementation of the player hunting algorithm
-   * 
+   *
    * @param monster The monster object
    * @param player The player object
    */
@@ -180,24 +163,17 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
     if ((0.5 + ix) / nx < (0.5 + iy) / ny) {
       // next step is horizontal
       if (sign_x == 1) {
-
         moveDirection = MoveDirection.LEFT;
       } else {
-
         moveDirection = MoveDirection.RIGHT;
       }
     } else {
       // next step is vertical
       if (sign_y == 1) {
-
         moveDirection = MoveDirection.UP;
       } else {
-
         moveDirection = MoveDirection.DOWN;
-
       }
-
     }
   }
-
 }
