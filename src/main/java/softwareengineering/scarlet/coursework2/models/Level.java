@@ -162,6 +162,8 @@ public class Level {
    * @return The entity at that position, or null if not found
    */
   public Entity getEntityAtPos(int x, int y) {
+    // Iterate through the list of entities, breaking if the entity's position matches the given x
+    // and y
     for (Entity entity : getEntities()) {
       if (entity.getX() == x && entity.getY() == y) {
         return entity;
@@ -172,7 +174,7 @@ public class Level {
   }
 
   /**
-   * Dump a textual representation of the map to the console.
+   * Dump a textual representation of the map to the console, for debugging.
    *
    * Be careful with large maps!
    *
@@ -234,12 +236,15 @@ public class Level {
   }
 
   /**
-   * Find the first entity of a given type in the level
+   * Find an entity of a given type in the level
+   *
+   * The entity may not be the same for each call
    *
    * @param type The type to search for
    * @return The first occurrence of the type, or null if not found
    */
   private Entity getFirstEntityByType(CellType type) {
+    // Iterate through all entities in the level, breaking when one of the specified type is found
     for (Entity entity : this.getEntities()) {
       if (entity.type == type) {
         return entity;

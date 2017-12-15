@@ -6,10 +6,16 @@ import java.awt.Toolkit;
 import java.awt.image.ImageObserver;
 import softwareengineering.scarlet.coursework2.models.GameScore;
 
+/**
+ * Controller for the abandon game screen
+ */
 public class AbandonGameView implements View {
   private GameScore score;
   private Image paperpageIcon;
 
+  /**
+   * Render the state to the screen
+   */
   @Override
   public void render(Graphics2D g2d, ImageObserver observer) {
     g2d.setFont(FontFactory.getSizedFont());
@@ -17,10 +23,16 @@ public class AbandonGameView implements View {
     this.drawBackstory(g2d, observer);
   }
 
+  /**
+   * Draw the background to the screen
+   */
   private void drawBackground(Graphics2D g2d, ImageObserver observer) {
     g2d.drawImage(BackgroundFactory.getAbandonBackground(), 0, 0, observer);
   }
 
+  /**
+   * Draw the player's score to the screen
+   */
   private void drawBackstory(Graphics2D g2d, ImageObserver observer) {
     if (this.paperpageIcon == null) {
       this.paperpageIcon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/paperpage.gif"));
@@ -31,6 +43,9 @@ public class AbandonGameView implements View {
     g2d.drawString(Integer.toString(score.getScore()), 377, 417);
   }
 
+  /**
+   * Receive the game's score from the controlelr
+   */
   public void setScore(GameScore score) {
     this.score = score;
   }
