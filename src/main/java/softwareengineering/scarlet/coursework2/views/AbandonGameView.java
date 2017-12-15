@@ -20,7 +20,7 @@ public class AbandonGameView implements View {
   public void render(Graphics2D g2d, ImageObserver observer) {
     g2d.setFont(FontFactory.getSizedFont());
     this.drawBackground(g2d, observer);
-    this.drawBackstory(g2d, observer);
+    this.drawScore(g2d, observer);
   }
 
   /**
@@ -33,7 +33,7 @@ public class AbandonGameView implements View {
   /**
    * Draw the player's score to the screen
    */
-  private void drawBackstory(Graphics2D g2d, ImageObserver observer) {
+  private void drawScore(Graphics2D g2d, ImageObserver observer) {
     if (this.paperpageIcon == null) {
       this.paperpageIcon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/paperpage.gif"));
     }
@@ -44,7 +44,7 @@ public class AbandonGameView implements View {
   }
 
   /**
-   * Receive the game's score from the controlelr
+   * Receive the game's score from the controller
    */
   public void setScore(GameScore score) {
     this.score = score;
