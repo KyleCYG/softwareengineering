@@ -53,7 +53,7 @@ public class LevelTest {
     int entityPositionX = 10;
     int entityPositionY = 10;
     Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
-    Entity entity = new HealthItem(1);
+    Entity entity = new HealthItem();
     entity.setPosition(entityPositionX, entityPositionY);
     level.getEntities().add(entity);
 
@@ -65,7 +65,7 @@ public class LevelTest {
     int entityPositionX = 10;
     int entityPositionY = 10;
     Level level = SimpleLevelFactory.generateLevel(50, 50, new ArrayList<Entity>());
-    Entity entity = new HealthItem(1);
+    Entity entity = new HealthItem();
     entity.setPosition(entityPositionX, entityPositionY);
     level.getEntities().add(entity);
 

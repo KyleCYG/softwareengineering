@@ -11,7 +11,6 @@ public class LevelItemsFactory {
   private static Gold gold;
   private static Health health;
   private static Exit exit;
-  private static Strength strength;
   private static StrengthType1 strength1;
   private static StrengthType2 strength2;
   private static StrengthType3 strength3;
@@ -48,11 +47,6 @@ public class LevelItemsFactory {
           exit = new Exit();
         }
         return exit;
-      case STRENGTH:
-        if (strength == null) {
-          strength = new Strength();
-        }
-        return strength;
       case STRENGTH1:
         if (strength1 == null) {
           strength1 = new StrengthType1();

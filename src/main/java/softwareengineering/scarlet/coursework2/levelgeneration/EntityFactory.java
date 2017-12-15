@@ -38,7 +38,7 @@ public class EntityFactory {
     List<GoldItem> result = new ArrayList<GoldItem>();
 
     for (int i = 0; i < goldInLevel; i++) {
-      result.add(new GoldItem(1));
+      result.add(new GoldItem());
     }
 
     return result;
@@ -175,7 +175,7 @@ public class EntityFactory {
     for (int i = 0; i < NUM_ENTITIES_PER_LEVEL; i++) {
       choice = random.nextFloat();
       if (choice < healthLevel) {
-        entities.add(new HealthItem(1));
+        entities.add(new HealthItem());
       } else if (choice < strengthOneLevel) {
         entities.add(new StrengthItem(1, CellType.STRENGTH1));
       } else if (choice < strengthTwoLevel) {

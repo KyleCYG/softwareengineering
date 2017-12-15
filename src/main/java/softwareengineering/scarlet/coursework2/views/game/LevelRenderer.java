@@ -13,8 +13,8 @@ import softwareengineering.scarlet.coursework2.models.Level;
  */
 public class LevelRenderer {
   private static List<CellType> needsFloor = Arrays.asList(CellType.EXIT, CellType.GOLD,
-      CellType.HEALTH, CellType.STAIRSDOWN, CellType.STAIRSUP, CellType.STRENGTH,
-      CellType.STRENGTH1, CellType.STRENGTH2, CellType.STRENGTH3, CellType.MONSTER);
+      CellType.HEALTH, CellType.STAIRSDOWN, CellType.STAIRSUP, CellType.STRENGTH1,
+      CellType.STRENGTH2, CellType.STRENGTH3, CellType.MONSTER);
 
   private Dungeon dungeon;
 

@@ -18,7 +18,7 @@ public class MonsterRenderer {
   }
 
   /**
-   * Render current monster to the screen
+   * Render all monsters in the level to the screen
    */
   public void render(Graphics2D g2d, ImageObserver observer) {
     for (Monster monster : dungeon.getCurrentLevel().getMonsters()) {

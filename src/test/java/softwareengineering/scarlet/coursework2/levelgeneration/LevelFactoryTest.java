@@ -161,8 +161,8 @@ public class LevelFactoryTest {
   public void testEntityPlacement() {
     List<Entity> entities = new ArrayList<Entity>();
 
-    entities.add(new GoldItem(1));
-    entities.add(new HealthItem(1));
+    entities.add(new GoldItem());
+    entities.add(new HealthItem());
     entities.add(new StrengthItem(1, CellType.STRENGTH1));
     entities.add(new StairsUpItem());
     entities.add(new StairsDownItem());
@@ -175,7 +175,7 @@ public class LevelFactoryTest {
 
   @Test
   public void testNotEnoughRoomsForEntities() {
-    List<Entity> entities = Arrays.asList(new GoldItem(1), new GoldItem(1), new GoldItem(1));
+    List<Entity> entities = Arrays.asList(new GoldItem(), new GoldItem(), new GoldItem());
 
     Level level = TwoRoomLevelFactory.generateLevel(20, 20, entities);
 
