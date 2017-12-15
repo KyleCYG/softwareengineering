@@ -14,7 +14,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
   @Override
   /**
    * Implementation of monster's actions depending on the player's position
-   * 
+   *
    * @param monster, dungeon, player
    */
   public void performAction(Monster monster, Dungeon dungeon, Player player) {
@@ -63,7 +63,7 @@ public class MonsterBehaviourType1 implements MonsterBehaviour {
 
   /**
    * Monster fights player if the player is one tile away
-   * 
+   *
    * @param player The player object
    * @param monster The monster object
    */

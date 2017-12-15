@@ -67,7 +67,6 @@ public class SetPreGameView implements View {
 
   @Override
   public void renderMessages(JTextArea textArea) {
-    // TODO Auto-generated method stub
-    
+    // Unnecessary override
   }
 }
